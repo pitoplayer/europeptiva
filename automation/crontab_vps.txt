@@ -1,0 +1,42 @@
+# Crontab para el VPS de EuroPeptiva (Hetzner)
+# Instalar con: crontab -e (como usuario peptidos)
+# Verificar con: crontab -l
+
+# Variables de entorno
+DJANGO_APP=/home/peptidos/app
+VENV=/home/peptidos/app/venv/bin/activate
+PYTHON=python
+
+# Alias para simplificar
+RUN=cd $DJANGO_APP && source $VENV && $PYTHON manage.py
+
+# -----------------------------------------------
+# PEDIDOS
+# -----------------------------------------------
+
+# Recordatorio de pago (24h después del pedido) — cada día a las 10:00
+0 10 * * * cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py recordatorio_pago >> /var/log/europeptiva/recordatorios.log 2>&1
+
+# Cancelar pedidos sin pago (48h) — cada día a las 9:00 y 21:00
+0 9,21 * * * cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py cancelar_pedidos_sin_pago >> /var/log/europeptiva/cancelaciones.log 2>&1
+
+# -----------------------------------------------
+# INFORMES
+# -----------------------------------------------
+
+# Informe diario al admin — cada día a las 8:00
+0 8 * * * cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py informe_diario >> /var/log/europeptiva/informes.log 2>&1
+
+# -----------------------------------------------
+# SINCRONIZACIÓN PEPTAURA
+# -----------------------------------------------
+
+# Sync precios Peptaura — cada lunes a las 6:00
+0 6 * * 1 cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py shell < automation/peptaura_sync.py >> /var/log/europeptiva/sync.log 2>&1
+
+# -----------------------------------------------
+# MANTENIMIENTO
+# -----------------------------------------------
+
+# Limpiar sesiones expiradas de Django — cada domingo a las 3:00
+0 3 * * 0 cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py clearsessions >> /var/log/europeptiva/maintenance.log 2>&1
