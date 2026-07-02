@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /pedidos/carrito/
+Disallow: /pedidos/checkout/
+
+Sitemap: https://europeptiva.com/sitemap.xml

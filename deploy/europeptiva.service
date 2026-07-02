@@ -1,0 +1,21 @@
+[Unit]
+Description=EuroPeptiva Django/Gunicorn
+After=network.target
+
+[Service]
+User=peptidos
+Group=peptidos
+WorkingDirectory=/home/peptidos/app
+ExecStart=/home/peptidos/app/venv/bin/gunicorn \
+    --workers 2 \
+    --bind 127.0.0.1:8000 \
+    --timeout 120 \
+    --access-logfile /home/peptidos/logs/gunicorn-access.log \
+    --error-logfile /home/peptidos/logs/gunicorn-error.log \
+    config.wsgi:application
+Restart=always
+RestartSec=3
+EnvironmentFile=/home/peptidos/app/.env
+
+[Install]
+WantedBy=multi-user.target

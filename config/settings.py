@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'store',
     'accounts',
     'orders',
@@ -45,6 +46,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.cart_count',
             ],
         },
     },
@@ -93,3 +95,7 @@ ADMIN_EMAIL = env('ADMIN_EMAIL', default='')
 # Datos bancarios (para emails de confirmación de transferencia)
 BANK_IBAN = env('BANK_IBAN', default='[IBAN pendiente de configurar]')
 BANK_HOLDER = env('BANK_HOLDER', default='[Titular pendiente de configurar]')
+
+# Mollie
+MOLLIE_API_KEY = env('MOLLIE_API_KEY', default='')
+SITE_URL = env('SITE_URL', default='http://localhost:8000')

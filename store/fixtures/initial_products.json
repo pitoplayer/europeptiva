@@ -1,0 +1,197 @@
+[
+  {
+    "model": "store.category",
+    "pk": 1,
+    "fields": {
+      "name": "Péptidos GLP-1",
+      "slug": "peptidos-glp1",
+      "description": "Agonistas del receptor GLP-1 para investigación metabólica.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 2,
+    "fields": {
+      "name": "Péptidos de Recuperación",
+      "slug": "peptidos-recuperacion",
+      "description": "Péptidos para investigación en regeneración tisular y recuperación.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 3,
+    "fields": {
+      "name": "Disolventes y Auxiliares",
+      "slug": "disolventes-auxiliares",
+      "description": "Agua bacteriostática y otros auxiliares para reconstitución de péptidos.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 1,
+    "fields": {
+      "name": "Retatrutide",
+      "slug": "retatrutide",
+      "cas_number": "2381272-15-5",
+      "category": 1,
+      "short_description": "Agonista triple GIP/GLP-1/glucagón de alta potencia para investigación metabólica y obesidad.",
+      "description": "El Retatrutide (LY3437943) es un agonista triple de los receptores GIP, GLP-1 y glucagón, desarrollado para investigación en metabolismo, obesidad y enfermedades metabólicas. En estudios preclínicos ha mostrado una reducción significativa del peso corporal y mejora de parámetros metabólicos. Pureza >98% verificada por HPLC. Certificado de análisis disponible bajo petición.\n\nAlmacenar a -20°C. Para reconstitución utilizar BAC Water estéril.",
+      "molecular_formula": "C₂₂₄H₃₄₉N₆₁O₆₅",
+      "molecular_weight": "4967.50",
+      "purity": ">98%",
+      "main_image": "",
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2026-07-02T00:00:00Z",
+      "updated_at": "2026-07-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 2,
+    "fields": {
+      "name": "Semaglutide",
+      "slug": "semaglutide",
+      "cas_number": "910463-68-2",
+      "category": 1,
+      "short_description": "Agonista del receptor GLP-1 de acción prolongada para investigación en diabetes tipo 2 y obesidad.",
+      "description": "El Semaglutide es un agonista del receptor GLP-1 con una vida media prolongada (~7 días) gracias a su modificación con ácido graso C18. Ampliamente estudiado en investigación sobre diabetes tipo 2, obesidad y enfermedades cardiovasculares. Base del principio activo de Ozempic® y Wegovy®. Pureza >98% verificada por HPLC.\n\nAlmacenar a -20°C. Para reconstitución utilizar BAC Water estéril. No apto para uso humano — solo investigación científica.",
+      "molecular_formula": "C₁₈₇H₂₉₁N₄₅O₅₉",
+      "molecular_weight": "4113.58",
+      "purity": ">98%",
+      "main_image": "",
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2026-07-02T00:00:00Z",
+      "updated_at": "2026-07-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 3,
+    "fields": {
+      "name": "BPC-157",
+      "slug": "bpc-157",
+      "cas_number": "137525-51-0",
+      "category": 2,
+      "short_description": "Pentadecapéptido derivado de proteína de unión gástrica para investigación en regeneración tisular.",
+      "description": "El BPC-157 (Body Protection Compound 157) es un pentadecapéptido sintético derivado de una proteína gástrica humana. Investigado extensamente por sus propiedades protectoras y regeneradoras en tejidos musculoesqueléticos, tendones, ligamentos y mucosa gastrointestinal en modelos animales. Estable en condiciones fisiológicas y activo por vías sistémica y local. Pureza >98%.\n\nAlmacenar a -20°C. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₆₂H₉₈N₁₆O₂₂",
+      "molecular_weight": "1419.53",
+      "purity": ">98%",
+      "main_image": "",
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2026-07-02T00:00:00Z",
+      "updated_at": "2026-07-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 4,
+    "fields": {
+      "name": "TB-500",
+      "slug": "tb-500",
+      "cas_number": "885340-08-9",
+      "category": 2,
+      "short_description": "Fragmento sintético de Timosina Beta-4 para investigación en regeneración y angiogénesis.",
+      "description": "El TB-500 es un fragmento sintético de la Timosina Beta-4 (Tβ4), una proteína endógena presente en casi todos los tejidos. Investigado por su papel en la regulación de la actina celular, angiogénesis, migración celular y procesos de reparación tisular. Muestra potencial en modelos de investigación sobre lesiones musculares, tendinosas y cardíacas. Pureza >98%.\n\nAlmacenar a -20°C. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₅₀H₈₉N₁₅O₁₅",
+      "molecular_weight": "1164.30",
+      "purity": ">98%",
+      "main_image": "",
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2026-07-02T00:00:00Z",
+      "updated_at": "2026-07-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 5,
+    "fields": {
+      "name": "BAC Water",
+      "slug": "bac-water",
+      "cas_number": "71-23-8",
+      "category": 3,
+      "short_description": "Agua bacteriostática estéril al 0.9% para reconstitución de péptidos liofilizados.",
+      "description": "Agua bacteriostática estéril con 0.9% de alcohol bencílico. Indispensable para la correcta reconstitución de péptidos liofilizados. El alcohol bencílico actúa como agente bacteriostático, inhibiendo el crecimiento bacteriano y prolongando la vida útil del péptido reconstituido en refrigeración. Presentación en vial estéril de 10ml. Producto de uso exclusivo en laboratorio e investigación científica.",
+      "molecular_formula": "H₂O",
+      "molecular_weight": "18.02",
+      "purity": "Grado laboratorio",
+      "main_image": "",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-02T00:00:00Z",
+      "updated_at": "2026-07-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 1,
+    "fields": {"peptide": 1, "size_mg": 2, "price": "24.90", "stock": 50, "sku": "retatrutide-2mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 2,
+    "fields": {"peptide": 1, "size_mg": 5, "price": "49.90", "stock": 30, "sku": "retatrutide-5mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 3,
+    "fields": {"peptide": 1, "size_mg": 10, "price": "84.90", "stock": 20, "sku": "retatrutide-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 4,
+    "fields": {"peptide": 2, "size_mg": 2, "price": "22.90", "stock": 60, "sku": "semaglutide-2mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 5,
+    "fields": {"peptide": 2, "size_mg": 5, "price": "44.90", "stock": 40, "sku": "semaglutide-5mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 6,
+    "fields": {"peptide": 2, "size_mg": 10, "price": "74.90", "stock": 25, "sku": "semaglutide-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 7,
+    "fields": {"peptide": 3, "size_mg": 5, "price": "19.90", "stock": 80, "sku": "bpc-157-5mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 8,
+    "fields": {"peptide": 3, "size_mg": 10, "price": "34.90", "stock": 50, "sku": "bpc-157-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 9,
+    "fields": {"peptide": 3, "size_mg": 20, "price": "59.90", "stock": 30, "sku": "bpc-157-20mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 10,
+    "fields": {"peptide": 4, "size_mg": 2, "price": "18.90", "stock": 70, "sku": "tb-500-2mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 11,
+    "fields": {"peptide": 4, "size_mg": 5, "price": "39.90", "stock": 45, "sku": "tb-500-5mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 12,
+    "fields": {"peptide": 4, "size_mg": 10, "price": "69.90", "stock": 25, "sku": "tb-500-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 13,
+    "fields": {"peptide": 5, "size_mg": 10, "price": "7.90", "stock": 200, "sku": "bac-water-10ml", "is_active": true}
+  }
+]

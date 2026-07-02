@@ -2,8 +2,8 @@
 
 ## Estado actual
 
-**Fase:** Semanas 1-3 completadas ✓ + páginas legales skeleton ✓  
-**Próximo:** Configurar SMTP, datos bancarios reales, cargar productos en admin, desplegar en Hetzner
+**Fase:** Semanas 1-4 completadas ✓ + infraestructura deploy ✓ + Mollie integrado ✓  
+**Próximo:** Diseño visual (en proceso con Claude Design), configurar SMTP y datos reales, desplegar en Hetzner
 
 ## Lo que está hecho
 
@@ -20,22 +20,57 @@
 - `orders/cart.py` — carrito en sesión (add/remove/update)
 - Templates completos: base.html, header, footer, disclaimer, cookie banner
 - Páginas: inicio (hero + destacados + por qué nosotros), catálogo con filtros y búsqueda, ficha de producto con selector de variante y añadir al carrito
+- Context processor para contador del carrito en header
 
 ### Semana 3 — Checkout y pagos ✓
 - `orders/forms.py` — formulario de checkout con consentimientos RGPD
 - `orders/views.py` — cart_view, checkout, order_confirmation
 - `orders/shipping.py` — cálculo de gastos de envío (España/EU, gratis desde 80€)
-- Templates: cart.html, checkout.html, confirmation.html
+- Templates: cart.html, checkout.html, confirmation.html mejorado
 - Email de confirmación al cliente (transferencia bancaria o Mollie)
 - Email de notificación al admin
+- Flash messages Django integrados en base.html
 
-### Semana 4 — Parcial ✓
+### Semana 4 — Completa ✓
 - requirements.txt limpio
-- .env.example documentado
+- .env.example documentado con todas las variables
 - Páginas legales skeleton (privacidad, aviso legal, cookies)
 - Páginas estáticas (about, contact)
 - Configuración de email en settings.py
 - Datos bancarios configurables vía .env
+
+### FASE EXTRA completada ✓
+
+**Automatizaciones:**
+- `cancelar_pedidos_sin_pago` — cancela transferencias pendientes a las 48h
+- `recordatorio_pago` — email de recordatorio a las 24h
+- `informe_diario` — resumen diario al admin
+- `automation/peptaura_sync.py` — scraper de precios Peptaura
+- `automation/crontab_vps.txt` — cron para el VPS
+
+**Productos iniciales cargados (fixture):**
+- Retatrutide (2mg/5mg/10mg)
+- Semaglutide (2mg/5mg/10mg)
+- BPC-157 (5mg/10mg/20mg)
+- TB-500 (2mg/5mg/10mg)
+- BAC Water (10ml)
+
+**SEO:**
+- sitemap.xml en /sitemap.xml
+- robots.txt en /robots.txt
+- django.contrib.sitemaps instalado
+
+**Mollie (pagos con tarjeta):**
+- Integración completa: flujo de pago + webhook
+- Vista `mollie_payment` y `mollie_webhook`
+- Campo `mollie_payment_id` en Order
+- Solo necesita `MOLLIE_API_KEY` en .env para activarse
+
+**Deploy:**
+- `deploy.sh` — script de deploy con git pull + migrate + collectstatic + restart
+- `deploy/nginx.conf` — configuración Nginx con SSL
+- `deploy/europeptiva.service` — servicio systemd Gunicorn
+- `deploy/setup_vps.sh` — setup inicial completo del VPS
 
 ## Para arrancar el servidor local
 
@@ -48,24 +83,27 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 
 ## Pendiente antes de lanzar
 
-### Técnico
-- [ ] Configurar SMTP en .env (Gmail App Password o Mailjet)
-- [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env
-- [ ] Cargar productos iniciales en /admin (Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water)
-- [ ] Crear VPS en Hetzner (CX21, Ubuntu 22.04, Alemania)
-- [ ] Configurar PostgreSQL en producción
-- [ ] Desplegar con Nginx + Gunicorn + Certbot (ver plan.md Días 15-16)
-- [ ] Cambiar URL del admin: /admin/ → /gestion-interna/
+### Alta prioridad
+- [ ] Configurar SMTP en .env (Gmail App Password de 16 caracteres)
+- [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env con datos reales del autónomo
+- [ ] Rellenar URLs de Peptaura en automation/peptaura_sync.py
+- [ ] Darse de alta en Mollie → obtener API key → añadir a .env
+- [ ] Crear VPS Hetzner CX21 (Ubuntu 22.04, datacenter Alemania)
+- [ ] Ejecutar deploy/setup_vps.sh + deploy.sh
+
+### Diseño visual
+- [ ] Recoger resultado de Claude Design y aplicar al frontend
+- [ ] Buscar e integrar imagen placeholder de péptidos (o generada con IA)
 
 ### Legal (antes del lanzamiento)
-- [ ] Rellenar datos fiscales reales en templates/pages/privacy.html y legal.html
-- [ ] Revisar con abogado
+- [ ] Rellenar datos fiscales reales en pages/privacy.html y legal.html
+- [ ] Revisar textos legales con abogado/gestor
 - [ ] Configurar Google Search Console
 
-### Mollie (pagos con tarjeta)
-- [ ] Darse de alta en Mollie (mollie.com)
-- [ ] Instalar mollie-api-python y conectar webhook
-- [ ] O como alternativa: solo transferencia bancaria en el lanzamiento v1
+### Post-lanzamiento
+- [ ] Cambiar URL del admin: /admin/ → /gestion-interna/
+- [ ] Configurar dominio DNS en Hetzner (europeptiva.com + europeptiva.es)
+- [ ] Conectar dominos .com y .es al VPS
 
 ## Timeline
 
@@ -74,5 +112,6 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 | Semana 1 | Modelos + admin | ✅ Completo |
 | Semana 2 | Frontend catálogo | ✅ Completo |
 | Semana 3 | Checkout + pagos | ✅ Completo |
-| Semana 4 | Legal, SEO, Hetzner | 🔄 Parcial |
+| Semana 4 | Legal, SEO, infra | ✅ Completo |
+| Extras | Automatizaciones + Mollie + deploy | ✅ Completo |
 | **28 jul** | **Lanzamiento** | 🎯 26 días |

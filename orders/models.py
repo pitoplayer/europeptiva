@@ -27,6 +27,7 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES, default='bank_transfer')
     payment_reference = models.CharField(max_length=100, blank=True, verbose_name="Referencia de pago")
+    mollie_payment_id = models.CharField(max_length=100, blank=True, verbose_name="ID pago Mollie")
 
     shipping_first_name = models.CharField(max_length=100, verbose_name="Nombre")
     shipping_last_name = models.CharField(max_length=100, verbose_name="Apellidos")

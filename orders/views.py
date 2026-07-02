@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings as django_settings
+from django.contrib import messages
 from .cart import Cart
 from .forms import CheckoutForm
 from .models import Order, OrderItem
@@ -15,6 +16,7 @@ def cart_view(request):
         action = request.POST.get('action')
         if action == 'add' and variant_id:
             cart.add(variant_id)
+            messages.success(request, 'Producto añadido al carrito.')
         elif action == 'remove' and variant_id:
             cart.remove(variant_id)
         elif action == 'update' and variant_id:
@@ -79,9 +81,11 @@ def checkout(request):
                 variant.stock = max(0, variant.stock - item['quantity'])
                 variant.save()
 
+            cart.clear()
+            if order.payment_method == 'mollie':
+                return redirect('mollie_payment', order_number=order.order_number)
             _send_order_confirmation(order)
             _send_admin_notification(order)
-            cart.clear()
             return redirect('order_confirmation', order_number=order.order_number)
     else:
         form = CheckoutForm()
@@ -100,6 +104,8 @@ def order_confirmation(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     return render(request, 'orders/confirmation.html', {
         'order': order,
+        'bank_iban': getattr(django_settings, 'BANK_IBAN', ''),
+        'bank_holder': getattr(django_settings, 'BANK_HOLDER', ''),
         'page_title': f'Pedido {order_number} confirmado',
     })
 
@@ -128,6 +134,75 @@ Tu pedido se procesará en cuanto recibamos la transferencia (1-2 días hábiles
         )
     except Exception:
         pass
+
+
+def mollie_payment(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    if order.status != 'pending' or order.payment_method != 'mollie':
+        return redirect('order_confirmation', order_number=order_number)
+
+    api_key = getattr(django_settings, 'MOLLIE_API_KEY', '')
+    site_url = getattr(django_settings, 'SITE_URL', 'http://localhost:8000')
+
+    if not api_key:
+        messages.error(request, 'Pago con tarjeta no disponible en este momento. Por favor elige transferencia bancaria.')
+        return redirect('checkout')
+
+    try:
+        from mollie.api.client import Client
+        mollie = Client()
+        mollie.set_api_key(api_key)
+
+        payment = mollie.payments.create({
+            'amount': {'currency': 'EUR', 'value': f'{order.total:.2f}'},
+            'description': f'EuroPeptiva — Pedido {order.order_number}',
+            'redirectUrl': f'{site_url}/pedidos/confirmacion/{order.order_number}/',
+            'webhookUrl': f'{site_url}/pedidos/mollie-webhook/',
+            'metadata': {'order_number': order.order_number},
+        })
+        order.mollie_payment_id = payment['id']
+        order.save()
+        return redirect(payment['_links']['checkout']['href'])
+    except Exception as e:
+        messages.error(request, 'Error al procesar el pago. Inténtalo de nuevo.')
+        return redirect('order_confirmation', order_number=order_number)
+
+
+def mollie_webhook(request):
+    if request.method != 'POST':
+        from django.http import HttpResponseNotAllowed
+        return HttpResponseNotAllowed(['POST'])
+
+    payment_id = request.POST.get('id')
+    if not payment_id:
+        from django.http import HttpResponse
+        return HttpResponse(status=400)
+
+    api_key = getattr(django_settings, 'MOLLIE_API_KEY', '')
+    if not api_key:
+        from django.http import HttpResponse
+        return HttpResponse(status=200)
+
+    try:
+        from mollie.api.client import Client
+        from django.http import HttpResponse
+        mollie = Client()
+        mollie.set_api_key(api_key)
+
+        payment = mollie.payments.get(payment_id)
+        order = Order.objects.filter(mollie_payment_id=payment_id).first()
+
+        if order and payment['status'] == 'paid' and order.status == 'pending':
+            order.status = 'paid'
+            order.payment_reference = payment_id
+            order.save()
+            _send_order_confirmation(order)
+            _send_admin_notification(order)
+
+        return HttpResponse(status=200)
+    except Exception:
+        from django.http import HttpResponse
+        return HttpResponse(status=200)
 
 
 def _send_admin_notification(order):
