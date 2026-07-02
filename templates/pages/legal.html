@@ -1,28 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="max-w-3xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold text-primary mb-8">Aviso Legal</h1>
-    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 text-sm text-amber-800">
-        ⚠️ <strong>Nota:</strong> Completar con datos fiscales reales antes del lanzamiento. Revisar con abogado.
+    <h1 class="text-3xl font-bold text-primary mb-3">Aviso Legal</h1>
+    <p class="text-sm text-gray-500 mb-8"><strong>Última actualización:</strong> Julio 2026</p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-10 text-sm text-amber-800">
+        ⚠️ <strong>Pendiente antes del lanzamiento:</strong> Sustituir los campos entre corchetes [ ] con los datos reales y revisar con asesor legal.
     </div>
 
-    <div class="space-y-6 text-gray-700">
+    <div class="space-y-8 text-gray-700 text-sm leading-relaxed">
+
         <section>
-            <h2 class="text-xl font-bold text-primary mb-2">1. Titular del sitio web</h2>
-            <p>[NOMBRE EMPRESA O AUTÓNOMO], CIF: [CIF], domicilio: [DIRECCIÓN], email: [EMAIL], inscrito en [REGISTRO si aplica].</p>
+            <h2 class="text-lg font-bold text-primary mb-3">1. Titular del sitio web</h2>
+            <p>En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se facilitan los siguientes datos de identificación:</p>
+            <ul class="mt-3 space-y-1">
+                <li><strong>Nombre / Razón social:</strong> [NOMBRE COMPLETO O EMPRESA]</li>
+                <li><strong>NIF/CIF:</strong> [NIF O CIF]</li>
+                <li><strong>Domicilio:</strong> [DIRECCIÓN COMPLETA], [CP] [CIUDAD], España</li>
+                <li><strong>Email:</strong> info@europeptiva.com</li>
+                <li><strong>Web:</strong> europeptiva.com y europeptiva.es</li>
+                <li><strong>Actividad:</strong> Comercio al por menor de reactivos y suministros de laboratorio</li>
+            </ul>
         </section>
+
         <section>
-            <h2 class="text-xl font-bold text-primary mb-2">2. Objeto y condiciones de uso</h2>
-            <p>EuroPeptiva comercializa péptidos destinados <strong>exclusivamente a investigación científica</strong>. Queda prohibida su adquisición para uso en humanos, veterinario o diagnóstico. El comprador asume toda la responsabilidad del uso que haga de los productos.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">2. Objeto y condiciones de uso</h2>
+            <p>EuroPeptiva comercializa péptidos sintéticos y compuestos relacionados destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. Los productos no están aprobados por la AEMPS ni por ninguna agencia reguladora para uso en humanos, uso veterinario ni diagnóstico médico.</p>
+            <p class="mt-3">Al acceder a este sitio web y realizar una compra, el usuario declara:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>Ser mayor de 18 años</li>
+                <li>Actuar en calidad de investigador, científico o profesional cualificado</li>
+                <li>Que los productos se destinarán únicamente a investigación científica</li>
+                <li>Que cumplirá con toda la normativa aplicable en su jurisdicción</li>
+            </ul>
+            <p class="mt-3">EuroPeptiva no se hace responsable del uso inadecuado de los productos por parte del comprador.</p>
         </section>
+
         <section>
-            <h2 class="text-xl font-bold text-primary mb-2">3. Propiedad intelectual</h2>
-            <p>Todos los contenidos de este sitio (textos, imágenes, diseño) son propiedad de EuroPeptiva o sus licenciantes y están protegidos por la legislación de propiedad intelectual española y comunitaria.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">3. Condiciones de venta</h2>
+            <p>Los precios indicados en el sitio incluyen el IVA aplicable. Los gastos de envío se calculan en el proceso de compra según el destino y el importe del pedido.</p>
+            <p class="mt-2">EuroPeptiva se reserva el derecho de rechazar pedidos si existen indicios de uso inadecuado o en caso de incumplimiento de las presentes condiciones.</p>
         </section>
+
         <section>
-            <h2 class="text-xl font-bold text-primary mb-2">4. Legislación aplicable</h2>
-            <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los Juzgados y Tribunales del domicilio del consumidor, de acuerdo con la normativa de protección de consumidores.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">4. Devoluciones</h2>
+            <p>Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, solo se aceptarán devoluciones en caso de error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Para cualquier incidencia, contacta en un plazo máximo de 48 horas desde la recepción del pedido a <strong>info@europeptiva.com</strong>.</p>
         </section>
+
+        <section>
+            <h2 class="text-lg font-bold text-primary mb-3">5. Responsabilidad</h2>
+            <p>EuroPeptiva no se responsabiliza de los daños o perjuicios que pueda causar el uso inadecuado de los productos, ni del incumplimiento de la normativa aplicable por parte del comprador en su país o jurisdicción. Los productos se venden "tal cual" para investigación en laboratorio, sin garantía de resultados específicos en ningún tipo de aplicación.</p>
+        </section>
+
+        <section>
+            <h2 class="text-lg font-bold text-primary mb-3">6. Propiedad intelectual</h2>
+            <p>Todos los contenidos de este sitio (textos, imágenes, diseño gráfico, logotipos, código fuente) son propiedad de EuroPeptiva o de sus licenciantes y están protegidos por la legislación de propiedad intelectual española y comunitaria. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa.</p>
+        </section>
+
+        <section>
+            <h2 class="text-lg font-bold text-primary mb-3">7. Legislación aplicable y jurisdicción</h2>
+            <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada de la compraventa, las partes se someten, con renuncia a cualquier otro fuero que pudiera corresponderles, a los Juzgados y Tribunales del domicilio del consumidor, de conformidad con la normativa española de protección de consumidores y usuarios.</p>
+        </section>
+
     </div>
 </div>
 {% endblock %}
