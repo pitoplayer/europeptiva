@@ -1,45 +1,35 @@
-<footer class="bg-primary text-gray-300 mt-16">
-    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="md:col-span-2">
-            <h3 class="text-white font-bold text-xl mb-3">Euro<span class="text-accent">Peptiva</span></h3>
-            <p class="text-sm text-gray-400 mb-4 max-w-xs">Proveedor especializado en péptidos de investigación científica de alta pureza (&gt;98%). Envío a España y Europa desde la UE.</p>
-            <div class="flex gap-4 text-sm">
-                <div class="flex items-center gap-1 text-gray-400">
-                    <span class="text-accent">✓</span> Pureza &gt;98%
-                </div>
-                <div class="flex items-center gap-1 text-gray-400">
-                    <span class="text-accent">✓</span> CoA disponible
-                </div>
+<footer class="bg-primary text-gray-400 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <!-- Logo -->
+        <a href="{% url 'index' %}" class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-full bg-accent flex items-center justify-center shrink-0">
+                <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="5" r="2" fill="white"/>
+                    <circle cx="4" cy="13" r="2" fill="white"/>
+                    <circle cx="14" cy="13" r="2" fill="white"/>
+                    <line x1="9" y1="7" x2="4" y2="11" stroke="white" stroke-width="1.2"/>
+                    <line x1="9" y1="7" x2="14" y2="11" stroke="white" stroke-width="1.2"/>
+                </svg>
             </div>
-        </div>
-        <div>
-            <h4 class="text-white font-semibold mb-4">Productos</h4>
-            <ul class="space-y-2 text-sm">
-                <li><a href="{% url 'catalog' %}" class="hover:text-accent transition-colors">Catálogo completo</a></li>
-                <li><a href="{% url 'catalog' %}?category=peptidos-glp1" class="hover:text-accent transition-colors">Péptidos GLP-1</a></li>
-                <li><a href="{% url 'catalog' %}?category=peptidos-recuperacion" class="hover:text-accent transition-colors">Péptidos de recuperación</a></li>
-                <li><a href="{% url 'catalog' %}?category=disolventes-auxiliares" class="hover:text-accent transition-colors">BAC Water</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="text-white font-semibold mb-4">Información</h4>
-            <ul class="space-y-2 text-sm">
-                <li><a href="{% url 'about' %}" class="hover:text-accent transition-colors">Sobre nosotros</a></li>
-                <li><a href="{% url 'faq' %}" class="hover:text-accent transition-colors">Preguntas frecuentes</a></li>
-                <li><a href="{% url 'contact' %}" class="hover:text-accent transition-colors">Contacto</a></li>
-                <li><a href="{% url 'cart' %}" class="hover:text-accent transition-colors">Mi carrito</a></li>
-                <li class="pt-2 border-t border-gray-700">
-                    <a href="{% url 'privacy' %}" class="hover:text-accent transition-colors">Privacidad</a>
-                </li>
-                <li><a href="{% url 'legal' %}" class="hover:text-accent transition-colors">Aviso legal</a></li>
-                <li><a href="{% url 'cookies' %}" class="hover:text-accent transition-colors">Cookies</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="border-t border-blue-800">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-gray-500">
-            <span>© {% now "Y" %} EuroPeptiva. Todos los derechos reservados.</span>
-            <span class="text-center">Todos los productos son exclusivamente para investigación científica. No aptos para consumo humano.</span>
-        </div>
+            <span class="font-semibold text-white text-base">EuroPeptiva</span>
+        </a>
+
+        <!-- Links -->
+        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+            <a href="{% url 'catalog' %}" class="hover:text-white transition-colors">Catálogo</a>
+            <a href="{% url 'about' %}" class="hover:text-white transition-colors">Sobre nosotros</a>
+            <a href="{% url 'faq' %}" class="hover:text-white transition-colors">FAQ</a>
+            <a href="{% url 'contact' %}" class="hover:text-white transition-colors">Contacto</a>
+            <a href="{% url 'privacy' %}" class="hover:text-white transition-colors">Privacidad</a>
+            <a href="{% url 'legal' %}" class="hover:text-white transition-colors">Aviso legal</a>
+            <a href="{% url 'cookies' %}" class="hover:text-white transition-colors">Cookies</a>
+        </nav>
+
+        <!-- Copyright -->
+        <p class="text-xs text-gray-500 text-center md:text-right">
+            © {% now "Y" %} EuroPeptiva.<br class="hidden md:block">Solo para uso en investigación científica.<br class="hidden md:block">No es un producto farmacéutico.
+        </p>
+
     </div>
 </footer>

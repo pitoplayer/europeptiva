@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-7xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-primary mb-8">Catálogo de Péptidos</h1>
+<div class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- Cabecera -->
+    <div class="mb-8">
+        <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Catálogo</p>
+        <h1 class="text-3xl font-bold text-primary">Péptidos de investigación</h1>
+    </div>
 
     <div class="flex flex-col md:flex-row gap-8">
 
-        <!-- Sidebar filtros -->
-        <aside class="md:w-56 shrink-0">
-            <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
-                <h3 class="font-bold text-primary mb-4">Categorías</h3>
+        <!-- Sidebar -->
+        <aside class="md:w-52 shrink-0">
+            <div class="border border-gray-200 rounded-xl p-5">
+                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Categorías</h3>
                 <ul class="space-y-2 text-sm">
                     <li>
-                        <a href="{% url 'catalog' %}" class="{% if not current_category %}font-bold text-accent{% else %}text-gray-700 hover:text-accent{% endif %} transition-colors">
-                            Todos los productos
+                        <a href="{% url 'catalog' %}" class="block px-3 py-2 rounded-lg transition-colors {% if not current_category %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
+                            Todos
                         </a>
                     </li>
                     {% for cat in categories %}
                     <li>
-                        <a href="{% url 'catalog' %}?category={{ cat.slug }}" class="{% if current_category == cat.slug %}font-bold text-accent{% else %}text-gray-700 hover:text-accent{% endif %} transition-colors">
+                        <a href="{% url 'catalog' %}?category={{ cat.slug }}" class="block px-3 py-2 rounded-lg transition-colors {% if current_category == cat.slug %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
                             {{ cat.name }}
                         </a>
                     </li>
@@ -29,76 +34,76 @@
 
         <!-- Productos -->
         <div class="flex-grow">
+
             <!-- Buscador -->
             <form method="GET" class="mb-6 flex gap-2">
                 {% if current_category %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
-                <input type="text" name="q" value="{{ query }}" placeholder="Buscar péptido o número CAS..."
-                    class="flex-grow border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent">
-                <button type="submit" class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-800 transition-colors">
+                <input type="text" name="q" value="{{ query }}" placeholder="Buscar compuesto o número CAS..."
+                    class="flex-grow border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition-colors">
                     Buscar
                 </button>
                 {% if query %}
-                <a href="{% url 'catalog' %}{% if current_category %}?category={{ current_category }}{% endif %}" class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+                <a href="{% url 'catalog' %}{% if current_category %}?category={{ current_category }}{% endif %}" class="px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-500 hover:bg-gray-50 transition-colors">
                     ✕
                 </a>
                 {% endif %}
             </form>
 
             {% if peptides %}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {% for peptide in peptides %}
-                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                    {% if peptide.main_image %}
-                    <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-44 object-cover">
-                    {% else %}
-                    <div class="w-full h-44 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                        <span class="text-blue-300 text-4xl">⚗</span>
+                <div class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow bg-white">
+                    <div class="relative bg-gray-50 aspect-[4/3] flex items-center justify-center">
+                        {% if peptide.main_image %}
+                        <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-full object-cover">
+                        {% else %}
+                        <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        {% endif %}
+                        <span class="absolute top-2 left-2 bg-accent-light text-accent-mid text-xs font-semibold px-2 py-0.5 rounded-full border border-accent-border">≥98%</span>
                     </div>
-                    {% endif %}
-                    <div class="p-5">
-                        <h3 class="font-bold text-primary mb-1">{{ peptide.name }}</h3>
-                        <p class="text-gray-500 text-xs mb-1">Pureza: {{ peptide.purity }}</p>
-                        {% if peptide.cas_number %}<p class="text-gray-400 text-xs mb-3">CAS: {{ peptide.cas_number }}</p>{% endif %}
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ peptide.short_description }}</p>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-primary mb-0.5">{{ peptide.name }}</h3>
+                        {% if peptide.cas_number %}<p class="text-xs text-gray-400 mb-1">CAS {{ peptide.cas_number }}</p>{% endif %}
                         {% with cheapest=peptide.get_cheapest_variant %}
                         {% if cheapest %}
-                        <p class="text-accent font-bold text-lg mb-4">Desde {{ cheapest.price }}€</p>
+                        <p class="text-xs text-gray-400 mb-3">{{ cheapest.size_mg }}mg · liofilizado</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-primary">{{ cheapest.price }} €</span>
+                            <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">Ver producto</a>
+                        </div>
                         {% else %}
-                        <p class="text-gray-400 text-sm mb-4">Sin stock</p>
+                        <p class="text-sm text-gray-400">Sin stock</p>
                         {% endif %}
                         {% endwith %}
-                        <a href="{% url 'product_detail' peptide.slug %}" class="block text-center bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-800 transition-colors">
-                            Ver producto
-                        </a>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+
             {% if peptides.has_other_pages %}
-            <div class="flex items-center justify-center gap-2 mt-10">
+            <div class="flex items-center justify-center gap-3 mt-10">
                 {% if peptides.has_previous %}
                 <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.previous_page_number }}"
-                    class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
-                    ← Anterior
-                </a>
+                    class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">← Anterior</a>
                 {% endif %}
-                <span class="text-sm text-gray-500">Página {{ peptides.number }} de {{ peptides.paginator.num_pages }}</span>
+                <span class="text-sm text-gray-400">{{ peptides.number }} / {{ peptides.paginator.num_pages }}</span>
                 {% if peptides.has_next %}
                 <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.next_page_number }}"
-                    class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
-                    Siguiente →
-                </a>
+                    class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">Siguiente →</a>
                 {% endif %}
             </div>
             {% endif %}
 
             {% else %}
             <div class="text-center py-20 text-gray-400">
-                <div class="text-5xl mb-4">🔍</div>
-                <p class="text-xl font-semibold mb-2">No se encontraron productos</p>
-                <p class="text-sm">Prueba con otro término de búsqueda o <a href="{% url 'catalog' %}" class="text-accent underline">ver todos</a>.</p>
+                <p class="text-lg font-semibold mb-2">Sin resultados</p>
+                <p class="text-sm">Prueba con otro término o <a href="{% url 'catalog' %}" class="text-accent-mid underline">ver todos</a>.</p>
             </div>
             {% endif %}
+
         </div>
     </div>
 </div>

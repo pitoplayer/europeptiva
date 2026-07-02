@@ -1,63 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-primary mb-8">Tu carrito</h1>
+<div class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-2xl font-bold text-primary mb-8">Tu carrito</h1>
 
     {% if items %}
     <div class="flex flex-col lg:flex-row gap-8">
 
         <!-- Artículos -->
         <div class="flex-grow">
-            {% for item in items %}
-            <div class="flex items-center gap-4 border-b border-gray-200 py-5">
-                <div class="flex-grow">
-                    <a href="{% url 'product_detail' item.slug %}" class="font-semibold text-primary hover:text-accent">{{ item.name }}</a>
-                    <p class="text-sm text-gray-500">{{ item.size_mg }}mg — {{ item.price }}€/ud</p>
+            <div class="border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-100">
+                {% for item in items %}
+                <div class="flex items-center gap-4 px-5 py-4">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center shrink-0">
+                        <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <a href="{% url 'product_detail' item.slug %}" class="font-semibold text-primary hover:text-accent-mid transition-colors">{{ item.name }}</a>
+                        <p class="text-xs text-gray-400 mt-0.5">{{ item.size_mg }}mg · liofilizado · {{ item.price }}€/ud</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
+                            <input type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
+                                class="w-14 border border-gray-200 rounded-lg px-2 py-1.5 text-center text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+                                onchange="this.form.submit()">
+                        </form>
+                        <span class="font-bold text-primary w-18 text-right text-sm">{{ item.line_total }}€</span>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
+                            <button type="submit" class="text-gray-300 hover:text-red-400 transition-colors ml-1" title="Eliminar">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
-                        <input type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
-                            class="w-16 border border-gray-300 rounded-lg px-2 py-1 text-center text-sm"
-                            onchange="this.form.submit()">
-                    </form>
-                    <span class="font-bold text-primary w-20 text-right">{{ item.line_total }}€</span>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="remove">
-                        <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
-                        <button type="submit" class="text-red-400 hover:text-red-600 text-lg ml-2" title="Eliminar">✕</button>
-                    </form>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
 
         <!-- Resumen -->
-        <div class="lg:w-72 shrink-0">
-            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 sticky top-4">
-                <h3 class="font-bold text-primary text-lg mb-4">Resumen del pedido</h3>
-                <div class="flex justify-between text-sm mb-2">
-                    <span class="text-gray-600">Subtotal</span>
-                    <span class="font-medium">{{ total }}€</span>
+        <div class="lg:w-64 shrink-0">
+            <div class="border border-gray-200 rounded-xl p-5 sticky top-20">
+                <h3 class="font-semibold text-primary mb-4">Resumen</h3>
+                <div class="space-y-2 text-sm mb-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Subtotal</span>
+                        <span class="font-medium">{{ total }}€</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Envío</span>
+                        <span class="font-medium {% if total >= 80 %}text-accent-mid{% endif %}">
+                            {% if total >= 80 %}Gratis{% else %}Desde 5,90€{% endif %}
+                        </span>
+                    </div>
                 </div>
-                <div class="flex justify-between text-sm mb-4">
-                    <span class="text-gray-600">Envío</span>
-                    <span class="font-medium text-accent">
-                        {% if total >= 80 %}Gratis{% else %}Desde 5,90€{% endif %}
-                    </span>
-                </div>
-                <div class="border-t border-gray-300 pt-4 flex justify-between font-bold text-primary text-lg mb-6">
-                    <span>Total estimado</span>
+                <div class="border-t border-gray-100 pt-4 flex justify-between font-bold text-primary mb-5">
+                    <span>Total</span>
                     <span>{{ total }}€{% if total < 80 %}+{% endif %}</span>
                 </div>
-                <a href="{% url 'checkout' %}" class="block text-center bg-accent text-white py-3 rounded-xl font-bold hover:bg-green-500 transition-colors">
+                <a href="{% url 'checkout' %}" class="block text-center bg-primary text-white py-3 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
                     Finalizar pedido →
                 </a>
-                <a href="{% url 'catalog' %}" class="block text-center text-gray-500 text-sm mt-3 hover:text-accent">
+                <a href="{% url 'catalog' %}" class="block text-center text-gray-400 text-xs mt-3 hover:text-primary transition-colors">
                     Seguir comprando
                 </a>
             </div>
@@ -65,10 +78,15 @@
     </div>
 
     {% else %}
-    <div class="text-center py-20 text-gray-400">
-        <div class="text-6xl mb-6">🛒</div>
-        <p class="text-xl font-semibold mb-2">Tu carrito está vacío</p>
-        <a href="{% url 'catalog' %}" class="text-accent font-semibold hover:underline">Ver catálogo →</a>
+    <div class="text-center py-24 text-gray-400">
+        <div class="w-16 h-16 border-2 border-dashed border-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.4 7h12.8M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
+            </svg>
+        </div>
+        <p class="font-semibold text-gray-600 mb-1">El carrito está vacío</p>
+        <p class="text-sm mb-6">Añade productos desde el catálogo.</p>
+        <a href="{% url 'catalog' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors">Ver catálogo</a>
     </div>
     {% endif %}
 </div>

@@ -54,12 +54,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Base de datos: DATABASE_URL en producción, SQLite en local
+if env('DATABASE_URL', default=''):
+    DATABASES = {'default': env.db('DATABASE_URL')}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -92,10 +96,22 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='EuroPeptiva <noreply@europeptiva.com>')
 ADMIN_EMAIL = env('ADMIN_EMAIL', default='')
 
-# Datos bancarios (para emails de confirmación de transferencia)
+# Datos bancarios
 BANK_IBAN = env('BANK_IBAN', default='[IBAN pendiente de configurar]')
 BANK_HOLDER = env('BANK_HOLDER', default='[Titular pendiente de configurar]')
 
 # Mollie
 MOLLIE_API_KEY = env('MOLLIE_API_KEY', default='')
 SITE_URL = env('SITE_URL', default='http://localhost:8000')
+
+# Seguridad en producción
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

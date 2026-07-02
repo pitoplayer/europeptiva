@@ -1,81 +1,182 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Hero -->
-<section class="bg-gradient-to-br from-primary to-blue-800 text-white py-20 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Péptidos de Investigación<br>de Alta Pureza</h1>
-        <p class="text-xl text-blue-200 mb-8">Retatrutide, Semaglutide, BPC-157, TB-500 y más.<br>Pureza &gt;98% certificada. Envío a España y Europa.</p>
-        <a href="{% url 'catalog' %}" class="bg-accent text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-green-500 transition-colors inline-block">
-            Ver catálogo completo →
-        </a>
-    </div>
-</section>
 
-<!-- Aviso investigación -->
-<section class="bg-amber-50 border-y border-amber-200 py-4 px-4">
-    <div class="max-w-4xl mx-auto text-center text-amber-800 text-sm">
-        <strong>Solo para investigación científica.</strong> No apto para consumo humano. Al comprar, el cliente acepta usar los productos únicamente con fines de investigación.
+<!-- Hero -->
+<section class="relative overflow-hidden bg-white py-16 md:py-24">
+
+    <!-- Blob decorativo -->
+    <div class="absolute right-0 top-0 w-96 h-96 md:w-[600px] md:h-[600px] opacity-10 -translate-y-1/4 translate-x-1/4">
+        <div class="blob w-full h-full bg-accent"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+            <!-- Texto izquierda -->
+            <div>
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-accent-light border border-accent-border text-accent font-medium text-xs px-3 py-1.5 rounded-full mb-6">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent-mid"></span>
+                    Certificado de análisis por lote · HPLC ≥98%
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-bold text-primary leading-tight mb-5">
+                    Péptidos de investigación de alta pureza, para ciencia seria.
+                </h1>
+
+                <p class="text-gray-500 text-lg leading-relaxed mb-8">
+                    Compuestos sintetizados en la UE, verificados en laboratorio independiente y enviados con cadena de frío. Sin atajos, sin marketing de suplementos.
+                </p>
+
+                <div class="flex flex-wrap gap-3 mb-10">
+                    <a href="{% url 'catalog' %}" class="bg-primary text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-gray-800 transition-colors">
+                        Ver catálogo
+                    </a>
+                    <a href="{% url 'contact' %}" class="border border-gray-300 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary transition-colors">
+                        Certificados de análisis
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="flex gap-8 border-t border-gray-100 pt-8">
+                    <div>
+                        <p class="text-2xl font-bold text-primary">≥98%</p>
+                        <p class="text-xs text-gray-400 mt-0.5">pureza HPLC</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-primary">24–48h</p>
+                        <p class="text-xs text-gray-400 mt-0.5">envío UE refrigerado</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-primary">100%</p>
+                        <p class="text-xs text-gray-400 mt-0.5">lotes con CoA</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Imágenes derecha -->
+            <div class="relative hidden md:block">
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Imagen grande izquierda -->
+                    <div class="row-span-2 bg-gray-50 border border-gray-200 rounded-2xl aspect-[3/4] flex flex-col items-center justify-center text-gray-300">
+                        <svg class="w-10 h-10 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="text-xs">foto de caja</span>
+                    </div>
+                    <!-- Imagen top derecha -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-2xl aspect-square flex flex-col items-center justify-center text-gray-300">
+                        <svg class="w-8 h-8 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="text-xs">foto de vial · 10mg</span>
+                    </div>
+                    <!-- Imagen bottom derecha -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-2xl aspect-square flex items-center justify-center text-gray-300">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Floating badge -->
+                <div class="absolute -bottom-4 left-4 bg-white border border-gray-200 rounded-xl shadow-lg px-4 py-3">
+                    <p class="text-xs text-gray-400 mb-0.5">LOTE EP-2026-0117</p>
+                    <p class="text-sm font-semibold text-primary">Pureza verificada · 98.6%</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
 <!-- Productos destacados -->
 {% if featured_peptides %}
-<section class="max-w-7xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-primary mb-10 text-center">Productos destacados</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<section class="max-w-7xl mx-auto px-6 py-16">
+
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Catálogo</p>
+            <h2 class="text-2xl font-bold text-primary">Compuestos destacados</h2>
+        </div>
+        <a href="{% url 'catalog' %}" class="text-sm text-gray-500 hover:text-primary transition-colors">Ver todo el catálogo →</a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {% for peptide in featured_peptides %}
-        <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-            {% if peptide.main_image %}
-            <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-48 object-cover">
-            {% else %}
-            <div class="w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                <span class="text-blue-300 text-5xl">⚗</span>
+        <div class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow bg-white">
+            <!-- Imagen -->
+            <div class="relative bg-gray-50 aspect-[4/3] flex items-center justify-center">
+                {% if peptide.main_image %}
+                <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-full object-cover">
+                {% else %}
+                <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                {% endif %}
+                <span class="absolute top-2 left-2 bg-accent-light text-accent-mid text-xs font-semibold px-2 py-0.5 rounded-full border border-accent-border">≥98%</span>
             </div>
-            {% endif %}
-            <div class="p-5">
-                <h3 class="font-bold text-primary text-lg mb-1">{{ peptide.name }}</h3>
-                <p class="text-gray-500 text-sm mb-3 line-clamp-2">{{ peptide.short_description }}</p>
-                <p class="text-xs text-gray-400 mb-4">Pureza: {{ peptide.purity }}</p>
+            <!-- Info -->
+            <div class="p-4">
+                <h3 class="font-semibold text-primary mb-0.5">{{ peptide.name }}</h3>
                 {% with cheapest=peptide.get_cheapest_variant %}
                 {% if cheapest %}
-                <p class="text-accent font-bold text-lg mb-4">Desde {{ cheapest.price }}€</p>
+                <p class="text-xs text-gray-400 mb-3">{{ cheapest.size_mg }}mg · liofilizado</p>
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-primary">{{ cheapest.price }} €</span>
+                    <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">Ver producto</a>
+                </div>
                 {% endif %}
                 {% endwith %}
-                <a href="{% url 'product_detail' peptide.slug %}" class="block text-center bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-800 transition-colors">
-                    Ver producto
-                </a>
             </div>
         </div>
         {% endfor %}
     </div>
-    <div class="text-center mt-10">
-        <a href="{% url 'catalog' %}" class="text-primary font-semibold hover:text-accent transition-colors">Ver todos los productos →</a>
-    </div>
+
 </section>
 {% endif %}
 
 <!-- Por qué EuroPeptiva -->
-<section class="bg-gray-50 py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-primary text-center mb-12">¿Por qué EuroPeptiva?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center">
-                <div class="text-4xl mb-4">🔬</div>
-                <h3 class="font-bold text-primary mb-2">Alta pureza</h3>
-                <p class="text-gray-600 text-sm">Todos nuestros péptidos tienen pureza &gt;98%, verificada por certificado de análisis (CoA).</p>
+<section class="bg-primary py-16 mt-8">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="mb-10">
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">Por qué EuroPeptiva</p>
+            <h2 class="text-2xl font-bold text-white">Rigor de laboratorio en cada envío.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-700">
+            <div class="py-8 md:py-0 md:pr-8 first:pt-0 last:pb-0">
+                <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
+                    <div class="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <h3 class="text-white font-semibold mb-2">Certificado de análisis</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Cada lote se acompaña de un CoA verificado por laboratorio independiente.</p>
             </div>
-            <div class="text-center">
-                <div class="text-4xl mb-4">🇪🇺</div>
-                <h3 class="font-bold text-primary mb-2">Envío desde Europa</h3>
-                <p class="text-gray-600 text-sm">Almacenamiento y envío desde la Unión Europea. Temperatura controlada durante todo el proceso.</p>
+            <div class="py-8 md:py-0 md:px-8">
+                <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
+                    <div class="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <h3 class="text-white font-semibold mb-2">Síntesis en la UE</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Fabricación y control de calidad dentro de la Unión Europea.</p>
             </div>
-            <div class="text-center">
-                <div class="text-4xl mb-4">📦</div>
-                <h3 class="font-bold text-primary mb-2">Envío rápido</h3>
-                <p class="text-gray-600 text-sm">Envío a España en 24-72h. A Europa en 3-5 días laborables. Gratis a partir de 80€.</p>
+            <div class="py-8 md:py-0 md:px-8">
+                <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
+                    <div class="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <h3 class="text-white font-semibold mb-2">Cadena de frío</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Envío refrigerado y embalaje aislado para preservar la estabilidad.</p>
+            </div>
+            <div class="py-8 md:py-0 md:pl-8">
+                <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
+                    <div class="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <h3 class="text-white font-semibold mb-2">Uso exclusivo I+D</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Productos etiquetados y comercializados solo para investigación científica.</p>
             </div>
         </div>
+
     </div>
 </section>
+
 {% endblock %}
