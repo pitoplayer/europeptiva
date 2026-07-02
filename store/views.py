@@ -17,6 +17,7 @@ def index(request):
 
 
 def catalog(request):
+    from django.core.paginator import Paginator
     peptides = Peptide.objects.filter(is_active=True).prefetch_related('variants')
     category_slug = request.GET.get('category')
     query = request.GET.get('q', '').strip()
@@ -24,11 +25,19 @@ def catalog(request):
     if category_slug:
         peptides = peptides.filter(category__slug=category_slug)
     if query:
-        peptides = peptides.filter(Q(name__icontains=query) | Q(cas_number__icontains=query))
+        peptides = peptides.filter(
+            Q(name__icontains=query) |
+            Q(cas_number__icontains=query) |
+            Q(short_description__icontains=query)
+        )
+
+    paginator = Paginator(peptides, 12)
+    page = request.GET.get('page')
+    peptides_page = paginator.get_page(page)
 
     categories = Category.objects.filter(is_active=True)
     return render(request, 'store/catalog.html', {
-        'peptides': peptides,
+        'peptides': peptides_page,
         'categories': categories,
         'current_category': category_slug,
         'query': query,

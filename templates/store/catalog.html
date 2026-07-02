@@ -74,6 +74,24 @@
                 </div>
                 {% endfor %}
             </div>
+            {% if peptides.has_other_pages %}
+            <div class="flex items-center justify-center gap-2 mt-10">
+                {% if peptides.has_previous %}
+                <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.previous_page_number }}"
+                    class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+                    ← Anterior
+                </a>
+                {% endif %}
+                <span class="text-sm text-gray-500">Página {{ peptides.number }} de {{ peptides.paginator.num_pages }}</span>
+                {% if peptides.has_next %}
+                <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.next_page_number }}"
+                    class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+                    Siguiente →
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
             {% else %}
             <div class="text-center py-20 text-gray-400">
                 <div class="text-5xl mb-4">🔍</div>
