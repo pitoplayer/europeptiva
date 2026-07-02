@@ -1,6 +1,6 @@
 [Unit]
 Description=EuroPeptiva Django/Gunicorn
-After=network.target
+After=network.target postgresql.service
 
 [Service]
 User=peptidos
