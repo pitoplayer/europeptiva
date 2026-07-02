@@ -2,29 +2,41 @@
 
 ## Estado actual
 
-**Fase:** Semana 1, Día 1 — pendiente de empezar  
-**Proyecto:** Recién inicializado en GitHub (pitoplayer/europeptiva)
+**Fase:** Semana 1, Días 1-2 completados ✓  
+**Próximo:** Día 3 — modelos de pedidos (`orders/models.py`)
+
+## Lo que está hecho
+
+- Proyecto Django 5 inicializado con Python 3.11 (via uv)
+- Apps: `store`, `accounts`, `orders`
+- `settings.py` configurado con django-environ, idioma español, zona horaria Madrid
+- SQLite para desarrollo local (PostgreSQL en producción/Hetzner)
+- Modelos: `Category`, `Peptide`, `PeptideVariant` con stock, SKU, variantes por tamaño
+- Migraciones aplicadas
+- Admin Django configurado con gestión visual de productos y stock
+- Superusuario: `admin` / `admin123` (solo local, cambiar en producción)
+
+## Para arrancar el servidor local
+
+```bash
+cd /home/kaliuser/europeptiva
+source .venv/bin/activate
+python manage.py runserver
+# Abrir http://localhost:8000/admin
+```
 
 ## Próximos pasos
 
-1. Crear entorno virtual e instalar Django 5 + dependencias (ver `plan.md` Día 1)
-2. Crear proyecto Django con apps: `store`, `accounts`, `orders`
-3. Configurar PostgreSQL local
-4. Objetivo de la semana: admin Django funcional con modelos de productos
+1. **Día 3:** Modelos de pedidos (`orders/models.py`) — Order, OrderItem
+2. **Día 4:** Admin de pedidos
+3. **Semana 2:** Frontend (templates, views, URLs del catálogo)
 
 ## Timeline
 
-| Semana | Objetivo |
-|--------|----------|
-| 1 (actual) | Modelos de datos + admin Django |
-| 2 | Frontend del catálogo (templates + views) |
-| 3 | Checkout + pagos + emails |
-| 4 | Legal, SEO, despliegue en Hetzner |
-| **28 jul** | **Lanzamiento** |
-
-## Decisiones tomadas (no reabrir)
-
-- Stack: Django 5 + PostgreSQL + Tailwind CDN + HTMX
-- Hosting: Hetzner Alemania
-- Pagos: Mollie + transferencia + Redsys
-- Sin Shopify, sin Klarna, sin Stripe
+| Semana | Objetivo | Estado |
+|--------|----------|--------|
+| 1 | Modelos + admin Django | 🔄 En progreso |
+| 2 | Frontend del catálogo | ⏳ Pendiente |
+| 3 | Checkout + pagos + emails | ⏳ Pendiente |
+| 4 | Legal, SEO, despliegue Hetzner | ⏳ Pendiente |
+| **28 jul** | **Lanzamiento** | 🎯 |
