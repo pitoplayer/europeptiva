@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-primary mb-8">Tu carrito</h1>
+
+    {% if items %}
+    <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- Artículos -->
+        <div class="flex-grow">
+            {% for item in items %}
+            <div class="flex items-center gap-4 border-b border-gray-200 py-5">
+                <div class="flex-grow">
+                    <a href="{% url 'product_detail' item.slug %}" class="font-semibold text-primary hover:text-accent">{{ item.name }}</a>
+                    <p class="text-sm text-gray-500">{{ item.size_mg }}mg — {{ item.price }}€/ud</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="0" max="99"
+                            class="w-16 border border-gray-300 rounded-lg px-2 py-1 text-center text-sm"
+                            onchange="this.form.submit()">
+                    </form>
+                    <span class="font-bold text-primary w-20 text-right">{{ item.line_total }}€</span>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="remove">
+                        <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
+                        <button type="submit" class="text-red-400 hover:text-red-600 text-lg ml-2" title="Eliminar">✕</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Resumen -->
+        <div class="lg:w-72 shrink-0">
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 sticky top-4">
+                <h3 class="font-bold text-primary text-lg mb-4">Resumen del pedido</h3>
+                <div class="flex justify-between text-sm mb-2">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="font-medium">{{ total }}€</span>
+                </div>
+                <div class="flex justify-between text-sm mb-4">
+                    <span class="text-gray-600">Envío</span>
+                    <span class="font-medium text-accent">
+                        {% if total >= 80 %}Gratis{% else %}Desde 5,90€{% endif %}
+                    </span>
+                </div>
+                <div class="border-t border-gray-300 pt-4 flex justify-between font-bold text-primary text-lg mb-6">
+                    <span>Total estimado</span>
+                    <span>{{ total }}€{% if total < 80 %}+{% endif %}</span>
+                </div>
+                <a href="{% url 'checkout' %}" class="block text-center bg-accent text-white py-3 rounded-xl font-bold hover:bg-green-500 transition-colors">
+                    Finalizar pedido →
+                </a>
+                <a href="{% url 'catalog' %}" class="block text-center text-gray-500 text-sm mt-3 hover:text-accent">
+                    Seguir comprando
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="text-center py-20 text-gray-400">
+        <div class="text-6xl mb-6">🛒</div>
+        <p class="text-xl font-semibold mb-2">Tu carrito está vacío</p>
+        <a href="{% url 'catalog' %}" class="text-accent font-semibold hover:underline">Ver catálogo →</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

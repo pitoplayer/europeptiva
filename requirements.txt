@@ -1,0 +1,7 @@
+Django==5.0
+django-environ==0.14.0
+Pillow==12.3.0
+
+# Producción (añadir al instalar en Hetzner)
+gunicorn
+psycopg2-binary

@@ -1,3 +1,146 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings as django_settings
+from .cart import Cart
+from .forms import CheckoutForm
+from .models import Order, OrderItem
+from .shipping import calculate_shipping
+from store.models import PeptideVariant
 
-# Create your views here.
+
+def cart_view(request):
+    cart = Cart(request)
+    if request.method == 'POST':
+        variant_id = request.POST.get('variant_id')
+        action = request.POST.get('action')
+        if action == 'add' and variant_id:
+            cart.add(variant_id)
+        elif action == 'remove' and variant_id:
+            cart.remove(variant_id)
+        elif action == 'update' and variant_id:
+            try:
+                qty = int(request.POST.get('quantity', 1))
+                cart.update(variant_id, qty)
+            except (ValueError, TypeError):
+                pass
+        return redirect('cart')
+
+    return render(request, 'orders/cart.html', {
+        'items': cart.get_items(),
+        'total': cart.get_total(),
+        'page_title': 'Tu carrito',
+    })
+
+
+def checkout(request):
+    cart = Cart(request)
+    if len(cart) == 0:
+        return redirect('catalog')
+
+    cart_items = cart.get_items()
+    subtotal = cart.get_total()
+
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            shipping_cost = calculate_shipping(data['country'], subtotal)
+            total = subtotal + shipping_cost
+
+            order = Order.objects.create(
+                shipping_first_name=data['first_name'],
+                shipping_last_name=data['last_name'],
+                shipping_email=data['email'],
+                shipping_phone=data.get('phone', ''),
+                shipping_address=data['address'],
+                shipping_city=data['city'],
+                shipping_postal_code=data['postal_code'],
+                shipping_country=data['country'],
+                notes=data.get('notes', ''),
+                payment_method=data['payment_method'],
+                research_disclaimer_accepted=data['research_disclaimer'],
+                terms_accepted=data['terms'],
+                rgpd_accepted=data['rgpd'],
+                subtotal=subtotal,
+                shipping_cost=shipping_cost,
+                total=total,
+            )
+
+            for item in cart_items:
+                variant = PeptideVariant.objects.get(id=item['variant_id'])
+                OrderItem.objects.create(
+                    order=order,
+                    variant=variant,
+                    product_name=item['name'],
+                    variant_size_mg=item['size_mg'],
+                    unit_price=item['price'],
+                    quantity=item['quantity'],
+                )
+                variant.stock = max(0, variant.stock - item['quantity'])
+                variant.save()
+
+            _send_order_confirmation(order)
+            _send_admin_notification(order)
+            cart.clear()
+            return redirect('order_confirmation', order_number=order.order_number)
+    else:
+        form = CheckoutForm()
+
+    shipping_preview = calculate_shipping('ESP', subtotal)
+    return render(request, 'orders/checkout.html', {
+        'cart_items': cart_items,
+        'subtotal': subtotal,
+        'shipping_preview': shipping_preview,
+        'form': form,
+        'page_title': 'Finalizar pedido',
+    })
+
+
+def order_confirmation(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    return render(request, 'orders/confirmation.html', {
+        'order': order,
+        'page_title': f'Pedido {order_number} confirmado',
+    })
+
+
+def _send_order_confirmation(order):
+    if order.payment_method == 'bank_transfer':
+        iban = getattr(django_settings, 'BANK_IBAN', '[IBAN pendiente]')
+        holder = getattr(django_settings, 'BANK_HOLDER', '[Titular pendiente]')
+        payment_info = f"""INSTRUCCIONES DE PAGO POR TRANSFERENCIA:
+Titular: {holder}
+IBAN: {iban}
+Concepto: {order.order_number}
+Importe: {order.total}€
+
+Tu pedido se procesará en cuanto recibamos la transferencia (1-2 días hábiles)."""
+    else:
+        payment_info = "Recibirás un enlace de pago en breve."
+
+    try:
+        send_mail(
+            subject=f'Pedido {order.order_number} recibido — EuroPeptiva',
+            message=f"Hola {order.shipping_first_name},\n\nHemos recibido tu pedido {order.order_number}.\n\n{payment_info}\n\nGracias por tu confianza en EuroPeptiva.\n",
+            from_email=getattr(django_settings, 'DEFAULT_FROM_EMAIL', 'noreply@europeptiva.com'),
+            recipient_list=[order.shipping_email],
+            fail_silently=True,
+        )
+    except Exception:
+        pass
+
+
+def _send_admin_notification(order):
+    admin_email = getattr(django_settings, 'ADMIN_EMAIL', None)
+    if not admin_email:
+        return
+    try:
+        send_mail(
+            subject=f'NUEVO PEDIDO: {order.order_number} — {order.total}€',
+            message=f"Nuevo pedido de {order.shipping_email}.\nMétodo de pago: {order.get_payment_method_display()}\nTotal: {order.total}€",
+            from_email=getattr(django_settings, 'DEFAULT_FROM_EMAIL', 'noreply@europeptiva.com'),
+            recipient_list=[admin_email],
+            fail_silently=True,
+        )
+    except Exception:
+        pass

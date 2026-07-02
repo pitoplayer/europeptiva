@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-gray-500 mb-8">
+        <a href="{% url 'index' %}" class="hover:text-accent">Inicio</a> /
+        <a href="{% url 'catalog' %}" class="hover:text-accent">Catálogo</a> /
+        <span class="text-gray-800">{{ peptide.name }}</span>
+    </nav>
+
+    <div class="flex flex-col md:flex-row gap-12">
+
+        <!-- Imagen -->
+        <div class="md:w-2/5">
+            {% if peptide.main_image %}
+            <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full rounded-xl shadow-md">
+            {% else %}
+            <div class="w-full aspect-square bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center">
+                <span class="text-blue-200 text-8xl">⚗</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Info -->
+        <div class="md:w-3/5">
+            <span class="text-sm text-accent font-semibold uppercase tracking-wide">{{ peptide.category }}</span>
+            <h1 class="text-3xl font-bold text-primary mt-2 mb-4">{{ peptide.name }}</h1>
+            <p class="text-gray-600 mb-6">{{ peptide.short_description }}</p>
+
+            <!-- Especificaciones -->
+            <div class="bg-gray-50 rounded-xl p-5 mb-6">
+                <table class="w-full text-sm">
+                    <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 text-gray-500 font-medium w-40">Pureza</td>
+                            <td class="py-2 font-semibold text-green-600">{{ peptide.purity }}</td>
+                        </tr>
+                        {% if peptide.molecular_formula %}
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 text-gray-500 font-medium">Fórmula molecular</td>
+                            <td class="py-2 font-mono">{{ peptide.molecular_formula }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if peptide.molecular_weight %}
+                        <tr class="border-b border-gray-200">
+                            <td class="py-2 text-gray-500 font-medium">Peso molecular</td>
+                            <td class="py-2">{{ peptide.molecular_weight }} Da</td>
+                        </tr>
+                        {% endif %}
+                        {% if peptide.cas_number %}
+                        <tr>
+                            <td class="py-2 text-gray-500 font-medium">Número CAS</td>
+                            <td class="py-2 font-mono">{{ peptide.cas_number }}</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Selector de variante + carrito -->
+            {% if variants %}
+            <form method="POST" action="{% url 'cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add">
+
+                <h3 class="font-semibold text-primary mb-3">Selecciona la cantidad:</h3>
+                <div class="flex flex-wrap gap-3 mb-6" id="variant-selector">
+                    {% for variant in variants %}
+                    <label class="cursor-pointer">
+                        <input type="radio" name="variant_id" value="{{ variant.id }}"
+                            class="sr-only peer"
+                            {% if forloop.first %}checked{% endif %}
+                            {% if not variant.in_stock %}disabled{% endif %}>
+                        <div class="px-5 py-3 border-2 rounded-xl text-sm font-semibold transition-all
+                            peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white
+                            peer-disabled:opacity-40 peer-disabled:cursor-not-allowed
+                            border-gray-300 hover:border-accent">
+                            {{ variant.size_mg }}mg
+                            <span class="block text-xs font-normal mt-0.5">{{ variant.price }}€</span>
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-accent text-white py-4 rounded-xl font-bold text-lg hover:bg-green-500 transition-colors">
+                    Añadir al carrito
+                </button>
+            </form>
+            {% else %}
+            <div class="bg-gray-100 rounded-xl p-6 text-center text-gray-500">
+                Sin stock disponible actualmente.
+            </div>
+            {% endif %}
+
+            <!-- Disclaimer -->
+            <div class="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800">
+                <strong>Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente en investigación.
+            </div>
+        </div>
+    </div>
+
+    <!-- Descripción completa -->
+    {% if peptide.description %}
+    <div class="mt-12 border-t border-gray-200 pt-10">
+        <h2 class="text-2xl font-bold text-primary mb-6">Descripción</h2>
+        <div class="prose max-w-none text-gray-700">{{ peptide.description|linebreaks }}</div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

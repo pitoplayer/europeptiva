@@ -1,0 +1,28 @@
+<footer class="bg-primary text-gray-300 mt-16">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+            <h3 class="text-white font-bold text-lg mb-3">Euro<span class="text-accent">Peptiva</span></h3>
+            <p class="text-sm">Péptidos de investigación científica de alta pureza. Envío a España y Europa.</p>
+            <p class="text-xs mt-3 text-gray-500">Todos los productos son exclusivamente para investigación científica.</p>
+        </div>
+        <div>
+            <h4 class="text-white font-semibold mb-3">Navegación</h4>
+            <ul class="space-y-2 text-sm">
+                <li><a href="{% url 'catalog' %}" class="hover:text-accent transition-colors">Catálogo</a></li>
+                <li><a href="{% url 'about' %}" class="hover:text-accent transition-colors">Sobre nosotros</a></li>
+                <li><a href="{% url 'contact' %}" class="hover:text-accent transition-colors">Contacto</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="text-white font-semibold mb-3">Legal</h4>
+            <ul class="space-y-2 text-sm">
+                <li><a href="{% url 'privacy' %}" class="hover:text-accent transition-colors">Política de privacidad</a></li>
+                <li><a href="{% url 'legal' %}" class="hover:text-accent transition-colors">Aviso legal</a></li>
+                <li><a href="{% url 'cookies' %}" class="hover:text-accent transition-colors">Política de cookies</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="border-t border-gray-700 text-center py-4 text-xs text-gray-500">
+        © {% now "Y" %} EuroPeptiva. Todos los derechos reservados.
+    </div>
+</footer>

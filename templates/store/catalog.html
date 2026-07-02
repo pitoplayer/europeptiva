@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-primary mb-8">Catálogo de Péptidos</h1>
+
+    <div class="flex flex-col md:flex-row gap-8">
+
+        <!-- Sidebar filtros -->
+        <aside class="md:w-56 shrink-0">
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+                <h3 class="font-bold text-primary mb-4">Categorías</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="{% url 'catalog' %}" class="{% if not current_category %}font-bold text-accent{% else %}text-gray-700 hover:text-accent{% endif %} transition-colors">
+                            Todos los productos
+                        </a>
+                    </li>
+                    {% for cat in categories %}
+                    <li>
+                        <a href="{% url 'catalog' %}?category={{ cat.slug }}" class="{% if current_category == cat.slug %}font-bold text-accent{% else %}text-gray-700 hover:text-accent{% endif %} transition-colors">
+                            {{ cat.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Productos -->
+        <div class="flex-grow">
+            <!-- Buscador -->
+            <form method="GET" class="mb-6 flex gap-2">
+                {% if current_category %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
+                <input type="text" name="q" value="{{ query }}" placeholder="Buscar péptido o número CAS..."
+                    class="flex-grow border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent">
+                <button type="submit" class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-800 transition-colors">
+                    Buscar
+                </button>
+                {% if query %}
+                <a href="{% url 'catalog' %}{% if current_category %}?category={{ current_category }}{% endif %}" class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+                    ✕
+                </a>
+                {% endif %}
+            </form>
+
+            {% if peptides %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for peptide in peptides %}
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                    {% if peptide.main_image %}
+                    <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-44 object-cover">
+                    {% else %}
+                    <div class="w-full h-44 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                        <span class="text-blue-300 text-4xl">⚗</span>
+                    </div>
+                    {% endif %}
+                    <div class="p-5">
+                        <h3 class="font-bold text-primary mb-1">{{ peptide.name }}</h3>
+                        <p class="text-gray-500 text-xs mb-1">Pureza: {{ peptide.purity }}</p>
+                        {% if peptide.cas_number %}<p class="text-gray-400 text-xs mb-3">CAS: {{ peptide.cas_number }}</p>{% endif %}
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ peptide.short_description }}</p>
+                        {% with cheapest=peptide.get_cheapest_variant %}
+                        {% if cheapest %}
+                        <p class="text-accent font-bold text-lg mb-4">Desde {{ cheapest.price }}€</p>
+                        {% else %}
+                        <p class="text-gray-400 text-sm mb-4">Sin stock</p>
+                        {% endif %}
+                        {% endwith %}
+                        <a href="{% url 'product_detail' peptide.slug %}" class="block text-center bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-800 transition-colors">
+                            Ver producto
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-20 text-gray-400">
+                <div class="text-5xl mb-4">🔍</div>
+                <p class="text-xl font-semibold mb-2">No se encontraron productos</p>
+                <p class="text-sm">Prueba con otro término de búsqueda o <a href="{% url 'catalog' %}" class="text-accent underline">ver todos</a>.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

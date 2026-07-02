@@ -1,0 +1,24 @@
+<header class="bg-primary text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="{% url 'index' %}" class="text-2xl font-bold tracking-tight">
+            Euro<span class="text-accent">Peptiva</span>
+        </a>
+        <nav class="hidden md:flex gap-8 text-sm font-medium">
+            <a href="{% url 'index' %}" class="hover:text-accent transition-colors">Inicio</a>
+            <a href="{% url 'catalog' %}" class="hover:text-accent transition-colors">Catálogo</a>
+            <a href="{% url 'about' %}" class="hover:text-accent transition-colors">Sobre nosotros</a>
+            <a href="{% url 'contact' %}" class="hover:text-accent transition-colors">Contacto</a>
+        </nav>
+        <a href="{% url 'cart' %}" class="relative flex items-center gap-2 bg-accent text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-500 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.4 7h12.8M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
+            </svg>
+            Carrito
+            {% if request.session.cart %}
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {{ request.session.cart|length }}
+            </span>
+            {% endif %}
+        </a>
+    </div>
+</header>

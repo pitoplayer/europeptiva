@@ -2,19 +2,40 @@
 
 ## Estado actual
 
-**Fase:** Semana 1, Días 1-2 completados ✓  
-**Próximo:** Día 3 — modelos de pedidos (`orders/models.py`)
+**Fase:** Semanas 1-3 completadas ✓ + páginas legales skeleton ✓  
+**Próximo:** Configurar SMTP, datos bancarios reales, cargar productos en admin, desplegar en Hetzner
 
 ## Lo que está hecho
 
-- Proyecto Django 5 inicializado con Python 3.11 (via uv)
-- Apps: `store`, `accounts`, `orders`
-- `settings.py` configurado con django-environ, idioma español, zona horaria Madrid
-- SQLite para desarrollo local (PostgreSQL en producción/Hetzner)
-- Modelos: `Category`, `Peptide`, `PeptideVariant` con stock, SKU, variantes por tamaño
-- Migraciones aplicadas
-- Admin Django configurado con gestión visual de productos y stock
-- Superusuario: `admin` / `admin123` (solo local, cambiar en producción)
+### Semana 1 — Modelos ✓
+- Django 5 + Python 3.11 (via uv)
+- Apps: store, accounts, orders
+- Models: Category, Peptide, PeptideVariant (con stock, SKU, variantes)
+- Models: Order, OrderItem (con estados, métodos de pago, datos de envío)
+- Admin completo para productos y pedidos
+- Superusuario: admin / admin123
+
+### Semana 2 — Frontend ✓
+- `store/views.py` — index, catálogo, ficha de producto
+- `orders/cart.py` — carrito en sesión (add/remove/update)
+- Templates completos: base.html, header, footer, disclaimer, cookie banner
+- Páginas: inicio (hero + destacados + por qué nosotros), catálogo con filtros y búsqueda, ficha de producto con selector de variante y añadir al carrito
+
+### Semana 3 — Checkout y pagos ✓
+- `orders/forms.py` — formulario de checkout con consentimientos RGPD
+- `orders/views.py` — cart_view, checkout, order_confirmation
+- `orders/shipping.py` — cálculo de gastos de envío (España/EU, gratis desde 80€)
+- Templates: cart.html, checkout.html, confirmation.html
+- Email de confirmación al cliente (transferencia bancaria o Mollie)
+- Email de notificación al admin
+
+### Semana 4 — Parcial ✓
+- requirements.txt limpio
+- .env.example documentado
+- Páginas legales skeleton (privacidad, aviso legal, cookies)
+- Páginas estáticas (about, contact)
+- Configuración de email en settings.py
+- Datos bancarios configurables vía .env
 
 ## Para arrancar el servidor local
 
@@ -22,21 +43,36 @@
 cd /home/kaliuser/europeptiva
 source .venv/bin/activate
 python manage.py runserver
-# Abrir http://localhost:8000/admin
 ```
+Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 
-## Próximos pasos
+## Pendiente antes de lanzar
 
-1. **Día 3:** Modelos de pedidos (`orders/models.py`) — Order, OrderItem
-2. **Día 4:** Admin de pedidos
-3. **Semana 2:** Frontend (templates, views, URLs del catálogo)
+### Técnico
+- [ ] Configurar SMTP en .env (Gmail App Password o Mailjet)
+- [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env
+- [ ] Cargar productos iniciales en /admin (Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water)
+- [ ] Crear VPS en Hetzner (CX21, Ubuntu 22.04, Alemania)
+- [ ] Configurar PostgreSQL en producción
+- [ ] Desplegar con Nginx + Gunicorn + Certbot (ver plan.md Días 15-16)
+- [ ] Cambiar URL del admin: /admin/ → /gestion-interna/
+
+### Legal (antes del lanzamiento)
+- [ ] Rellenar datos fiscales reales en templates/pages/privacy.html y legal.html
+- [ ] Revisar con abogado
+- [ ] Configurar Google Search Console
+
+### Mollie (pagos con tarjeta)
+- [ ] Darse de alta en Mollie (mollie.com)
+- [ ] Instalar mollie-api-python y conectar webhook
+- [ ] O como alternativa: solo transferencia bancaria en el lanzamiento v1
 
 ## Timeline
 
-| Semana | Objetivo | Estado |
+| | Objetivo | Estado |
 |--------|----------|--------|
-| 1 | Modelos + admin Django | 🔄 En progreso |
-| 2 | Frontend del catálogo | ⏳ Pendiente |
-| 3 | Checkout + pagos + emails | ⏳ Pendiente |
-| 4 | Legal, SEO, despliegue Hetzner | ⏳ Pendiente |
-| **28 jul** | **Lanzamiento** | 🎯 |
+| Semana 1 | Modelos + admin | ✅ Completo |
+| Semana 2 | Frontend catálogo | ✅ Completo |
+| Semana 3 | Checkout + pagos | ✅ Completo |
+| Semana 4 | Legal, SEO, Hetzner | 🔄 Parcial |
+| **28 jul** | **Lanzamiento** | 🎯 26 días |

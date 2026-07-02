@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ page_title }} | EuroPeptiva{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}EuroPeptiva — Péptidos de investigación científica de alta pureza. Envío a España y Europa.{% endblock %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a5f',
+                        accent: '#2ecc71',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+
+    {% include 'partials/disclaimer_banner.html' %}
+    {% include 'partials/header.html' %}
+
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'partials/footer.html' %}
+    {% include 'partials/cookie_banner.html' %}
+
+</body>
+</html>

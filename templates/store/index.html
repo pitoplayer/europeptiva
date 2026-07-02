@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero -->
+<section class="bg-gradient-to-br from-primary to-blue-800 text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Péptidos de Investigación<br>de Alta Pureza</h1>
+        <p class="text-xl text-blue-200 mb-8">Retatrutide, Semaglutide, BPC-157, TB-500 y más.<br>Pureza &gt;98% certificada. Envío a España y Europa.</p>
+        <a href="{% url 'catalog' %}" class="bg-accent text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-green-500 transition-colors inline-block">
+            Ver catálogo completo →
+        </a>
+    </div>
+</section>
+
+<!-- Aviso investigación -->
+<section class="bg-amber-50 border-y border-amber-200 py-4 px-4">
+    <div class="max-w-4xl mx-auto text-center text-amber-800 text-sm">
+        <strong>Solo para investigación científica.</strong> No apto para consumo humano. Al comprar, el cliente acepta usar los productos únicamente con fines de investigación.
+    </div>
+</section>
+
+<!-- Productos destacados -->
+{% if featured_peptides %}
+<section class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-primary mb-10 text-center">Productos destacados</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for peptide in featured_peptides %}
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+            {% if peptide.main_image %}
+            <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-48 object-cover">
+            {% else %}
+            <div class="w-full h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                <span class="text-blue-300 text-5xl">⚗</span>
+            </div>
+            {% endif %}
+            <div class="p-5">
+                <h3 class="font-bold text-primary text-lg mb-1">{{ peptide.name }}</h3>
+                <p class="text-gray-500 text-sm mb-3 line-clamp-2">{{ peptide.short_description }}</p>
+                <p class="text-xs text-gray-400 mb-4">Pureza: {{ peptide.purity }}</p>
+                {% with cheapest=peptide.get_cheapest_variant %}
+                {% if cheapest %}
+                <p class="text-accent font-bold text-lg mb-4">Desde {{ cheapest.price }}€</p>
+                {% endif %}
+                {% endwith %}
+                <a href="{% url 'product_detail' peptide.slug %}" class="block text-center bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-800 transition-colors">
+                    Ver producto
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-10">
+        <a href="{% url 'catalog' %}" class="text-primary font-semibold hover:text-accent transition-colors">Ver todos los productos →</a>
+    </div>
+</section>
+{% endif %}
+
+<!-- Por qué EuroPeptiva -->
+<section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-primary text-center mb-12">¿Por qué EuroPeptiva?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="text-4xl mb-4">🔬</div>
+                <h3 class="font-bold text-primary mb-2">Alta pureza</h3>
+                <p class="text-gray-600 text-sm">Todos nuestros péptidos tienen pureza &gt;98%, verificada por certificado de análisis (CoA).</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">🇪🇺</div>
+                <h3 class="font-bold text-primary mb-2">Envío desde Europa</h3>
+                <p class="text-gray-600 text-sm">Almacenamiento y envío desde la Unión Europea. Temperatura controlada durante todo el proceso.</p>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl mb-4">📦</div>
+                <h3 class="font-bold text-primary mb-2">Envío rápido</h3>
+                <p class="text-gray-600 text-sm">Envío a España en 24-72h. A Europa en 3-5 días laborables. Gratis a partir de 80€.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
