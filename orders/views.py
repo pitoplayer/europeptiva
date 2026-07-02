@@ -139,6 +139,30 @@ def _send_order_confirmation(order):
         pass
 
 
+def order_tracking(request):
+    order = None
+    error = None
+    if request.method == 'POST':
+        order_num = request.POST.get('order_number', '').strip().upper()
+        email = request.POST.get('email', '').strip().lower()
+        if order_num and email:
+            try:
+                order = Order.objects.get(
+                    order_number=order_num,
+                    shipping_email__iexact=email
+                )
+            except Order.DoesNotExist:
+                error = 'No encontramos ningún pedido con esos datos. Comprueba el número de pedido y el email.'
+        else:
+            error = 'Por favor, introduce el número de pedido y el email.'
+
+    return render(request, 'orders/tracking.html', {
+        'order': order,
+        'error': error,
+        'page_title': 'Seguimiento de pedido',
+    })
+
+
 def mollie_payment(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     if order.status != 'pending' or order.payment_method != 'mollie':
