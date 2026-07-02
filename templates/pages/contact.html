@@ -1,18 +1,82 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="max-w-2xl mx-auto px-4 py-14">
-    <h1 class="text-4xl font-bold text-primary mb-6">Contacto</h1>
-    <p class="text-gray-600 mb-8">¿Tienes alguna pregunta sobre nuestros productos o tu pedido? Escríbenos.</p>
-    <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 space-y-4">
+<div class="max-w-3xl mx-auto px-4 py-14">
+    <h1 class="text-4xl font-bold text-primary mb-3">Contacto</h1>
+    <p class="text-gray-600 mb-10">¿Tienes alguna pregunta sobre nuestros productos o tu pedido? Escríbenos y te respondemos en menos de 24 horas.</p>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+        <!-- Info -->
         <div>
-            <span class="font-semibold text-primary">Email:</span>
-            <a href="mailto:info@europeptiva.com" class="text-accent ml-2 hover:underline">info@europeptiva.com</a>
+            <div class="space-y-5 mb-8">
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">📧</span>
+                    <div>
+                        <p class="font-semibold text-primary text-sm">Email</p>
+                        <a href="mailto:info@europeptiva.com" class="text-accent hover:underline">info@europeptiva.com</a>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">🕐</span>
+                    <div>
+                        <p class="font-semibold text-primary text-sm">Horario</p>
+                        <p class="text-gray-600 text-sm">Lunes–Viernes, 9:00–18:00 (CET)</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-2xl">📦</span>
+                    <div>
+                        <p class="font-semibold text-primary text-sm">Estado de pedido</p>
+                        <p class="text-gray-600 text-sm">Indica tu número de pedido (PEP-XXXXXXXX) en el mensaje.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-800">
+                Solo atendemos consultas sobre pedidos e investigación científica. No respondemos preguntas sobre uso en humanos.
+            </div>
         </div>
+
+        <!-- Formulario -->
         <div>
-            <span class="font-semibold text-primary">Horario de atención:</span>
-            <span class="text-gray-600 ml-2">Lunes a viernes, 9:00 — 18:00 (CET)</span>
+            {% if contact_sent %}
+            <div class="bg-green-50 border border-green-200 rounded-xl p-6 text-green-700 text-center">
+                <div class="text-3xl mb-3">✅</div>
+                <p class="font-semibold">Mensaje enviado</p>
+                <p class="text-sm mt-1">Te responderemos en menos de 24h.</p>
+            </div>
+            {% else %}
+            <form method="POST" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                    <input type="text" name="name" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" name="email" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Asunto</label>
+                    <select name="subject" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent bg-white">
+                        <option value="Pregunta sobre producto">Pregunta sobre producto</option>
+                        <option value="Estado de mi pedido">Estado de mi pedido</option>
+                        <option value="Problema con el pedido">Problema con el pedido</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                    <textarea name="message" rows="5" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition-colors text-sm">
+                    Enviar mensaje
+                </button>
+            </form>
+            {% endif %}
         </div>
-        <p class="text-xs text-gray-500 pt-4 border-t border-gray-200">Solo atendemos consultas relacionadas con pedidos e investigación. No respondemos preguntas sobre uso en humanos.</p>
     </div>
 </div>
 {% endblock %}

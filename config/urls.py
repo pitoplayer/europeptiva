@@ -11,7 +11,6 @@ urlpatterns = [
     path('', include('store.urls')),
     path('pedidos/', include('orders.urls')),
     path('sobre-nosotros/', TemplateView.as_view(template_name='pages/about.html', extra_context={'page_title': 'Sobre nosotros'}), name='about'),
-    path('contacto/', TemplateView.as_view(template_name='pages/contact.html', extra_context={'page_title': 'Contacto'}), name='contact'),
     path('privacidad/', TemplateView.as_view(template_name='pages/privacy.html', extra_context={'page_title': 'Política de privacidad'}), name='privacy'),
     path('aviso-legal/', TemplateView.as_view(template_name='pages/legal.html', extra_context={'page_title': 'Aviso legal'}), name='legal'),
     path('cookies/', TemplateView.as_view(template_name='pages/cookies.html', extra_context={'page_title': 'Política de cookies'}), name='cookies'),

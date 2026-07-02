@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
 from django.db.models import Q
 from .models import Category, Peptide
+from .forms import ContactForm
 
 
 def index(request):
@@ -40,4 +43,30 @@ def product_detail(request, slug):
         'peptide': peptide,
         'variants': variants,
         'page_title': peptide.name,
+    })
+
+
+def contact(request):
+    sent = False
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            d = form.cleaned_data
+            admin_email = getattr(settings, 'ADMIN_EMAIL', '')
+            if admin_email:
+                try:
+                    send_mail(
+                        subject=f'[EuroPeptiva Contacto] {d["subject"]}',
+                        message=f'De: {d["name"]} <{d["email"]}>\n\n{d["message"]}',
+                        from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@europeptiva.com'),
+                        recipient_list=[admin_email],
+                        fail_silently=True,
+                    )
+                except Exception:
+                    pass
+            sent = True
+
+    return render(request, 'pages/contact.html', {
+        'contact_sent': sent,
+        'page_title': 'Contacto',
     })
