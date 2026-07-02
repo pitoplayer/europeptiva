@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido {{ order.order_number }} — EuroPeptiva</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 0; }
+  .wrapper { max-width: 580px; margin: 30px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .header { background: #1e3a5f; padding: 32px 40px; text-align: center; }
+  .header h1 { color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; }
+  .header p { color: #93c5fd; margin: 6px 0 0; font-size: 14px; }
+  .body { padding: 32px 40px; }
+  .greeting { font-size: 16px; color: #1e3a5f; font-weight: 600; margin-bottom: 8px; }
+  .text { color: #4b5563; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+  .order-number { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 14px 20px; text-align: center; margin-bottom: 24px; }
+  .order-number span { font-size: 22px; font-weight: 700; color: #1e3a5f; letter-spacing: 1px; }
+  table.items { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
+  table.items th { background: #f9fafb; color: #6b7280; font-weight: 600; padding: 10px 12px; text-align: left; border-bottom: 2px solid #e5e7eb; }
+  table.items td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; color: #374151; }
+  table.items tr:last-child td { border-bottom: none; }
+  .totals { background: #f9fafb; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; }
+  .totals-row { display: flex; justify-content: space-between; font-size: 14px; color: #6b7280; margin-bottom: 6px; }
+  .totals-total { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; color: #1e3a5f; padding-top: 10px; border-top: 1px solid #e5e7eb; margin-top: 6px; }
+  .bank-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+  .bank-box h3 { color: #1e3a5f; font-size: 15px; margin: 0 0 14px; }
+  .bank-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #dbeafe; }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-row .label { color: #6b7280; }
+  .bank-row .value { font-weight: 600; color: #1e3a5f; }
+  .disclaimer { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 18px; font-size: 12px; color: #92400e; margin-bottom: 24px; }
+  .footer { background: #f9fafb; padding: 20px 40px; text-align: center; font-size: 12px; color: #9ca3af; border-top: 1px solid #e5e7eb; }
+  .footer a { color: #6b7280; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <h1>EuroPeptiva</h1>
+    <p>Péptidos de investigación científica</p>
+  </div>
+  <div class="body">
+    <p class="greeting">Hola {{ order.shipping_first_name }},</p>
+    <p class="text">Hemos recibido tu pedido correctamente. A continuación encontrarás los detalles:</p>
+
+    <div class="order-number">
+      <span>{{ order.order_number }}</span>
+    </div>
+
+    <table class="items">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cant.</th>
+          <th style="text-align:right">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order.items.all %}
+        <tr>
+          <td>{{ item.product_name }} {{ item.variant_size_mg }}mg</td>
+          <td>{{ item.quantity }}</td>
+          <td style="text-align:right">{{ item.line_total }}€</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="totals-row"><span>Subtotal</span><span>{{ order.subtotal }}€</span></div>
+      <div class="totals-row"><span>Gastos de envío</span><span>{{ order.shipping_cost }}€</span></div>
+      <div class="totals-total"><span>Total</span><span>{{ order.total }}€</span></div>
+    </div>
+
+    {% if order.payment_method == 'bank_transfer' %}
+    <div class="bank-box">
+      <h3>Instrucciones de transferencia bancaria</h3>
+      <div class="bank-row"><span class="label">Titular</span><span class="value">{{ bank_holder }}</span></div>
+      <div class="bank-row"><span class="label">IBAN</span><span class="value">{{ bank_iban }}</span></div>
+      <div class="bank-row"><span class="label">Concepto (obligatorio)</span><span class="value">{{ order.order_number }}</span></div>
+      <div class="bank-row"><span class="label">Importe</span><span class="value">{{ order.total }}€</span></div>
+    </div>
+    <p class="text">Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1–2 días hábiles). <strong>No olvides incluir el número de pedido en el concepto.</strong></p>
+    {% elif order.payment_method == 'mollie' %}
+    <p class="text">Tu pago con tarjeta ha sido registrado y será procesado en breve. Recibirás una confirmación adicional cuando el pago sea verificado.</p>
+    {% endif %}
+
+    <p class="text">
+      <strong>Dirección de envío:</strong><br>
+      {{ order.shipping_first_name }} {{ order.shipping_last_name }}<br>
+      {{ order.shipping_address }}<br>
+      {{ order.shipping_postal_code }} {{ order.shipping_city }}<br>
+      {{ order.get_shipping_country_display }}
+    </p>
+
+    <div class="disclaimer">
+      <strong>Aviso legal:</strong> Este pedido contiene productos de investigación científica de uso exclusivo en laboratorio. No son aptos para consumo humano, veterinario ni diagnóstico clínico.
+    </div>
+  </div>
+  <div class="footer">
+    <p>EuroPeptiva — <a href="https://europeptiva.com">europeptiva.com</a></p>
+    <p>¿Tienes preguntas? Escríbenos a <a href="mailto:info@europeptiva.com">info@europeptiva.com</a></p>
+  </div>
+</div>
+</body>
+</html>

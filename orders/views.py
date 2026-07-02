@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 from django.conf import settings as django_settings
 from django.contrib import messages
 from .cart import Cart
@@ -111,27 +112,29 @@ def order_confirmation(request, order_number):
 
 
 def _send_order_confirmation(order):
-    if order.payment_method == 'bank_transfer':
-        iban = getattr(django_settings, 'BANK_IBAN', '[IBAN pendiente]')
-        holder = getattr(django_settings, 'BANK_HOLDER', '[Titular pendiente]')
-        payment_info = f"""INSTRUCCIONES DE PAGO POR TRANSFERENCIA:
-Titular: {holder}
-IBAN: {iban}
-Concepto: {order.order_number}
-Importe: {order.total}€
+    bank_iban = getattr(django_settings, 'BANK_IBAN', '')
+    bank_holder = getattr(django_settings, 'BANK_HOLDER', '')
+    from_email = getattr(django_settings, 'DEFAULT_FROM_EMAIL', 'noreply@europeptiva.com')
 
-Tu pedido se procesará en cuanto recibamos la transferencia (1-2 días hábiles)."""
-    else:
-        payment_info = "Recibirás un enlace de pago en breve."
+    context = {
+        'order': order,
+        'bank_iban': bank_iban,
+        'bank_holder': bank_holder,
+    }
+    subject = f'Pedido {order.order_number} recibido — EuroPeptiva'
+    html_body = render_to_string('emails/order_confirmation.html', context)
+    text_body = (
+        f"Hola {order.shipping_first_name},\n\n"
+        f"Hemos recibido tu pedido {order.order_number} por {order.total}€.\n\n"
+        f"Método de pago: {order.get_payment_method_display()}\n"
+    )
+    if order.payment_method == 'bank_transfer':
+        text_body += f"\nTRANSFERENCIA BANCARIA:\nTitular: {bank_holder}\nIBAN: {bank_iban}\nConcepto: {order.order_number}\nImporte: {order.total}€\n"
 
     try:
-        send_mail(
-            subject=f'Pedido {order.order_number} recibido — EuroPeptiva',
-            message=f"Hola {order.shipping_first_name},\n\nHemos recibido tu pedido {order.order_number}.\n\n{payment_info}\n\nGracias por tu confianza en EuroPeptiva.\n",
-            from_email=getattr(django_settings, 'DEFAULT_FROM_EMAIL', 'noreply@europeptiva.com'),
-            recipient_list=[order.shipping_email],
-            fail_silently=True,
-        )
+        msg = EmailMultiAlternatives(subject, text_body, from_email, [order.shipping_email])
+        msg.attach_alternative(html_body, 'text/html')
+        msg.send(fail_silently=True)
     except Exception:
         pass
 
