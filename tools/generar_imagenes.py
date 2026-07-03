@@ -114,13 +114,50 @@ STYLE requirements:
 
 # ── Generación con Gemini Image ──────────────────────────────────────────────
 
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+JPEG_SIGNATURE = b"\xff\xd8\xff"
+MIN_IMAGE_BYTES = 20_000  # una foto de producto real no baja de esto
+
+
+def _es_imagen_valida(data: bytes) -> bool:
+    return data.startswith(PNG_SIGNATURE) or data.startswith(JPEG_SIGNATURE)
+
+
+def _a_png(data: bytes) -> bytes:
+    """El modelo a veces devuelve JPEG; el proyecto sirve todo como .png."""
+    if data.startswith(PNG_SIGNATURE):
+        return data
+    import io
+    from PIL import Image
+    buf = io.BytesIO()
+    Image.open(io.BytesIO(data)).convert("RGB").save(buf, format="PNG")
+    return buf.getvalue()
+
+
+def _extraer_imagen(response) -> bytes | None:
+    for part in response.candidates[0].content.parts:
+        if part.inline_data is not None:
+            data = part.inline_data.data
+            # El SDK a veces entrega bytes ya decodificados y a veces un
+            # string base64; si ya trae una firma de imagen conocida no hay
+            # que volver a decodificar (evita corromper la imagen).
+            if isinstance(data, bytes) and _es_imagen_valida(data):
+                return data
+            import base64
+            try:
+                decoded = base64.b64decode(data)
+            except Exception:
+                return None
+            return decoded
+    return None
+
+
 def generar_imagen(slug: str, producto: dict, output_dir: Path) -> Path | None:
     print(f"\n→ Generando: {producto['nombre']}...")
 
     prompt = construir_prompt(producto)
-
     client = genai.Client(api_key=API_KEY)
-    response = None
+
     for intento in range(3):
         try:
             response = client.models.generate_content(
@@ -130,34 +167,35 @@ def generar_imagen(slug: str, producto: dict, output_dir: Path) -> Path | None:
                     response_modalities=["IMAGE"],
                 ),
             )
-            break
         except Exception as e:
             if "429" in str(e) and intento < 2:
                 espera = 30 * (intento + 1)
                 print(f"  Límite de velocidad, esperando {espera}s...")
                 import time
                 time.sleep(espera)
-            else:
-                print(f"  ERROR al generar {slug}: {e}")
-                return None
+                continue
+            print(f"  ERROR al generar {slug}: {e}")
+            return None
 
-    if response is None:
-        return None
+        img_data = _extraer_imagen(response)
 
-    img_data = None
-    for part in response.candidates[0].content.parts:
-        if part.inline_data is not None:
-            import base64
-            img_data = base64.b64decode(part.inline_data.data)
-            break
+        if not img_data:
+            print(f"  Sin imagen generada para {slug} (intento {intento + 1}/3)")
+        elif not _es_imagen_valida(img_data) or len(img_data) < MIN_IMAGE_BYTES:
+            print(f"  Respuesta invalida/corrupta para {slug} ({len(img_data)} bytes, intento {intento + 1}/3)")
+        else:
+            png_data = _a_png(img_data)
+            output_path = output_dir / f"{slug}.png"
+            output_path.write_bytes(png_data)
+            print(f"  Guardada: {output_path} ({len(png_data) // 1024} KB)")
+            return output_path
 
-    if not img_data:
-        print(f"  Sin imagen generada para {slug}")
-        return None
-    output_path = output_dir / f"{slug}.png"
-    output_path.write_bytes(img_data)
-    print(f"  Guardada: {output_path} ({len(img_data) // 1024} KB)")
-    return output_path
+        if intento < 2:
+            import time
+            time.sleep(10)
+
+    print(f"  FALLO: no se pudo generar una imagen valida para {slug} tras 3 intentos")
+    return None
 
 
 # ── Subida al VPS ─────────────────────────────────────────────────────────────
