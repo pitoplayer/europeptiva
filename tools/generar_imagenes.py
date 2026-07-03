@@ -1,0 +1,241 @@
+#!/usr/bin/env python3
+"""
+Generador de imágenes de producto EuroPeptiva usando Imagen 3 (Google AI).
+Uso:
+    python tools/generar_imagenes.py                    # genera todos los productos
+    python tools/generar_imagenes.py --producto bpc-157 # genera uno solo
+    python tools/generar_imagenes.py --subir            # genera y sube al VPS
+"""
+
+import argparse
+import base64
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+try:
+    from google import genai
+    from google.genai import types
+except ImportError:
+    print("Instala el SDK: pip install google-genai")
+    sys.exit(1)
+
+# ── Configuración ────────────────────────────────────────────────────────────
+
+API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+
+VPS_HOST = "root@167.233.169.95"
+VPS_SSH_KEY = str(Path.home() / ".ssh/europeptiva_vps")
+VPS_MEDIA_PATH = "/home/peptidos/app/media/peptides/"
+
+OUTPUT_DIR = Path(__file__).parent.parent / "media" / "peptides"
+
+# ── Catálogo de productos ────────────────────────────────────────────────────
+
+PRODUCTOS = {
+    "retatrutide": {
+        "nombre": "Retatrutide",
+        "dosis": "10mg",
+        "tipo": "Liofilizado",
+        "cas": "2381089-83-2",
+        "tapon": "dark navy",
+    },
+    "semaglutide": {
+        "nombre": "Semaglutide",
+        "dosis": "5mg",
+        "tipo": "Liofilizado",
+        "cas": "910463-68-2",
+        "tapon": "dark navy",
+    },
+    "bpc-157": {
+        "nombre": "BPC-157",
+        "dosis": "5mg",
+        "tipo": "Liofilizado",
+        "cas": "137525-51-0",
+        "tapon": "dark navy",
+    },
+    "tb-500": {
+        "nombre": "TB-500",
+        "dosis": "5mg",
+        "tipo": "Liofilizado",
+        "cas": "885340-08-9",
+        "tapon": "dark navy",
+    },
+    "bac-water": {
+        "nombre": "Bacteriostatic Water",
+        "dosis": "10ml",
+        "tipo": "Agua bacteriostática 0.9%",
+        "cas": None,
+        "tapon": "silver",
+    },
+}
+
+# ── Generador de prompts ─────────────────────────────────────────────────────
+
+def construir_prompt(producto: dict) -> str:
+    nombre = producto["nombre"]
+    dosis = producto["dosis"]
+    tipo = producto["tipo"]
+    cas = producto["cas"]
+    tapon = producto["tapon"]
+
+    cas_line = f'"CAS: {cas}" in small gray text' if cas else ""
+
+    return f"""Professional pharmaceutical product photography for a scientific research company.
+
+Scene: one white matte branded box on the left and one clear glass research vial on the right,
+arranged together on a pure white seamless background with soft studio lighting and subtle drop shadow.
+
+BOX design (white soft-touch matte cardboard):
+- Top left corner: small green circle with molecular nodes logo + "EuroPeptiva" in dark navy Inter Bold font
+- Center large text: "{nombre}" in dark navy (#111f2d), Inter Bold, prominent
+- Below: "{dosis} · {tipo}" in medium gray, Inter Regular, smaller
+- Green rounded pill badge: "≥98% pureza HPLC" in forest green (#1b5e38) on mint (#f0fdf4) background
+- Bottom small text: "For Research Use Only" in gray
+- Left side face: thin vertical green (#1b5e38) stripe accent
+- Side face visible: {cas_line}
+
+VIAL design (clear borosilicate glass, upright):
+- {tapon} rubber stopper with matching aluminum crimp cap
+- White matte label showing: "EuroPeptiva" logo top, "{nombre}" bold navy, "{dosis}" gray, "≥98%" green badge
+- Small text: "For Research Use Only"
+
+STYLE requirements:
+- Color palette strictly: white, dark navy (#111f2d), forest green (#1b5e38), mint (#f0fdf4)
+- Typography: Inter font family only, no serif fonts
+- Background: pure white seamless, no gradients
+- Lighting: soft diffused studio light, clean shadows
+- Ultra-sharp focus on labels, 4K quality
+- Commercial pharmaceutical product photography aesthetic
+- No blurry elements, no lens flare, no props
+"""
+
+
+# ── Generación con Gemini Image ──────────────────────────────────────────────
+
+def generar_imagen(slug: str, producto: dict, output_dir: Path) -> Path | None:
+    print(f"\n→ Generando: {producto['nombre']}...")
+
+    prompt = construir_prompt(producto)
+
+    client = genai.Client(api_key=API_KEY)
+    response = None
+    for intento in range(3):
+        try:
+            response = client.models.generate_content(
+                model="gemini-3.1-flash-image",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_modalities=["IMAGE"],
+                ),
+            )
+            break
+        except Exception as e:
+            if "429" in str(e) and intento < 2:
+                espera = 30 * (intento + 1)
+                print(f"  Límite de velocidad, esperando {espera}s...")
+                import time
+                time.sleep(espera)
+            else:
+                print(f"  ERROR al generar {slug}: {e}")
+                return None
+
+    if response is None:
+        return None
+
+    img_data = None
+    for part in response.candidates[0].content.parts:
+        if part.inline_data is not None:
+            import base64
+            img_data = base64.b64decode(part.inline_data.data)
+            break
+
+    if not img_data:
+        print(f"  Sin imagen generada para {slug}")
+        return None
+    output_path = output_dir / f"{slug}.png"
+    output_path.write_bytes(img_data)
+    print(f"  Guardada: {output_path} ({len(img_data) // 1024} KB)")
+    return output_path
+
+
+# ── Subida al VPS ─────────────────────────────────────────────────────────────
+
+def subir_al_vps(paths: list[Path]) -> None:
+    print("\n→ Subiendo al VPS...")
+    for path in paths:
+        cmd = [
+            "scp", "-i", VPS_SSH_KEY,
+            str(path),
+            f"{VPS_HOST}:{VPS_MEDIA_PATH}{path.name}",
+        ]
+        result = subprocess.run(cmd, capture_output=True)
+        if result.returncode == 0:
+            print(f"  OK: {path.name}")
+        else:
+            print(f"  ERROR: {path.name} — {result.stderr.decode()}")
+
+    # Asignar en Django (solo las que se subieron con exito)
+    print("\n→ Asignando imágenes en Django...")
+    script = "from store.models import Peptide\n"
+    for path in paths:
+        slug = path.stem
+        img_path = f"peptides/{slug}.png"
+        script += (
+            f'p = Peptide.objects.filter(slug="{slug}").first()\n'
+            f'p and (setattr(p, "main_image", "{img_path}") or p.save()) and print("OK: {slug}")\n'
+        )
+
+    # Se pasa el script por stdin en vez de -c para evitar romper el quoting
+    # anidado (bash -c '...' + python -c "...") cuando el script contiene comillas.
+    cmd = [
+        "ssh", "-i", VPS_SSH_KEY, VPS_HOST,
+        "sudo -u peptidos bash -c 'cd /home/peptidos/app && venv/bin/python manage.py shell'",
+    ]
+    subprocess.run(cmd, input=script.encode())
+
+
+# ── Main ─────────────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(description="Generador de imágenes EuroPeptiva")
+    parser.add_argument("--producto", help="Slug del producto (ej: bpc-157). Sin esto genera todos.")
+    parser.add_argument("--subir", action="store_true", help="Subir imágenes al VPS tras generar")
+    args = parser.parse_args()
+
+    if not API_KEY:
+        print("ERROR: Define la variable GOOGLE_API_KEY")
+        print("  export GOOGLE_API_KEY=tu_clave_aqui")
+        sys.exit(1)
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    if args.producto:
+        if args.producto not in PRODUCTOS:
+            print(f"Producto no encontrado: {args.producto}")
+            print(f"Disponibles: {', '.join(PRODUCTOS.keys())}")
+            sys.exit(1)
+        seleccion = {args.producto: PRODUCTOS[args.producto]}
+    else:
+        seleccion = PRODUCTOS
+
+    generadas = []
+    slugs = list(seleccion.items())
+    for i, (slug, datos) in enumerate(slugs):
+        path = generar_imagen(slug, datos, OUTPUT_DIR)
+        if path:
+            generadas.append(path)
+        if i < len(slugs) - 1:
+            import time
+            print("  Pausa 15s entre peticiones...")
+            time.sleep(15)
+
+    print(f"\n✓ {len(generadas)}/{len(seleccion)} imágenes generadas")
+
+    if args.subir and generadas:
+        subir_al_vps(generadas)
+
+
+if __name__ == "__main__":
+    main()
