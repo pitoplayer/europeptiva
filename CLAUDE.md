@@ -7,6 +7,10 @@ Tienda online de péptidos de investigación en España. Dominio: europeptiva.co
 **Al empezar sesión:** ejecuta siempre `git pull` antes de hacer cualquier cosa.
 **Al terminar sesión:** ejecuta `git add -A && git commit -m "session: <resumen de 1 línea>" && git push`.
 
+## Deploy a producción
+
+Cuando un cambio afecta a lo que se ve en la web (templates, estáticos, imágenes, modelos), despliégalo tú mismo directamente en el VPS — no lo dejes como tarea pendiente para que el usuario lo haga a mano. Tras el `git push`, conéctate por SSH (`root@167.233.169.95`, clave `~/.ssh/europeptiva_vps`) y ejecuta como usuario `peptidos`: `git pull origin main`, `pip install -r requirements.txt`, `python manage.py migrate --noinput`, `python manage.py collectstatic --noinput --clear`, y luego `systemctl restart europeptiva && systemctl reload nginx` (root). El usuario quiere que la web quede actualizada de inmediato, sin pasos manuales intermedios.
+
 ## Estado actual
 
 Lee `STATUS.md` al empezar — se mantiene actualizado con el estado y los próximos pasos.
