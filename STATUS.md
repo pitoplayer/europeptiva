@@ -84,12 +84,12 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 ## Pendiente antes de lanzar
 
 ### Alta prioridad
-- [ ] Configurar SMTP en .env (Gmail App Password de 16 caracteres)
+- [x] Configurar SMTP en .env — IONOS (smtp.ionos.es:587, buzón info@europeptiva.com), probado end-to-end en producción
 - [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env con datos reales del autónomo
 - [ ] Rellenar URLs de Peptaura en automation/peptaura_sync.py
 - [ ] Darse de alta en Mollie → obtener API key → añadir a .env
-- [ ] Crear VPS Hetzner CX21 (Ubuntu 22.04, datacenter Alemania)
-- [ ] Ejecutar deploy/setup_vps.sh + deploy.sh
+- [x] Crear VPS Hetzner CX21 (Ubuntu 22.04, datacenter Alemania) — ya está en producción (europeptiva.com, SSL válido)
+- [x] Ejecutar deploy/setup_vps.sh + deploy.sh — VPS desplegado y funcionando
 
 ### Diseño visual
 - [x] Recoger resultado de Claude Design y aplicar al frontend
