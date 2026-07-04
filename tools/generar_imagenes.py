@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """
 Generador de imágenes de producto EuroPeptiva usando Imagen 3 (Google AI).
+
+Para que las 5 fotos tengan EXACTAMENTE el mismo encuadre (mismo ángulo,
+tamaños, márgenes), solo se genera una imagen "maestra" (retatrutide) desde
+cero. El resto de productos se generan editando esa imagen maestra —
+pidiéndole al modelo que cambie solo el texto/color de la etiqueta y
+mantenga la composición y la cámara idénticas.
+
 Uso:
-    python tools/generar_imagenes.py                    # genera todos los productos
-    python tools/generar_imagenes.py --producto bpc-157 # genera uno solo
-    python tools/generar_imagenes.py --subir            # genera y sube al VPS
+    python tools/generar_imagenes.py --master            # genera la imagen maestra (retatrutide)
+    python tools/generar_imagenes.py                     # genera/edita todos los productos a partir de la maestra
+    python tools/generar_imagenes.py --producto bpc-157  # genera/edita uno solo
+    python tools/generar_imagenes.py --subir              # además, sube al VPS
 """
 
 import argparse
@@ -30,6 +38,8 @@ VPS_SSH_KEY = str(Path.home() / ".ssh/europeptiva_vps")
 VPS_MEDIA_PATH = "/home/peptidos/app/media/peptides/"
 
 OUTPUT_DIR = Path(__file__).parent.parent / "media" / "peptides"
+
+MASTER_SLUG = "retatrutide"
 
 # ── Catálogo de productos ────────────────────────────────────────────────────
 
@@ -127,6 +137,61 @@ STYLE requirements:
 """
 
 
+def construir_prompt_edicion(producto: dict, master: dict) -> str:
+    nombre = producto["nombre"]
+    dosis = producto["dosis"]
+    tipo = producto["tipo"]
+    cas = producto["cas"]
+    tapon = producto["tapon"]
+    color_texto = producto.get("color_texto", "dark navy (#111f2d)")
+
+    master_nombre = master["nombre"]
+    master_dosis = master["dosis"]
+    master_tipo = master["tipo"]
+    master_cas = master["cas"]
+    master_tapon = master["tapon"]
+    master_color = master.get("color_texto", "dark navy (#111f2d)")
+
+    cas_instruccion = (
+        f'Replace the CAS text on the box side with "CAS: {cas}", same small gray font and position.'
+        if cas
+        else 'Remove the CAS text from the box side entirely, leave that area blank white.'
+    )
+
+    cambios = [
+        f'Replace every occurrence of the product name "{master_nombre}" with "{nombre}" (box front, vial label), same font, weight and position.',
+        f'Replace the dosage line "{master_dosis} · {master_tipo}" with "{dosis} · {tipo}" on the box, and "{master_dosis}" with "{dosis}" on the vial label.',
+        cas_instruccion,
+    ]
+    if color_texto != master_color:
+        cambios.append(
+            f'Change the label/text color from {master_color} to {color_texto} everywhere it appears on the box and vial (logo wordmark, product name, "EuroPeptiva" text) — keep every other color (green badge, gray subtext, mint background) unchanged.'
+        )
+    if tapon != master_tapon:
+        cambios.append(
+            f'Change the vial rubber stopper and aluminum crimp cap material/color from {master_tapon} to {tapon}, keeping the same cap shape and size.'
+        )
+
+    cambios_texto = "\n".join(f"- {c}" for c in cambios)
+
+    return f"""Edit this reference product photo for "EuroPeptiva" pharmaceutical research products.
+
+CRITICAL: Do NOT change the camera angle, box tilt, object proportions, positions, spacing,
+margins, lighting, shadows, or white background in any way. The composition must stay pixel-for-pixel
+identical to the reference image — this is one shot in a fixed-camera catalog series and every
+product must look like it was photographed in the exact same setup.
+
+Only make these text/label changes:
+{cambios_texto}
+
+Render the "≥" (greater-than-or-equal-to) glyph crisply and correctly wherever it appears — do not
+distort it, drop it, or replace it with another character.
+
+Everything else — box shape, vial shape, logo icon, badge shape, layout, fonts, lighting, shadow,
+background — must remain exactly as in the reference image.
+"""
+
+
 # ── Generación con Gemini Image ──────────────────────────────────────────────
 
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
@@ -213,6 +278,53 @@ def generar_imagen(slug: str, producto: dict, output_dir: Path) -> Path | None:
     return None
 
 
+def editar_imagen(slug: str, producto: dict, master: dict, referencia_bytes: bytes, output_dir: Path) -> Path | None:
+    print(f"\n→ Editando a partir de la maestra: {producto['nombre']}...")
+
+    prompt = construir_prompt_edicion(producto, master)
+    client = genai.Client(api_key=API_KEY)
+    imagen_ref = types.Part.from_bytes(data=referencia_bytes, mime_type="image/png")
+
+    for intento in range(3):
+        try:
+            response = client.models.generate_content(
+                model="gemini-3.1-flash-image",
+                contents=[imagen_ref, prompt],
+                config=types.GenerateContentConfig(
+                    response_modalities=["IMAGE"],
+                ),
+            )
+        except Exception as e:
+            if "429" in str(e) and intento < 2:
+                espera = 30 * (intento + 1)
+                print(f"  Límite de velocidad, esperando {espera}s...")
+                import time
+                time.sleep(espera)
+                continue
+            print(f"  ERROR al editar {slug}: {e}")
+            return None
+
+        img_data = _extraer_imagen(response)
+
+        if not img_data:
+            print(f"  Sin imagen generada para {slug} (intento {intento + 1}/3)")
+        elif not _es_imagen_valida(img_data) or len(img_data) < MIN_IMAGE_BYTES:
+            print(f"  Respuesta invalida/corrupta para {slug} ({len(img_data)} bytes, intento {intento + 1}/3)")
+        else:
+            png_data = _a_png(img_data)
+            output_path = output_dir / f"{slug}.png"
+            output_path.write_bytes(png_data)
+            print(f"  Guardada: {output_path} ({len(png_data) // 1024} KB)")
+            return output_path
+
+        if intento < 2:
+            import time
+            time.sleep(10)
+
+    print(f"  FALLO: no se pudo editar una imagen valida para {slug} tras 3 intentos")
+    return None
+
+
 # ── Subida al VPS ─────────────────────────────────────────────────────────────
 
 def subir_al_vps(paths: list[Path]) -> None:
@@ -253,7 +365,8 @@ def subir_al_vps(paths: list[Path]) -> None:
 
 def main():
     parser = argparse.ArgumentParser(description="Generador de imágenes EuroPeptiva")
-    parser.add_argument("--producto", help="Slug del producto (ej: bpc-157). Sin esto genera todos.")
+    parser.add_argument("--producto", help="Slug del producto (ej: bpc-157). Sin esto genera/edita todos.")
+    parser.add_argument("--master", action="store_true", help=f"Regenerar desde cero la imagen maestra ({MASTER_SLUG})")
     parser.add_argument("--subir", action="store_true", help="Subir imágenes al VPS tras generar")
     args = parser.parse_args()
 
@@ -264,27 +377,48 @@ def main():
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    if args.producto and args.producto not in PRODUCTOS:
+        print(f"Producto no encontrado: {args.producto}")
+        print(f"Disponibles: {', '.join(PRODUCTOS.keys())}")
+        sys.exit(1)
+
+    # Slugs a procesar en esta tirada.
     if args.producto:
-        if args.producto not in PRODUCTOS:
-            print(f"Producto no encontrado: {args.producto}")
-            print(f"Disponibles: {', '.join(PRODUCTOS.keys())}")
-            sys.exit(1)
-        seleccion = {args.producto: PRODUCTOS[args.producto]}
+        objetivo = [args.producto]
     else:
-        seleccion = PRODUCTOS
+        objetivo = list(PRODUCTOS.keys())
 
     generadas = []
-    slugs = list(seleccion.items())
-    for i, (slug, datos) in enumerate(slugs):
-        path = generar_imagen(slug, datos, OUTPUT_DIR)
+    pendientes = 0
+
+    # La maestra se genera desde cero (texto→imagen); el resto se edita a
+    # partir de ella para que el encuadre sea idéntico en todo el catálogo.
+    if MASTER_SLUG in objetivo or args.master:
+        pendientes += 1
+        path = generar_imagen(MASTER_SLUG, PRODUCTOS[MASTER_SLUG], OUTPUT_DIR)
         if path:
             generadas.append(path)
-        if i < len(slugs) - 1:
-            import time
-            print("  Pausa 15s entre peticiones...")
-            time.sleep(15)
 
-    print(f"\n✓ {len(generadas)}/{len(seleccion)} imágenes generadas")
+    a_editar = [slug for slug in objetivo if slug != MASTER_SLUG]
+
+    if a_editar:
+        master_path = OUTPUT_DIR / f"{MASTER_SLUG}.png"
+        if not master_path.exists():
+            print(f"ERROR: no existe la imagen maestra ({master_path}). Genérala primero con --master.")
+            sys.exit(1)
+        referencia_bytes = master_path.read_bytes()
+
+        for i, slug in enumerate(a_editar):
+            pendientes += 1
+            path = editar_imagen(slug, PRODUCTOS[slug], PRODUCTOS[MASTER_SLUG], referencia_bytes, OUTPUT_DIR)
+            if path:
+                generadas.append(path)
+            if i < len(a_editar) - 1:
+                import time
+                print("  Pausa 15s entre peticiones...")
+                time.sleep(15)
+
+    print(f"\n✓ {len(generadas)}/{pendientes} imágenes generadas")
 
     if args.subir and generadas:
         subir_al_vps(generadas)
