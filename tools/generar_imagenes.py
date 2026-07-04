@@ -85,6 +85,19 @@ def construir_prompt(producto: dict) -> str:
     cas_line = f'"CAS: {cas}" in small gray text' if cas else ""
 
     return f"""Professional pharmaceutical product photography for a scientific research company.
+This is one image in a fixed-camera product catalog series — framing must be IDENTICAL to the
+other shots in the series, as if the camera and objects were never moved between shots.
+
+CAMERA & COMPOSITION (match exactly, same for every product in the series):
+- Fixed eye-level camera, object distance constant, lens equivalent to ~85mm (no wide-angle distortion)
+- Box rotated 25° from frontal, showing front face and left side face
+- Box occupies the left ~62% of the frame width; vial occupies the right ~30%; ~8% empty gap between them
+- Box height fills 78% of frame height, vertically centered, equal margin above and below
+- Vial stands upright directly to the right of the box, its base on the exact same ground line as the box's base
+- Vial total height (including cap) is about 10% taller than the box, so the cap top sits slightly above the box top
+- Vial width is narrow: about half the height-to-width ratio of a standard 10ml glass vial
+- Both objects fully in frame with even white margin on all sides — nothing cropped, nothing touching frame edges
+- Soft studio lighting from top-left, subtle contact shadow under both objects, pure white seamless background, no gradients, no props, no extra elements
 
 Scene: one white matte branded box on the left and one clear glass research vial on the right,
 arranged together on a pure white seamless background with soft studio lighting and subtle drop shadow.
