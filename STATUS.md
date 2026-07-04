@@ -92,8 +92,9 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 - [ ] Ejecutar deploy/setup_vps.sh + deploy.sh
 
 ### Diseño visual
-- [ ] Recoger resultado de Claude Design y aplicar al frontend
-- [ ] Buscar e integrar imagen placeholder de péptidos (o generada con IA)
+- [x] Recoger resultado de Claude Design y aplicar al frontend
+- [x] Generar imágenes de producto con Gemini (`tools/generar_imagenes.py`) y asignarlas en la home y en los 5 productos (`media/peptides/*.png`)
+- [ ] Subir las imágenes generadas al VPS de producción (`python tools/generar_imagenes.py --subir` o `scp` manual) — solo están en local por ahora
 
 ### Legal (antes del lanzamiento)
 - [ ] Rellenar datos fiscales reales en pages/privacy.html y legal.html
