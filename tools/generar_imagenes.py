@@ -46,7 +46,8 @@ PRODUCTOS = {
         "dosis": "5mg",
         "tipo": "Liofilizado",
         "cas": "910463-68-2",
-        "tapon": "dark navy",
+        "tapon": "matte black",
+        "color_texto": "forest green (#1b5e38)",
     },
     "bpc-157": {
         "nombre": "BPC-157",
@@ -79,6 +80,7 @@ def construir_prompt(producto: dict) -> str:
     tipo = producto["tipo"]
     cas = producto["cas"]
     tapon = producto["tapon"]
+    color_texto = producto.get("color_texto", "dark navy (#111f2d)")
 
     cas_line = f'"CAS: {cas}" in small gray text' if cas else ""
 
@@ -88,21 +90,21 @@ Scene: one white matte branded box on the left and one clear glass research vial
 arranged together on a pure white seamless background with soft studio lighting and subtle drop shadow.
 
 BOX design (white soft-touch matte cardboard):
-- Top left corner: small green circle with molecular nodes logo + "EuroPeptiva" in dark navy Inter Bold font
-- Center large text: "{nombre}" in dark navy (#111f2d), Inter Bold, prominent
+- Top left corner: small green circle with molecular nodes logo + "EuroPeptiva" in {color_texto} Inter Bold font
+- Center large text: "{nombre}" in {color_texto}, Inter Bold, prominent
 - Below: "{dosis} · {tipo}" in medium gray, Inter Regular, smaller
-- Green rounded pill badge: "≥98% pureza HPLC" in forest green (#1b5e38) on mint (#f0fdf4) background
+- Green rounded pill badge: "≥98% pureza HPLC" in forest green (#1b5e38) on mint (#f0fdf4) background. Render the "≥" (greater-than-or-equal-to) glyph crisply and correctly — do not distort it, drop it, or replace it with another character.
 - Bottom small text: "For Research Use Only" in gray
 - Left side face: thin vertical green (#1b5e38) stripe accent
 - Side face visible: {cas_line}
 
 VIAL design (clear borosilicate glass, upright):
 - {tapon} rubber stopper with matching aluminum crimp cap
-- White matte label showing: "EuroPeptiva" logo top, "{nombre}" bold navy, "{dosis}" gray, "≥98%" green badge
+- White matte label showing: "EuroPeptiva" logo top, "{nombre}" bold in {color_texto}, "{dosis}" gray, "≥98%" green badge (same "≥" glyph requirement as above)
 - Small text: "For Research Use Only"
 
 STYLE requirements:
-- Color palette strictly: white, dark navy (#111f2d), forest green (#1b5e38), mint (#f0fdf4)
+- Color palette strictly: white, {color_texto}, forest green (#1b5e38), mint (#f0fdf4)
 - Typography: Inter font family only, no serif fonts
 - Background: pure white seamless, no gradients
 - Lighting: soft diffused studio light, clean shadows
