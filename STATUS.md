@@ -85,8 +85,8 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 
 ### Alta prioridad
 - [x] Configurar SMTP en .env — IONOS (smtp.ionos.es:587, buzón info@europeptiva.com), probado end-to-end en producción
-- [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env con datos reales del autónomo
-- [ ] Rellenar URLs de Peptaura en automation/peptaura_sync.py
+- [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env con datos reales del autónomo (aplazado por ahora)
+- [x] Rellenar URLs de Peptaura en automation/peptaura_sync.py — las 5 URLs reales están puestas. El script ya NO calcula ni aplica precios automáticamente: Peptaura mezcla listados "1 vial" y "Box of 10 vials" en la misma página sin forma fiable de distinguirlos por scraping, así que ahora solo informa (precio mínimo + enlace) para revisión manual. Ver docstring de automation/peptaura_sync.py.
 - [ ] Darse de alta en Mollie → obtener API key → añadir a .env
 - [x] Crear VPS Hetzner CX21 (Ubuntu 22.04, datacenter Alemania) — ya está en producción (europeptiva.com, SSL válido)
 - [x] Ejecutar deploy/setup_vps.sh + deploy.sh — VPS desplegado y funcionando

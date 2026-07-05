@@ -28,10 +28,12 @@ RUN=cd $DJANGO_APP && source $VENV && $PYTHON manage.py
 0 8 * * * cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py informe_diario >> /var/log/europeptiva/informes.log 2>&1
 
 # -----------------------------------------------
-# SINCRONIZACIÓN PEPTAURA
+# VIGILANCIA DE PRECIOS PEPTAURA (solo informe, no cambia precios)
 # -----------------------------------------------
 
-# Sync precios Peptaura — cada lunes a las 6:00
+# Comprobar precios en Peptaura vs. los nuestros — cada lunes a las 6:00.
+# Revisar el log manualmente: peptaura_sync.py NO escribe precios en la BD,
+# solo informa (ver docstring del script para el motivo).
 0 6 * * 1 cd /home/peptidos/app && source /home/peptidos/app/venv/bin/activate && python manage.py shell < automation/peptaura_sync.py >> /var/log/europeptiva/sync.log 2>&1
 
 # -----------------------------------------------
