@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if product_schema_json %}
+<script type="application/ld+json">{{ product_schema_json }}</script>
+{% endif %}
 <div class="max-w-6xl mx-auto px-6 py-12">
 
     <!-- Breadcrumb -->

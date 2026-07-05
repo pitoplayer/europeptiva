@@ -1,13 +1,18 @@
+import logging
+
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import render_to_string
 from django.conf import settings as django_settings
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 from .cart import Cart
 from .forms import CheckoutForm
 from .models import Order, OrderItem
 from .shipping import calculate_shipping
 from store.models import PeptideVariant
+
+logger = logging.getLogger(__name__)
 
 
 def cart_view(request):
@@ -136,7 +141,7 @@ def _send_order_confirmation(order):
         msg.attach_alternative(html_body, 'text/html')
         msg.send(fail_silently=True)
     except Exception:
-        pass
+        logger.exception("Fallo al enviar email de confirmación para el pedido %s", order.order_number)
 
 
 def order_tracking(request):
@@ -190,11 +195,13 @@ def mollie_payment(request, order_number):
         order.mollie_payment_id = payment['id']
         order.save()
         return redirect(payment['_links']['checkout']['href'])
-    except Exception as e:
+    except Exception:
+        logger.exception("Fallo al crear el pago Mollie para el pedido %s", order.order_number)
         messages.error(request, 'Error al procesar el pago. Inténtalo de nuevo.')
         return redirect('order_confirmation', order_number=order_number)
 
 
+@csrf_exempt
 def mollie_webhook(request):
     if request.method != 'POST':
         from django.http import HttpResponseNotAllowed
@@ -228,6 +235,7 @@ def mollie_webhook(request):
 
         return HttpResponse(status=200)
     except Exception:
+        logger.exception("Fallo procesando webhook de Mollie para payment_id %s", payment_id)
         from django.http import HttpResponse
         return HttpResponse(status=200)
 
@@ -245,4 +253,4 @@ def _send_admin_notification(order):
             fail_silently=True,
         )
     except Exception:
-        pass
+        logger.exception("Fallo al enviar notificación de admin para el pedido %s", order.order_number)

@@ -9,6 +9,10 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
+CSRF_TRUSTED_ORIGINS = env.list(
+    'CSRF_TRUSTED_ORIGINS',
+    default=['https://europeptiva.com', 'https://www.europeptiva.com'],
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -67,7 +71,10 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 12},
+    },
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
@@ -104,6 +111,31 @@ BANK_HOLDER = env('BANK_HOLDER', default='[Titular pendiente de configurar]')
 MOLLIE_API_KEY = env('MOLLIE_API_KEY', default='')
 SITE_URL = env('SITE_URL', default='http://localhost:8000')
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'orders': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'store': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
 # Seguridad en producción
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
@@ -112,6 +144,7 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_HTTPONLY = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

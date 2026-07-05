@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ page_title }} | EuroPeptiva{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.{% endblock %}">
+    <meta name="description" content="{{ page_description|default:'EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.' }}">
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="EuroPeptiva">
+    <meta property="og:title" content="{{ page_title }} | EuroPeptiva">
+    <meta property="og:description" content="{{ page_description|default:'EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.' }}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page_title }} | EuroPeptiva">
+    <meta name="twitter:description" content="{{ page_description|default:'EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.' }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
