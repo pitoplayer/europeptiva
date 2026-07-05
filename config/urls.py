@@ -7,7 +7,7 @@ from django.contrib.sitemaps.views import sitemap
 from store.sitemaps import PeptideSitemap, StaticSitemap
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('gestion-interna/', admin.site.urls),
     path('', include('store.urls')),
     path('pedidos/', include('orders.urls')),
     path('sobre-nosotros/', TemplateView.as_view(template_name='pages/about.html', extra_context={
