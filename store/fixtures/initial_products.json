@@ -3,9 +3,9 @@
     "model": "store.category",
     "pk": 1,
     "fields": {
-      "name": "Péptidos GLP-1",
-      "slug": "peptidos-glp1",
-      "description": "Agonistas del receptor GLP-1 para investigación metabólica.",
+      "name": "Pérdida de Grasa",
+      "slug": "perdida-de-grasa",
+      "description": "Péptidos investigados en el ámbito del metabolismo, la composición corporal y la pérdida de grasa.",
       "is_active": true
     }
   },
@@ -13,8 +13,8 @@
     "model": "store.category",
     "pk": 2,
     "fields": {
-      "name": "Péptidos de Recuperación",
-      "slug": "peptidos-recuperacion",
+      "name": "Recuperación",
+      "slug": "recuperacion",
       "description": "Péptidos para investigación en regeneración tisular y recuperación.",
       "is_active": true
     }
@@ -30,6 +30,26 @@
     }
   },
   {
+    "model": "store.category",
+    "pk": 4,
+    "fields": {
+      "name": "Cabello y Piel",
+      "slug": "cabello-piel",
+      "description": "Péptidos investigados en regeneración cutánea, pigmentación y crecimiento del folículo piloso.",
+      "is_active": true
+    }
+  },
+  {
+    "model": "store.category",
+    "pk": 5,
+    "fields": {
+      "name": "Spray Nasal",
+      "slug": "spray-nasal",
+      "description": "Péptidos neurotróficos investigados habitualmente mediante administración intranasal.",
+      "is_active": true
+    }
+  },
+  {
     "model": "store.peptide",
     "pk": 1,
     "fields": {
@@ -37,11 +57,11 @@
       "slug": "retatrutide",
       "cas_number": "2381272-15-5",
       "category": 1,
-      "short_description": "Agonista triple GIP/GLP-1/glucagón de alta potencia para investigación metabólica y obesidad.",
-      "description": "El Retatrutide (LY3437943) es un agonista triple de los receptores GIP, GLP-1 y glucagón, desarrollado para investigación en metabolismo, obesidad y enfermedades metabólicas. En estudios preclínicos ha mostrado una reducción significativa del peso corporal y mejora de parámetros metabólicos. Pureza >98% verificada por HPLC. Certificado de análisis disponible bajo petición.\n\nAlmacenar a -20°C. Para reconstitución utilizar BAC Water estéril.",
-      "molecular_formula": "C₂₂₄H₃₄₉N₆₁O₆₅",
-      "molecular_weight": "4967.50",
-      "purity": ">98%",
+      "short_description": "Péptido sintético de 39 aminoácidos con triple actividad agonista GLP-1/GIP/glucagón para investigación metabólica avanzada.",
+      "description": "Retatrutide (LY-3437943) es un péptido sintético de 39 aminoácidos diseñado para la investigación avanzada en bioquímica y modulación metabólica. Destaca por su perfil de triple agonista, actuando de forma simultánea sobre los receptores de GLP-1, GIP y glucagón — una vía de señalización que lo convierte en una herramienta de referencia para el estudio in vitro de la homeostasis de la glucosa, el gasto energético, la señalización de la saciedad y el metabolismo de los lípidos en modelos de investigación.\n\nCada lote se acompaña de Certificado de Análisis (CoA) independiente mediante espectrometría de masas y HPLC. Conservar refrigerado, protegido de la luz directa y la humedad. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₂₂₁H₃₄₂N₄₆O₆₈",
+      "molecular_weight": "4731.33",
+      "purity": "~99.3%",
       "main_image": "peptides/retatrutide.png",
       "is_active": true,
       "is_featured": true,
@@ -57,11 +77,11 @@
       "slug": "semaglutide",
       "cas_number": "910463-68-2",
       "category": 1,
-      "short_description": "Agonista del receptor GLP-1 de acción prolongada para investigación en diabetes tipo 2 y obesidad.",
-      "description": "El Semaglutide es un agonista del receptor GLP-1 con una vida media prolongada (~7 días) gracias a su modificación con ácido graso C18. Ampliamente estudiado en investigación sobre diabetes tipo 2, obesidad y enfermedades cardiovasculares. Base del principio activo de Ozempic® y Wegovy®. Pureza >98% verificada por HPLC.\n\nAlmacenar a -20°C. Para reconstitución utilizar BAC Water estéril. No apto para uso humano — solo investigación científica.",
+      "short_description": "Agonista del receptor GLP-1 de acción prolongada para investigación en homeostasis de la glucosa y comportamiento alimentario.",
+      "description": "La Semaglutida es un potente péptido sintético que actúa como agonista de acción prolongada del receptor del péptido similar al glucagón-1 (GLP-1). Gracias a modificaciones estructurales en su secuencia de aminoácidos, exhibe alta estabilidad frente a la degradación enzimática, siendo uno de los reactivos más estudiados en investigación metabólica: homeostasis de la glucosa, secreción de insulina dependiente de la glucosa, señalización de la saciedad en el sistema nervioso central y mecanismos de vaciado gástrico. También es referenciada en ensayos sobre inflamación endotelial y acumulación de lípidos en tejidos periféricos.\n\nCada lote incluye Certificado de Análisis (CoA) independiente. Conservar refrigerado, protegido de la luz y la humedad. Reconstituir con BAC Water estéril.",
       "molecular_formula": "C₁₈₇H₂₉₁N₄₅O₅₉",
       "molecular_weight": "4113.58",
-      "purity": ">98%",
+      "purity": "≥99%",
       "main_image": "peptides/semaglutide.png",
       "is_active": true,
       "is_featured": true,
@@ -77,11 +97,11 @@
       "slug": "bpc-157",
       "cas_number": "137525-51-0",
       "category": 2,
-      "short_description": "Pentadecapéptido derivado de proteína de unión gástrica para investigación en regeneración tisular.",
-      "description": "El BPC-157 (Body Protection Compound 157) es un pentadecapéptido sintético derivado de una proteína gástrica humana. Investigado extensamente por sus propiedades protectoras y regeneradoras en tejidos musculoesqueléticos, tendones, ligamentos y mucosa gastrointestinal en modelos animales. Estable en condiciones fisiológicas y activo por vías sistémica y local. Pureza >98%.\n\nAlmacenar a -20°C. Reconstituir con BAC Water estéril.",
+      "short_description": "Pentadecapéptido derivado del jugo gástrico investigado en regeneración celular, angiogénesis y modulación de la inflamación.",
+      "description": "BPC-157 (Body Protection Compound-157) es un péptido de investigación sintético derivado de un fragmento de proteína presente de forma natural en el jugo gástrico. Es un compuesto ampliamente referenciado en estudios in vitro destinados a examinar las vías de señalización de la regeneración celular, la modulación de la inflamación y los mecanismos angiogénicos (formación de nuevos vasos sanguíneos).\n\nCada lote se fabrica bajo estrictos estándares de laboratorio y se liofiliza para garantizar estabilidad y reproducibilidad experimental, acompañado de su Certificado de Análisis (CoA) por lote. Conservar refrigerado, protegido de la luz y la humedad. Vida útil de 24 meses sellado en formato liofilizado. Reconstituir con BAC Water estéril.",
       "molecular_formula": "C₆₂H₉₈N₁₆O₂₂",
       "molecular_weight": "1419.53",
-      "purity": ">98%",
+      "purity": "≥99%",
       "main_image": "peptides/bpc-157.png",
       "is_active": true,
       "is_featured": true,
@@ -97,8 +117,8 @@
       "slug": "tb-500",
       "cas_number": "885340-08-9",
       "category": 2,
-      "short_description": "Fragmento sintético de Timosina Beta-4 para investigación en regeneración y angiogénesis.",
-      "description": "El TB-500 es un fragmento sintético de la Timosina Beta-4 (Tβ4), una proteína endógena presente en casi todos los tejidos. Investigado por su papel en la regulación de la actina celular, angiogénesis, migración celular y procesos de reparación tisular. Muestra potencial en modelos de investigación sobre lesiones musculares, tendinosas y cardíacas. Pureza >98%.\n\nAlmacenar a -20°C. Reconstituir con BAC Water estéril.",
+      "short_description": "Fragmento sintético de Timosina Beta-4 investigado en regulación de la actina, migración celular y reparación tisular.",
+      "description": "TB-500 es una versión sintética de un fragmento de cadena corta derivado de la proteína natural Timosina Beta-4 (Tβ4). Es ampliamente investigado por su papel en la regulación de la actina, proteína esencial para la estructura, motilidad y señalización celular, y se utiliza en modelos in vitro e in vivo (preclínicos) para estudiar la migración celular, la angiogénesis, la reparación de tejidos y la respuesta inflamatoria en tejidos conectivos y musculares.\n\nCada lote se respalda con Certificado de Análisis (CoA) independiente mediante espectrometría de masas y HPLC. Conservar refrigerado, protegido de la luz y la humedad. Reconstituir con BAC Water estéril.",
       "molecular_formula": "C₅₀H₈₉N₁₅O₁₅",
       "molecular_weight": "1164.30",
       "purity": ">98%",
@@ -117,8 +137,8 @@
       "slug": "bac-water",
       "cas_number": "71-23-8",
       "category": 3,
-      "short_description": "Agua bacteriostática estéril al 0.9% para reconstitución de péptidos liofilizados.",
-      "description": "Agua bacteriostática estéril con 0.9% de alcohol bencílico. Indispensable para la correcta reconstitución de péptidos liofilizados. El alcohol bencílico actúa como agente bacteriostático, inhibiendo el crecimiento bacteriano y prolongando la vida útil del péptido reconstituido en refrigeración. Presentación en vial estéril de 10ml. Producto de uso exclusivo en laboratorio e investigación científica.",
+      "short_description": "Disolvente estéril y apirógeno con 0.9% de alcohol bencílico para la reconstitución segura de péptidos liofilizados.",
+      "description": "El Agua Bacteriostática (BAC Water) es un disolvente estéril, apirógeno y de alta pureza diseñado para la reconstitución y dilución segura de péptidos y compuestos liofilizados en entornos de investigación. Se compone de agua ultrapura estéril para inyección con un 0.9% de alcohol bencílico (9 mg/mL), que actúa como agente bacteriostático inhibiendo la proliferación bacteriana y permitiendo múltiples extracciones del mismo vial con total seguridad y estabilidad. Su pH está optimizado (4.5–7.0) para evitar la degradación de las cadenas de aminoácidos durante la reconstitución.\n\nEs el estándar de laboratorio para disolver péptidos liofilizados (Semaglutida, Retatrutide, BPC-157, TB-500, entre otros). Conservar en lugar fresco y protegido de la luz. Una vez abierto el vial, se recomienda refrigeración y su uso dentro de los 28 días siguientes a la primera perforación.",
       "molecular_formula": "H₂O",
       "molecular_weight": "18.02",
       "purity": "Grado laboratorio",
@@ -130,68 +150,202 @@
     }
   },
   {
+    "model": "store.peptide",
+    "pk": 6,
+    "fields": {
+      "name": "GHK-Cu",
+      "slug": "ghk-cu",
+      "cas_number": "49557-75-7",
+      "category": 4,
+      "short_description": "Complejo tripeptídico de cobre (GHK-Cu) investigado en remodelación tisular, síntesis de colágeno y expresión génica.",
+      "description": "El GHK-Cu es un complejo de péptido de cobre natural de alta afinidad, compuesto por el tripéptido glicil-L-histidil-L-lisina unido a un ion de cobre (Cu²⁺). Destaca por su color azul intenso en solución y por ser uno de los moduladores más estudiados de la remodelación tisular y la expresión génica. Se utiliza en modelos in vitro e in vivo (preclínicos) para examinar la síntesis de colágeno, la modulación de las metaloproteinasas de matriz (MMPs), la función de los fibroblastos y las vías antioxidantes celulares, así como la quimiotaxis de células inmunitarias y la angiogénesis en tejidos dañados.\n\nFormato en polvo liofilizado de excelente solubilidad hidrofílica, respaldado por Certificado de Análisis (CoA) por lote. Conservar refrigerado, bien sellado y protegido de la luz y la humedad para evitar la oxidación del complejo. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₁₄H₂₄CuN₆O₄",
+      "molecular_weight": "403.93",
+      "purity": ">98%",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 7,
+    "fields": {
+      "name": "Melanotan I",
+      "slug": "melanotan-1",
+      "cas_number": "75921-69-6",
+      "category": 4,
+      "short_description": "Análogo lineal de la alfa-MSH, agonista selectivo de MC1R, investigado en fotoprotección y melanogénesis.",
+      "description": "Melanotan I (Afamelanotida) es un análogo peptídico sintético de la hormona estimulante de alfa-melanocitos (α-MSH). A diferencia del Melanotan II, es un péptido de cadena lineal diseñado para imitar de forma más selectiva la acción de la hormona endógena, actuando principalmente como agonista de alta afinidad del receptor de melanocortina 1 (MC1R). Es un reactivo de relevancia en fotobiología y dermatología experimental, utilizado en modelos in vitro e in vivo (preclínicos) para investigar la fotoprotección celular, la activación de la melanogénesis y las respuestas celulares frente a la radiación ultravioleta (UV).\n\nFormato en polvo liofilizado de alta estabilidad, respaldado por Certificado de Análisis (CoA) por lote. Conservar refrigerado, herméticamente sellado y protegido de la luz y la humedad. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₇₉H₁₁₁N₂₁O₁₉",
+      "molecular_weight": "1646.82",
+      "purity": ">98%",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 8,
+    "fields": {
+      "name": "Melanotan II",
+      "slug": "melanotan-2",
+      "cas_number": "121062-08-6",
+      "category": 4,
+      "short_description": "Análogo cíclico de la alfa-MSH, agonista no selectivo de receptores de melanocortina, investigado en pigmentación y homeostasis energética.",
+      "description": "Melanotan II es un análogo sintético de la hormona estimulante de alfa-melanocitos (α-MSH), producida naturalmente en el organismo. Pertenece a la clase de péptidos miméticos de las melanocortinas y destaca por su estructura cíclica de 7 aminoácidos, que le otorga mayor estabilidad y una vida media prolongada frente a la hormona natural. Es un reactivo clave en investigación bioquímica y neuroquímica para explorar la señalización celular mediante la activación no selectiva de los receptores de melanocortina (MC1R, MC3R, MC4R y MC5R), implicados en pigmentación, homeostasis energética y comportamiento biológico, incluida la regulación del apetito vía MC4R.\n\nFormato en polvo liofilizado de alta estabilidad y solubilidad optimizada, respaldado por Certificado de Análisis (CoA) por lote. Conservar refrigerado, protegido de la luz y la humedad. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₅₀H₆₉N₁₅O₉",
+      "molecular_weight": "1024.18",
+      "purity": ">98%",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 9,
+    "fields": {
+      "name": "Tesamorelin",
+      "slug": "tesamorelin",
+      "cas_number": "218949-48-5",
+      "category": 1,
+      "short_description": "Análogo de 44 aminoácidos del GHRH, resistente a la DPP-4, investigado en secreción de GH y metabolismo lipídico.",
+      "description": "La Tesamorelina es un péptido sintético de 44 aminoácidos que actúa como análogo del factor liberador de la hormona del crecimiento (GHRH). Incorpora un grupo ácido trans-3-hexenoico en su extremo N-terminal, una modificación que incrementa notablemente su estabilidad y resistencia frente a la degradación por la enzima dipeptidil peptidasa-4 (DPP-4). Es una herramienta fundamental en modelos in vitro e in vivo (preclínicos) para explorar la regulación del eje hipofisario, la secreción endógena y pulsátil de la hormona del crecimiento (GH), y su impacto sobre el IGF-1, la lipólisis y la composición corporal.\n\nFormato en polvo liofilizado de alta estabilidad, respaldado por Certificado de Análisis (CoA) por lote. Conservar refrigerado, protegido de la luz y la humedad. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C₂₂₁H₃₆₆N₇₂O₆₇S",
+      "molecular_weight": "5135.88",
+      "purity": "≥99%",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 10,
+    "fields": {
+      "name": "Semax",
+      "slug": "semax",
+      "cas_number": "80714-61-0",
+      "category": 5,
+      "short_description": "Péptido nootrópico derivado de ACTH(4-7), en spray nasal listo para investigar vías de administración transnasal al SNC.",
+      "description": "Semax es un péptido sintético nootrópico y neuroprotector derivado de un fragmento de la hormona adrenocorticotropa (ACTH 4-7), estabilizado mediante la adición del tripéptido Pro-Gly-Pro en su extremo C-terminal, lo que previene la degradación enzimática rápida y prolonga su bioactividad en modelos de estudio. Esta presentación en spray nasal está diseñada para investigaciones que evalúan vías de administración mucosales alternativas (transnasales), clave en el estudio de péptidos dirigidos al sistema nervioso central por su capacidad de sortear la barrera hematoencefálica.\n\nFormato: solución líquida lista para su uso en dispositivos de atomización nasal, con concentración total de 10mg por envase. Cada lote incluye Certificado de Análisis (CoA) independiente. Conservar refrigerado, protegido de la luz directa y de variaciones térmicas.",
+      "molecular_formula": "C₃₇H₅₁N₉O₁₀S",
+      "molecular_weight": "813.93",
+      "purity": ">98%",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 11,
+    "fields": {
+      "name": "Selank",
+      "slug": "selank",
+      "cas_number": "129954-34-3",
+      "category": 5,
+      "short_description": "Péptido ansiolítico derivado de la tuftsina, en spray nasal listo para investigar vías de administración transnasal al SNC.",
+      "description": "Selank es un péptido sintético con propiedades ansiolíticas y nootrópicas desarrollado a partir del tetrapéptido endógeno tuftsina, un modulador inmunológico natural. Su estructura fue optimizada mediante la adición de tres aminoácidos (Pro-Gly-Pro) en el extremo C-terminal para prolongar su vida media y evitar la degradación enzimática acelerada. Esta presentación en spray nasal está diseñada para entornos de investigación que estudian vías de administración mucosales alternativas (nose-to-brain), evaluando cómo ciertos compuestos peptídicos interactúan con el sistema nervioso central superando la barrera hematoencefálica.\n\nFormato: solución líquida optimizada para sistemas de atomización transnasal, con concentración total de 10mg por envase. Cada lote incluye Certificado de Análisis (CoA) independiente. Conservar refrigerado, protegido de la luz directa y de variaciones térmicas.",
+      "molecular_formula": "C₃₃H₅₇N₁₁O₉",
+      "molecular_weight": "751.87",
+      "purity": ">98%",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z"
+    }
+  },
+  {
     "model": "store.peptidevariant",
     "pk": 1,
-    "fields": {"peptide": 1, "size_mg": 2, "price": "24.90", "stock": 50, "sku": "retatrutide-2mg", "is_active": true}
+    "fields": {"peptide": 1, "size_mg": 10, "price": "99.95", "stock": 50, "sku": "retatrutide-10mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 2,
-    "fields": {"peptide": 1, "size_mg": 5, "price": "49.90", "stock": 30, "sku": "retatrutide-5mg", "is_active": true}
+    "fields": {"peptide": 1, "size_mg": 20, "price": "159.95", "stock": 30, "sku": "retatrutide-20mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 3,
-    "fields": {"peptide": 1, "size_mg": 10, "price": "84.90", "stock": 20, "sku": "retatrutide-10mg", "is_active": true}
+    "fields": {"peptide": 1, "size_mg": 30, "price": "219.95", "stock": 20, "sku": "retatrutide-30mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 4,
-    "fields": {"peptide": 2, "size_mg": 2, "price": "22.90", "stock": 60, "sku": "semaglutide-2mg", "is_active": true}
+    "fields": {"peptide": 1, "size_mg": 40, "price": "279.95", "stock": 15, "sku": "retatrutide-40mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 5,
-    "fields": {"peptide": 2, "size_mg": 5, "price": "44.90", "stock": 40, "sku": "semaglutide-5mg", "is_active": true}
+    "fields": {"peptide": 2, "size_mg": 10, "price": "54.95", "stock": 60, "sku": "semaglutide-10mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 6,
-    "fields": {"peptide": 2, "size_mg": 10, "price": "74.90", "stock": 25, "sku": "semaglutide-10mg", "is_active": true}
+    "fields": {"peptide": 2, "size_mg": 20, "price": "89.95", "stock": 35, "sku": "semaglutide-20mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 7,
-    "fields": {"peptide": 3, "size_mg": 5, "price": "19.90", "stock": 80, "sku": "bpc-157-5mg", "is_active": true}
+    "fields": {"peptide": 3, "size_mg": 10, "price": "64.95", "stock": 50, "sku": "bpc-157-10mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 8,
-    "fields": {"peptide": 3, "size_mg": 10, "price": "34.90", "stock": 50, "sku": "bpc-157-10mg", "is_active": true}
+    "fields": {"peptide": 4, "size_mg": 10, "price": "64.95", "stock": 50, "sku": "tb-500-10mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 9,
-    "fields": {"peptide": 3, "size_mg": 20, "price": "59.90", "stock": 30, "sku": "bpc-157-20mg", "is_active": true}
+    "fields": {"peptide": 5, "size_mg": 3, "price": "4.95", "stock": 150, "sku": "bac-water-3ml", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 10,
-    "fields": {"peptide": 4, "size_mg": 2, "price": "18.90", "stock": 70, "sku": "tb-500-2mg", "is_active": true}
+    "fields": {"peptide": 5, "size_mg": 10, "price": "9.95", "stock": 200, "sku": "bac-water-10ml", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 11,
-    "fields": {"peptide": 4, "size_mg": 5, "price": "39.90", "stock": 45, "sku": "tb-500-5mg", "is_active": true}
+    "fields": {"peptide": 6, "size_mg": 50, "price": "34.95", "stock": 40, "sku": "ghk-cu-50mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 12,
-    "fields": {"peptide": 4, "size_mg": 10, "price": "69.90", "stock": 25, "sku": "tb-500-10mg", "is_active": true}
+    "fields": {"peptide": 6, "size_mg": 100, "price": "49.95", "stock": 25, "sku": "ghk-cu-100mg", "is_active": true}
   },
   {
     "model": "store.peptidevariant",
     "pk": 13,
-    "fields": {"peptide": 5, "size_mg": 10, "price": "7.90", "stock": 200, "sku": "bac-water-10ml", "is_active": true}
+    "fields": {"peptide": 7, "size_mg": 10, "price": "64.95", "stock": 40, "sku": "melanotan-1-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 14,
+    "fields": {"peptide": 8, "size_mg": 10, "price": "64.95", "stock": 40, "sku": "melanotan-2-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 15,
+    "fields": {"peptide": 9, "size_mg": 10, "price": "64.95", "stock": 40, "sku": "tesamorelin-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 16,
+    "fields": {"peptide": 10, "size_mg": 10, "price": "74.95", "stock": 30, "sku": "semax-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 17,
+    "fields": {"peptide": 11, "size_mg": 10, "price": "74.95", "stock": 30, "sku": "selank-10mg", "is_active": true}
   }
 ]

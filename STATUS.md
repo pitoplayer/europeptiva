@@ -48,12 +48,12 @@
 - `automation/peptaura_sync.py` — scraper de precios Peptaura
 - `automation/crontab_vps.txt` — cron para el VPS
 
-**Productos iniciales cargados (fixture):**
-- Retatrutide (2mg/5mg/10mg)
-- Semaglutide (2mg/5mg/10mg)
-- BPC-157 (5mg/10mg/20mg)
-- TB-500 (2mg/5mg/10mg)
-- BAC Water (10ml)
+**Catálogo actual (fixture `store/fixtures/initial_products.json`), 11 productos en 5 categorías** — precios y variantes tomados de `Catalogo europeptiva.xlsx` (columna "Precio Venta"), descripciones de `descripciones_europeptiva.txt`:
+- Pérdida de grasa: Retatrutide (10/20/30/40mg), Semaglutide (10/20mg), Tesamorelin (10mg)
+- Recuperación: BPC-157 (10mg), TB-500 (10mg)
+- Disolventes y auxiliares: BAC Water (3ml/10ml)
+- Cabello y piel: GHK-Cu (50/100mg), Melanotan I (10mg), Melanotan II (10mg)
+- Spray nasal: Semax (10mg, líquido listo para usar), Selank (10mg, líquido listo para usar)
 
 **SEO:**
 - sitemap.xml en /sitemap.xml
@@ -95,6 +95,7 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 - [x] Recoger resultado de Claude Design y aplicar al frontend
 - [x] Generar imágenes de producto con Gemini (`tools/generar_imagenes.py`) y asignarlas en la home y en los 5 productos (`media/peptides/*.png`)
 - [ ] Subir las imágenes generadas al VPS de producción (`python tools/generar_imagenes.py --subir` o `scp` manual) — solo están en local por ahora
+- [ ] Generar imágenes para los 6 productos nuevos (GHK-Cu, Melanotan I, Melanotan II, Tesamorelin, Semax, Selank) — de momento se muestran sin foto
 
 ### Legal (antes del lanzamiento)
 - [ ] Rellenar datos fiscales reales en pages/privacy.html y legal.html
@@ -102,7 +103,7 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 - [ ] Configurar Google Search Console
 
 ### Post-lanzamiento
-- [ ] Cambiar URL del admin: /admin/ → /gestion-interna/
+- [x] Cambiar URL del admin: /admin/ → /gestion-interna/
 - [ ] Configurar dominio DNS en Hetzner (europeptiva.com + europeptiva.es)
 - [ ] Conectar dominos .com y .es al VPS
 
