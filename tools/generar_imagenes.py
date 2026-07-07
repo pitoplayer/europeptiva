@@ -80,6 +80,49 @@ PRODUCTOS = {
         "cas": None,
         "tapon": "silver",
     },
+    "ghk-cu": {
+        "nombre": "GHK-Cu",
+        "dosis": "50mg",
+        "tipo": "Liofilizado",
+        "cas": "49557-75-7",
+        "tapon": "copper",
+    },
+    "melanotan-1": {
+        "nombre": "Melanotan I",
+        "dosis": "10mg",
+        "tipo": "Liofilizado",
+        "cas": "75921-69-6",
+        "tapon": "dark navy",
+    },
+    "melanotan-2": {
+        "nombre": "Melanotan II",
+        "dosis": "10mg",
+        "tipo": "Liofilizado",
+        "cas": "121062-08-6",
+        "tapon": "matte black",
+        "color_texto": "forest green (#1b5e38)",
+    },
+    "tesamorelin": {
+        "nombre": "Tesamorelin",
+        "dosis": "10mg",
+        "tipo": "Liofilizado",
+        "cas": "218949-48-5",
+        "tapon": "dark navy",
+    },
+    "semax": {
+        "nombre": "Semax",
+        "dosis": "10mg",
+        "tipo": "Spray nasal",
+        "cas": "80714-61-0",
+        "tapon": "silver",
+    },
+    "selank": {
+        "nombre": "Selank",
+        "dosis": "10mg",
+        "tipo": "Spray nasal",
+        "cas": "129954-34-3",
+        "tapon": "silver",
+    },
 }
 
 # ── Generador de prompts ─────────────────────────────────────────────────────
@@ -92,48 +135,41 @@ def construir_prompt(producto: dict) -> str:
     tapon = producto["tapon"]
     color_texto = producto.get("color_texto", "dark navy (#111f2d)")
 
-    cas_line = f'"CAS: {cas}" in small gray text' if cas else ""
+    cas_line = f'Small gray text near the bottom of the label: "CAS: {cas}"' if cas else ""
 
     return f"""Professional pharmaceutical product photography for a scientific research company.
 This is one image in a fixed-camera product catalog series — framing must be IDENTICAL to the
-other shots in the series, as if the camera and objects were never moved between shots.
+other shots in the series, as if the camera and object were never moved between shots.
 
 CAMERA & COMPOSITION (match exactly, same for every product in the series):
 - Fixed eye-level camera, object distance constant, lens equivalent to ~85mm (no wide-angle distortion)
-- Box rotated 25° from frontal, showing front face and left side face
-- Box occupies the left ~62% of the frame width; vial occupies the right ~30%; ~8% empty gap between them
-- Box height fills 78% of frame height, vertically centered, equal margin above and below
-- Vial stands upright directly to the right of the box, its base on the exact same ground line as the box's base
-- Vial total height (including cap) is about 10% taller than the box, so the cap top sits slightly above the box top
-- Vial width is narrow: about half the height-to-width ratio of a standard 10ml glass vial
-- Both objects fully in frame with even white margin on all sides — nothing cropped, nothing touching frame edges
-- Soft studio lighting from top-left, subtle contact shadow under both objects, pure white seamless background, no gradients, no props, no extra elements
+- Single clear glass research vial, standing upright, centered horizontally in the frame
+- Vial rotated very slightly (~10°) so the label reads naturally while a hint of the round glass body shows
+- Vial height (including cap) fills about 80% of the frame height, vertically centered with equal margin above and below
+- Vial fully in frame with even white margin on all sides — nothing cropped, nothing touching frame edges
+- Soft studio lighting from top-left, subtle contact shadow under the vial, pure white seamless background, no gradients, no props, no extra elements, no box, no packaging of any kind
 
-Scene: one white matte branded box on the left and one clear glass research vial on the right,
-arranged together on a pure white seamless background with soft studio lighting and subtle drop shadow.
-
-BOX design (white soft-touch matte cardboard):
-- Top left corner: small green circle with molecular nodes logo + "EuroPeptiva" in {color_texto} Inter Bold font
-- Center large text: "{nombre}" in {color_texto}, Inter Bold, prominent
-- Below: "{dosis} · {tipo}" in medium gray, Inter Regular, smaller
-- Green rounded pill badge: "≥98% pureza HPLC" in forest green (#1b5e38) on mint (#f0fdf4) background. Render the "≥" (greater-than-or-equal-to) glyph crisply and correctly — do not distort it, drop it, or replace it with another character.
-- Bottom small text: "For Research Use Only" in gray
-- Left side face: thin vertical green (#1b5e38) stripe accent
-- Side face visible: {cas_line}
+Scene: one clear glass research vial alone on a pure white seamless background with soft studio
+lighting and a subtle drop shadow.
 
 VIAL design (clear borosilicate glass, upright):
 - {tapon} rubber stopper with matching aluminum crimp cap
-- White matte label showing: "EuroPeptiva" logo top, "{nombre}" bold in {color_texto}, "{dosis}" gray, "≥98%" green badge (same "≥" glyph requirement as above)
-- Small text: "For Research Use Only"
+- White matte label wrapped around the vial showing, top to bottom: small green circle with molecular
+  nodes logo + "EuroPeptiva" in {color_texto} Inter Bold font; "{nombre}" bold in {color_texto}, Inter
+  Bold, prominent; "{dosis} · {tipo}" in medium gray, Inter Regular, smaller; a green rounded pill badge
+  "≥98% pureza HPLC" in forest green (#1b5e38) on mint (#f0fdf4) background (render the "≥" glyph
+  crisply and correctly — do not distort it, drop it, or replace it with another character); small
+  gray text "For Research Use Only" near the bottom
+- {cas_line}
 
 STYLE requirements:
 - Color palette strictly: white, {color_texto}, forest green (#1b5e38), mint (#f0fdf4)
 - Typography: Inter font family only, no serif fonts
 - Background: pure white seamless, no gradients
 - Lighting: soft diffused studio light, clean shadows
-- Ultra-sharp focus on labels, 4K quality
+- Ultra-sharp focus on the label, 4K quality
 - Commercial pharmaceutical product photography aesthetic
-- No blurry elements, no lens flare, no props
+- No blurry elements, no lens flare, no props, no box or packaging visible anywhere in the frame
 """
 
 
@@ -153,19 +189,19 @@ def construir_prompt_edicion(producto: dict, master: dict) -> str:
     master_color = master.get("color_texto", "dark navy (#111f2d)")
 
     cas_instruccion = (
-        f'Replace the CAS text on the box side with "CAS: {cas}", same small gray font and position.'
+        f'Replace the CAS text on the label with "CAS: {cas}", same small gray font and position.'
         if cas
-        else 'Remove the CAS text from the box side entirely, leave that area blank white.'
+        else 'Remove the CAS text from the label entirely, leave that area blank white.'
     )
 
     cambios = [
-        f'Replace every occurrence of the product name "{master_nombre}" with "{nombre}" (box front, vial label), same font, weight and position.',
-        f'Replace the dosage line "{master_dosis} · {master_tipo}" with "{dosis} · {tipo}" on the box, and "{master_dosis}" with "{dosis}" on the vial label.',
+        f'Replace every occurrence of the product name "{master_nombre}" with "{nombre}" on the vial label, same font, weight and position.',
+        f'Replace the dosage line "{master_dosis} · {master_tipo}" with "{dosis} · {tipo}" on the vial label.',
         cas_instruccion,
     ]
     if color_texto != master_color:
         cambios.append(
-            f'Change the label/text color from {master_color} to {color_texto} everywhere it appears on the box and vial (logo wordmark, product name, "EuroPeptiva" text) — keep every other color (green badge, gray subtext, mint background) unchanged.'
+            f'Change the label/text color from {master_color} to {color_texto} everywhere it appears on the vial label (logo wordmark, product name, "EuroPeptiva" text) — keep every other color (green badge, gray subtext, mint background) unchanged.'
         )
     if tapon != master_tapon:
         cambios.append(
@@ -176,10 +212,11 @@ def construir_prompt_edicion(producto: dict, master: dict) -> str:
 
     return f"""Edit this reference product photo for "EuroPeptiva" pharmaceutical research products.
 
-CRITICAL: Do NOT change the camera angle, box tilt, object proportions, positions, spacing,
+CRITICAL: Do NOT change the camera angle, vial tilt, object proportions, position, spacing,
 margins, lighting, shadows, or white background in any way. The composition must stay pixel-for-pixel
 identical to the reference image — this is one shot in a fixed-camera catalog series and every
-product must look like it was photographed in the exact same setup.
+product must look like it was photographed in the exact same setup. Do NOT add a box or any
+packaging — only the single vial from the reference image.
 
 Only make these text/label changes:
 {cambios_texto}
@@ -187,7 +224,7 @@ Only make these text/label changes:
 Render the "≥" (greater-than-or-equal-to) glyph crisply and correctly wherever it appears — do not
 distort it, drop it, or replace it with another character.
 
-Everything else — box shape, vial shape, logo icon, badge shape, layout, fonts, lighting, shadow,
+Everything else — vial shape, logo icon, badge shape, layout, fonts, lighting, shadow,
 background — must remain exactly as in the reference image.
 """
 
