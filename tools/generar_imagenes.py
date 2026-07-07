@@ -93,14 +93,14 @@ PRODUCTOS = {
         "dosis": "10ml",
         "tipo": "Agua bacteriostática 0.9%",
         "cas": None,
-        "tapon": "silver",
+        "tapon": "matte black",
     },
     "ghk-cu": {
         "nombre": "GHK-Cu",
         "dosis": "50mg",
         "tipo": "Liofilizado",
         "cas": "49557-75-7",
-        "tapon": "copper",
+        "tapon": "matte black",
     },
     "melanotan-1": {
         "nombre": "Melanotan I",
