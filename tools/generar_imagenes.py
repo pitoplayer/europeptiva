@@ -2,15 +2,17 @@
 """
 Generador de imágenes de producto EuroPeptiva usando Imagen 3 (Google AI).
 
-Para que las 5 fotos tengan EXACTAMENTE el mismo encuadre (mismo ángulo,
-tamaños, márgenes), solo se genera una imagen "maestra" (retatrutide) desde
-cero. El resto de productos se generan editando esa imagen maestra —
+Hay dos "formatos" fotográficos: vial (liofilizados) y spray (spray nasal).
+Para que todas las fotos de un mismo formato tengan EXACTAMENTE el mismo
+encuadre (ángulo, tamaños, márgenes), solo se genera una imagen "maestra"
+por formato desde cero — retatrutide para vial, semax para spray. El resto
+de productos de ese formato se generan editando su maestra correspondiente,
 pidiéndole al modelo que cambie solo el texto/color de la etiqueta y
 mantenga la composición y la cámara idénticas.
 
 Uso:
-    python tools/generar_imagenes.py --master            # genera la imagen maestra (retatrutide)
-    python tools/generar_imagenes.py                     # genera/edita todos los productos a partir de la maestra
+    python tools/generar_imagenes.py --master            # regenera ambas maestras (retatrutide y semax)
+    python tools/generar_imagenes.py                     # genera/edita todos los productos a partir de sus maestras
     python tools/generar_imagenes.py --producto bpc-157  # genera/edita uno solo
     python tools/generar_imagenes.py --subir              # además, sube al VPS
 """
@@ -39,7 +41,20 @@ VPS_MEDIA_PATH = "/home/peptidos/app/media/peptides/"
 
 OUTPUT_DIR = Path(__file__).parent.parent / "media" / "peptides"
 
-MASTER_SLUG = "retatrutide"
+# Cada "formato" fotográfico tiene su propia imagen maestra: los productos en
+# vial se editan a partir de retatrutide, los de spray nasal a partir de semax.
+FORMATOS = {
+    "vial": {
+        "master_slug": "retatrutide",
+        "prompt_fn": None,  # se completa tras definir construir_prompt más abajo
+        "edit_fn": None,
+    },
+    "spray": {
+        "master_slug": "semax",
+        "prompt_fn": None,
+        "edit_fn": None,
+    },
+}
 
 # ── Catálogo de productos ────────────────────────────────────────────────────
 
@@ -114,14 +129,14 @@ PRODUCTOS = {
         "dosis": "10mg",
         "tipo": "Spray nasal",
         "cas": "80714-61-0",
-        "tapon": "silver",
+        "formato": "spray",
     },
     "selank": {
         "nombre": "Selank",
         "dosis": "10mg",
         "tipo": "Spray nasal",
         "cas": "129954-34-3",
-        "tapon": "silver",
+        "formato": "spray",
     },
 }
 
@@ -229,6 +244,110 @@ background — must remain exactly as in the reference image.
 """
 
 
+def construir_prompt_spray(producto: dict) -> str:
+    nombre = producto["nombre"]
+    dosis = producto["dosis"]
+    tipo = producto["tipo"]
+    cas = producto["cas"]
+    color_texto = producto.get("color_texto", "dark navy (#111f2d)")
+
+    cas_line = f'Small gray text near the bottom of the label: "CAS: {cas}"' if cas else ""
+
+    return f"""Professional pharmaceutical product photography for a scientific research company.
+This is one image in a fixed-camera product catalog series — framing must be IDENTICAL to the
+other shots in the series, as if the camera and object were never moved between shots.
+
+CAMERA & COMPOSITION (match exactly, same for every product in the series):
+- Fixed eye-level camera, object distance constant, lens equivalent to ~85mm (no wide-angle distortion)
+- Single clear glass nasal spray bottle, standing upright, centered horizontally in the frame
+- Bottle rotated very slightly (~10°) so the label reads naturally while a hint of the round glass body shows
+- Bottle height (including the pump spray nozzle) fills about 85% of the frame height, vertically centered with equal margin above and below
+- Bottle fully in frame with even white margin on all sides — nothing cropped, nothing touching frame edges
+- Soft studio lighting from top-left, subtle contact shadow under the bottle, pure white seamless background, no gradients, no props, no extra elements, no cardboard box, no packaging of any kind
+
+Scene: one clear glass nasal spray bottle alone on a pure white seamless background with soft studio
+lighting and a subtle drop shadow.
+
+BOTTLE design (clear glass body, white plastic nasal spray pump dispenser):
+- White plastic nasal applicator assembly on top of the bottle: a narrow tapered white nozzle tip,
+  a slim collar below it, and a wider ribbed white pump screw cap sitting on the bottle's neck —
+  same style and proportions as a standard pharmaceutical nasal spray dispenser
+- White matte label wrapped around the bottle body showing, top to bottom: small green circle with
+  molecular nodes logo + "EuroPeptiva" in {color_texto} Inter Bold font; "{nombre}" bold in
+  {color_texto}, Inter Bold, prominent; "{dosis} · {tipo}" in medium gray, Inter Regular, smaller; a
+  green rounded pill badge "≥98% pureza HPLC" in forest green (#1b5e38) on mint (#f0fdf4) background
+  (render the "≥" glyph crisply and correctly — do not distort it, drop it, or replace it with another
+  character); small gray text "For Research Use Only" near the bottom
+- {cas_line}
+- A small amount of clear liquid is visible through the glass at the bottom of the bottle
+
+STYLE requirements:
+- Color palette strictly: white, {color_texto}, forest green (#1b5e38), mint (#f0fdf4)
+- Typography: Inter font family only, no serif fonts
+- Background: pure white seamless, no gradients
+- Lighting: soft diffused studio light, clean shadows
+- Ultra-sharp focus on the label, 4K quality
+- Commercial pharmaceutical product photography aesthetic
+- No blurry elements, no lens flare, no props, no box or packaging visible anywhere in the frame
+"""
+
+
+def construir_prompt_edicion_spray(producto: dict, master: dict) -> str:
+    nombre = producto["nombre"]
+    dosis = producto["dosis"]
+    tipo = producto["tipo"]
+    cas = producto["cas"]
+    color_texto = producto.get("color_texto", "dark navy (#111f2d)")
+
+    master_nombre = master["nombre"]
+    master_dosis = master["dosis"]
+    master_tipo = master["tipo"]
+    master_color = master.get("color_texto", "dark navy (#111f2d)")
+
+    cas_instruccion = (
+        f'Replace the CAS text on the label with "CAS: {cas}", same small gray font and position.'
+        if cas
+        else 'Remove the CAS text from the label entirely, leave that area blank white.'
+    )
+
+    cambios = [
+        f'Replace every occurrence of the product name "{master_nombre}" with "{nombre}" on the bottle label, same font, weight and position.',
+        f'Replace the dosage line "{master_dosis} · {master_tipo}" with "{dosis} · {tipo}" on the bottle label.',
+        cas_instruccion,
+    ]
+    if color_texto != master_color:
+        cambios.append(
+            f'Change the label/text color from {master_color} to {color_texto} everywhere it appears on the bottle label (logo wordmark, product name, "EuroPeptiva" text) — keep every other color (green badge, gray subtext, mint background) unchanged.'
+        )
+
+    cambios_texto = "\n".join(f"- {c}" for c in cambios)
+
+    return f"""Edit this reference product photo for "EuroPeptiva" pharmaceutical research products.
+
+CRITICAL: Do NOT change the camera angle, bottle tilt, object proportions, position, spacing,
+margins, lighting, shadows, or white background in any way. The composition must stay pixel-for-pixel
+identical to the reference image — this is one shot in a fixed-camera catalog series and every
+product must look like it was photographed in the exact same setup. Do NOT add a box or any
+packaging, and do NOT change the nasal spray pump/nozzle shape — only the single bottle from the
+reference image.
+
+Only make these text/label changes:
+{cambios_texto}
+
+Render the "≥" (greater-than-or-equal-to) glyph crisply and correctly wherever it appears — do not
+distort it, drop it, or replace it with another character.
+
+Everything else — bottle shape, spray pump/nozzle, logo icon, badge shape, layout, fonts, lighting,
+shadow, background — must remain exactly as in the reference image.
+"""
+
+
+FORMATOS["vial"]["prompt_fn"] = construir_prompt
+FORMATOS["vial"]["edit_fn"] = construir_prompt_edicion
+FORMATOS["spray"]["prompt_fn"] = construir_prompt_spray
+FORMATOS["spray"]["edit_fn"] = construir_prompt_edicion_spray
+
+
 # ── Generación con Gemini Image ──────────────────────────────────────────────
 
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
@@ -269,10 +388,10 @@ def _extraer_imagen(response) -> bytes | None:
     return None
 
 
-def generar_imagen(slug: str, producto: dict, output_dir: Path) -> Path | None:
+def generar_imagen(slug: str, producto: dict, output_dir: Path, prompt_fn=construir_prompt) -> Path | None:
     print(f"\n→ Generando: {producto['nombre']}...")
 
-    prompt = construir_prompt(producto)
+    prompt = prompt_fn(producto)
     client = genai.Client(api_key=API_KEY)
 
     for intento in range(3):
@@ -315,10 +434,10 @@ def generar_imagen(slug: str, producto: dict, output_dir: Path) -> Path | None:
     return None
 
 
-def editar_imagen(slug: str, producto: dict, master: dict, referencia_bytes: bytes, output_dir: Path) -> Path | None:
+def editar_imagen(slug: str, producto: dict, master: dict, referencia_bytes: bytes, output_dir: Path, edit_fn=construir_prompt_edicion) -> Path | None:
     print(f"\n→ Editando a partir de la maestra: {producto['nombre']}...")
 
-    prompt = construir_prompt_edicion(producto, master)
+    prompt = edit_fn(producto, master)
     client = genai.Client(api_key=API_KEY)
     imagen_ref = types.Part.from_bytes(data=referencia_bytes, mime_type="image/png")
 
@@ -403,7 +522,7 @@ def subir_al_vps(paths: list[Path]) -> None:
 def main():
     parser = argparse.ArgumentParser(description="Generador de imágenes EuroPeptiva")
     parser.add_argument("--producto", help="Slug del producto (ej: bpc-157). Sin esto genera/edita todos.")
-    parser.add_argument("--master", action="store_true", help=f"Regenerar desde cero la imagen maestra ({MASTER_SLUG})")
+    parser.add_argument("--master", action="store_true", help="Regenerar desde cero las imágenes maestras (retatrutide para vial, semax para spray)")
     parser.add_argument("--subir", action="store_true", help="Subir imágenes al VPS tras generar")
     args = parser.parse_args()
 
@@ -428,32 +547,39 @@ def main():
     generadas = []
     pendientes = 0
 
-    # La maestra se genera desde cero (texto→imagen); el resto se edita a
-    # partir de ella para que el encuadre sea idéntico en todo el catálogo.
-    if MASTER_SLUG in objetivo or args.master:
-        pendientes += 1
-        path = generar_imagen(MASTER_SLUG, PRODUCTOS[MASTER_SLUG], OUTPUT_DIR)
-        if path:
-            generadas.append(path)
+    # Cada formato (vial / spray) tiene su propia maestra: se genera desde
+    # cero (texto→imagen) y el resto de productos de ese mismo formato se
+    # editan a partir de ella para que el encuadre sea idéntico entre sí.
+    for formato, cfg in FORMATOS.items():
+        master_slug = cfg["master_slug"]
+        objetivo_formato = [s for s in objetivo if PRODUCTOS[s].get("formato", "vial") == formato]
+        if not objetivo_formato:
+            continue
 
-    a_editar = [slug for slug in objetivo if slug != MASTER_SLUG]
-
-    if a_editar:
-        master_path = OUTPUT_DIR / f"{MASTER_SLUG}.png"
-        if not master_path.exists():
-            print(f"ERROR: no existe la imagen maestra ({master_path}). Genérala primero con --master.")
-            sys.exit(1)
-        referencia_bytes = master_path.read_bytes()
-
-        for i, slug in enumerate(a_editar):
+        if master_slug in objetivo_formato or args.master:
             pendientes += 1
-            path = editar_imagen(slug, PRODUCTOS[slug], PRODUCTOS[MASTER_SLUG], referencia_bytes, OUTPUT_DIR)
+            path = generar_imagen(master_slug, PRODUCTOS[master_slug], OUTPUT_DIR, cfg["prompt_fn"])
             if path:
                 generadas.append(path)
-            if i < len(a_editar) - 1:
-                import time
-                print("  Pausa 15s entre peticiones...")
-                time.sleep(15)
+
+        a_editar = [slug for slug in objetivo_formato if slug != master_slug]
+
+        if a_editar:
+            master_path = OUTPUT_DIR / f"{master_slug}.png"
+            if not master_path.exists():
+                print(f"ERROR: no existe la imagen maestra de '{formato}' ({master_path}). Genérala primero con --master.")
+                sys.exit(1)
+            referencia_bytes = master_path.read_bytes()
+
+            for i, slug in enumerate(a_editar):
+                pendientes += 1
+                path = editar_imagen(slug, PRODUCTOS[slug], PRODUCTOS[master_slug], referencia_bytes, OUTPUT_DIR, cfg["edit_fn"])
+                if path:
+                    generadas.append(path)
+                if i < len(a_editar) - 1:
+                    import time
+                    print("  Pausa 15s entre peticiones...")
+                    time.sleep(15)
 
     print(f"\n✓ {len(generadas)}/{pendientes} imágenes generadas")
 
