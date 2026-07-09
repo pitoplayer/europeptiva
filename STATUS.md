@@ -94,8 +94,8 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 ### Diseño visual
 - [x] Recoger resultado de Claude Design y aplicar al frontend
 - [x] Generar imágenes de producto con Gemini (`tools/generar_imagenes.py`) y asignarlas en la home y en los 5 productos (`media/peptides/*.png`)
-- [ ] Subir las imágenes generadas al VPS de producción (`python tools/generar_imagenes.py --subir` o `scp` manual) — solo están en local por ahora
-- [ ] Generar imágenes para los 6 productos nuevos (GHK-Cu, Melanotan I, Melanotan II, Tesamorelin, Semax, Selank) — de momento se muestran sin foto
+- [x] Subir las imágenes generadas al VPS de producción — confirmado en producción (europeptiva.com), las 11 imágenes cargan en catálogo
+- [x] Generar imágenes para los 6 productos nuevos (GHK-Cu, Melanotan I, Melanotan II, Tesamorelin, Semax, Selank) — confirmado en producción
 
 ### Legal (antes del lanzamiento)
 - [ ] Rellenar datos fiscales reales en pages/privacy.html y legal.html
