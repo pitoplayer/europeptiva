@@ -50,6 +50,16 @@
     }
   },
   {
+    "model": "store.category",
+    "pk": 6,
+    "fields": {
+      "name": "Longevidad y Antienvejecimiento",
+      "slug": "longevidad-antienvejecimiento",
+      "description": "Péptidos y coenzimas investigados en metabolismo celular, estrés oxidativo y envejecimiento.",
+      "is_active": true
+    }
+  },
+  {
     "model": "store.peptide",
     "pk": 1,
     "fields": {
@@ -270,6 +280,146 @@
     }
   },
   {
+    "model": "store.peptide",
+    "pk": 12,
+    "fields": {
+      "name": "Tirzepatide",
+      "slug": "tirzepatide",
+      "cas_number": "2023788-19-2",
+      "category": 1,
+      "short_description": "Péptido doble agonista GLP-1/GIP, uno de los más demandados hoy en investigación metabólica.",
+      "description": "La Tirzepatida es un péptido sintético que activa a la vez los receptores GLP-1 y GIP, y es hoy uno de los reactivos de referencia en investigación sobre metabolismo, apetito y control de peso.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C<sub>225</sub>H<sub>348</sub>N<sub>48</sub>O<sub>68</sub>",
+      "molecular_weight": "4813.45",
+      "purity": "≥99%",
+      "main_image": "peptides/tirzepatide.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 13,
+    "fields": {
+      "name": "MOTS-c",
+      "slug": "mots-c",
+      "cas_number": "1627580-64-6",
+      "category": 6,
+      "short_description": "Péptido derivado del ADN mitocondrial, investigado por su papel en el metabolismo celular y la longevidad.",
+      "description": "MOTS-c es un péptido de 16 aminoácidos codificado en el propio genoma mitocondrial, estudiado como regulador metabólico y por su papel en la comunicación entre mitocondria y núcleo celular.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C<sub>101</sub>H<sub>152</sub>N<sub>28</sub>O<sub>22</sub>S<sub>2</sub>",
+      "molecular_weight": "2174.60",
+      "purity": ">98%",
+      "main_image": "peptides/mots-c.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 14,
+    "fields": {
+      "name": "Wolverine Blend",
+      "slug": "wolverine-blend",
+      "cas_number": "",
+      "category": 2,
+      "short_description": "Mezcla de TB-500 y BPC-157 en un mismo vial (10 mg + 10 mg), pensada para investigar su efecto combinado.",
+      "description": "Wolverine Blend combina en un mismo vial dos de los péptidos más estudiados en regeneración tisular: TB-500 y BPC-157, para investigar su posible efecto sinérgico en un solo modelo.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "",
+      "molecular_weight": null,
+      "purity": ">98%",
+      "main_image": "peptides/wolverine-blend.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 15,
+    "fields": {
+      "name": "Glow70 Blend",
+      "slug": "glow70-blend",
+      "cas_number": "",
+      "category": 4,
+      "short_description": "Mezcla de GHK-Cu, Melanotan I y BPC-157, investigada en regeneración y protección de la piel.",
+      "description": "Glow70 Blend combina en un mismo vial tres péptidos de referencia en biología cutánea: GHK-Cu, Melanotan I y BPC-157, para investigar sus efectos combinados sobre la piel.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "",
+      "molecular_weight": null,
+      "purity": ">98%",
+      "main_image": "peptides/glow70-blend.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 16,
+    "fields": {
+      "name": "IGF-1 LR3",
+      "slug": "igf-1-lr3",
+      "cas_number": "946870-92-4",
+      "category": 2,
+      "short_description": "Análogo de acción prolongada del IGF-1, investigado en crecimiento y reparación muscular.",
+      "description": "IGF-1 LR3 es un análogo sintético del IGF-1 humano modificado para resistir mejor su degradación, muy utilizado en investigación sobre crecimiento celular y reparación de tejido muscular.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C<sub>400</sub>H<sub>625</sub>N<sub>111</sub>O<sub>115</sub>S<sub>9</sub>",
+      "molecular_weight": "9117.60",
+      "purity": ">98%",
+      "main_image": "peptides/igf-1-lr3.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 17,
+    "fields": {
+      "name": "Glutatión",
+      "slug": "glutation",
+      "cas_number": "70-18-8",
+      "category": 6,
+      "short_description": "Antioxidante maestro del cuerpo, investigado por su papel en la desintoxicación celular.",
+      "description": "El Glutatión (GSH) es un tripéptido natural con un papel central en el equilibrio antioxidante de las células, estudiado en investigación sobre desintoxicación celular y estrés oxidativo.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C<sub>10</sub>H<sub>17</sub>N<sub>3</sub>O<sub>6</sub>S",
+      "molecular_weight": "307.32",
+      "purity": ">98%",
+      "main_image": "peptides/glutation.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "store.peptide",
+    "pk": 18,
+    "fields": {
+      "name": "NAD+",
+      "slug": "nad-plus",
+      "cas_number": "53-84-9",
+      "category": 6,
+      "short_description": "Coenzima esencial para la energía celular, investigada en envejecimiento y reparación del ADN.",
+      "description": "El NAD+ es una coenzima presente en todas las células, estudiada por su papel en la producción de energía, la reparación del ADN y los mecanismos asociados al envejecimiento celular.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "molecular_formula": "C<sub>21</sub>H<sub>27</sub>N<sub>7</sub>O<sub>14</sub>P<sub>2</sub>",
+      "molecular_weight": "663.43",
+      "purity": ">98%",
+      "main_image": "peptides/nad-plus.png",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2026-07-09T00:00:00Z",
+      "updated_at": "2026-07-09T00:00:00Z"
+    }
+  },
+  {
     "model": "store.peptidevariant",
     "pk": 1,
     "fields": {"peptide": 1, "size_mg": 10, "price": "99.95", "stock": 50, "sku": "retatrutide-10mg", "is_active": true}
@@ -353,5 +503,55 @@
     "model": "store.peptidevariant",
     "pk": 17,
     "fields": {"peptide": 11, "size_mg": 10, "price": "74.95", "stock": 30, "sku": "selank-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 18,
+    "fields": {"peptide": 12, "size_mg": 10, "price": "59.95", "stock": 40, "sku": "tirzepatide-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 19,
+    "fields": {"peptide": 12, "size_mg": 20, "price": "99.95", "stock": 25, "sku": "tirzepatide-20mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 20,
+    "fields": {"peptide": 13, "size_mg": 10, "price": "54.95", "stock": 40, "sku": "mots-c-10mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 21,
+    "fields": {"peptide": 13, "size_mg": 40, "price": "114.95", "stock": 25, "sku": "mots-c-40mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 22,
+    "fields": {"peptide": 14, "size_mg": 20, "price": "110.00", "stock": 30, "sku": "wolverine-blend-20mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 23,
+    "fields": {"peptide": 15, "size_mg": 70, "price": "119.95", "stock": 30, "sku": "glow70-blend-70mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 24,
+    "fields": {"peptide": 16, "size_mg": 1, "price": "89.95", "stock": 30, "sku": "igf-1-lr3-1mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 25,
+    "fields": {"peptide": 17, "size_mg": 1500, "price": "84.95", "stock": 30, "sku": "glutation-1500mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 26,
+    "fields": {"peptide": 18, "size_mg": 500, "price": "69.95", "stock": 30, "sku": "nad-plus-500mg", "is_active": true}
+  },
+  {
+    "model": "store.peptidevariant",
+    "pk": 27,
+    "fields": {"peptide": 18, "size_mg": 1000, "price": "114.95", "stock": 20, "sku": "nad-plus-1000mg", "is_active": true}
   }
 ]
