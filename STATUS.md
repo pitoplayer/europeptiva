@@ -48,12 +48,15 @@
 - `automation/peptaura_sync.py` — scraper de precios Peptaura
 - `automation/crontab_vps.txt` — cron para el VPS
 
-**Catálogo actual (fixture `store/fixtures/initial_products.json`), 11 productos en 5 categorías** — precios y variantes tomados de `Catalogo europeptiva.xlsx` (columna "Precio Venta"), descripciones de `descripciones_europeptiva.txt`:
-- Pérdida de grasa: Retatrutide (10/20/30/40mg), Semaglutide (10/20mg), Tesamorelin (10mg)
-- Recuperación: BPC-157 (10mg), TB-500 (10mg)
+**Catálogo actual (fixture `store/fixtures/initial_products.json`), 18 productos en 6 categorías** — precios y variantes tomados de `Catalogo europeptiva.xlsx` (columna "Precio Venta") y de datos enviados por proveedor (Tayeb Sanca, 2026-07-09), descripciones de `descripciones_europeptiva.txt` y reescritas al estilo corto del sitio:
+- Pérdida de grasa: Retatrutide (10/20/30/40mg), Semaglutide (10/20mg), Tesamorelin (10mg), Tirzepatide (10/20mg)
+- Recuperación: BPC-157 (10mg), TB-500 (10mg), Wolverine Blend — TB-500+BPC-157 (10+10mg), IGF-1 LR3 (1mg)
 - Disolventes y auxiliares: BAC Water (3ml/10ml)
-- Cabello y piel: GHK-Cu (50/100mg), Melanotan I (10mg), Melanotan II (10mg)
+- Cabello y piel: GHK-Cu (50/100mg), Melanotan I (10mg), Melanotan II (10mg), Glow70 Blend — GHK-Cu+Melanotan I+BPC-157 (70mg)
 - Spray nasal: Semax (10mg, líquido listo para usar), Selank (10mg, líquido listo para usar)
+- **Longevidad y Antienvejecimiento** (categoría nueva, 2026-07-09): MOTS-c (10/40mg), Glutatión (1500mg), NAD+ (500/1000mg)
+
+**Ampliación 2026-07-09 (7 productos nuevos, datos del proveedor vía Tayeb Sanca):** CAS/fórmula molecular/peso molecular verificados por búsqueda web (no inventados) para Tirzepatide, MOTS-c, IGF-1 LR3, Glutatión y NAD+; los dos blends (Wolverine, Glow70) se dejan sin fórmula/CAS propios por ser mezclas de varios péptidos. Precio de cada variante = el mayor de los dos que dio el proveedor (el menor parece ser coste/mayorista). Investigado y confirmado que los 7 son formato vial/liofilizado (no spray nasal) — los tamaños en mg dados coinciden con el estándar de mercado para polvo liofilizado. Imágenes generadas editando la misma maestra de vial (`retatrutide.png`) para mantener el encuadre idéntico al resto del catálogo. Desplegado a producción: `loaddata` del fixture (solo añade filas nuevas, no toca las 11 existentes) + imágenes subidas y asignadas + servicios reiniciados. Verificado con curl: los 7 productos nuevos dan 200, aparecen en su categoría correcta y las imágenes cargan.
 
 **SEO:**
 - sitemap.xml en /sitemap.xml
