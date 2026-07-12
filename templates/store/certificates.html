@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Hero -->
+<section class="bg-primary text-white py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+        <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">Transparencia</p>
+        <h1 class="text-4xl font-bold mb-4">Certificados de Análisis (CoA)</h1>
+        <p class="text-gray-400 text-lg">Cada lote se analiza en laboratorios independientes por HPLC/LC-MS para confirmar identidad y pureza antes de venderse.</p>
+    </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-4 py-14">
+
+    <!-- Qué es un CoA -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+        <div class="text-center p-6">
+            <div class="w-14 h-14 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl">🧪</span>
+            </div>
+            <h3 class="font-bold text-primary mb-2">Laboratorio independiente</h3>
+            <p class="text-gray-600 text-sm">Los análisis los realizan laboratorios externos especializados, ajenos al fabricante del péptido.</p>
+        </div>
+        <div class="text-center p-6">
+            <div class="w-14 h-14 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl">🔬</span>
+            </div>
+            <h3 class="font-bold text-primary mb-2">Identidad y pureza</h3>
+            <p class="text-gray-600 text-sm">FTIR/LC-MS confirma que el vial contiene el péptido indicado; HPLC mide la pureza y la potencia respecto a la etiqueta.</p>
+        </div>
+        <div class="text-center p-6">
+            <div class="w-14 h-14 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-2xl">📄</span>
+            </div>
+            <h3 class="font-bold text-primary mb-2">Por lote, no genérico</h3>
+            <p class="text-gray-600 text-sm">Cada certificado corresponde a un número de lote concreto, con fecha de análisis y firma del laboratorio.</p>
+        </div>
+    </div>
+
+    {% if certificates %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        {% for cert in certificates %}
+        <div class="border border-gray-200 rounded-xl p-5 bg-white hover:shadow-md transition-shadow flex flex-col">
+            <div class="flex items-start justify-between mb-3">
+                <h3 class="font-semibold text-primary">{{ cert.peptide.name }}</h3>
+                {% if cert.purity %}
+                <span class="shrink-0 bg-accent-light text-accent-mid text-xs font-semibold px-2 py-0.5 rounded-full border border-accent-border">{{ cert.purity }}</span>
+                {% endif %}
+            </div>
+            <dl class="text-xs text-gray-500 space-y-1 mb-4 flex-grow">
+                <div class="flex justify-between"><dt>Laboratorio</dt><dd class="text-gray-700 font-medium text-right">{{ cert.lab_name }}</dd></div>
+                {% if cert.lot_number %}<div class="flex justify-between"><dt>Lote</dt><dd class="text-gray-700 font-medium text-right">{{ cert.lot_number }}</dd></div>{% endif %}
+                {% if cert.tested_date %}<div class="flex justify-between"><dt>Fecha de análisis</dt><dd class="text-gray-700 font-medium text-right">{{ cert.tested_date|date:"d/m/Y" }}</dd></div>{% endif %}
+            </dl>
+            <div class="flex gap-2">
+                <a href="{{ cert.file.url }}" target="_blank" rel="noopener" class="flex-grow text-center text-xs font-semibold text-white bg-primary px-3 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                    Ver PDF ↗
+                </a>
+                <a href="{% url 'product_detail' cert.peptide.slug %}" class="text-center text-xs font-semibold text-primary border border-gray-200 px-3 py-2 rounded-lg hover:border-primary transition-colors">
+                    Producto
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-16 text-gray-400">
+        <p class="text-lg font-semibold mb-2">Certificados en proceso de publicación</p>
+        <p class="text-sm">Muy pronto disponibles aquí. Puedes solicitar el CoA de cualquier producto escribiendo a <a href="{% url 'contact' %}" class="text-accent-mid underline">contacto</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Aviso -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
+        <h3 class="font-bold text-amber-800 mb-2">Sobre estos certificados</h3>
+        <p class="text-amber-700 text-sm leading-relaxed">
+            Los certificados de análisis corresponden a lotes concretos recibidos de nuestros proveedores y se sustituyen conforme se reponen nuevos lotes. Si necesitas el CoA vigente de un lote específico, contacta con nosotros indicando el producto. Todos los productos son <strong>exclusivamente para uso en investigación científica</strong>, no aptos para consumo humano ni uso veterinario.
+        </p>
+    </div>
+
+</div>
+{% endblock %}

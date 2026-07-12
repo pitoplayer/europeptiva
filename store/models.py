@@ -102,3 +102,22 @@ class PeptideVariant(models.Model):
     @property
     def needs_reorder(self):
         return self.stock <= self.reorder_point
+
+
+class Certificate(models.Model):
+    peptide = models.ForeignKey(Peptide, on_delete=models.CASCADE, related_name='certificates')
+    lab_name = models.CharField(max_length=150, verbose_name="Laboratorio")
+    lot_number = models.CharField(max_length=100, blank=True, verbose_name="Nº de lote")
+    tested_date = models.DateField(null=True, blank=True, verbose_name="Fecha de análisis")
+    purity = models.CharField(max_length=20, blank=True, verbose_name="Pureza (HPLC)")
+    file = models.FileField(upload_to='certificates/', verbose_name="Archivo (PDF)")
+    is_active = models.BooleanField(default=True, verbose_name="Publicado")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Certificado de análisis"
+        verbose_name_plural = "Certificados de análisis"
+        ordering = ['peptide__name', '-tested_date']
+
+    def __str__(self):
+        return f"{self.peptide.name} — {self.lab_name} ({self.lot_number})"

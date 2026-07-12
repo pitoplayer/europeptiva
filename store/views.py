@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Q
 from django.utils.safestring import mark_safe
-from .models import Category, Peptide
+from .models import Category, Peptide, Certificate
 from .forms import ContactForm
 
 
@@ -53,6 +53,7 @@ def catalog(request):
 def product_detail(request, slug):
     peptide = get_object_or_404(Peptide, slug=slug, is_active=True)
     variants = list(peptide.variants.filter(is_active=True).order_by('size_mg'))
+    certificate = peptide.certificates.filter(is_active=True).order_by('-tested_date').first()
 
     product_schema = {
         '@context': 'https://schema.org',
@@ -79,9 +80,19 @@ def product_detail(request, slug):
     return render(request, 'store/product_detail.html', {
         'peptide': peptide,
         'variants': variants,
+        'certificate': certificate,
         'page_title': peptide.name,
         'page_description': peptide.short_description or f'{peptide.name} — péptido de investigación de pureza ≥98%, verificado por HPLC. Certificado de análisis disponible.',
         'product_schema_json': mark_safe(json.dumps(product_schema).replace('</', '<\\/')),
+    })
+
+
+def certificates(request):
+    certs = Certificate.objects.filter(is_active=True, peptide__is_active=True).select_related('peptide')
+    return render(request, 'store/certificates.html', {
+        'certificates': certs,
+        'page_title': 'Certificados de Análisis (CoA)',
+        'page_description': 'Certificados de análisis (CoA) por lote de los péptidos de investigación EuroPeptiva: identidad confirmada y pureza verificada por HPLC en laboratorios independientes.',
     })
 
 
