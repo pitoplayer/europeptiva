@@ -48,12 +48,15 @@
 - `automation/peptaura_sync.py` — scraper de precios Peptaura
 - `automation/crontab_vps.txt` — cron para el VPS
 
-**Catálogo actual (fixture `store/fixtures/initial_products.json`), 11 productos en 5 categorías** — precios y variantes tomados de `Catalogo europeptiva.xlsx` (columna "Precio Venta"), descripciones de `descripciones_europeptiva.txt`:
-- Pérdida de grasa: Retatrutide (10/20/30/40mg), Semaglutide (10/20mg), Tesamorelin (10mg)
-- Recuperación: BPC-157 (10mg), TB-500 (10mg)
+**Catálogo actual (fixture `store/fixtures/initial_products.json`), 18 productos en 6 categorías** — precios y variantes tomados de `Catalogo europeptiva.xlsx` (columna "Precio Venta") y de datos enviados por proveedor (Tayeb Sanca, 2026-07-09), descripciones de `descripciones_europeptiva.txt` y reescritas al estilo corto del sitio:
+- Pérdida de grasa: Retatrutide (10/20/30/40mg), Semaglutide (10/20mg), Tesamorelin (10mg), Tirzepatide (10/20mg)
+- Recuperación: BPC-157 (10mg), TB-500 (10mg), Wolverine Blend — TB-500+BPC-157 (10+10mg), IGF-1 LR3 (1mg)
 - Disolventes y auxiliares: BAC Water (3ml/10ml)
-- Cabello y piel: GHK-Cu (50/100mg), Melanotan I (10mg), Melanotan II (10mg)
+- Cabello y piel: GHK-Cu (50/100mg), Melanotan I (10mg), Melanotan II (10mg), Glow70 Blend — GHK-Cu+Melanotan I+BPC-157 (70mg)
 - Spray nasal: Semax (10mg, líquido listo para usar), Selank (10mg, líquido listo para usar)
+- **Longevidad y Antienvejecimiento** (categoría nueva, 2026-07-09): MOTS-c (10/40mg), Glutatión (1500mg), NAD+ (500/1000mg)
+
+**Ampliación 2026-07-09 (7 productos nuevos, datos del proveedor vía Tayeb Sanca):** CAS/fórmula molecular/peso molecular verificados por búsqueda web (no inventados) para Tirzepatide, MOTS-c, IGF-1 LR3, Glutatión y NAD+; los dos blends (Wolverine, Glow70) se dejan sin fórmula/CAS propios por ser mezclas de varios péptidos. Precio de cada variante = el mayor de los dos que dio el proveedor (el menor parece ser coste/mayorista). Investigado y confirmado que los 7 son formato vial/liofilizado (no spray nasal) — los tamaños en mg dados coinciden con el estándar de mercado para polvo liofilizado. Imágenes generadas editando la misma maestra de vial (`retatrutide.png`) para mantener el encuadre idéntico al resto del catálogo. Desplegado a producción: `loaddata` del fixture (solo añade filas nuevas, no toca las 11 existentes) + imágenes subidas y asignadas + servicios reiniciados. Verificado con curl: los 7 productos nuevos dan 200, aparecen en su categoría correcta y las imágenes cargan.
 
 **SEO:**
 - sitemap.xml en /sitemap.xml
@@ -85,7 +88,7 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 
 ### Alta prioridad
 - [x] Configurar SMTP en .env — IONOS (smtp.ionos.es:587, buzón info@europeptiva.com), probado end-to-end en producción
-- [ ] Rellenar BANK_IBAN y BANK_HOLDER en .env con datos reales del autónomo (aplazado por ahora)
+- [x] Rellenar BANK_IBAN y BANK_HOLDER en .env con datos reales del autónomo — configurado en local y en producción (VPS), servicio reiniciado (2026-07-09)
 - [x] Rellenar URLs de Peptaura en automation/peptaura_sync.py — las 5 URLs reales están puestas. El script ya NO calcula ni aplica precios automáticamente: Peptaura mezcla listados "1 vial" y "Box of 10 vials" en la misma página sin forma fiable de distinguirlos por scraping, así que ahora solo informa (precio mínimo + enlace) para revisión manual. Ver docstring de automation/peptaura_sync.py.
 - [ ] Darse de alta en Mollie → obtener API key → añadir a .env
 - [x] Crear VPS Hetzner CX21 (Ubuntu 22.04, datacenter Alemania) — ya está en producción (europeptiva.com, SSL válido)
@@ -94,8 +97,8 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 ### Diseño visual
 - [x] Recoger resultado de Claude Design y aplicar al frontend
 - [x] Generar imágenes de producto con Gemini (`tools/generar_imagenes.py`) y asignarlas en la home y en los 5 productos (`media/peptides/*.png`)
-- [ ] Subir las imágenes generadas al VPS de producción (`python tools/generar_imagenes.py --subir` o `scp` manual) — solo están en local por ahora
-- [ ] Generar imágenes para los 6 productos nuevos (GHK-Cu, Melanotan I, Melanotan II, Tesamorelin, Semax, Selank) — de momento se muestran sin foto
+- [x] Subir las imágenes generadas al VPS de producción — confirmado en producción (europeptiva.com), las 11 imágenes cargan en catálogo
+- [x] Generar imágenes para los 6 productos nuevos (GHK-Cu, Melanotan I, Melanotan II, Tesamorelin, Semax, Selank) — confirmado en producción
 
 ### Legal (antes del lanzamiento)
 - [ ] Rellenar datos fiscales reales en pages/privacy.html y legal.html

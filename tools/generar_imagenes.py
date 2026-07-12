@@ -138,6 +138,57 @@ PRODUCTOS = {
         "cas": "129954-34-3",
         "formato": "spray",
     },
+    "tirzepatide": {
+        "nombre": "Tirzepatide",
+        "dosis": "10mg",
+        "tipo": "Liofilizado",
+        "cas": "2023788-19-2",
+        "tapon": "dark navy",
+    },
+    "mots-c": {
+        "nombre": "MOTS-c",
+        "dosis": "10mg",
+        "tipo": "Liofilizado",
+        "cas": "1627580-64-6",
+        "tapon": "matte black",
+        "color_texto": "forest green (#1b5e38)",
+    },
+    "wolverine-blend": {
+        "nombre": "Wolverine Blend",
+        "dosis": "10+10mg",
+        "tipo": "Liofilizado",
+        "cas": None,
+        "tapon": "dark navy",
+    },
+    "glow70-blend": {
+        "nombre": "Glow70 Blend",
+        "dosis": "70mg",
+        "tipo": "Liofilizado",
+        "cas": None,
+        "tapon": "matte black",
+    },
+    "igf-1-lr3": {
+        "nombre": "IGF-1 LR3",
+        "dosis": "1mg",
+        "tipo": "Liofilizado",
+        "cas": "946870-92-4",
+        "tapon": "dark navy",
+    },
+    "glutation": {
+        "nombre": "Glutatión",
+        "dosis": "1500mg",
+        "tipo": "Liofilizado",
+        "cas": "70-18-8",
+        "tapon": "matte black",
+        "color_texto": "forest green (#1b5e38)",
+    },
+    "nad-plus": {
+        "nombre": "NAD+",
+        "dosis": "500mg",
+        "tipo": "Liofilizado",
+        "cas": "53-84-9",
+        "tapon": "dark navy",
+    },
 }
 
 # ── Generador de prompts ─────────────────────────────────────────────────────
