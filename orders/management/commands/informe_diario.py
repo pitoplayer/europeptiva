@@ -11,6 +11,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.conf import settings
+from django.db.models import F
 from datetime import timedelta
 from decimal import Decimal
 from orders.models import Order
@@ -39,8 +40,11 @@ class Command(BaseCommand):
         pedidos_mes = Order.objects.filter(created_at__date__gte=inicio_mes, status='paid')
         ingresos_mes = sum(p.total for p in pedidos_mes) or Decimal('0')
 
-        # Stock bajo (menos de 5 unidades)
-        stock_bajo = PeptideVariant.objects.filter(is_active=True, stock__lt=5, stock__gt=0)
+        # Stock bajo: por debajo del punto de pedido propio de cada variante
+        # (los productos de stock mínimo tienen un punto de pedido más bajo que los de stock alto)
+        stock_bajo = PeptideVariant.objects.filter(
+            is_active=True, stock__gt=0, stock__lte=F('reorder_point')
+        )
         sin_stock = PeptideVariant.objects.filter(is_active=True, stock=0)
 
         # Construir informe
@@ -55,9 +59,9 @@ class Command(BaseCommand):
         ]
 
         if stock_bajo.exists():
-            lineas.append("\n⚠️  STOCK BAJO (< 5 uds):")
+            lineas.append("\n⚠️  STOCK BAJO (por debajo del punto de pedido — lanzar siguiente lote):")
             for v in stock_bajo:
-                lineas.append(f"  - {v.peptide.name} {v.size_mg}mg: {v.stock} uds")
+                lineas.append(f"  - {v.peptide.name} {v.size_mg}mg: {v.stock} uds (punto de pedido: {v.reorder_point})")
 
         if sin_stock.exists():
             lineas.append("\n❌ SIN STOCK:")

@@ -6,7 +6,7 @@ from .models import Category, Peptide, PeptideVariant
 class PeptideVariantInline(admin.TabularInline):
     model = PeptideVariant
     extra = 1
-    fields = ['size_mg', 'price', 'stock', 'sku', 'is_active']
+    fields = ['size_mg', 'price', 'stock', 'fulfillment_level', 'reorder_point', 'sku', 'is_active']
 
 
 @admin.register(Category)
@@ -24,7 +24,13 @@ class PeptideAdmin(admin.ModelAdmin):
     inlines = [PeptideVariantInline]
 
     def stock_status(self, obj):
-        total = sum(v.stock for v in obj.variants.filter(is_active=True))
-        color = 'green' if total > 0 else 'red'
+        variants = obj.variants.filter(is_active=True)
+        total = sum(v.stock for v in variants)
+        if total == 0:
+            color = 'red'
+        elif any(v.needs_reorder for v in variants):
+            color = 'orange'
+        else:
+            color = 'green'
         return format_html('<span style="color: {};">{} uds</span>', color, total)
     stock_status.short_description = 'Stock total'

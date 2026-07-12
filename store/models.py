@@ -60,12 +60,26 @@ class Peptide(models.Model):
 
 
 class PeptideVariant(models.Model):
+    FULFILLMENT_CHOICES = [
+        ('stock_alto', 'Stock alto (los 5 productos estrella)'),
+        ('stock_minimo', 'Stock mínimo (reposición por lotes)'),
+    ]
+
     peptide = models.ForeignKey(Peptide, on_delete=models.CASCADE, related_name='variants')
     size_mg = models.PositiveIntegerField(verbose_name="Cantidad (mg)")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio (EUR)")
     stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
     sku = models.CharField(max_length=50, unique=True, blank=True, verbose_name="SKU")
     is_active = models.BooleanField(default=True)
+
+    fulfillment_level = models.CharField(
+        max_length=20, choices=FULFILLMENT_CHOICES, default='stock_alto',
+        verbose_name="Nivel de fulfillment",
+    )
+    reorder_point = models.PositiveIntegerField(
+        default=5, verbose_name="Punto de pedido",
+        help_text="Cuando el stock cae a este nivel o por debajo, hay que lanzar el siguiente lote al proveedor.",
+    )
 
     class Meta:
         verbose_name = "Variante"
@@ -84,3 +98,7 @@ class PeptideVariant(models.Model):
     @property
     def in_stock(self):
         return self.stock > 0
+
+    @property
+    def needs_reorder(self):
+        return self.stock <= self.reorder_point

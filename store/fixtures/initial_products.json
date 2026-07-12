@@ -272,86 +272,239 @@
   {
     "model": "store.peptidevariant",
     "pk": 1,
-    "fields": {"peptide": 1, "size_mg": 10, "price": "99.95", "stock": 50, "sku": "retatrutide-10mg", "is_active": true}
+    "fields": {
+      "peptide": 1,
+      "size_mg": 10,
+      "price": "99.95",
+      "stock": 50,
+      "sku": "retatrutide-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 2,
-    "fields": {"peptide": 1, "size_mg": 20, "price": "159.95", "stock": 30, "sku": "retatrutide-20mg", "is_active": true}
+    "fields": {
+      "peptide": 1,
+      "size_mg": 20,
+      "price": "159.95",
+      "stock": 30,
+      "sku": "retatrutide-20mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 3,
-    "fields": {"peptide": 1, "size_mg": 30, "price": "219.95", "stock": 20, "sku": "retatrutide-30mg", "is_active": true}
+    "fields": {
+      "peptide": 1,
+      "size_mg": 30,
+      "price": "219.95",
+      "stock": 20,
+      "sku": "retatrutide-30mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 4,
-    "fields": {"peptide": 1, "size_mg": 40, "price": "279.95", "stock": 15, "sku": "retatrutide-40mg", "is_active": true}
+    "fields": {
+      "peptide": 1,
+      "size_mg": 40,
+      "price": "279.95",
+      "stock": 15,
+      "sku": "retatrutide-40mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 5,
-    "fields": {"peptide": 2, "size_mg": 10, "price": "54.95", "stock": 60, "sku": "semaglutide-10mg", "is_active": true}
+    "fields": {
+      "peptide": 2,
+      "size_mg": 10,
+      "price": "54.95",
+      "stock": 60,
+      "sku": "semaglutide-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 6,
-    "fields": {"peptide": 2, "size_mg": 20, "price": "89.95", "stock": 35, "sku": "semaglutide-20mg", "is_active": true}
+    "fields": {
+      "peptide": 2,
+      "size_mg": 20,
+      "price": "89.95",
+      "stock": 35,
+      "sku": "semaglutide-20mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 7,
-    "fields": {"peptide": 3, "size_mg": 10, "price": "64.95", "stock": 50, "sku": "bpc-157-10mg", "is_active": true}
+    "fields": {
+      "peptide": 3,
+      "size_mg": 10,
+      "price": "64.95",
+      "stock": 50,
+      "sku": "bpc-157-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 8,
-    "fields": {"peptide": 4, "size_mg": 10, "price": "64.95", "stock": 50, "sku": "tb-500-10mg", "is_active": true}
+    "fields": {
+      "peptide": 4,
+      "size_mg": 10,
+      "price": "64.95",
+      "stock": 50,
+      "sku": "tb-500-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 9,
-    "fields": {"peptide": 5, "size_mg": 3, "price": "4.95", "stock": 150, "sku": "bac-water-3ml", "is_active": true}
+    "fields": {
+      "peptide": 5,
+      "size_mg": 3,
+      "price": "4.95",
+      "stock": 150,
+      "sku": "bac-water-3ml",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 10,
-    "fields": {"peptide": 5, "size_mg": 10, "price": "9.95", "stock": 200, "sku": "bac-water-10ml", "is_active": true}
+    "fields": {
+      "peptide": 5,
+      "size_mg": 10,
+      "price": "9.95",
+      "stock": 200,
+      "sku": "bac-water-10ml",
+      "is_active": true,
+      "fulfillment_level": "stock_alto",
+      "reorder_point": 10
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 11,
-    "fields": {"peptide": 6, "size_mg": 50, "price": "34.95", "stock": 40, "sku": "ghk-cu-50mg", "is_active": true}
+    "fields": {
+      "peptide": 6,
+      "size_mg": 50,
+      "price": "34.95",
+      "stock": 40,
+      "sku": "ghk-cu-50mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 12,
-    "fields": {"peptide": 6, "size_mg": 100, "price": "49.95", "stock": 25, "sku": "ghk-cu-100mg", "is_active": true}
+    "fields": {
+      "peptide": 6,
+      "size_mg": 100,
+      "price": "49.95",
+      "stock": 25,
+      "sku": "ghk-cu-100mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 13,
-    "fields": {"peptide": 7, "size_mg": 10, "price": "64.95", "stock": 40, "sku": "melanotan-1-10mg", "is_active": true}
+    "fields": {
+      "peptide": 7,
+      "size_mg": 10,
+      "price": "64.95",
+      "stock": 40,
+      "sku": "melanotan-1-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 14,
-    "fields": {"peptide": 8, "size_mg": 10, "price": "64.95", "stock": 40, "sku": "melanotan-2-10mg", "is_active": true}
+    "fields": {
+      "peptide": 8,
+      "size_mg": 10,
+      "price": "64.95",
+      "stock": 40,
+      "sku": "melanotan-2-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 15,
-    "fields": {"peptide": 9, "size_mg": 10, "price": "64.95", "stock": 40, "sku": "tesamorelin-10mg", "is_active": true}
+    "fields": {
+      "peptide": 9,
+      "size_mg": 10,
+      "price": "64.95",
+      "stock": 40,
+      "sku": "tesamorelin-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 16,
-    "fields": {"peptide": 10, "size_mg": 10, "price": "74.95", "stock": 30, "sku": "semax-10mg", "is_active": true}
+    "fields": {
+      "peptide": 10,
+      "size_mg": 10,
+      "price": "74.95",
+      "stock": 30,
+      "sku": "semax-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 17,
-    "fields": {"peptide": 11, "size_mg": 10, "price": "74.95", "stock": 30, "sku": "selank-10mg", "is_active": true}
+    "fields": {
+      "peptide": 11,
+      "size_mg": 10,
+      "price": "74.95",
+      "stock": 30,
+      "sku": "selank-10mg",
+      "is_active": true,
+      "fulfillment_level": "stock_minimo",
+      "reorder_point": 3
+    }
   }
 ]
