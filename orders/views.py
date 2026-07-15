@@ -5,6 +5,7 @@ from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import render_to_string
 from django.conf import settings as django_settings
 from django.contrib import messages
+from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from .cart import Cart
 from .forms import CheckoutForm
@@ -21,8 +22,11 @@ def cart_view(request):
         variant_id = request.POST.get('variant_id')
         action = request.POST.get('action')
         if action == 'add' and variant_id:
-            cart.add(variant_id)
-            messages.success(request, 'Producto añadido al carrito.')
+            try:
+                cart.add(variant_id)
+                messages.success(request, 'Producto añadido al carrito.')
+            except PeptideVariant.DoesNotExist:
+                messages.error(request, 'Ese producto ya no está disponible.')
         elif action == 'remove' and variant_id:
             cart.remove(variant_id)
         elif action == 'update' and variant_id:
@@ -55,37 +59,45 @@ def checkout(request):
             shipping_cost = calculate_shipping(data['country'], subtotal)
             total = subtotal + shipping_cost
 
-            order = Order.objects.create(
-                shipping_first_name=data['first_name'],
-                shipping_last_name=data['last_name'],
-                shipping_email=data['email'],
-                shipping_phone=data.get('phone', ''),
-                shipping_address=data['address'],
-                shipping_city=data['city'],
-                shipping_postal_code=data['postal_code'],
-                shipping_country=data['country'],
-                notes=data.get('notes', ''),
-                payment_method=data['payment_method'],
-                research_disclaimer_accepted=data['research_disclaimer'],
-                terms_accepted=data['terms'],
-                rgpd_accepted=data['rgpd'],
-                subtotal=subtotal,
-                shipping_cost=shipping_cost,
-                total=total,
+            variants = PeptideVariant.objects.in_bulk(
+                [item['variant_id'] for item in cart_items]
             )
+            if len(variants) != len(cart_items):
+                messages.error(request, 'Algún producto de tu carrito ya no está disponible. Revísalo antes de continuar.')
+                return redirect('cart')
 
-            for item in cart_items:
-                variant = PeptideVariant.objects.get(id=item['variant_id'])
-                OrderItem.objects.create(
-                    order=order,
-                    variant=variant,
-                    product_name=item['name'],
-                    variant_size_mg=item['size_mg'],
-                    unit_price=item['price'],
-                    quantity=item['quantity'],
+            with transaction.atomic():
+                order = Order.objects.create(
+                    shipping_first_name=data['first_name'],
+                    shipping_last_name=data['last_name'],
+                    shipping_email=data['email'],
+                    shipping_phone=data.get('phone', ''),
+                    shipping_address=data['address'],
+                    shipping_city=data['city'],
+                    shipping_postal_code=data['postal_code'],
+                    shipping_country=data['country'],
+                    notes=data.get('notes', ''),
+                    payment_method=data['payment_method'],
+                    research_disclaimer_accepted=data['research_disclaimer'],
+                    terms_accepted=data['terms'],
+                    rgpd_accepted=data['rgpd'],
+                    subtotal=subtotal,
+                    shipping_cost=shipping_cost,
+                    total=total,
                 )
-                variant.stock = max(0, variant.stock - item['quantity'])
-                variant.save()
+
+                for item in cart_items:
+                    variant = variants[int(item['variant_id'])]
+                    OrderItem.objects.create(
+                        order=order,
+                        variant=variant,
+                        product_name=item['name'],
+                        variant_size_mg=item['size_mg'],
+                        unit_price=item['price'],
+                        quantity=item['quantity'],
+                    )
+                    variant.stock = max(0, variant.stock - item['quantity'])
+                    variant.save()
 
             cart.clear()
             if order.payment_method == 'mollie':
