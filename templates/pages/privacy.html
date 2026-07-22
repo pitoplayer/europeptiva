@@ -11,16 +11,7 @@
     <div class="space-y-8 text-gray-700 text-sm leading-relaxed">
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">1. Responsable del tratamiento</h2>
-            <p><strong>Nombre / Razón social:</strong> [NOMBRE COMPLETO O EMPRESA]<br>
-            <strong>CIF/NIF:</strong> [CIF O NIF]<br>
-            <strong>Domicilio:</strong> [DIRECCIÓN COMPLETA], [CP] [CIUDAD], España<br>
-            <strong>Email:</strong> info@europeptiva.com<br>
-            <strong>Web:</strong> europeptiva.com</p>
-        </section>
-
-        <section>
-            <h2 class="text-lg font-bold text-primary mb-3">2. Datos que recopilamos</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">1. Datos que recopilamos</h2>
             <p>Al realizar un pedido, recopilamos los siguientes datos personales:</p>
             <ul class="list-disc pl-5 mt-2 space-y-1">
                 <li>Nombre y apellidos</li>
@@ -33,7 +24,7 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">3. Finalidad del tratamiento</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">2. Finalidad del tratamiento</h2>
             <ul class="list-disc pl-5 space-y-1">
                 <li>Gestionar y procesar tu pedido (contrato de compraventa)</li>
                 <li>Enviarte confirmaciones y actualizaciones del estado del pedido</li>
@@ -44,7 +35,7 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">4. Base jurídica</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">3. Base jurídica</h2>
             <ul class="list-disc pl-5 space-y-1">
                 <li><strong>Ejecución del contrato</strong> (Art. 6.1.b RGPD): gestión y envío de pedidos</li>
                 <li><strong>Obligación legal</strong> (Art. 6.1.c RGPD): conservación de facturas y datos fiscales</li>
@@ -53,7 +44,7 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">5. Destinatarios de los datos</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">4. Destinatarios de los datos</h2>
             <p>Podemos compartir tus datos con:</p>
             <ul class="list-disc pl-5 mt-2 space-y-1">
                 <li><strong>Transportistas</strong> (Correos, MRW, DHL u otros): nombre, dirección y teléfono para la entrega</li>
@@ -64,12 +55,12 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">6. Transferencias internacionales</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">5. Transferencias internacionales</h2>
             <p>No realizamos transferencias de datos personales fuera del Espacio Económico Europeo (EEE).</p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">7. Plazo de conservación</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">6. Plazo de conservación</h2>
             <ul class="list-disc pl-5 space-y-1">
                 <li>Datos de pedidos: 5 años (plazo de prescripción fiscal en España)</li>
                 <li>Datos de contacto: 1 año desde la última comunicación</li>
@@ -77,7 +68,7 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">8. Tus derechos</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">7. Tus derechos</h2>
             <p>Puedes ejercer en cualquier momento los siguientes derechos:</p>
             <ul class="list-disc pl-5 mt-2 space-y-1">
                 <li><strong>Acceso:</strong> conocer qué datos tenemos sobre ti</li>
@@ -92,10 +83,24 @@
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">9. Cookies</h2>
+            <h2 class="text-lg font-bold text-primary mb-3">8. Cookies</h2>
             <p>Para más información sobre las cookies que usamos, consulta nuestra <a href="{% url 'cookies' %}" class="text-accent hover:underline">Política de cookies</a>.</p>
         </section>
 
     </div>
+
+    <details class="mt-10 bg-white border border-gray-200 rounded-xl overflow-hidden group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
+            9. Responsable del tratamiento (identificación legal)
+            <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-5 text-gray-700 text-sm leading-relaxed">
+            <p><strong>Nombre / Razón social:</strong> [NOMBRE COMPLETO O EMPRESA]<br>
+            <strong>CIF/NIF:</strong> [CIF O NIF]<br>
+            <strong>Domicilio:</strong> [DIRECCIÓN COMPLETA], [CP] [CIUDAD], España<br>
+            <strong>Email:</strong> info@europeptiva.com<br>
+            <strong>Web:</strong> europeptiva.com</p>
+        </div>
+    </details>
 </div>
 {% endblock %}
