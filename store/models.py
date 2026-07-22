@@ -25,6 +25,15 @@ class Category(models.Model):
         peptide = self.peptides.filter(is_active=True).exclude(main_image='').first()
         return peptide.main_image if peptide else None
 
+    def active_product_count(self):
+        return self.peptides.filter(is_active=True).count()
+
+    def cheapest_price(self):
+        variant = PeptideVariant.objects.filter(
+            peptide__category=self, peptide__is_active=True, is_active=True, stock__gt=0
+        ).order_by('price').first()
+        return variant.price if variant else None
+
 
 class Peptide(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nombre")
