@@ -130,6 +130,101 @@
 </section>
 {% endif %}
 
+<!-- Explora por categoría (scroll sticky) -->
+{% if categories %}
+<section class="bg-gray-50 border-y border-gray-200 py-16">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="mb-10">
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Explora</p>
+            <h2 class="text-2xl font-bold text-primary">Compra por categoría</h2>
+        </div>
+
+        <div class="grid md:grid-cols-[240px_1fr] gap-8">
+
+            <!-- Lista sticky de categorías -->
+            <div class="hidden md:block">
+                <ul class="sticky top-28 space-y-5">
+                    {% for cat in categories %}
+                    <li>
+                        <a href="{% url 'catalog' %}?category={{ cat.slug }}"
+                           data-cat-nav="{{ cat.slug }}"
+                           class="cat-nav-link block font-semibold text-gray-300 transition-colors duration-300 hover:text-primary">
+                            {{ cat.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Paneles de categoría -->
+            <div class="space-y-6">
+                {% for cat in categories %}
+                <a href="{% url 'catalog' %}?category={{ cat.slug }}"
+                   data-cat-panel="{{ cat.slug }}"
+                   class="cat-panel group relative flex items-end overflow-hidden rounded-2xl border border-gray-200 bg-white aspect-[16/8] md:aspect-[21/8]">
+                    {% with img=cat.representative_image %}
+                    {% if img %}
+                    <img src="{{ img.url }}" alt="{{ cat.name }}" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    {% endif %}
+                    {% endwith %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
+                    <div class="relative p-6">
+                        <h3 class="text-white text-xl md:text-2xl font-bold mb-1">{{ cat.name }}</h3>
+                        <p class="text-white/70 text-sm">Ver catálogo →</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+(function () {
+    var navLinks = document.querySelectorAll('.cat-nav-link');
+    var panels = document.querySelectorAll('.cat-panel');
+    if (!navLinks.length || !panels.length) return;
+
+    function setActive(slug) {
+        navLinks.forEach(function (link) {
+            var active = link.dataset.catNav === slug;
+            link.classList.toggle('text-primary', active);
+            link.classList.toggle('text-gray-300', !active);
+        });
+    }
+
+    var ticking = false;
+    function updateActivePanel() {
+        var center = window.innerHeight / 2;
+        var closest = null;
+        var closestDist = Infinity;
+        panels.forEach(function (panel) {
+            var rect = panel.getBoundingClientRect();
+            var dist = Math.abs((rect.top + rect.height / 2) - center);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = panel;
+            }
+        });
+        if (closest) setActive(closest.dataset.catPanel);
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateActivePanel);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateActivePanel();
+})();
+</script>
+{% endif %}
+
 <!-- Por qué EuroPeptiva -->
 <section class="bg-primary py-16 mt-8">
     <div class="max-w-7xl mx-auto px-6">

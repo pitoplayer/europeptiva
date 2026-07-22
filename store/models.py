@@ -21,6 +21,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def representative_image(self):
+        peptide = self.peptides.filter(is_active=True).exclude(main_image='').first()
+        return peptide.main_image if peptide else None
+
 
 class Peptide(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nombre")
