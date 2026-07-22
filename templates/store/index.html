@@ -165,7 +165,7 @@
                    class="cat-panel group relative flex items-end overflow-hidden rounded-2xl border border-gray-200 bg-white aspect-[16/8] md:aspect-[21/8]">
                     {% with img=cat.representative_image %}
                     {% if img %}
-                    <img src="{{ img.url }}" alt="{{ cat.name }}" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    <img src="{{ img.url }}" alt="{{ cat.name }}" class="cat-panel-img absolute inset-0 w-full h-full object-cover object-center scale-125 group-hover:scale-[1.35] transition-transform duration-500">
                     {% endif %}
                     {% endwith %}
                     <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
@@ -180,11 +180,16 @@
         </div>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js"></script>
 <script>
 (function () {
     var navLinks = document.querySelectorAll('.cat-nav-link');
     var panels = document.querySelectorAll('.cat-panel');
-    if (!navLinks.length || !panels.length) return;
+    if (!navLinks.length || !panels.length || typeof gsap === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function setActive(slug) {
         navLinks.forEach(function (link) {
@@ -194,33 +199,48 @@
         });
     }
 
-    var ticking = false;
-    function updateActivePanel() {
-        var center = window.innerHeight / 2;
-        var closest = null;
-        var closestDist = Infinity;
-        panels.forEach(function (panel) {
-            var rect = panel.getBoundingClientRect();
-            var dist = Math.abs((rect.top + rect.height / 2) - center);
-            if (dist < closestDist) {
-                closestDist = dist;
-                closest = panel;
-            }
+    // Resalta la categoría activa según qué panel cruza el centro de la pantalla
+    panels.forEach(function (panel) {
+        ScrollTrigger.create({
+            trigger: panel,
+            start: 'top center',
+            end: 'bottom center',
+            onToggle: function (self) {
+                if (self.isActive) setActive(panel.dataset.catPanel);
+            },
         });
-        if (closest) setActive(closest.dataset.catPanel);
-        ticking = false;
-    }
+    });
 
-    function onScroll() {
-        if (!ticking) {
-            window.requestAnimationFrame(updateActivePanel);
-            ticking = true;
-        }
-    }
+    if (!reduceMotion) {
+        // Entrada suave de cada panel al aparecer
+        panels.forEach(function (panel) {
+            gsap.from(panel, {
+                opacity: 0,
+                scale: 0.96,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: panel,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                },
+            });
+        });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    updateActivePanel();
+        // Parallax sutil de la imagen de fondo dentro de cada panel
+        document.querySelectorAll('.cat-panel-img').forEach(function (img) {
+            gsap.to(img, {
+                yPercent: 12,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img.closest('.cat-panel'),
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+            });
+        });
+    }
 })();
 </script>
 {% endif %}
