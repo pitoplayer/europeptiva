@@ -58,7 +58,7 @@ msgstr "%(tamano)s · %(formato)s · %(price)s€/unit"
 msgid "%(tamano)s × %(qty)s"
 msgstr "%(tamano)s × %(qty)s"
 
-#: templates/emails/order_confirmation.html:63 templates/orders/confirmation.html:13 templates/orders/confirmation.html:25 templates/orders/confirmation.html:57 templates/orders/confirmation.html:69 templates/orders/tracking.html:109 templates/orders/tracking.html:111 templates/orders/tracking.html:40 templates/store/certificates.html:46 templates/store/index.html:204 templates/store/index.html:205 templates/store/product_detail.html:61 templates/store/product_detail.html:62 templates/store/product_detail.html:63 templates/store/product_detail.html:71 templates/store/product_detail.html:76 templates/store/product_detail.html:88
+#: templates/emails/order_confirmation.html:63 templates/orders/confirmation.html:13 templates/orders/confirmation.html:25 templates/orders/confirmation.html:57 templates/orders/confirmation.html:69 templates/orders/tracking.html:109 templates/orders/tracking.html:111 templates/orders/tracking.html:40 templates/store/certificates.html:46 templates/store/index.html:204 templates/store/index.html:205 templates/store/product_detail.html:66 templates/store/product_detail.html:67 templates/store/product_detail.html:68 templates/store/product_detail.html:76 templates/store/product_detail.html:81 templates/store/product_detail.html:93
 msgid "%(v1)s"
 msgstr "%(v1)s"
 
@@ -70,7 +70,7 @@ msgstr "%(v1)s %(v2)s"
 msgid "%(v1)s %(v2)smg"
 msgstr "%(v1)s %(v2)smg"
 
-#: templates/store/product_detail.html:82
+#: templates/store/product_detail.html:87
 msgid "%(v1)s Da"
 msgstr "%(v1)s Da"
 
@@ -166,7 +166,7 @@ msgstr "<a href=\"%(catalog_url)s?category=%(v2)s\" data-cat-nav=\"%(v2)s\" clas
 msgid "<p>En un blend los péptidos vienen mezclados en un mismo vial y en una proporción fija: se reconstituye una vez y lo que sale es la mezcla, sin poder tocar la relación entre compuestos.</p><p class=\"mt-3\">En un pack cada compuesto llega en su propio vial. Se reconstituye por separado, con la concentración que decida el diseño experimental, y se puede usar uno sin el otro. Por eso un pack cuesta más que el blend equivalente: son más viales y más material.</p>"
 msgstr "<p>In a blend the peptides come mixed in a single vial at a fixed ratio: you reconstitute once and what you get is the mixture, with no way to change the proportion between compounds.</p><p class=\"mt-3\">In a bundle each compound arrives in its own vial. You reconstitute them separately, at whatever concentration the experimental design calls for, and you can use one without the other. That is why a bundle costs more than the equivalent blend: more vials and more material.</p>"
 
-#: templates/store/bundle_detail.html:93 templates/store/product_detail.html:159
+#: templates/store/bundle_detail.html:93 templates/store/product_detail.html:164
 msgid "<strong class=\"font-semibold text-primary\">Envío gratis</strong> a partir de %(amount)s"
 msgstr "<strong class=\"font-semibold text-primary\">Free shipping</strong> on orders from %(amount)s"
 
@@ -178,7 +178,7 @@ msgstr "<strong class=\"font-semibold\">Free shipping</strong> from %(amount)s"
 msgid "<strong class=\"text-accent\">Envío gratis en todos los pedidos de %(v1)s o más</strong>, tanto a España como al resto de la Unión Europea."
 msgstr "<strong class=\"text-accent\">Free shipping on all orders of %(v1)s or more</strong>, both to Spain and to the rest of the European Union."
 
-#: templates/store/bundle_detail.html:104 templates/store/product_detail.html:177
+#: templates/store/bundle_detail.html:104 templates/store/product_detail.html:182
 msgid "<strong class=\"text-gray-700\">Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente con fines de investigación en laboratorio."
 msgstr "<strong class=\"text-gray-700\">For scientific research only.</strong> This product is not approved for human, veterinary or diagnostic use. By purchasing it you confirm that you will use it exclusively for laboratory research purposes."
 
@@ -322,7 +322,7 @@ msgstr "Triple GIP/GLP-1/glucagon agonist"
 msgid "Agotado temporalmente — alguno de los productos del pack se ha quedado sin stock."
 msgstr "Temporarily out of stock — one of the products in the bundle has run out."
 
-#: templates/store/product_detail.html:171
+#: templates/store/product_detail.html:176
 msgid "Agotado temporalmente — nuevo lote en camino, disponible en unos días."
 msgstr "Temporarily out of stock — a new lot is on its way, available in a few days."
 
@@ -330,7 +330,7 @@ msgstr "Temporarily out of stock — a new lot is on its way, available in a few
 msgid "Agua bacteriostática estéril 0.9%%"
 msgstr "Sterile 0.9%% bacteriostatic water"
 
-#: templates/store/product_detail.html:129
+#: templates/store/product_detail.html:134
 msgid "Agua bacteriostática · %(tamano)s"
 msgstr "Bacteriostatic water · %(tamano)s"
 
@@ -414,7 +414,7 @@ msgstr "Add the bacteriostatic water slowly, letting it run down the inner wall 
 msgid "Añade productos desde el catálogo."
 msgstr "Add products from the catalog."
 
-#: templates/store/product_detail.html:138
+#: templates/store/product_detail.html:143
 msgid "Añadir al carrito"
 msgstr "Add to cart"
 
@@ -494,13 +494,13 @@ msgstr "Peptide Catalog"
 msgid "Certificado de análisis"
 msgstr "Certificate of analysis"
 
+#: templates/store/product_detail.html:57
+msgid "Certificado de análisis bajo petición"
+msgstr "Certificate of analysis on request"
+
 #: templates/pages/bulk.html:77
 msgid "Certificado de análisis de cada lote"
 msgstr "Certificate of analysis for every lot"
-
-#: templates/store/product_detail.html:52
-msgid "Certificado de análisis disponible"
-msgstr "Certificate of analysis available"
 
 #: templates/store/index.html:22
 msgid "Certificado de análisis por lote · HPLC ≥99%%"
@@ -538,7 +538,7 @@ msgstr "Fixed-price combinations"
 msgid "Combinaciones cerradas a precio reducido. <strong class=\"text-gray-700\">Cada compuesto va en su propio vial</strong>, no mezclados: se reconstituye cada uno por separado y con su concentración."
 msgstr "Fixed combinations at a reduced price. <strong class=\"text-gray-700\">Each compound comes in its own vial</strong>, not mixed: you reconstitute each one separately, at its own concentration."
 
-#: templates/store/product_detail.html:123
+#: templates/store/product_detail.html:128
 msgid "Completa tu pedido"
 msgstr "Complete your order"
 
@@ -614,7 +614,7 @@ msgstr "Track order"
 msgid "Contacto"
 msgstr "Contact"
 
-#: templates/store/product_detail.html:192
+#: templates/store/product_detail.html:197
 msgid "Contexto de investigación"
 msgstr "Research background"
 
@@ -790,7 +790,7 @@ msgstr "In a cool place, protected from light. Unopened, it does not need refrig
 msgid "En preparación"
 msgstr "Being prepared"
 
-#: templates/store/bundle_detail.html:80 templates/store/product_detail.html:144
+#: templates/store/bundle_detail.html:80 templates/store/product_detail.html:149
 msgid "En stock — envío en 24-72h."
 msgstr "In stock — ships in 24-72h."
 
@@ -849,6 +849,10 @@ msgstr "There was a problem processing the payment. Please try again."
 #: templates/pages/returns.html:36
 msgid "Escríbenos dentro de las 48 horas siguientes a la entrega, con:"
 msgstr "Write to us within 48 hours of delivery, including:"
+
+#: templates/store/product_detail.html:58
+msgid "Escríbenos y te enviamos el CoA de tu lote"
+msgstr "Write to us and we'll send you your lot's CoA"
 
 #: templates/pages/faq.html:100
 msgid "Escríbenos y te respondemos en menos de 24 horas."
@@ -958,7 +962,7 @@ msgstr "Checkout →"
 msgid "Fragmento sintético de Timosina Beta-4"
 msgstr "Synthetic fragment of Thymosin Beta-4"
 
-#: templates/store/product_detail.html:75
+#: templates/store/product_detail.html:80
 msgid "Fórmula molecular"
 msgstr "Molecular formula"
 
@@ -1104,7 +1108,7 @@ msgstr "Units count <strong>per product</strong>, not across the whole order."
 msgid "Llega en solución y listo para usar: no hay que reconstituir nada."
 msgstr "It arrives in solution and ready to use: there is nothing to reconstitute."
 
-#: templates/store/product_detail.html:124
+#: templates/store/product_detail.html:129
 msgid "Llega liofilizado: necesitas agua bacteriostática para reconstituirlo."
 msgstr "It arrives lyophilized: you need bacteriostatic water to reconstitute it."
 
@@ -1148,7 +1152,7 @@ msgstr "Peptides are stored lyophilised at -20°C and shipped with isothermal pa
 msgid "Lote"
 msgstr "Lot"
 
-#: templates/store/product_detail.html:50
+#: templates/store/product_detail.html:55
 msgid "Lote %(v2)s · %(v1)s"
 msgstr "Lot %(v2)s · %(v1)s"
 
@@ -1260,7 +1264,7 @@ msgstr "Order notes (optional)"
 msgid "Nuestro catálogo"
 msgstr "Our catalog"
 
-#: templates/store/product_detail.html:87
+#: templates/store/product_detail.html:92
 msgid "Número CAS"
 msgstr "CAS number"
 
@@ -1376,7 +1380,7 @@ msgstr "Awaiting payment"
 msgid "Pentadecapéptido de protección gástrica"
 msgstr "Gastroprotective pentadecapeptide"
 
-#: templates/store/product_detail.html:81
+#: templates/store/product_detail.html:86
 msgid "Peso molecular"
 msgstr "Molecular weight"
 
@@ -1416,7 +1420,7 @@ msgstr "EuroPeptiva's privacy policy: how we process your personal data in accor
 msgid "Por debajo de ese importe:"
 msgstr "Below that amount:"
 
-#: templates/store/product_detail.html:165
+#: templates/store/product_detail.html:170
 msgid "Por debajo: %(es)s a España · %(eu)s al resto de la UE"
 msgstr "Below that: %(es)s to Spain · %(eu)s to the rest of the EU"
 
@@ -1516,7 +1520,7 @@ msgstr "You may exercise the following rights at any time:"
 msgid "Puedes ejercer estos derechos enviando un email a <strong>info@europeptiva.com</strong> con asunto \"Derechos RGPD\" e indicando tu nombre y número de pedido (si aplica)."
 msgstr "You can exercise these rights by emailing <strong>info@europeptiva.com</strong> with the subject \"GDPR Rights\", stating your name and order number (if applicable)."
 
-#: templates/store/product_detail.html:70
+#: templates/store/product_detail.html:75
 msgid "Pureza"
 msgstr "Purity"
 
@@ -1548,7 +1552,7 @@ msgstr "High-purity research peptides (≥99% HPLC): Retatrutide, Semaglutide, B
 msgid "Péptidos de investigación de alta pureza, para ciencia seria."
 msgstr "High-purity research peptides, for serious science."
 
-#: templates/store/bundle_detail.html:87 templates/store/product_detail.html:153
+#: templates/store/bundle_detail.html:87 templates/store/product_detail.html:158
 msgid "Pídelo antes de las <strong class=\"font-semibold text-primary\">%(hour)s:00 h</strong> y sale hoy mismo (%(days)s)"
 msgstr "Order before <strong class=\"font-semibold text-primary\">%(hour)s:00</strong> and it ships today (%(days)s)"
 
@@ -1604,7 +1608,7 @@ msgstr "Retatrutide"
 msgid "Rigor de laboratorio en cada envío."
 msgstr "Laboratory rigour in every shipment."
 
-#: templates/store/product_detail.html:229
+#: templates/store/product_detail.html:234
 msgid "Se investigan a menudo junto a este"
 msgstr "Often researched alongside this one"
 
@@ -1624,7 +1628,7 @@ msgstr "Continue shopping"
 msgid "Seguridad contra ataques CSRF"
 msgstr "Protection against CSRF attacks"
 
-#: templates/store/product_detail.html:101
+#: templates/store/product_detail.html:106
 msgid "Selecciona cantidad:"
 msgstr "Select size:"
 
@@ -1708,7 +1712,7 @@ msgstr "For scientific research use only."
 msgid "Stock en España"
 msgstr "Stock in Spain"
 
-#: templates/store/product_detail.html:142
+#: templates/store/product_detail.html:147
 msgid "Stock limitado, reposición por lotes — envío en 24-72h mientras haya unidades disponibles."
 msgstr "Limited stock, restocked by lot — ships in 24-72h while units are available."
 
@@ -1888,7 +1892,7 @@ msgstr "View catalog"
 msgid "Ver catálogo completo →"
 msgstr "View the full catalog →"
 
-#: templates/store/product_detail.html:49
+#: templates/store/product_detail.html:54
 msgid "Ver certificado de análisis (CoA) ↗"
 msgstr "View certificate of analysis (CoA) ↗"
 
@@ -1903,10 +1907,6 @@ msgstr "View product"
 #: templates/store/index.html:131
 msgid "Ver todo el catálogo →"
 msgstr "View the full catalog →"
-
-#: templates/store/product_detail.html:53
-msgid "Ver todos los certificados"
-msgstr "View all certificates"
 
 #: templates/store/index.html:113
 msgid "Ver todos los packs →"

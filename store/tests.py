@@ -125,6 +125,18 @@ class CertificadosTest(TestCase):
         resp = self.client.get(reverse('product_detail', args=[self.pep.slug]))
         self.assertContains(resp, 'certificates/')
 
+    def test_producto_sin_coa_no_dice_tenerlo(self):
+        """No todos los lotes tienen el CoA publicado: se pide por contacto.
+
+        Antes decía "Certificado de análisis disponible" y enlazaba a
+        /certificados/, donde ese producto no aparece.
+        """
+        sin_coa = crear_peptido(name='TB-500', category=self.pep.category)
+        resp = self.client.get(reverse('product_detail', args=[sin_coa.slug]))
+        self.assertContains(resp, 'Certificado de análisis bajo petición')
+        self.assertNotContains(resp, 'Certificado de análisis disponible')
+        self.assertContains(resp, reverse('contact'))
+
 
 DATOS_BULK = {
     'name': 'Laura Vidal',
