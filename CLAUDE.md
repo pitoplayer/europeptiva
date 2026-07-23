@@ -9,7 +9,18 @@ Tienda online de péptidos de investigación en España. Dominio: europeptiva.co
 
 ## Deploy a producción
 
-Cuando un cambio afecta a lo que se ve en la web (templates, estáticos, imágenes, modelos), despliégalo tú mismo directamente en el VPS — no lo dejes como tarea pendiente para que el usuario lo haga a mano. Tras el `git push`, conéctate por SSH (`root@167.233.169.95`, clave `~/.ssh/europeptiva_vps`) y ejecuta como usuario `peptidos`: `git pull origin main`, `pip install -r requirements.txt`, `python manage.py migrate --noinput`, `python manage.py collectstatic --noinput --clear`, y luego `systemctl restart europeptiva && systemctl reload nginx` (root). El usuario quiere que la web quede actualizada de inmediato, sin pasos manuales intermedios.
+Cuando un cambio afecta a lo que se ve en la web (templates, estáticos, imágenes, modelos), despliégalo tú mismo directamente en el VPS — no lo dejes como tarea pendiente para que el usuario lo haga a mano. El usuario quiere que la web quede actualizada de inmediato, sin pasos manuales intermedios.
+
+Tras el `git push`, dos comandos (verificado 23/07/2026):
+
+```bash
+ssh -i ~/.ssh/europeptiva_vps root@167.233.169.95 'su - peptidos -c "cd /home/peptidos/app && git pull origin main && source venv/bin/activate && pip install -q -r requirements.txt && python manage.py migrate --noinput && python manage.py collectstatic --noinput --clear"'
+ssh -i ~/.ssh/europeptiva_vps root@167.233.169.95 'systemctl restart europeptiva && systemctl reload nginx && systemctl is-active europeptiva'
+```
+
+Dos detalles que hacen fallar el deploy si se ignoran:
+- La app está en **`/home/peptidos/app`** con el venv en **`venv/`** (no `.venv`).
+- Los comandos de git y Django van **como usuario `peptidos`** (`su - peptidos -c`): lanzarlos como root falla con `fatal: detected dubious ownership`. Solo `systemctl` va como root.
 
 ## Estado actual
 
