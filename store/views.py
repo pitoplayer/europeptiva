@@ -45,7 +45,7 @@ def index(request):
         'latest_certificate': latest_certificate,
         'hero_peptides': hero_peptides,
         'page_title': _('Péptidos de Investigación'),
-        'page_description': _('Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado de análisis por lote y envío refrigerado.'),
+        'page_description': _('Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Certificado de análisis por lote, stock en España y envío refrigerado.'),
     })
 
 

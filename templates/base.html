@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ page_title }} | EuroPeptiva{% endblock %}</title>
-    {% translate "EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente." as default_description %}
+    {% translate "EuroPeptiva — Péptidos de investigación científica de alta pureza, verificados por laboratorio independiente y con stock en España." as default_description %}
     <meta name="description" content="{{ page_description|default:default_description }}">
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     {% comment %}

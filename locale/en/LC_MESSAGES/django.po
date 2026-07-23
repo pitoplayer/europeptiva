@@ -477,6 +477,13 @@ msgstr ""
 "A product in your cart is no longer available. Please review it before "
 "continuing."
 
+#: templates/store/index.html:312
+msgid ""
+"Almacén propio en España: el pedido sale de aquí, sin aduanas ni esperas."
+msgstr ""
+"Our own warehouse in Spain: your order ships from here, with no customs and "
+"no waiting."
+
 #: orders/forms.py:19 orders/models.py:34
 msgid "Apellidos"
 msgstr "Last name"
@@ -677,11 +684,13 @@ msgstr "Featured compounds"
 
 #: templates/store/index.html:30
 msgid ""
-"Compuestos sintetizados en la UE, verificados en laboratorio independiente y"
-" enviados con cadena de frío. Sin atajos, sin marketing de suplementos."
+"Compuestos verificados en laboratorio independiente, con certificado de "
+"análisis por lote y enviados desde España en cadena de frío. Sin atajos, sin"
+" marketing de suplementos."
 msgstr ""
-"Compounds synthesised in the EU, verified by an independent laboratory and "
-"shipped cold-chain. No shortcuts, no supplement marketing."
+"Compounds verified by an independent laboratory, with a certificate of "
+"analysis per lot, shipped from Spain in the cold chain. No shortcuts, no "
+"supplement marketing."
 
 #: templates/pages/returns.html:100
 msgid ""
@@ -1132,13 +1141,13 @@ msgstr "EuroPeptiva — <a href=\"https://europeptiva.com\">europeptiva.com</a>"
 
 #: config/urls.py:30
 msgid ""
-"EuroPeptiva: proveedor especializado en péptidos de investigación científica"
-" de origen europeo, con pureza certificada y envío refrigerado a España y la"
-" UE."
+"EuroPeptiva: proveedor especializado en péptidos de investigación "
+"científica, con pureza certificada por laboratorio independiente, stock en "
+"España y envío refrigerado a toda la UE."
 msgstr ""
-"EuroPeptiva: a specialist supplier of European-made scientific research "
-"peptides, with certified purity and refrigerated shipping to Spain and the "
-"EU."
+"EuroPeptiva: a specialist supplier of scientific research peptides, with "
+"purity certified by an independent laboratory, stock in Spain and "
+"refrigerated shipping across the EU."
 
 #: templates/store/index.html:159
 msgid "Explora"
@@ -1151,10 +1160,6 @@ msgid ""
 msgstr ""
 "FTIR/LC-MS confirms that the vial contains the stated peptide; HPLC measures"
 " purity and potency against the label."
-
-#: templates/store/index.html:312
-msgid "Fabricación y control de calidad dentro de la Unión Europea."
-msgstr "Manufacturing and quality control within the European Union."
 
 #: templates/store/certificates.html:54
 msgid "Fecha de análisis"
@@ -1453,6 +1458,14 @@ msgstr "Monday–Friday, 9:00–18:00 (CET)"
 msgid "L–S"
 msgstr "Mon–Sat"
 
+#: templates/pages/about.html:35
+msgid ""
+"Mantenemos el stock en España y enviamos desde aquí: sin aduanas, sin "
+"esperas de semanas y con seguimiento desde el primer día."
+msgstr ""
+"We hold stock in Spain and ship from here: no customs, no waiting weeks, and"
+" tracking from day one."
+
 #: templates/pages/contact.html:71
 msgid "Mensaje"
 msgstr "Message"
@@ -1573,10 +1586,6 @@ msgstr "CAS number"
 #: templates/orders/tracking.html:13 templates/orders/tracking.html:39
 msgid "Número de pedido"
 msgstr "Order number"
-
-#: templates/pages/about.html:34
-msgid "Origen europeo"
-msgstr "European origin"
 
 #: templates/pages/contact.html:67
 msgid "Otro"
@@ -1866,12 +1875,12 @@ msgstr "Scientific research peptides"
 #: store/views.py:48
 msgid ""
 "Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, "
-"Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado "
-"de análisis por lote y envío refrigerado."
+"Semaglutide, BPC-157, TB-500 y más. Certificado de análisis por lote, stock "
+"en España y envío refrigerado."
 msgstr ""
 "High-purity research peptides (≥99% HPLC): Retatrutide, Semaglutide, "
-"BPC-157, TB-500 and more. Synthesised in the EU, with a certificate of "
-"analysis per lot and refrigerated shipping."
+"BPC-157, TB-500 and more. Certificate of analysis per lot, stock in Spain "
+"and refrigerated shipping."
 
 #: templates/store/index.html:26
 msgid "Péptidos de investigación de alta pureza, para ciencia seria."
@@ -2069,6 +2078,10 @@ msgstr ""
 msgid "Solo para uso en investigación científica."
 msgstr "For scientific research use only."
 
+#: templates/pages/about.html:34 templates/store/index.html:311
+msgid "Stock en España"
+msgstr "Stock in Spain"
+
 #: templates/store/product_detail.html:125
 msgid ""
 "Stock limitado, reposición por lotes — envío en 24-72h mientras haya "
@@ -2099,10 +2112,6 @@ msgstr ""
 "Yes, we ship to every country in the European Union. The buyer is "
 "responsible for verifying the legality of importing and using research "
 "peptides in their country. We do not ship outside the EU."
-
-#: templates/store/index.html:311
-msgid "Síntesis en la UE"
-msgstr "Synthesised in the EU"
 
 #: orders/models.py:21
 msgid "Tarjeta (Mollie)"
@@ -2206,14 +2215,6 @@ msgstr ""
 " for scientific laboratory research</strong>. They are not approved for "
 "human use, veterinary use or medical diagnosis. They are used by "
 "researchers, university laboratories and R&D centres."
-
-#: templates/pages/about.html:35
-msgid ""
-"Todos los productos provienen de fabricantes europeos con estrictos "
-"controles de calidad y trazabilidad."
-msgstr ""
-"All products come from European manufacturers with strict quality control "
-"and traceability."
 
 #: templates/pages/faq.html:23
 msgid ""

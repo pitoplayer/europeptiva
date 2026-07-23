@@ -27,7 +27,7 @@ urlpatterns += i18n_patterns(
     path(_('pedidos/'), include('orders.urls')),
     path(_('sobre-nosotros/'), TemplateView.as_view(template_name='pages/about.html', extra_context={
         'page_title': _('Sobre nosotros'),
-        'page_description': _('EuroPeptiva: proveedor especializado en péptidos de investigación científica de origen europeo, con pureza certificada y envío refrigerado a España y la UE.'),
+        'page_description': _('EuroPeptiva: proveedor especializado en péptidos de investigación científica, con pureza certificada por laboratorio independiente, stock en España y envío refrigerado a toda la UE.'),
     }), name='about'),
     path(_('faq/'), TemplateView.as_view(template_name='pages/faq.html', extra_context={
         'page_title': _('Preguntas frecuentes'),
