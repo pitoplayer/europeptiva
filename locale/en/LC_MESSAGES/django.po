@@ -97,7 +97,7 @@ msgstr "%(v2)s %(v1)s"
 
 #: templates/pages/bulk.html:55
 msgid "-%(v1)s%%"
-msgstr "-%%(v1)s%%"
+msgstr "-%(v1)s%%"
 
 #: templates/pages/cookies.html:27
 msgid "1 año"
