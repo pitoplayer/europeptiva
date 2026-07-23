@@ -3,6 +3,8 @@ from django.conf import settings
 from orders.shipping import (
     FREE_SHIPPING_THRESHOLD,
     SAME_DAY_CUTOFF_HOUR,
+    SAME_DAY_DAYS_LONG,
+    SAME_DAY_DAYS_SHORT,
     SHIPPING_RATES,
 )
 
@@ -18,6 +20,8 @@ def shipping_info(request):
         'shipping_cost_es': SHIPPING_RATES['ESP']['standard'],
         'shipping_cost_eu': SHIPPING_RATES['EU']['standard'],
         'shipping_cutoff_hour': SAME_DAY_CUTOFF_HOUR,
+        'shipping_cutoff_days': SAME_DAY_DAYS_SHORT,
+        'shipping_cutoff_days_long': SAME_DAY_DAYS_LONG,
     }
 
 

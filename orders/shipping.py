@@ -3,8 +3,10 @@ from decimal import Decimal
 # Umbral único de envío gratis para todos los destinos.
 FREE_SHIPPING_THRESHOLD = Decimal('150.00')
 
-# Hora límite (24h) para que un pedido salga el mismo día laborable.
+# Hora límite (24h) para que un pedido salga el mismo día, y días en que aplica.
 SAME_DAY_CUTOFF_HOUR = 12
+SAME_DAY_DAYS_SHORT = 'L–S'
+SAME_DAY_DAYS_LONG = 'de lunes a sábado'
 
 SHIPPING_RATES = {
     'ESP': {
