@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load shipping_extras %}
+{% block content %}
+
+<!-- Hero -->
+<section class="bg-primary text-white py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+        <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-3">Volumen</p>
+        <h1 class="text-4xl font-bold mb-4">Compra al por mayor</h1>
+        <p class="text-gray-400 text-lg leading-relaxed">
+            Suministramos volúmenes grandes a laboratorios, centros de I+D y distribuidores.
+            Precio por tramos, mismo lote para toda la serie y presupuesto cerrado en 24-48 h.
+        </p>
+        <a href="#solicitar" class="inline-block mt-7 bg-accent text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-accent-mid transition-colors">
+            Pedir presupuesto
+        </a>
+    </div>
+</section>
+
+<div class="max-w-4xl mx-auto px-4 py-14">
+
+    <!-- A quién va dirigido -->
+    <h2 class="text-2xl font-bold text-primary mb-6">¿Para quién es?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
+        <div class="border border-gray-200 rounded-xl p-5">
+            <div class="w-11 h-11 bg-accent-light border border-accent-border rounded-lg flex items-center justify-center mb-3">
+                <span class="text-xl">🔬</span>
+            </div>
+            <h3 class="font-bold text-primary mb-1.5">Laboratorios y centros de I+D</h3>
+            <p class="text-gray-600 text-sm">Con consumo recurrente y necesidad de trazabilidad entre experimentos.</p>
+        </div>
+        <div class="border border-gray-200 rounded-xl p-5">
+            <div class="w-11 h-11 bg-accent-light border border-accent-border rounded-lg flex items-center justify-center mb-3">
+                <span class="text-xl">📦</span>
+            </div>
+            <h3 class="font-bold text-primary mb-1.5">Distribuidores</h3>
+            <p class="text-gray-600 text-sm">Bajo petición y previa verificación. Condiciones de reposición a medida.</p>
+        </div>
+        <div class="border border-gray-200 rounded-xl p-5">
+            <div class="w-11 h-11 bg-accent-light border border-accent-border rounded-lg flex items-center justify-center mb-3">
+                <span class="text-xl">📊</span>
+            </div>
+            <h3 class="font-bold text-primary mb-1.5">Proyectos de investigación</h3>
+            <p class="text-gray-600 text-sm">Estudios largos que necesitan asegurar suministro y precio durante meses.</p>
+        </div>
+    </div>
+
+    <!-- Tramos de descuento -->
+    <h2 class="text-2xl font-bold text-primary mb-2">Tramos de precio</h2>
+    <p class="text-gray-600 text-sm mb-6">Las unidades cuentan <strong>por producto</strong>, no sobre el total del pedido.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+        {% for tier in bulk_tiers %}
+        <div class="border {% if forloop.last %}border-accent-border bg-accent-light{% else %}border-gray-200{% endif %} rounded-xl p-6 text-center">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Desde {{ tier.min_units }} unidades</p>
+            <p class="text-4xl font-bold {% if forloop.last %}text-accent{% else %}text-primary{% endif %} leading-none">-{{ tier.discount }}%</p>
+            <p class="text-xs text-gray-500 mt-2">sobre el precio de catálogo</p>
+        </div>
+        {% endfor %}
+    </div>
+    <p class="text-xs text-gray-500 mb-14">
+        Descuentos orientativos sobre el precio unitario de catálogo. ¿Necesitas combinar varios productos
+        para llegar al tramo? Se estudia caso por caso — escríbenos y te lo cerramos en el presupuesto.
+    </p>
+
+    <!-- Ventajas -->
+    <h2 class="text-2xl font-bold text-primary mb-6">Qué incluye</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 mb-14">
+        <div class="flex items-start gap-3">
+            <span class="text-accent-mid font-bold shrink-0">✓</span>
+            <div>
+                <p class="font-semibold text-primary text-sm mb-0.5">Mismo lote para toda la serie</p>
+                <p class="text-gray-600 text-sm">Siempre que el stock lo permita, para que tus resultados sean comparables entre sí.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-3">
+            <span class="text-accent-mid font-bold shrink-0">✓</span>
+            <div>
+                <p class="font-semibold text-primary text-sm mb-0.5">Certificado de análisis de cada lote</p>
+                <p class="text-gray-600 text-sm">HPLC de laboratorio independiente, disponible en <a href="{% url 'certificates' %}" class="text-accent-mid underline">certificados</a>.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-3">
+            <span class="text-accent-mid font-bold shrink-0">✓</span>
+            <div>
+                <p class="font-semibold text-primary text-sm mb-0.5">Envío incluido</p>
+                <p class="text-gray-600 text-sm">Todo pedido al por mayor supera los {{ shipping_free_from|euros }}, así que el transporte refrigerado va sin coste.</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-3">
+            <span class="text-accent-mid font-bold shrink-0">✓</span>
+            <div>
+                <p class="font-semibold text-primary text-sm mb-0.5">Embalaje discreto y factura con IVA</p>
+                <p class="text-gray-600 text-sm">Documentación válida para deducir el gasto en tu centro o empresa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proceso -->
+    <h2 class="text-2xl font-bold text-primary mb-6">Cómo funciona</h2>
+    <ol class="space-y-4 mb-14">
+        <li class="flex items-start gap-4">
+            <span class="w-8 h-8 shrink-0 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center">1</span>
+            <p class="text-gray-600 text-sm pt-1.5">Nos escribes qué productos y cuántas unidades necesitas, con el formulario de abajo.</p>
+        </li>
+        <li class="flex items-start gap-4">
+            <span class="w-8 h-8 shrink-0 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center">2</span>
+            <p class="text-gray-600 text-sm pt-1.5">Comprobamos existencias y de qué lote saldría cada producto.</p>
+        </li>
+        <li class="flex items-start gap-4">
+            <span class="w-8 h-8 shrink-0 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center">3</span>
+            <p class="text-gray-600 text-sm pt-1.5">Te enviamos un presupuesto cerrado, con plazo de entrega, en 24-48 h laborables.</p>
+        </li>
+        <li class="flex items-start gap-4">
+            <span class="w-8 h-8 shrink-0 rounded-full bg-accent text-white text-sm font-bold flex items-center justify-center">4</span>
+            <p class="text-gray-600 text-sm pt-1.5">Lo confirmas y preparamos el envío. No se cobra nada hasta que aceptas.</p>
+        </li>
+    </ol>
+
+    <!-- Formulario -->
+    <div id="solicitar" class="bg-gray-50 border border-gray-200 rounded-2xl p-7 scroll-mt-24">
+        <h2 class="text-2xl font-bold text-primary mb-1">Pedir presupuesto</h2>
+        <p class="text-gray-600 text-sm mb-6">Mínimo {{ bulk_min_units }} unidades por producto. Sin compromiso.</p>
+
+        {% if bulk_sent %}
+        <div class="bg-accent-light border border-accent-border text-accent rounded-xl p-5 text-sm">
+            <p class="font-semibold mb-1">✓ Solicitud recibida</p>
+            <p>Te respondemos con el presupuesto en 24-48 h laborables al email que nos has dejado. Revisa también la carpeta de spam.</p>
+        </div>
+        {% else %}
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {% for field in form %}
+                <div class="{% if field.name == 'message' %}sm:col-span-2{% endif %}">
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ field.label }}{% if not field.field.required %} <span class="text-gray-400 font-normal">(opcional)</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                    <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-accent text-white px-8 py-3 rounded-xl font-semibold text-sm hover:bg-accent-mid transition-colors">
+                Enviar solicitud
+            </button>
+            <p class="text-xs text-gray-500">
+                Tratamos tus datos solo para responder a esta solicitud. Más información en la
+                <a href="{% url 'privacy' %}" class="underline">política de privacidad</a>.
+            </p>
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- Aviso legal -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 mt-10">
+        <p class="text-amber-700 text-sm leading-relaxed">
+            Los pedidos al por mayor están sujetos a las mismas condiciones que el resto del catálogo:
+            productos destinados <strong>exclusivamente a investigación científica in vitro</strong>, no aptos
+            para consumo humano ni veterinario. El comprador es responsable de verificar la legalidad de la
+            importación y el uso en su jurisdicción.
+        </p>
+    </div>
+
+</div>
+{% endblock %}

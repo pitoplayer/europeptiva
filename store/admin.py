@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Category, Peptide, PeptideVariant, Certificate
+from .models import BulkEnquiry, Category, Peptide, PeptideVariant, Certificate
 
 
 class PeptideVariantInline(admin.TabularInline):
@@ -47,3 +47,24 @@ class CertificateAdmin(admin.ModelAdmin):
     list_display = ['peptide', 'lab_name', 'lot_number', 'tested_date', 'purity', 'is_active']
     list_filter = ['lab_name', 'is_active']
     search_fields = ['peptide__name', 'lot_number']
+
+
+@admin.register(BulkEnquiry)
+class BulkEnquiryAdmin(admin.ModelAdmin):
+    list_display = ['created_at', 'name', 'organization', 'email', 'phone', 'colored_status']
+    list_filter = ['status', 'created_at']
+    search_fields = ['name', 'organization', 'email', 'message']
+    list_editable = []
+    readonly_fields = ['created_at']
+    fieldsets = [
+        ('Contacto', {'fields': ('name', 'organization', 'email', 'phone')}),
+        ('Solicitud', {'fields': ('message', 'created_at')}),
+        ('Seguimiento', {'fields': ('status',)}),
+    ]
+
+    def colored_status(self, obj):
+        colors = {'new': 'red', 'quoted': 'orange', 'won': 'green', 'lost': 'gray'}
+        return format_html(
+            '<span style="color: {};">{}</span>',
+            colors.get(obj.status, 'black'), obj.get_status_display())
+    colored_status.short_description = 'Estado'

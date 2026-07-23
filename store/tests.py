@@ -5,7 +5,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Category, Certificate, Peptide, PeptideVariant
+from django.core import mail
+from django.test import override_settings
+
+from .models import BulkEnquiry, Category, Certificate, Peptide, PeptideVariant
 
 
 def crear_peptido(name='BPC-157', category=None, **kwargs):
@@ -118,3 +121,59 @@ class CertificadosTest(TestCase):
     def test_ficha_producto_enlaza_su_certificado(self):
         resp = self.client.get(reverse('product_detail', args=[self.pep.slug]))
         self.assertContains(resp, 'certificates/')
+
+
+DATOS_BULK = {
+    'name': 'Laura Vidal',
+    'organization': 'Instituto de Bioquímica',
+    'email': 'laura@instituto.example',
+    'phone': '+34600111222',
+    'message': '20 viales de Retatrutide 10mg y 15 de BPC-157 5mg.',
+}
+
+
+class CompraAlPorMayorTest(TestCase):
+    def test_pagina_carga_con_los_tramos(self):
+        resp = self.client.get(reverse('bulk'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Compra al por mayor')
+        for tier in resp.context['bulk_tiers']:
+            self.assertContains(resp, f'-{tier["discount"]}%')
+
+    def test_solicitud_valida_se_guarda_y_avisa_por_email(self):
+        with override_settings(ADMIN_EMAIL='admin@europeptiva.com'):
+            resp = self.client.post(reverse('bulk'), DATOS_BULK)
+
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp.context['bulk_sent'])
+
+        enquiry = BulkEnquiry.objects.get()
+        self.assertEqual(enquiry.email, 'laura@instituto.example')
+        self.assertEqual(enquiry.status, 'new')
+
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['admin@europeptiva.com'])
+        self.assertIn('Retatrutide', mail.outbox[0].body)
+
+    def test_solicitud_se_guarda_aunque_no_haya_admin_email(self):
+        """El lead no se puede perder porque el aviso no salga."""
+        with override_settings(ADMIN_EMAIL=''):
+            self.client.post(reverse('bulk'), DATOS_BULK)
+        self.assertEqual(BulkEnquiry.objects.count(), 1)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_solicitud_sin_email_no_se_guarda(self):
+        datos = {k: v for k, v in DATOS_BULK.items() if k != 'email'}
+        resp = self.client.post(reverse('bulk'), datos)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.context['bulk_sent'])
+        self.assertEqual(BulkEnquiry.objects.count(), 0)
+
+    def test_empresa_y_telefono_son_opcionales(self):
+        datos = {k: v for k, v in DATOS_BULK.items() if k not in ('organization', 'phone')}
+        self.client.post(reverse('bulk'), datos)
+        self.assertEqual(BulkEnquiry.objects.count(), 1)
+
+    def test_aparece_en_el_sitemap(self):
+        resp = self.client.get('/sitemap.xml')
+        self.assertContains(resp, '/al-por-mayor/')

@@ -21,6 +21,7 @@
             <a href="{% url 'catalog' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'catalog' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Catálogo</a>
             <a href="{% url 'certificates' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'certificates' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Certificados</a>
             <a href="{% url 'faq' %}" class="hover:text-primary transition-colors">FAQ</a>
+            <a href="{% url 'bulk' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'bulk' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Al por mayor</a>
             <a href="{% url 'about' %}" class="hover:text-primary transition-colors">Sobre nosotros</a>
             <a href="{% url 'contact' %}" class="hover:text-primary transition-colors">Contacto</a>
         </nav>

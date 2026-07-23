@@ -1,4 +1,5 @@
 import json
+import logging
 
 from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
@@ -6,7 +7,10 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.safestring import mark_safe
 from .models import Category, Peptide, Certificate
-from .forms import ContactForm
+from .bulk import BULK_MIN_UNITS, BULK_TIERS
+from .forms import BulkEnquiryForm, ContactForm
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -144,4 +148,51 @@ def contact(request):
         'contact_sent': sent,
         'page_title': 'Contacto',
         'page_description': '¿Tienes dudas sobre nuestros péptidos de investigación o certificados de análisis? Contacta con el equipo de EuroPeptiva.',
+    })
+
+
+def bulk(request):
+    """Compra al por mayor: tramos orientativos y solicitud de presupuesto."""
+    sent = False
+    if request.method == 'POST':
+        form = BulkEnquiryForm(request.POST)
+        if form.is_valid():
+            # Se guarda primero: una solicitud al por mayor es un lead con
+            # dinero detrás y no se puede perder si falla el SMTP.
+            enquiry = form.save()
+            admin_email = getattr(settings, 'ADMIN_EMAIL', '')
+            if admin_email:
+                try:
+                    send_mail(
+                        subject=f'[EuroPeptiva Al por mayor] {enquiry.name}',
+                        message=(
+                            f'Nombre: {enquiry.name}\n'
+                            f'Empresa: {enquiry.organization or "—"}\n'
+                            f'Email: {enquiry.email}\n'
+                            f'Teléfono: {enquiry.phone or "—"}\n\n'
+                            f'{enquiry.message}\n\n'
+                            f'Gestiónala en /gestion-interna/store/bulkenquiry/{enquiry.pk}/change/'
+                        ),
+                        from_email=getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@europeptiva.com'),
+                        recipient_list=[admin_email],
+                        fail_silently=True,
+                    )
+                except Exception:
+                    logger.exception('No se pudo enviar el aviso de la solicitud al por mayor %s', enquiry.pk)
+            sent = True
+            form = BulkEnquiryForm()
+    else:
+        form = BulkEnquiryForm()
+
+    return render(request, 'pages/bulk.html', {
+        'form': form,
+        'bulk_sent': sent,
+        'bulk_tiers': BULK_TIERS,
+        'bulk_min_units': BULK_MIN_UNITS,
+        'page_title': 'Compra al por mayor',
+        'page_description': (
+            'Precios por volumen en péptidos de investigación para laboratorios, '
+            'centros de I+D y distribuidores. Descuentos desde 10 unidades por producto, '
+            'presupuesto a medida en 24-48h.'
+        ),
     })

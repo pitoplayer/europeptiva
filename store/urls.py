@@ -7,4 +7,5 @@ urlpatterns = [
     path('producto/<slug:slug>/', views.product_detail, name='product_detail'),
     path('certificados/', views.certificates, name='certificates'),
     path('contacto/', views.contact, name='contact'),
+    path('al-por-mayor/', views.bulk, name='bulk'),
 ]
