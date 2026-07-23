@@ -9,7 +9,9 @@ from django.core import mail
 from django.test import override_settings
 from django.utils import translation
 
-from .models import BulkEnquiry, Category, Certificate, Peptide, PeptideVariant
+from .models import (BulkEnquiry, Bundle, BundleItem, Category, Certificate,
+                     Peptide, PeptideVariant)
+from .pricing import desglosar_paquete
 
 
 def crear_peptido(name='BPC-157', category=None, **kwargs):
@@ -320,3 +322,80 @@ class FichaEstructuradaTest(TestCase):
     def test_el_disolvente_se_mide_en_ml(self):
         self.assertEqual(self.agua_3ml.size_display, '3 ml')
         self.assertEqual(self.bpc.variants.first().size_display, '10 mg')
+
+
+class PaquetesTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cat = Category.objects.create(name='Recuperación')
+        cls.bpc = crear_peptido(name='BPC-157', category=cat)
+        cls.tb = crear_peptido(name='TB-500', category=cat)
+        cls.agua = crear_peptido(name='BAC Water', category=cat,
+                                 product_format=Peptide.FORMAT_SOLVENT)
+        cls.v_bpc = PeptideVariant.objects.create(peptide=cls.bpc, size_mg=10, price=Decimal('64.95'), stock=10)
+        cls.v_tb = PeptideVariant.objects.create(peptide=cls.tb, size_mg=10, price=Decimal('64.95'), stock=4)
+        cls.v_agua = PeptideVariant.objects.create(peptide=cls.agua, size_mg=10, price=Decimal('9.95'), stock=50)
+        cls.pack = Bundle.objects.create(
+            name='Pack Recuperación', short_description='BPC y TB juntos',
+            price=Decimal('119.95'))
+        for variante in (cls.v_bpc, cls.v_tb, cls.v_agua):
+            BundleItem.objects.create(bundle=cls.pack, variant=variante)
+
+    def test_cuentas_del_paquete(self):
+        self.assertEqual(self.pack.components_total(), Decimal('139.85'))
+        self.assertEqual(self.pack.savings(), Decimal('19.90'))
+        self.assertEqual(self.pack.savings_percent(), 14)
+
+    def test_el_stock_lo_marca_el_componente_mas_escaso(self):
+        self.assertEqual(self.pack.available_units(), 4)  # el TB-500
+        self.assertTrue(self.pack.in_stock)
+
+    def test_sin_stock_de_un_componente_el_paquete_se_agota(self):
+        self.v_tb.stock = 0
+        self.v_tb.save()
+        self.assertEqual(self.pack.available_units(), 0)
+        self.assertFalse(self.pack.in_stock)
+
+    def test_componente_desactivado_agota_el_paquete(self):
+        self.tb.is_active = False
+        self.tb.save()
+        self.assertEqual(self.pack.available_units(), 0)
+
+    def test_el_desglose_suma_exactamente_el_precio(self):
+        """El subtotal del pedido sale de las líneas: no puede sobrar un céntimo."""
+        for unidades in (1, 2, 3, 7):
+            lineas = desglosar_paquete(self.pack, unidades)
+            total = sum(precio * n for _, n, precio in lineas)
+            self.assertEqual(total, self.pack.price * unidades, f'{unidades} packs')
+
+    def test_el_desglose_cuadra_con_precios_que_no_dividen_limpio(self):
+        feo = Bundle.objects.create(name='Pack feo', short_description='x', price=Decimal('100.01'))
+        BundleItem.objects.create(bundle=feo, variant=self.v_bpc, quantity=3)
+        BundleItem.objects.create(bundle=feo, variant=self.v_tb, quantity=2)
+        lineas = desglosar_paquete(feo)
+        self.assertEqual(sum(precio * n for _, n, precio in lineas), Decimal('100.01'))
+        # Se reparten las 5 unidades, aunque haga falta partirlas en dos líneas.
+        self.assertEqual(sum(n for _, n, _ in lineas), 5)
+
+    def test_pagina_de_packs(self):
+        resp = self.client.get(reverse('bundles'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Pack Recuperación')
+
+    def test_ficha_de_pack(self):
+        resp = self.client.get(reverse('bundle_detail', args=[self.pack.slug]))
+        self.assertEqual(resp.status_code, 200)
+        # Django localiza los decimales: en español van con coma.
+        self.assertContains(resp, '139,85')          # tachado
+        self.assertContains(resp, '119,95')          # precio
+        self.assertContains(resp, 'Un pack no es un blend')
+        self.assertContains(resp, f'/producto/{self.bpc.slug}/')
+
+    def test_pack_inactivo_da_404(self):
+        self.pack.is_active = False
+        self.pack.save()
+        self.assertEqual(
+            self.client.get(reverse('bundle_detail', args=[self.pack.slug])).status_code, 404)
+
+    def test_pack_en_el_sitemap(self):
+        self.assertContains(self.client.get('/sitemap.xml'), f'/pack/{self.pack.slug}/')

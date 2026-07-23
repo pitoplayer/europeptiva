@@ -68,6 +68,20 @@
 
 **Contexto de investigación de los 18 productos (2026-07-23):** escritos en español e inglés en la migración `0010` (indexada por slug, como las demás). Reglas que sigue el texto, por si hay que ampliarlo o revisarlo: qué es la molécula y qué se ha estudiado de ella, sin eficacia, dosis ni uso humano; y **se dice siempre de dónde viene la evidencia**. Donde es solo preclínica (BPC-157, TB-500, MOTS-c) el texto lo afirma explícitamente; donde la literatura procede casi toda de un país (Semax y Selank, desarrollo ruso) también; y los dos blends dicen que lo publicado va de cada componente por separado, no de la mezcla. Esa distinción entre "estudiado en roedores" y "con ensayos clínicos amplios" es lo que impide que la ficha se lea como una promesa, y conviene mantenerla si se editan los textos. Falta que el usuario los revise.
 
+**Packs de productos (2026-07-23):** cuatro paquetes con página propia en `/packs/` y `/pack/<slug>/` (`/en/bundles/`, `/en/bundle/<slug>/` — en inglés es "bundle", que es el término del sector), en el sitemap, en el menú y con los tres destacados en portada. Modelos `Bundle` + `BundleItem` en `store/models.py`, traducibles (el nombre **sí** se traduce, al revés que el de los productos: "Pack Recuperación" es marketing, no un nombre químico).
+
+Decisiones que conviene no deshacer sin pensarlo:
+
+- **Precio fijo escrito a mano, no porcentaje.** Permite redondear a 129,95 y ajustar el margen paquete a paquete.
+- **Los descuentos se quedan por debajo del 15 %** (salen al 12-14 %), que es el primer tramo de `store/bulk.py`. Un pack de tres viales que descontara más que un pedido mayorista de diez unidades dejaría los tramos de mayoristas sin sentido. Si se tocan los tramos, revisar esto.
+- **En el pedido un pack se guarda desglosado**, una línea por componente con el precio repartido (`store/pricing.py`), no como una línea suelta. Así el stock se descuenta y se **restaura** con el código que ya existía —`cancelar_pedidos_sin_pago` funciona sin tocarlo— y el albarán dice qué viales van en la caja. El reparto se hace por unidad y el último trozo absorbe el redondeo, de modo que la suma de líneas es exactamente el precio del pack; hay test que lo comprueba con precios que no dividen limpio.
+- **El stock de un pack lo marca su componente más escaso**, y si alguno se desactiva el pack se agota entero.
+- **Cada ficha explica que un pack no es un blend.** No es adorno: el Pack Recuperación (119,95 €) cuesta más que el Wolverine Blend (110 €), que lleva lo mismo mezclado en un vial, y sin esa explicación parece un timo. Por eso el Pack Piel, que solapa con Glow70, no va en portada.
+
+Margen: con los costes de proveedor del `.xlsx` (columna "Precio supplier", 79-90 % de margen en casi todo el catálogo salvo Tesamorelina al 58,7 %) los cuatro packs se quedan por encima del 85 %.
+
+Un pack de longevidad hoy es imposible: MOTS-c y NAD+ siguen desactivados por el CoA fallido y en esa categoría solo queda Glutatión. Un "kit de inicio" completo al estilo de la competencia tampoco, porque no se venden jeringas ni toallitas.
+
 **SEO:**
 - sitemap.xml en /sitemap.xml
 - robots.txt en /robots.txt

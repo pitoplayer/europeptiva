@@ -95,7 +95,11 @@
                 <div class="flex justify-between text-sm py-2 border-b border-gray-200">
                     <div>
                         <span class="font-medium">{{ item.name }}</span>
-                        <span class="text-gray-500 block">{% blocktranslate with mg=item.size_mg qty=item.quantity %}{{ mg }}mg × {{ qty }}{% endblocktranslate %}</span>
+                        {% if item.is_bundle %}
+                        <span class="text-gray-500 block">{% blocktranslate with qty=item.quantity %}Pack × {{ qty }}{% endblocktranslate %}</span>
+                        {% else %}
+                        <span class="text-gray-500 block">{% blocktranslate with tamano=item.size_display qty=item.quantity %}{{ tamano }} × {{ qty }}{% endblocktranslate %}</span>
+                        {% endif %}
                     </div>
                     <span class="font-medium">{{ item.line_total }}€</span>
                 </div>

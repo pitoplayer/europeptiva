@@ -1,0 +1,40 @@
+{% load i18n %}
+{% comment %}
+Tarjeta de paquete. La usan el listado de packs y el pie de la ficha de un pack.
+En vez de una foto propia se apilan las imágenes de los componentes: se ve de un
+vistazo que son varios viales y no hay que generar arte nuevo por cada paquete.
+{% endcomment %}
+<div class="group border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow bg-white flex flex-col">
+    <a href="{% url 'bundle_detail' bundle.slug %}" class="relative block bg-gray-50 aspect-[4/3] overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center gap-1 p-3">
+            {% for item in bundle.items.all %}
+            {% if item.variant.peptide.main_image %}
+            <img src="{{ item.variant.peptide.main_image.url }}" alt="{{ item.variant.peptide.name }}"
+                class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% if bundle.savings > 0 %}
+        <span class="absolute top-2 left-2 bg-primary text-white text-xs font-semibold px-2 py-0.5 rounded-full">{% blocktranslate with ahorro=bundle.savings_percent %}-{{ ahorro }}%{% endblocktranslate %}</span>
+        {% endif %}
+    </a>
+    <div class="p-4 flex flex-col flex-1">
+        <h3 class="font-semibold text-primary mb-1">
+            <a href="{% url 'bundle_detail' bundle.slug %}" class="hover:text-accent-mid transition-colors">{{ bundle.name }}</a>
+        </h3>
+        <ul class="text-xs text-gray-400 mb-3 space-y-0.5">
+            {% for item in bundle.items.all %}
+            <li>{{ item.variant.peptide.name }} · {{ item.variant.size_display }}{% if item.quantity > 1 %} × {{ item.quantity }}{% endif %}</li>
+            {% endfor %}
+        </ul>
+        <div class="flex items-center justify-between mt-auto">
+            <div>
+                <span class="font-bold text-primary">{{ bundle.price }} €</span>
+                {% if bundle.savings > 0 %}
+                <span class="text-xs text-gray-400 line-through ml-1.5">{{ bundle.components_total }} €</span>
+                {% endif %}
+            </div>
+            <a href="{% url 'bundle_detail' bundle.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">{% translate "Ver pack" %}</a>
+        </div>
+    </div>
+</div>

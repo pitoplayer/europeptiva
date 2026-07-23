@@ -20,6 +20,7 @@
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="{% url 'index' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'index' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Inicio" %}</a>
             <a href="{% url 'catalog' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'catalog' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Catálogo" %}</a>
+            <a href="{% url 'bundles' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'bundles' or request.resolver_match.url_name == 'bundle_detail' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Packs" %}</a>
             <a href="{% url 'certificates' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'certificates' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Certificados" %}</a>
             <a href="{% url 'faq' %}" class="hover:text-primary transition-colors">FAQ</a>
             <a href="{% url 'bulk' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'bulk' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Al por mayor" %}</a>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8">
+        <a href="{% url 'index' %}" class="hover:text-primary transition-colors">{% translate "Inicio" %}</a>
+        <span>/</span>
+        <span class="text-primary font-medium">{% translate "Packs" %}</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold text-primary mb-3">{% translate "Packs de investigación" %}</h1>
+    <p class="text-gray-500 leading-relaxed max-w-2xl mb-10">
+        {% blocktranslate %}Combinaciones cerradas a precio reducido. <strong class="text-gray-700">Cada compuesto va en su propio vial</strong>, no mezclados: se reconstituye cada uno por separado y con su concentración.{% endblocktranslate %}
+    </p>
+
+    {% if bundles %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for bundle in bundles %}
+        {% include 'partials/bundle_card.html' %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-400">{% translate "No hay packs disponibles ahora mismo." %}</p>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -103,6 +103,23 @@
 </section>
 
 <!-- Productos destacados -->
+{% if featured_bundles %}
+<section class="max-w-7xl mx-auto px-6 pt-16">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-8">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">{% translate "Packs" %}</p>
+            <h2 class="text-2xl font-bold text-primary">{% translate "Combinaciones a precio cerrado" %}</h2>
+        </div>
+        <a href="{% url 'bundles' %}" class="text-sm text-gray-500 hover:text-primary transition-colors">{% translate "Ver todos los packs →" %}</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for bundle in featured_bundles %}
+        {% include 'partials/bundle_card.html' %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
 {% if featured_peptides %}
 <section class="max-w-7xl mx-auto px-6 py-16">
 

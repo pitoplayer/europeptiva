@@ -87,7 +87,7 @@
                 <div class="space-y-2">
                     {% for item in order.items.all %}
                     <div class="flex justify-between items-center text-sm">
-                        <span class="text-gray-700">{% blocktranslate with nombre=item.product_name mg=item.variant_size_mg qty=item.quantity %}{{ nombre }} {{ mg }}mg × {{ qty }}{% endblocktranslate %}</span>
+                        <span class="text-gray-700">{% blocktranslate with nombre=item.product_name mg=item.variant_size_mg qty=item.quantity %}{{ nombre }} {{ mg }}mg × {{ qty }}{% endblocktranslate %}{% if item.bundle_name %} <span class="text-xs text-gray-400">({{ item.bundle_name }})</span>{% endif %}</span>
                         <span class="font-semibold">{{ item.line_total }}€</span>
                     </div>
                     {% endfor %}

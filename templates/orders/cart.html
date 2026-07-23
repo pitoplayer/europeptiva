@@ -21,8 +21,13 @@
                         </svg>
                     </div>
                     <div class="flex-grow min-w-0">
+                        {% if item.is_bundle %}
+                        <a href="{% url 'bundle_detail' item.slug %}" class="font-semibold text-primary hover:text-accent-mid transition-colors">{{ item.name }}</a>
+                        <p class="text-xs text-gray-400 mt-0.5">{% blocktranslate with price=item.price %}Pack · {{ price }}€/ud{% endblocktranslate %}</p>
+                        {% else %}
                         <a href="{% url 'product_detail' item.slug %}" class="font-semibold text-primary hover:text-accent-mid transition-colors">{{ item.name }}</a>
-                        <p class="text-xs text-gray-400 mt-0.5">{% blocktranslate with mg=item.size_mg price=item.price %}{{ mg }}mg · liofilizado · {{ price }}€/ud{% endblocktranslate %}</p>
+                        <p class="text-xs text-gray-400 mt-0.5">{% blocktranslate with tamano=item.size_display formato=item.format_label price=item.price %}{{ tamano }} · {{ formato }} · {{ price }}€/ud{% endblocktranslate %}</p>
+                        {% endif %}
                     </div>
                     <div class="flex items-center gap-3">
                         <form method="POST">

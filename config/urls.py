@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from django.utils.translation import gettext_lazy as _
 from orders.views import mollie_webhook
-from store.sitemaps import PeptideSitemap, StaticSitemap
+from store.sitemaps import BundleSitemap, PeptideSitemap, StaticSitemap
 
 # Fuera de i18n_patterns: no dependen del idioma y no deben llevar prefijo.
 urlpatterns = [
@@ -16,7 +16,9 @@ urlpatterns = [
     # Mollie llama a esta URL desde sus servidores: debe ser fija y sin
     # prefijo de idioma, por eso está fuera de i18n_patterns.
     path('pedidos/mollie-webhook/', mollie_webhook, name='mollie_webhook'),
-    path('sitemap.xml', sitemap, {'sitemaps': {'peptides': PeptideSitemap, 'static': StaticSitemap}}, name='sitemap'),
+    path('sitemap.xml', sitemap, {'sitemaps': {
+        'peptides': PeptideSitemap, 'bundles': BundleSitemap, 'static': StaticSitemap,
+    }}, name='sitemap'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots'),
 ]
 

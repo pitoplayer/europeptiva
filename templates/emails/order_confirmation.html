@@ -59,7 +59,7 @@
       <tbody>
         {% for item in order.items.all %}
         <tr>
-          <td>{% blocktranslate with v1=item.product_name v2=item.variant_size_mg %}{{ v1 }} {{ v2 }}mg{% endblocktranslate %}</td>
+          <td>{% blocktranslate with v1=item.product_name v2=item.variant_size_mg %}{{ v1 }} {{ v2 }}mg{% endblocktranslate %}{% if item.bundle_name %} ({{ item.bundle_name }}){% endif %}</td>
           <td>{% blocktranslate with v1=item.quantity %}{{ v1 }}{% endblocktranslate %}</td>
           <td style="text-align:right">{% blocktranslate with v1=item.line_total %}{{ v1 }}€{% endblocktranslate %}</td>
         </tr>

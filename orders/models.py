@@ -71,6 +71,10 @@ class OrderItem(models.Model):
 
     product_name = models.CharField(max_length=200)
     variant_size_mg = models.PositiveIntegerField()
+    # Un paquete entra en el pedido como una línea por componente, para que el
+    # stock cuadre y el albarán diga qué viales van en la caja. Este campo es
+    # lo que permite volver a agruparlas al enseñarlas.
+    bundle_name = models.CharField(max_length=200, blank=True, verbose_name="Paquete")
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
 

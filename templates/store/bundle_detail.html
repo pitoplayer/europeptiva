@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load shipping_extras %}
+
+{% block content %}
+{% if product_schema_json %}
+<script type="application/ld+json">{{ product_schema_json }}</script>
+{% endif %}
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-10">
+        <a href="{% url 'index' %}" class="hover:text-primary transition-colors">{% translate "Inicio" %}</a>
+        <span>/</span>
+        <a href="{% url 'bundles' %}" class="hover:text-primary transition-colors">{% translate "Packs" %}</a>
+        <span>/</span>
+        <span class="text-primary font-medium">{{ bundle.name }}</span>
+    </nav>
+
+    <div class="grid md:grid-cols-2 gap-14">
+
+        <!-- Los viales que entran en la caja -->
+        <div>
+            <div class="relative bg-gray-50 border border-gray-200 rounded-2xl aspect-square flex items-center justify-center p-8">
+                <div class="flex items-center justify-center gap-2 h-full w-full">
+                    {% for item in items %}
+                    {% if item.variant.peptide.main_image %}
+                    <img src="{{ item.variant.peptide.main_image.url }}" alt="{{ item.variant.peptide.name }}" class="h-full w-auto object-contain">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% if bundle.savings > 0 %}
+                <span class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-2.5 py-1 rounded-full">{% blocktranslate with ahorro=bundle.savings_percent %}Ahorras un {{ ahorro }}%{% endblocktranslate %}</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Info y compra -->
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">{% translate "Pack" %}</p>
+            <h1 class="text-3xl font-bold text-primary mb-3">{{ bundle.name }}</h1>
+            <p class="text-gray-500 leading-relaxed mb-8">{{ bundle.short_description }}</p>
+
+            <!-- Qué lleva y cuánto costaría suelto -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden mb-6">
+                <table class="w-full text-sm">
+                    <tbody class="divide-y divide-gray-100">
+                        {% for item in items %}
+                        <tr>
+                            <td class="px-4 py-3">
+                                <a href="{% url 'product_detail' item.variant.peptide.slug %}" class="font-medium text-primary hover:text-accent-mid transition-colors">{{ item.variant.peptide.name }}</a>
+                                <span class="text-gray-400"> · {{ item.variant.size_display }}{% if item.quantity > 1 %} × {{ item.quantity }}{% endif %}</span>
+                            </td>
+                            <td class="px-4 py-3 text-right text-gray-400 whitespace-nowrap">{{ item.line_total }} €</td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="bg-gray-50">
+                            <td class="px-4 py-3 text-gray-400">{% translate "Comprado por separado" %}</td>
+                            <td class="px-4 py-3 text-right text-gray-400 line-through whitespace-nowrap">{{ bundle.components_total }} €</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-4 py-3 font-semibold text-primary">{% translate "Precio del pack" %}</td>
+                            <td class="px-4 py-3 text-right font-bold text-primary whitespace-nowrap">{{ bundle.price }} €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% if bundle.savings > 0 %}
+            <p class="text-sm font-semibold text-accent-mid mb-6">{% blocktranslate with ahorro=bundle.savings %}Ahorras {{ ahorro }} € frente a comprarlos sueltos.{% endblocktranslate %}</p>
+            {% endif %}
+
+            {% if bundle.in_stock %}
+            <form method="POST" action="{% url 'cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_bundle">
+                <input type="hidden" name="bundle_id" value="{{ bundle.id }}">
+                <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
+                    {% translate "Añadir pack al carrito" %}
+                </button>
+                <p class="mt-3 text-xs text-gray-400 text-center">{% translate "En stock — envío en 24-72h." %}</p>
+
+                <ul class="mt-4 border-t border-gray-100 pt-4 space-y-2.5 text-xs text-gray-600">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 text-accent-mid shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        <span>{% blocktranslate with hour=shipping_cutoff_hour days=shipping_cutoff_days %}Pídelo antes de las <strong class="font-semibold text-primary">{{ hour }}:00 h</strong> y sale hoy mismo ({{ days }}){% endblocktranslate %}</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 text-accent-mid shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                        </svg>
+                        <span>{% blocktranslate with amount=shipping_free_from|euros %}<strong class="font-semibold text-primary">Envío gratis</strong> a partir de {{ amount }}{% endblocktranslate %}</span>
+                    </li>
+                </ul>
+            </form>
+            {% else %}
+            <div class="border border-gray-200 rounded-xl p-6 text-center text-gray-400 text-sm">
+                {% translate "Agotado temporalmente — alguno de los productos del pack se ha quedado sin stock." %}
+            </div>
+            {% endif %}
+
+            <div class="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-xs text-gray-500 leading-relaxed">
+                {% blocktranslate %}<strong class="text-gray-700">Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente con fines de investigación en laboratorio.{% endblocktranslate %}
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 border-t border-gray-100 pt-12 max-w-3xl space-y-10">
+        {% if bundle.description %}
+        <section>
+            <h2 class="text-xl font-bold text-primary mb-4">{% translate "Por qué van juntos" %}</h2>
+            <div class="text-gray-600 text-sm leading-relaxed">{{ bundle.description|linebreaks }}</div>
+        </section>
+        {% endif %}
+
+        {% comment %}
+        Esto no es un detalle menor: un pack cuesta más que el blend equivalente
+        y sin explicar por qué parece un timo.
+        {% endcomment %}
+        <section>
+            <h2 class="text-xl font-bold text-primary mb-4">{% translate "Un pack no es un blend" %}</h2>
+            <div class="text-gray-600 text-sm leading-relaxed">
+                {% blocktranslate %}<p>En un blend los péptidos vienen mezclados en un mismo vial y en una proporción fija: se reconstituye una vez y lo que sale es la mezcla, sin poder tocar la relación entre compuestos.</p><p class="mt-3">En un pack cada compuesto llega en su propio vial. Se reconstituye por separado, con la concentración que decida el diseño experimental, y se puede usar uno sin el otro. Por eso un pack cuesta más que el blend equivalente: son más viales y más material.</p>{% endblocktranslate %}
+            </div>
+        </section>
+    </div>
+
+    {% if others %}
+    <div class="mt-16 border-t border-gray-100 pt-12">
+        <h2 class="text-xl font-bold text-primary mb-6">{% translate "Otros packs" %}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for bundle in others %}
+            {% include 'partials/bundle_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

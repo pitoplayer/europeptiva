@@ -9,7 +9,7 @@ from django.conf import settings as django_settings
 from django.contrib import messages
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
-from .cart import Cart
+from .cart import Cart, bundle_id_from_key
 from .forms import CheckoutForm
 from .models import Order, OrderItem
 from .shipping import (
@@ -17,7 +17,8 @@ from .shipping import (
     amount_missing_for_free_shipping,
     calculate_shipping,
 )
-from store.models import PeptideVariant
+from store.models import Bundle, PeptideVariant
+from store.pricing import desglosar_paquete
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,12 @@ def cart_view(request):
                 messages.success(request, _('Producto añadido al carrito.'))
             else:
                 messages.error(request, _('Ese producto ya no está disponible.'))
+        elif action == 'add_bundle':
+            try:
+                cart.add_bundle(request.POST.get('bundle_id'))
+                messages.success(request, _('Paquete añadido al carrito.'))
+            except (Bundle.DoesNotExist, ValueError, TypeError):
+                messages.error(request, _('Ese paquete ya no está disponible.'))
         elif action == 'remove' and variant_id:
             cart.remove(variant_id)
         elif action == 'update' and variant_id:
@@ -80,10 +87,18 @@ def checkout(request):
             shipping_cost = calculate_shipping(data['country'], subtotal)
             total = subtotal + shipping_cost
 
+            lineas_sueltas = [i for i in cart_items if not i['is_bundle']]
+            lineas_paquete = [i for i in cart_items if i['is_bundle']]
+
             variants = PeptideVariant.objects.in_bulk(
-                [item['variant_id'] for item in cart_items]
+                [item['variant_id'] for item in lineas_sueltas]
             )
-            if len(variants) != len(cart_items):
+            bundles = Bundle.objects.filter(
+                id__in=[bundle_id_from_key(i['variant_id']) for i in lineas_paquete],
+                is_active=True,
+            ).prefetch_related('items__variant__peptide').in_bulk()
+
+            if len(variants) != len(lineas_sueltas) or len(bundles) != len(lineas_paquete):
                 messages.error(request, _('Algún producto de tu carrito ya no está disponible. Revísalo antes de continuar.'))
                 return redirect('cart')
 
@@ -107,18 +122,33 @@ def checkout(request):
                     total=total,
                 )
 
-                for item in cart_items:
-                    variant = variants[int(item['variant_id'])]
+                def crear_linea(variant, unidades, precio_unitario, paquete=''):
                     OrderItem.objects.create(
                         order=order,
                         variant=variant,
-                        product_name=item['name'],
-                        variant_size_mg=item['size_mg'],
-                        unit_price=item['price'],
-                        quantity=item['quantity'],
+                        product_name=variant.peptide.name,
+                        variant_size_mg=variant.size_mg,
+                        unit_price=precio_unitario,
+                        quantity=unidades,
+                        bundle_name=paquete,
                     )
-                    variant.stock = max(0, variant.stock - item['quantity'])
+                    variant.stock = max(0, variant.stock - unidades)
                     variant.save()
+
+                for item in lineas_sueltas:
+                    crear_linea(
+                        variants[int(item['variant_id'])],
+                        item['quantity'],
+                        item['price'],
+                    )
+
+                # Un paquete se guarda desglosado: una línea por componente, con
+                # el precio cerrado repartido entre ellos. La suma de las líneas
+                # es exactamente el precio del paquete (ver store/pricing.py).
+                for item in lineas_paquete:
+                    bundle = bundles[bundle_id_from_key(item['variant_id'])]
+                    for variant, unidades, precio in desglosar_paquete(bundle, item['quantity']):
+                        crear_linea(variant, unidades, precio, paquete=bundle.name)
 
             cart.clear()
             if order.payment_method == 'mollie':

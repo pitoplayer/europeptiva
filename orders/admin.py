@@ -5,7 +5,7 @@ from .models import Order, OrderItem
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
-    readonly_fields = ['product_name', 'variant_size_mg', 'unit_price', 'quantity', 'line_total']
+    readonly_fields = ['product_name', 'variant_size_mg', 'bundle_name', 'unit_price', 'quantity', 'line_total']
     extra = 0
 
     def line_total(self, obj):

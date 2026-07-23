@@ -7,7 +7,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
-from .models import Category, Peptide, PeptideVariant, Certificate
+from .models import Bundle, Category, Peptide, PeptideVariant, Certificate
 from .bulk import BULK_MIN_UNITS, BULK_TIERS
 from .forms import BulkEnquiryForm, ContactForm
 from .product_content import handling_block, storage_block
@@ -42,6 +42,9 @@ def index(request):
                 chosen.add(p.pk)
     return render(request, 'store/index.html', {
         'featured_peptides': featured,
+        # Solo los que estén marcados como destacados y se puedan armar: un pack
+        # agotado en portada es peor que no enseñar packs.
+        'featured_bundles': [b for b in _bundles_queryset().filter(is_featured=True) if b.in_stock][:3],
         'categories': categories,
         'latest_certificate': latest_certificate,
         'hero_peptides': hero_peptides,
@@ -154,6 +157,52 @@ def product_detail(request, slug):
         'page_title': peptide.name,
         'page_description': peptide.short_description or _('%(name)s — péptido de investigación de pureza ≥99%%, verificado por HPLC. Certificado de análisis disponible.') % {'name': peptide.name},
         'product_schema_json': mark_safe(json.dumps(product_schema).replace('</', '<\\/')),
+    })
+
+
+def _bundles_queryset():
+    return (
+        Bundle.objects.filter(is_active=True)
+        .prefetch_related('items__variant__peptide')
+        .order_by('name')
+    )
+
+
+def bundles(request):
+    return render(request, 'store/bundles.html', {
+        'bundles': list(_bundles_queryset()),
+        'page_title': _('Packs de investigación'),
+        'page_description': _('Packs de péptidos de investigación EuroPeptiva: cada compuesto en su propio vial, a precio cerrado y con el ahorro frente a comprarlos por separado.'),
+    })
+
+
+def bundle_detail(request, slug):
+    bundle = get_object_or_404(_bundles_queryset(), slug=slug)
+    items = list(bundle.items.all())
+
+    bundle_schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        'name': bundle.name,
+        'description': bundle.short_description,
+        'sku': f'pack-{bundle.slug}',
+        'brand': {'@type': 'Brand', 'name': 'EuroPeptiva'},
+        'offers': {
+            '@type': 'Offer',
+            'price': str(bundle.price),
+            'priceCurrency': 'EUR',
+            'availability': 'https://schema.org/InStock' if bundle.in_stock else 'https://schema.org/OutOfStock',
+            'url': request.build_absolute_uri(),
+        },
+    }
+
+    return render(request, 'store/bundle_detail.html', {
+        'bundle': bundle,
+        'items': items,
+        'others': [b for b in _bundles_queryset() if b.pk != bundle.pk][:3],
+        'page_title': bundle.name,
+        'page_description': bundle.short_description,
+        'product_schema_json': mark_safe(json.dumps(bundle_schema).replace('</', '<\\/')),
     })
 
 

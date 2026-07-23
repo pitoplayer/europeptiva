@@ -12,7 +12,7 @@ ni `molecular_formula`, que son valores, no texto.
 
 from modeltranslation.translator import TranslationOptions, register
 
-from .models import Category, Peptide
+from .models import Bundle, Category, Peptide
 
 
 @register(Category)
@@ -23,3 +23,10 @@ class CategoryTranslationOptions(TranslationOptions):
 @register(Peptide)
 class PeptideTranslationOptions(TranslationOptions):
     fields = ('short_description', 'description', 'research_background')
+
+
+# El nombre del paquete sí se traduce, al revés que el de los productos: "Pack
+# Recuperación" es marketing, no un nombre químico.
+@register(Bundle)
+class BundleTranslationOptions(TranslationOptions):
+    fields = ('name', 'short_description', 'description')

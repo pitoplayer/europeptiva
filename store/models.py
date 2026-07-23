@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
@@ -155,6 +157,93 @@ class PeptideVariant(models.Model):
     @property
     def needs_reorder(self):
         return self.stock <= self.reorder_point
+
+
+class Bundle(models.Model):
+    """Varios viales vendidos juntos a precio cerrado.
+
+    No confundir con los blends (Wolverine, Glow70), que son varios péptidos
+    mezclados en un mismo vial. En un paquete cada componente va en su vial: el
+    comprador reconstituye cada uno por separado y con su propia concentración.
+    Es la diferencia que hay que explicar en la ficha, porque un paquete cuesta
+    más que el blend equivalente y sin ese contexto parece un timo.
+
+    El precio es fijo y escrito a mano, no un porcentaje: permite redondear a
+    119,95 y ajustar el margen paquete a paquete.
+    """
+
+    name = models.CharField(max_length=200, verbose_name="Nombre")
+    slug = models.SlugField(unique=True, blank=True)
+    short_description = models.CharField(max_length=300, verbose_name="Descripción corta")
+    description = models.TextField(blank=True, verbose_name="Descripción")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio del paquete (EUR)")
+    is_active = models.BooleanField(default=True, verbose_name="Activo")
+    is_featured = models.BooleanField(default=False, verbose_name="Destacado")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Paquete"
+        verbose_name_plural = "Paquetes"
+        ordering = ['name']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    def components_total(self):
+        """Lo que costaría comprar los componentes por separado."""
+        return sum((item.line_total for item in self.items.all()), Decimal('0'))
+
+    def savings(self):
+        return self.components_total() - self.price
+
+    def savings_percent(self):
+        total = self.components_total()
+        if not total:
+            return 0
+        return int(round(self.savings() / total * 100))
+
+    def available_units(self):
+        """Cuántos paquetes se pueden armar: manda el componente más escaso."""
+        items = list(self.items.all())
+        if not items:
+            return 0
+        return min(item.available_units() for item in items)
+
+    @property
+    def in_stock(self):
+        return self.available_units() > 0
+
+
+class BundleItem(models.Model):
+    bundle = models.ForeignKey(Bundle, on_delete=models.CASCADE, related_name='items')
+    # PROTECT: borrar una variante que está dentro de un paquete dejaría el
+    # paquete vendiéndose incompleto y al precio de siempre.
+    variant = models.ForeignKey(PeptideVariant, on_delete=models.PROTECT, related_name='bundle_items')
+    quantity = models.PositiveIntegerField(default=1, verbose_name="Unidades")
+
+    class Meta:
+        verbose_name = "Componente"
+        verbose_name_plural = "Componentes"
+        ordering = ['id']
+        unique_together = ['bundle', 'variant']
+
+    def __str__(self):
+        return f"{self.variant} x{self.quantity}"
+
+    @property
+    def line_total(self):
+        return self.variant.price * self.quantity
+
+    def available_units(self):
+        if not self.variant.is_active or not self.variant.peptide.is_active:
+            return 0
+        return self.variant.stock // self.quantity
 
 
 class Certificate(models.Model):

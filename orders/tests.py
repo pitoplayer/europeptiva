@@ -1,11 +1,14 @@
+from datetime import timedelta
 from decimal import Decimal
 from unittest.mock import MagicMock, patch
 
 from django.core import mail
+from django.core.management import call_command
+from django.utils import timezone
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from store.models import Category, Peptide, PeptideVariant
+from store.models import Bundle, BundleItem, Category, Peptide, PeptideVariant
 
 from .models import Order
 from .shipping import amount_missing_for_free_shipping, calculate_shipping
@@ -311,3 +314,67 @@ class MollieTest(TestCase):
         resp = self.client.post(reverse('mollie_webhook'), {'id': 'tr_test123'})
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(len(mail.outbox), 0)  # no reenvía emails
+
+
+class PedidoConPaqueteTest(TestCase):
+    """Un paquete entra en el pedido desglosado: una línea por componente."""
+
+    def setUp(self):
+        self.bpc = crear_variante(name='BPC-157', size_mg=10, price='64.95', stock=10)
+        self.tb = crear_variante(name='TB-500', size_mg=10, price='64.95', stock=10)
+        self.agua = crear_variante(name='BAC Water', size_mg=10, price='9.95', stock=10)
+        self.pack = Bundle.objects.create(
+            name='Pack Recuperación', short_description='x', price=Decimal('119.95'))
+        for variante in (self.bpc, self.tb, self.agua):
+            BundleItem.objects.create(bundle=self.pack, variant=variante)
+
+    def _comprar(self, unidades=1):
+        for _ in range(unidades):
+            self.client.post(reverse('cart'), {'action': 'add_bundle', 'bundle_id': self.pack.id})
+        return self.client.post(reverse('checkout'), DATOS_CHECKOUT)
+
+    def test_el_paquete_llega_al_carrito_a_su_precio(self):
+        self.client.post(reverse('cart'), {'action': 'add_bundle', 'bundle_id': self.pack.id})
+        cart = self.client.session['cart']
+        self.assertEqual(list(cart), [f'bundle:{self.pack.id}'])
+        self.assertEqual(cart[f'bundle:{self.pack.id}']['price'], '119.95')
+
+    def test_el_pedido_se_desglosa_y_las_lineas_suman_el_precio(self):
+        self._comprar()
+        order = Order.objects.get()
+        self.assertEqual(order.items.count(), 3)
+        self.assertEqual(sum(i.line_total for i in order.items.all()), Decimal('119.95'))
+        self.assertEqual(order.subtotal, Decimal('119.95'))
+        self.assertTrue(all(i.bundle_name == 'Pack Recuperación' for i in order.items.all()))
+
+    def test_descuenta_el_stock_de_cada_componente(self):
+        self._comprar(unidades=2)
+        for variante in (self.bpc, self.tb, self.agua):
+            variante.refresh_from_db()
+            self.assertEqual(variante.stock, 8, variante.peptide.name)
+
+    def test_paquete_y_producto_suelto_conviven(self):
+        self.client.post(reverse('cart'), {'action': 'add_bundle', 'bundle_id': self.pack.id})
+        self.client.post(reverse('cart'), {'action': 'add', 'variant_id': self.bpc.id})
+        self.client.post(reverse('checkout'), DATOS_CHECKOUT)
+        order = Order.objects.get()
+        self.assertEqual(order.subtotal, Decimal('119.95') + Decimal('64.95'))
+        # 3 del pack + 1 suelto, y el BPC del pack no se mezcla con el suelto
+        self.assertEqual(order.items.count(), 4)
+        self.bpc.refresh_from_db()
+        self.assertEqual(self.bpc.stock, 8)
+
+    def test_cancelar_devuelve_el_stock_del_paquete(self):
+        self._comprar()
+        order = Order.objects.get()
+        order.created_at = timezone.now() - timedelta(hours=72)
+        order.save()
+        call_command('cancelar_pedidos_sin_pago')
+        for variante in (self.bpc, self.tb, self.agua):
+            variante.refresh_from_db()
+            self.assertEqual(variante.stock, 10, variante.peptide.name)
+
+    def test_paquete_inexistente_no_revienta(self):
+        resp = self.client.post(reverse('cart'), {'action': 'add_bundle', 'bundle_id': 99999})
+        self.assertRedirects(resp, reverse('cart'))
+        self.assertEqual(self.client.session.get('cart', {}), {})
