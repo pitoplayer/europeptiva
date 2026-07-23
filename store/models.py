@@ -50,6 +50,18 @@ class Peptide(models.Model):
         (FORMAT_SPRAY, "Spray nasal líquido (listo para usar)"),
         (FORMAT_SOLVENT, "Disolvente o auxiliar"),
     ]
+    # Las etiquetas de arriba son para el admin y explican qué hay que hacer con
+    # el producto. En la web el formato es el primer nivel de navegación (igual
+    # que Peptides / Nasal Sprays / Research Supplies en PurityBase) y ahí hacen
+    # falta nombres cortos, así que van aparte.
+    FORMAT_PUBLIC_LABELS = {
+        FORMAT_VIAL: _("Péptidos"),
+        FORMAT_SPRAY: _("Sprays nasales"),
+        FORMAT_SOLVENT: _("Suministros de investigación"),
+    }
+
+    def public_format_label(self):
+        return self.FORMAT_PUBLIC_LABELS.get(self.product_format, '')
 
     name = models.CharField(max_length=200, verbose_name="Nombre")
     slug = models.SlugField(unique=True, blank=True)

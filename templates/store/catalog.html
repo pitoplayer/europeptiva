@@ -13,18 +13,41 @@
     <div class="flex flex-col md:flex-row gap-8">
 
         <!-- Sidebar -->
-        <aside class="md:w-52 shrink-0">
+        <aside class="md:w-52 shrink-0 space-y-4">
+
+            <!-- Primer nivel: formato. Manda sobre la categoría, así que al
+                 cambiarlo se suelta el filtro de objetivo. -->
             <div class="border border-gray-200 rounded-xl p-5">
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">{% translate "Categorías" %}</h3>
+                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">{% translate "Tipo de producto" %}</h3>
                 <ul class="space-y-2 text-sm">
                     <li>
-                        <a href="{% url 'catalog' %}" class="block px-3 py-2 rounded-lg transition-colors {% if not current_category %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
+                        <a href="{% url 'catalog' %}" class="block px-3 py-2 rounded-lg transition-colors {% if not current_format %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
                             {% translate "Todos" %}
+                        </a>
+                    </li>
+                    {% for f in formats %}
+                    <li>
+                        <a href="{% url 'catalog' %}?format={{ f.slug }}" class="flex justify-between items-center px-3 py-2 rounded-lg transition-colors {% if current_format == f.slug %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
+                            <span>{{ f.label }}</span>
+                            <span class="text-xs text-gray-400">{{ f.count }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Segundo nivel: objetivo, dentro del formato elegido. -->
+            <div class="border border-gray-200 rounded-xl p-5">
+                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">{% translate "Área de investigación" %}</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="{% url 'catalog' %}{% if current_format %}?format={{ current_format }}{% endif %}" class="block px-3 py-2 rounded-lg transition-colors {% if not current_category %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
+                            {% translate "Todas" %}
                         </a>
                     </li>
                     {% for cat in categories %}
                     <li>
-                        <a href="{% url 'catalog' %}?category={{ cat.slug }}" class="block px-3 py-2 rounded-lg transition-colors {% if current_category == cat.slug %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
+                        <a href="{% url 'catalog' %}?{% if current_format %}format={{ current_format }}&amp;{% endif %}category={{ cat.slug }}" class="block px-3 py-2 rounded-lg transition-colors {% if current_category == cat.slug %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
                             {{ cat.name }}
                         </a>
                     </li>
@@ -39,13 +62,14 @@
             <!-- Buscador -->
             <form method="GET" class="mb-6 flex gap-2">
                 {% if current_category %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
+                {% if current_format %}<input type="hidden" name="format" value="{{ current_format }}">{% endif %}
                 <input type="text" name="q" value="{{ query }}" placeholder="{% translate 'Buscar compuesto o número CAS...' %}"
                     class="flex-grow border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
                 <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition-colors">
                     {% translate "Buscar" %}
                 </button>
                 {% if query %}
-                <a href="{% url 'catalog' %}{% if current_category %}?category={{ current_category }}{% endif %}" class="px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-500 hover:bg-gray-50 transition-colors">
+                <a href="{% url 'catalog' %}?{% if current_format %}format={{ current_format }}&amp;{% endif %}{% if current_category %}category={{ current_category }}{% endif %}" class="px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-500 hover:bg-gray-50 transition-colors">
                     ✕
                 </a>
                 {% endif %}
@@ -61,12 +85,12 @@
             {% if peptides.has_other_pages %}
             <div class="flex items-center justify-center gap-3 mt-10">
                 {% if peptides.has_previous %}
-                <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.previous_page_number }}"
+                <a href="?{% if current_format %}format={{ current_format }}&{% endif %}{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.previous_page_number }}"
                     class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">{% translate "← Anterior" %}</a>
                 {% endif %}
                 <span class="text-sm text-gray-400">{{ peptides.number }} / {{ peptides.paginator.num_pages }}</span>
                 {% if peptides.has_next %}
-                <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.next_page_number }}"
+                <a href="?{% if current_format %}format={{ current_format }}&{% endif %}{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.next_page_number }}"
                     class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">{% translate "Siguiente →" %}</a>
                 {% endif %}
             </div>

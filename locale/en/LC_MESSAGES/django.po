@@ -30,7 +30,8 @@ msgid_plural "%(counter)s productos"
 msgstr[0] "%(counter)s product"
 msgstr[1] "%(counter)s products"
 
-#: templates/orders/checkout.html:30 templates/orders/checkout.html:68 templates/orders/checkout.html:83 templates/pages/bulk.html:139
+#: templates/orders/checkout.html:30 templates/orders/checkout.html:68
+#: templates/orders/checkout.html:83 templates/pages/bulk.html:139
 msgid "%(error)s"
 msgstr "%(error)s"
 
@@ -38,9 +39,13 @@ msgstr "%(error)s"
 msgid "%(mg)smg · liofilizado"
 msgstr "%(mg)smg · lyophilised"
 
-#: store/views.py:158
-msgid "%(name)s — péptido de investigación de pureza ≥99%%, verificado por HPLC. Certificado de análisis disponible."
-msgstr "%(name)s — research peptide of ≥99%% purity, verified by HPLC. Certificate of analysis available."
+#: store/views.py:183
+msgid ""
+"%(name)s — péptido de investigación de pureza ≥99%%, verificado por HPLC. "
+"Certificado de análisis disponible."
+msgstr ""
+"%(name)s — research peptide of ≥99%% purity, verified by HPLC. Certificate "
+"of analysis available."
 
 #: templates/orders/tracking.html:90
 msgid "%(nombre)s %(mg)smg × %(qty)s"
@@ -58,7 +63,18 @@ msgstr "%(tamano)s · %(formato)s · %(price)s€/unit"
 msgid "%(tamano)s × %(qty)s"
 msgstr "%(tamano)s × %(qty)s"
 
-#: templates/emails/order_confirmation.html:63 templates/orders/confirmation.html:13 templates/orders/confirmation.html:25 templates/orders/confirmation.html:57 templates/orders/confirmation.html:69 templates/orders/tracking.html:109 templates/orders/tracking.html:111 templates/orders/tracking.html:40 templates/store/certificates.html:46 templates/store/index.html:204 templates/store/index.html:205 templates/store/product_detail.html:66 templates/store/product_detail.html:67 templates/store/product_detail.html:68 templates/store/product_detail.html:76 templates/store/product_detail.html:81 templates/store/product_detail.html:93
+#: templates/emails/order_confirmation.html:63
+#: templates/orders/confirmation.html:13 templates/orders/confirmation.html:25
+#: templates/orders/confirmation.html:57 templates/orders/confirmation.html:69
+#: templates/orders/tracking.html:109 templates/orders/tracking.html:111
+#: templates/orders/tracking.html:40 templates/store/certificates.html:46
+#: templates/store/index.html:204 templates/store/index.html:205
+#: templates/store/product_detail.html:66
+#: templates/store/product_detail.html:67
+#: templates/store/product_detail.html:68
+#: templates/store/product_detail.html:76
+#: templates/store/product_detail.html:81
+#: templates/store/product_detail.html:93
 msgid "%(v1)s"
 msgstr "%(v1)s"
 
@@ -74,7 +90,8 @@ msgstr "%(v1)s %(v2)smg"
 msgid "%(v1)s Da"
 msgstr "%(v1)s Da"
 
-#: templates/emails/order_confirmation.html:64 templates/orders/tracking.html:44
+#: templates/emails/order_confirmation.html:64
+#: templates/orders/tracking.html:44
 msgid "%(v1)s€"
 msgstr "€%(v1)s"
 
@@ -159,52 +176,110 @@ msgid "9. Responsable del tratamiento (identificación legal)"
 msgstr "9. Data controller (legal identification)"
 
 #: templates/store/index.html:187
-msgid "<a href=\"%(catalog_url)s?category=%(v2)s\" data-cat-nav=\"%(v2)s\" class=\"cat-nav-link block font-semibold text-gray-300 transition-colors duration-300 hover:text-primary\"> %(v1)s </a>"
-msgstr "<a href=\"%(catalog_url)s?category=%(v2)s\" data-cat-nav=\"%(v2)s\" class=\"cat-nav-link block font-semibold text-gray-300 transition-colors duration-300 hover:text-primary\"> %(v1)s </a>"
+msgid ""
+"<a href=\"%(catalog_url)s?category=%(v2)s\" data-cat-nav=\"%(v2)s\" "
+"class=\"cat-nav-link block font-semibold text-gray-300 transition-colors "
+"duration-300 hover:text-primary\"> %(v1)s </a>"
+msgstr ""
+"<a href=\"%(catalog_url)s?category=%(v2)s\" data-cat-nav=\"%(v2)s\" "
+"class=\"cat-nav-link block font-semibold text-gray-300 transition-colors "
+"duration-300 hover:text-primary\"> %(v1)s </a>"
 
 #: templates/store/bundle_detail.html:124
-msgid "<p>En un blend los péptidos vienen mezclados en un mismo vial y en una proporción fija: se reconstituye una vez y lo que sale es la mezcla, sin poder tocar la relación entre compuestos.</p><p class=\"mt-3\">En un pack cada compuesto llega en su propio vial. Se reconstituye por separado, con la concentración que decida el diseño experimental, y se puede usar uno sin el otro. Por eso un pack cuesta más que el blend equivalente: son más viales y más material.</p>"
-msgstr "<p>In a blend the peptides come mixed in a single vial at a fixed ratio: you reconstitute once and what you get is the mixture, with no way to change the proportion between compounds.</p><p class=\"mt-3\">In a bundle each compound arrives in its own vial. You reconstitute them separately, at whatever concentration the experimental design calls for, and you can use one without the other. That is why a bundle costs more than the equivalent blend: more vials and more material.</p>"
+msgid ""
+"<p>En un blend los péptidos vienen mezclados en un mismo vial y en una "
+"proporción fija: se reconstituye una vez y lo que sale es la mezcla, sin "
+"poder tocar la relación entre compuestos.</p><p class=\"mt-3\">En un pack "
+"cada compuesto llega en su propio vial. Se reconstituye por separado, con la"
+" concentración que decida el diseño experimental, y se puede usar uno sin el"
+" otro. Por eso un pack cuesta más que el blend equivalente: son más viales y"
+" más material.</p>"
+msgstr ""
+"<p>In a blend the peptides come mixed in a single vial at a fixed ratio: you"
+" reconstitute once and what you get is the mixture, with no way to change "
+"the proportion between compounds.</p><p class=\"mt-3\">In a bundle each "
+"compound arrives in its own vial. You reconstitute them separately, at "
+"whatever concentration the experimental design calls for, and you can use "
+"one without the other. That is why a bundle costs more than the equivalent "
+"blend: more vials and more material.</p>"
 
-#: templates/store/bundle_detail.html:93 templates/store/product_detail.html:164
-msgid "<strong class=\"font-semibold text-primary\">Envío gratis</strong> a partir de %(amount)s"
-msgstr "<strong class=\"font-semibold text-primary\">Free shipping</strong> on orders from %(amount)s"
+#: templates/store/bundle_detail.html:93
+#: templates/store/product_detail.html:164
+msgid ""
+"<strong class=\"font-semibold text-primary\">Envío gratis</strong> a partir "
+"de %(amount)s"
+msgstr ""
+"<strong class=\"font-semibold text-primary\">Free shipping</strong> on "
+"orders from %(amount)s"
 
 #: templates/partials/shipping_bar.html:14
-msgid "<strong class=\"font-semibold\">Envío gratis</strong> a partir de %(amount)s"
+msgid ""
+"<strong class=\"font-semibold\">Envío gratis</strong> a partir de %(amount)s"
 msgstr "<strong class=\"font-semibold\">Free shipping</strong> from %(amount)s"
 
 #: templates/pages/faq.html:54
-msgid "<strong class=\"text-accent\">Envío gratis en todos los pedidos de %(v1)s o más</strong>, tanto a España como al resto de la Unión Europea."
-msgstr "<strong class=\"text-accent\">Free shipping on all orders of %(v1)s or more</strong>, both to Spain and to the rest of the European Union."
+msgid ""
+"<strong class=\"text-accent\">Envío gratis en todos los pedidos de %(v1)s o "
+"más</strong>, tanto a España como al resto de la Unión Europea."
+msgstr ""
+"<strong class=\"text-accent\">Free shipping on all orders of %(v1)s or "
+"more</strong>, both to Spain and to the rest of the European Union."
 
-#: templates/store/bundle_detail.html:104 templates/store/product_detail.html:182
-msgid "<strong class=\"text-gray-700\">Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente con fines de investigación en laboratorio."
-msgstr "<strong class=\"text-gray-700\">For scientific research only.</strong> This product is not approved for human, veterinary or diagnostic use. By purchasing it you confirm that you will use it exclusively for laboratory research purposes."
+#: templates/store/bundle_detail.html:104
+#: templates/store/product_detail.html:182
+msgid ""
+"<strong class=\"text-gray-700\">Solo para investigación científica.</strong>"
+" Este producto no está aprobado para uso humano, veterinario ni diagnóstico."
+" Al comprarlo confirmas que lo usarás exclusivamente con fines de "
+"investigación en laboratorio."
+msgstr ""
+"<strong class=\"text-gray-700\">For scientific research only.</strong> This "
+"product is not approved for human, veterinary or diagnostic use. By "
+"purchasing it you confirm that you will use it exclusively for laboratory "
+"research purposes."
 
 #: templates/pages/privacy.html:77
 msgid "<strong>Acceso:</strong> conocer qué datos tenemos sobre ti"
 msgstr "<strong>Access:</strong> find out what data we hold about you"
 
 #: templates/pages/legal.html:69
-msgid "<strong>Actividad:</strong> Comercio al por menor de reactivos y suministros de laboratorio"
-msgstr "<strong>Activity:</strong> Retail sale of laboratory reagents and supplies"
+msgid ""
+"<strong>Actividad:</strong> Comercio al por menor de reactivos y suministros"
+" de laboratorio"
+msgstr ""
+"<strong>Activity:</strong> Retail sale of laboratory reagents and supplies"
 
 #: templates/pages/privacy.html:55
-msgid "<strong>Administraciones públicas</strong>: cuando sea requerido por ley (AEAT, etc.)"
-msgstr "<strong>Public authorities</strong>: where required by law (Spanish tax agency, etc.)"
+msgid ""
+"<strong>Administraciones públicas</strong>: cuando sea requerido por ley "
+"(AEAT, etc.)"
+msgstr ""
+"<strong>Public authorities</strong>: where required by law (Spanish tax "
+"agency, etc.)"
 
 #: templates/emails/order_confirmation.html:90
-msgid "<strong>Dirección de envío:</strong><br> %(v4)s %(v5)s<br> %(v2)s<br> %(v6)s %(v3)s<br> %(v1)s"
-msgstr "<strong>Shipping address:</strong><br> %(v4)s %(v5)s<br> %(v2)s<br> %(v6)s %(v3)s<br> %(v1)s"
+msgid ""
+"<strong>Dirección de envío:</strong><br> %(v4)s %(v5)s<br> %(v2)s<br> %(v6)s"
+" %(v3)s<br> %(v1)s"
+msgstr ""
+"<strong>Shipping address:</strong><br> %(v4)s %(v5)s<br> %(v2)s<br> %(v6)s "
+"%(v3)s<br> %(v1)s"
 
 #: templates/pages/legal.html:66
-msgid "<strong>Domicilio:</strong> %(legal_address)s, %(legal_postcode)s %(legal_city)s, España"
-msgstr "<strong>Address:</strong> %(legal_address)s, %(legal_postcode)s %(legal_city)s, Spain"
+msgid ""
+"<strong>Domicilio:</strong> %(legal_address)s, %(legal_postcode)s "
+"%(legal_city)s, España"
+msgstr ""
+"<strong>Address:</strong> %(legal_address)s, %(legal_postcode)s "
+"%(legal_city)s, Spain"
 
 #: templates/pages/privacy.html:43
-msgid "<strong>Ejecución del contrato</strong> (Art. 6.1.b RGPD): gestión y envío de pedidos"
-msgstr "<strong>Performance of a contract</strong> (Art. 6.1.b GDPR): managing and shipping orders"
+msgid ""
+"<strong>Ejecución del contrato</strong> (Art. 6.1.b RGPD): gestión y envío "
+"de pedidos"
+msgstr ""
+"<strong>Performance of a contract</strong> (Art. 6.1.b GDPR): managing and "
+"shipping orders"
 
 #: templates/pages/legal.html:67
 msgid "<strong>Email:</strong> %(legal_email)s"
@@ -215,24 +290,38 @@ msgid "<strong>España:</strong> %(v1)s"
 msgstr "<strong>Spain:</strong> %(v1)s"
 
 #: templates/pages/faq.html:42
-msgid "<strong>España:</strong> 24-72 horas laborables desde la confirmación del pago"
+msgid ""
+"<strong>España:</strong> 24-72 horas laborables desde la confirmación del "
+"pago"
 msgstr "<strong>Spain:</strong> 24-72 working hours from payment confirmation"
 
 #: templates/pages/returns.html:44
-msgid "<strong>Fotografías</strong> del problema: el vial, la etiqueta con el número de lote y el embalaje tal y como te llegó."
-msgstr "<strong>Photographs</strong> of the problem: the vial, the label showing the lot number, and the packaging exactly as it reached you."
+msgid ""
+"<strong>Fotografías</strong> del problema: el vial, la etiqueta con el "
+"número de lote y el embalaje tal y como te llegó."
+msgstr ""
+"<strong>Photographs</strong> of the problem: the vial, the label showing the"
+" lot number, and the packaging exactly as it reached you."
 
 #: templates/pages/privacy.html:45
-msgid "<strong>Interés legítimo</strong> (Art. 6.1.f RGPD): prevención del fraude"
-msgstr "<strong>Legitimate interest</strong> (Art. 6.1.f GDPR): fraud prevention"
+msgid ""
+"<strong>Interés legítimo</strong> (Art. 6.1.f RGPD): prevención del fraude"
+msgstr ""
+"<strong>Legitimate interest</strong> (Art. 6.1.f GDPR): fraud prevention"
 
 #: templates/pages/privacy.html:81
-msgid "<strong>Limitación:</strong> restringir el tratamiento en determinadas circunstancias"
-msgstr "<strong>Restriction:</strong> restrict processing in certain circumstances"
+msgid ""
+"<strong>Limitación:</strong> restringir el tratamiento en determinadas "
+"circunstancias"
+msgstr ""
+"<strong>Restriction:</strong> restrict processing in certain circumstances"
 
 #: templates/pages/privacy.html:54
-msgid "<strong>Mollie B.V.</strong>: procesador de pagos con tarjeta (datos de transacción)"
-msgstr "<strong>Mollie B.V.</strong>: card payment processor (transaction data)"
+msgid ""
+"<strong>Mollie B.V.</strong>: procesador de pagos con tarjeta (datos de "
+"transacción)"
+msgstr ""
+"<strong>Mollie B.V.</strong>: card payment processor (transaction data)"
 
 #: templates/pages/legal.html:65
 msgid "<strong>NIF/CIF:</strong> %(legal_nif)s"
@@ -243,24 +332,48 @@ msgid "<strong>Nombre / Razón social:</strong> %(legal_name)s"
 msgstr "<strong>Name / Company name:</strong> %(legal_name)s"
 
 #: templates/pages/privacy.html:100
-msgid "<strong>Nombre / Razón social:</strong> %(legal_name)s<br> <strong>CIF/NIF:</strong> %(legal_nif)s<br> <strong>Domicilio:</strong> %(legal_address)s, %(legal_postcode)s %(legal_city)s, España<br> <strong>Email:</strong> %(legal_email)s<br> <strong>Web:</strong> europeptiva.com"
-msgstr "<strong>Name / Company name:</strong> %(legal_name)s<br> <strong>Tax ID (NIF/CIF):</strong> %(legal_nif)s<br> <strong>Address:</strong> %(legal_address)s, %(legal_postcode)s %(legal_city)s, Spain<br> <strong>Email:</strong> %(legal_email)s<br> <strong>Web:</strong> europeptiva.com"
+msgid ""
+"<strong>Nombre / Razón social:</strong> %(legal_name)s<br> "
+"<strong>CIF/NIF:</strong> %(legal_nif)s<br> <strong>Domicilio:</strong> "
+"%(legal_address)s, %(legal_postcode)s %(legal_city)s, España<br> "
+"<strong>Email:</strong> %(legal_email)s<br> <strong>Web:</strong> "
+"europeptiva.com"
+msgstr ""
+"<strong>Name / Company name:</strong> %(legal_name)s<br> <strong>Tax ID "
+"(NIF/CIF):</strong> %(legal_nif)s<br> <strong>Address:</strong> "
+"%(legal_address)s, %(legal_postcode)s %(legal_city)s, Spain<br> "
+"<strong>Email:</strong> %(legal_email)s<br> <strong>Web:</strong> "
+"europeptiva.com"
 
 #: templates/pages/privacy.html:44
-msgid "<strong>Obligación legal</strong> (Art. 6.1.c RGPD): conservación de facturas y datos fiscales"
-msgstr "<strong>Legal obligation</strong> (Art. 6.1.c GDPR): retention of invoices and tax records"
+msgid ""
+"<strong>Obligación legal</strong> (Art. 6.1.c RGPD): conservación de "
+"facturas y datos fiscales"
+msgstr ""
+"<strong>Legal obligation</strong> (Art. 6.1.c GDPR): retention of invoices "
+"and tax records"
 
 #: templates/pages/privacy.html:82
-msgid "<strong>Oposición:</strong> oponerte al tratamiento basado en interés legítimo"
-msgstr "<strong>Objection:</strong> object to processing based on legitimate interest"
+msgid ""
+"<strong>Oposición:</strong> oponerte al tratamiento basado en interés "
+"legítimo"
+msgstr ""
+"<strong>Objection:</strong> object to processing based on legitimate "
+"interest"
 
 #: templates/pages/privacy.html:80
-msgid "<strong>Portabilidad:</strong> recibir tus datos en formato estructurado"
-msgstr "<strong>Portability:</strong> receive your data in a structured format"
+msgid ""
+"<strong>Portabilidad:</strong> recibir tus datos en formato estructurado"
+msgstr ""
+"<strong>Portability:</strong> receive your data in a structured format"
 
 #: templates/pages/faq.html:43
-msgid "<strong>Portugal, Francia, Alemania, Italia, Países Bajos, Bélgica:</strong> 3-5 días laborables"
-msgstr "<strong>Portugal, France, Germany, Italy, Netherlands, Belgium:</strong> 3-5 working days"
+msgid ""
+"<strong>Portugal, Francia, Alemania, Italia, Países Bajos, Bélgica:</strong>"
+" 3-5 días laborables"
+msgstr ""
+"<strong>Portugal, France, Germany, Italy, Netherlands, Belgium:</strong> 3-5"
+" working days"
 
 #: templates/pages/privacy.html:78
 msgid "<strong>Rectificación:</strong> corregir datos inexactos"
@@ -279,8 +392,12 @@ msgid "<strong>Supresión:</strong> solicitar la eliminación de tus datos"
 msgstr "<strong>Erasure:</strong> request the deletion of your data"
 
 #: templates/pages/privacy.html:53
-msgid "<strong>Transportistas</strong> (Correos, MRW, DHL u otros): nombre, dirección y teléfono para la entrega"
-msgstr "<strong>Carriers</strong> (Correos, MRW, DHL or others): name, address and phone number for delivery"
+msgid ""
+"<strong>Transportistas</strong> (Correos, MRW, DHL u otros): nombre, "
+"dirección y teléfono para la entrega"
+msgstr ""
+"<strong>Carriers</strong> (Correos, MRW, DHL or others): name, address and "
+"phone number for delivery"
 
 #: templates/pages/legal.html:68
 msgid "<strong>Web:</strong> europeptiva.com y europeptiva.es"
@@ -291,23 +408,35 @@ msgid "<strong>Última actualización:</strong> Julio 2026"
 msgstr "<strong>Last updated:</strong> July 2026"
 
 #: templates/pages/faq.html:69
-msgid "Aceptamos <strong>transferencia bancaria</strong> (SEPA) y <strong>tarjeta de crédito/débito</strong> (procesado de forma segura por Mollie). Para pedidos mediante transferencia, el pedido se procesa una vez confirmado el ingreso (1-2 días hábiles). Los pagos con tarjeta son inmediatos."
-msgstr "We accept <strong>bank transfer</strong> (SEPA) and <strong>credit/debit card</strong> (processed securely by Mollie). For transfer orders, the order is processed once the payment is confirmed (1-2 working days). Card payments are immediate."
+msgid ""
+"Aceptamos <strong>transferencia bancaria</strong> (SEPA) y <strong>tarjeta "
+"de crédito/débito</strong> (procesado de forma segura por Mollie). Para "
+"pedidos mediante transferencia, el pedido se procesa una vez confirmado el "
+"ingreso (1-2 días hábiles). Los pagos con tarjeta son inmediatos."
+msgstr ""
+"We accept <strong>bank transfer</strong> (SEPA) and <strong>credit/debit "
+"card</strong> (processed securely by Mollie). For transfer orders, the order"
+" is processed once the payment is confirmed (1-2 working days). Card "
+"payments are immediate."
 
 #: templates/partials/cookie_banner.html:7
 msgid "Aceptar"
 msgstr "Accept"
 
 #: orders/forms.py:47
-msgid "Acepto la política de privacidad y el tratamiento de mis datos personales (RGPD)."
-msgstr "I accept the privacy policy and the processing of my personal data (GDPR)."
+msgid ""
+"Acepto la política de privacidad y el tratamiento de mis datos personales "
+"(RGPD)."
+msgstr ""
+"I accept the privacy policy and the processing of my personal data (GDPR)."
 
 #: orders/forms.py:43
 msgid "Acepto los términos y condiciones de venta."
 msgstr "I accept the terms and conditions of sale."
 
 #: templates/pages/legal.html:22
-msgid "Actuar en calidad de investigador, científico o profesional cualificado"
+msgid ""
+"Actuar en calidad de investigador, científico o profesional cualificado"
 msgstr "Are acting as a researcher, scientist or qualified professional"
 
 #: templates/pages/about.html:61
@@ -319,12 +448,16 @@ msgid "Agonista triple GIP/GLP-1/glucagón"
 msgstr "Triple GIP/GLP-1/glucagon agonist"
 
 #: templates/store/bundle_detail.html:99
-msgid "Agotado temporalmente — alguno de los productos del pack se ha quedado sin stock."
-msgstr "Temporarily out of stock — one of the products in the bundle has run out."
+msgid ""
+"Agotado temporalmente — alguno de los productos del pack se ha quedado sin "
+"stock."
+msgstr ""
+"Temporarily out of stock — one of the products in the bundle has run out."
 
 #: templates/store/product_detail.html:176
 msgid "Agotado temporalmente — nuevo lote en camino, disponible en unos días."
-msgstr "Temporarily out of stock — a new lot is on its way, available in a few days."
+msgstr ""
+"Temporarily out of stock — a new lot is on its way, available in a few days."
 
 #: templates/pages/about.html:82
 msgid "Agua bacteriostática estéril 0.9%%"
@@ -344,31 +477,59 @@ msgstr "Save %(ahorro)s%%"
 
 #: templates/pages/legal.html:19
 msgid "Al acceder a este sitio web y realizar una compra, el usuario declara:"
-msgstr "By accessing this website and making a purchase, the user declares that they:"
+msgstr ""
+"By accessing this website and making a purchase, the user declares that "
+"they:"
 
 #: templates/pages/returns.html:106
-msgid "Al confirmar el pedido aceptas expresamente estas condiciones, que se te informan antes de la compra tal y como exige la normativa. Esta exclusión no afecta a tus derechos legales en caso de producto defectuoso, dañado o no conforme con lo pedido, que quedan cubiertos por el apartado anterior."
-msgstr "By confirming your order you expressly accept these terms, which are disclosed to you before purchase as the legislation requires. This exclusion does not affect your statutory rights in the event of a defective, damaged or non-conforming product, which are covered by the section above."
+msgid ""
+"Al confirmar el pedido aceptas expresamente estas condiciones, que se te "
+"informan antes de la compra tal y como exige la normativa. Esta exclusión no"
+" afecta a tus derechos legales en caso de producto defectuoso, dañado o no "
+"conforme con lo pedido, que quedan cubiertos por el apartado anterior."
+msgstr ""
+"By confirming your order you expressly accept these terms, which are "
+"disclosed to you before purchase as the legislation requires. This exclusion"
+" does not affect your statutory rights in the event of a defective, damaged "
+"or non-conforming product, which are covered by the section above."
 
 #: templates/partials/footer.html:24 templates/partials/header.html:26
 msgid "Al por mayor"
 msgstr "Bulk orders"
 
 #: templates/pages/faq.html:77
-msgid "Al realizar el pedido, el comprador debe aceptar que los productos se destinarán exclusivamente a investigación científica. Aunque no verificamos credenciales académicas, la venta está orientada a investigadores, bioquímicos, laboratorios universitarios y empresas del sector. EuroPeptiva se reserva el derecho de rechazar pedidos que presenten indicios de uso inadecuado."
-msgstr "When placing an order, the buyer must accept that the products will be used exclusively for scientific research. Although we do not verify academic credentials, sales are aimed at researchers, biochemists, university laboratories and companies in the sector. EuroPeptiva reserves the right to refuse orders that show signs of improper use."
+msgid ""
+"Al realizar el pedido, el comprador debe aceptar que los productos se "
+"destinarán exclusivamente a investigación científica. Aunque no verificamos "
+"credenciales académicas, la venta está orientada a investigadores, "
+"bioquímicos, laboratorios universitarios y empresas del sector. EuroPeptiva "
+"se reserva el derecho de rechazar pedidos que presenten indicios de uso "
+"inadecuado."
+msgstr ""
+"When placing an order, the buyer must accept that the products will be used "
+"exclusively for scientific research. Although we do not verify academic "
+"credentials, sales are aimed at researchers, biochemists, university "
+"laboratories and companies in the sector. EuroPeptiva reserves the right to "
+"refuse orders that show signs of improper use."
 
 #: templates/pages/privacy.html:18
 msgid "Al realizar un pedido, recopilamos los siguientes datos personales:"
 msgstr "When you place an order, we collect the following personal data:"
 
 #: orders/views.py:102
-msgid "Algún producto de tu carrito ya no está disponible. Revísalo antes de continuar."
-msgstr "A product in your cart is no longer available. Please review it before continuing."
+msgid ""
+"Algún producto de tu carrito ya no está disponible. Revísalo antes de "
+"continuar."
+msgstr ""
+"A product in your cart is no longer available. Please review it before "
+"continuing."
 
 #: templates/store/index.html:329
-msgid "Almacén propio en España: el pedido sale de aquí, sin aduanas ni esperas."
-msgstr "Our own warehouse in Spain: your order ships from here, with no customs and no waiting."
+msgid ""
+"Almacén propio en España: el pedido sale de aquí, sin aduanas ni esperas."
+msgstr ""
+"Our own warehouse in Spain: your order ships from here, with no customs and "
+"no waiting."
 
 #: orders/forms.py:19 orders/models.py:34
 msgid "Apellidos"
@@ -399,16 +560,23 @@ msgid "Aviso legal"
 msgstr "Legal notice"
 
 #: config/urls.py:44
-msgid "Aviso legal e información sobre el responsable del sitio web europeptiva.com."
-msgstr "Legal notice and information about the owner of the europeptiva.com website."
+msgid ""
+"Aviso legal e información sobre el responsable del sitio web "
+"europeptiva.com."
+msgstr ""
+"Legal notice and information about the owner of the europeptiva.com website."
 
 #: templates/emails/order_confirmation.html:94
 msgid "Aviso legal:"
 msgstr "Legal notice:"
 
 #: store/product_content.py:18
-msgid "Añade el agua bacteriostática despacio, dejándola resbalar por la pared interior del vial en lugar de caer sobre el polvo."
-msgstr "Add the bacteriostatic water slowly, letting it run down the inner wall of the vial rather than landing on the powder."
+msgid ""
+"Añade el agua bacteriostática despacio, dejándola resbalar por la pared "
+"interior del vial en lugar de caer sobre el polvo."
+msgstr ""
+"Add the bacteriostatic water slowly, letting it run down the inner wall of "
+"the vial rather than landing on the powder."
 
 #: templates/orders/cart.html:114
 msgid "Añade productos desde el catálogo."
@@ -431,28 +599,38 @@ msgid "BPC-157"
 msgstr "BPC-157"
 
 #: templates/pages/bulk.html:36
-msgid "Bajo petición y previa verificación. Condiciones de reposición a medida."
+msgid ""
+"Bajo petición y previa verificación. Condiciones de reposición a medida."
 msgstr "On request and subject to verification. Tailored restocking terms."
 
-#: templates/store/catalog.html:45
+#: templates/store/catalog.html:69
 msgid "Buscar"
 msgstr "Search"
 
-#: templates/store/catalog.html:42
+#: templates/store/catalog.html:66
 msgid "Buscar compuesto o número CAS..."
 msgstr "Search compound or CAS number..."
 
 #: templates/store/certificates.html:37
-msgid "Cada certificado corresponde a un número de lote concreto, con fecha de análisis y firma del laboratorio."
-msgstr "Each certificate corresponds to a specific lot number, with the test date and the laboratory's signature."
+msgid ""
+"Cada certificado corresponde a un número de lote concreto, con fecha de "
+"análisis y firma del laboratorio."
+msgstr ""
+"Each certificate corresponds to a specific lot number, with the test date "
+"and the laboratory's signature."
 
 #: templates/store/index.html:322
-msgid "Cada lote se acompaña de un CoA verificado por laboratorio independiente."
+msgid ""
+"Cada lote se acompaña de un CoA verificado por laboratorio independiente."
 msgstr "Every lot comes with a CoA verified by an independent laboratory."
 
 #: templates/store/certificates.html:10
-msgid "Cada lote se analiza en laboratorios independientes por HPLC/LC-MS para confirmar identidad y pureza antes de venderse."
-msgstr "Every lot is tested by independent laboratories using HPLC/LC-MS to confirm identity and purity before it goes on sale."
+msgid ""
+"Cada lote se analiza en laboratorios independientes por HPLC/LC-MS para "
+"confirmar identidad y pureza antes de venderse."
+msgstr ""
+"Every lot is tested by independent laboratories using HPLC/LC-MS to confirm "
+"identity and purity before it goes on sale."
 
 #: templates/store/index.html:335
 msgid "Cadena de frío"
@@ -463,8 +641,12 @@ msgid "Calidad verificada"
 msgstr "Verified quality"
 
 #: templates/pages/returns.html:65
-msgid "Cambio de opinión, pedido duplicado por error o producto que ya no necesitas."
-msgstr "A change of mind, an order duplicated by mistake, or a product you no longer need."
+msgid ""
+"Cambio de opinión, pedido duplicado por error o producto que ya no "
+"necesitas."
+msgstr ""
+"A change of mind, an order duplicated by mistake, or a product you no longer"
+" need."
 
 #: orders/models.py:15
 msgid "Cancelado"
@@ -474,19 +656,23 @@ msgstr "Cancelled"
 msgid "Cant."
 msgstr "Qty"
 
-#: templates/store/catalog.html:18
-msgid "Categorías"
-msgstr "Categories"
-
-#: templates/partials/footer.html:21 templates/partials/header.html:22 templates/store/catalog.html:9 templates/store/index.html:128 templates/store/product_detail.html:15
+#: templates/partials/footer.html:21 templates/partials/header.html:22
+#: templates/store/catalog.html:9 templates/store/index.html:128
+#: templates/store/product_detail.html:15
 msgid "Catálogo"
 msgstr "Catalog"
 
-#: store/views.py:82
-msgid "Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥99% verificada por HPLC, con certificado de análisis por lote."
-msgstr "The full EuroPeptiva research peptide catalog: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. ≥99% purity verified by HPLC, with a certificate of analysis per lot."
+#: store/views.py:107
+msgid ""
+"Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, "
+"Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥99% verificada por HPLC, "
+"con certificado de análisis por lote."
+msgstr ""
+"The full EuroPeptiva research peptide catalog: Retatrutide, Semaglutide, "
+"BPC-157, TB-500, BAC Water. ≥99% purity verified by HPLC, with a certificate"
+" of analysis per lot."
 
-#: store/views.py:81
+#: store/views.py:106
 msgid "Catálogo de Péptidos"
 msgstr "Peptide Catalog"
 
@@ -510,7 +696,7 @@ msgstr "Certificate of analysis per lot · HPLC ≥99%%"
 msgid "Certificados"
 msgstr "Certificates"
 
-#: store/views.py:213 templates/store/certificates.html:9
+#: store/views.py:238 templates/store/certificates.html:9
 msgid "Certificados de Análisis (CoA)"
 msgstr "Certificates of Analysis (CoA)"
 
@@ -518,9 +704,14 @@ msgstr "Certificates of Analysis (CoA)"
 msgid "Certificados de análisis"
 msgstr "Certificates of analysis"
 
-#: store/views.py:214
-msgid "Certificados de análisis (CoA) por lote de los péptidos de investigación EuroPeptiva: identidad confirmada y pureza verificada por HPLC en laboratorios independientes."
-msgstr "Per-lot certificates of analysis (CoA) for EuroPeptiva research peptides: identity confirmed and purity verified by HPLC at independent laboratories."
+#: store/views.py:239
+msgid ""
+"Certificados de análisis (CoA) por lote de los péptidos de investigación "
+"EuroPeptiva: identidad confirmada y pureza verificada por HPLC en "
+"laboratorios independientes."
+msgstr ""
+"Per-lot certificates of analysis (CoA) for EuroPeptiva research peptides: "
+"identity confirmed and purity verified by HPLC at independent laboratories."
 
 #: templates/store/certificates.html:69
 msgid "Certificados en proceso de publicación"
@@ -535,14 +726,20 @@ msgid "Combinaciones a precio cerrado"
 msgstr "Fixed-price combinations"
 
 #: templates/store/bundles.html:15
-msgid "Combinaciones cerradas a precio reducido. <strong class=\"text-gray-700\">Cada compuesto va en su propio vial</strong>, no mezclados: se reconstituye cada uno por separado y con su concentración."
-msgstr "Fixed combinations at a reduced price. <strong class=\"text-gray-700\">Each compound comes in its own vial</strong>, not mixed: you reconstitute each one separately, at its own concentration."
+msgid ""
+"Combinaciones cerradas a precio reducido. <strong class=\"text-"
+"gray-700\">Cada compuesto va en su propio vial</strong>, no mezclados: se "
+"reconstituye cada uno por separado y con su concentración."
+msgstr ""
+"Fixed combinations at a reduced price. <strong class=\"text-gray-700\">Each "
+"compound comes in its own vial</strong>, not mixed: you reconstitute each "
+"one separately, at its own concentration."
 
 #: templates/store/product_detail.html:128
 msgid "Completa tu pedido"
 msgstr "Complete your order"
 
-#: store/views.py:283 templates/pages/bulk.html:9
+#: store/views.py:308 templates/pages/bulk.html:9
 msgid "Compra al por mayor"
 msgstr "Bulk purchasing"
 
@@ -563,16 +760,27 @@ msgid "Compuestos destacados"
 msgstr "Featured compounds"
 
 #: templates/store/index.html:30
-msgid "Compuestos verificados en laboratorio independiente, con certificado de análisis por lote y enviados desde España en cadena de frío. Sin atajos, sin marketing de suplementos."
-msgstr "Compounds verified by an independent laboratory, with a certificate of analysis per lot, shipped from Spain in the cold chain. No shortcuts, no supplement marketing."
+msgid ""
+"Compuestos verificados en laboratorio independiente, con certificado de "
+"análisis por lote y enviados desde España en cadena de frío. Sin atajos, sin"
+" marketing de suplementos."
+msgstr ""
+"Compounds verified by an independent laboratory, with a certificate of "
+"analysis per lot, shipped from Spain in the cold chain. No shortcuts, no "
+"supplement marketing."
 
 #: templates/pages/returns.html:100
-msgid "Con carácter general, la normativa europea reconoce al consumidor un derecho de desistimiento de 14 días naturales en las compras a distancia."
-msgstr "As a general rule, European legislation grants consumers a 14-calendar-day right of withdrawal on distance purchases."
+msgid ""
+"Con carácter general, la normativa europea reconoce al consumidor un derecho"
+" de desistimiento de 14 días naturales en las compras a distancia."
+msgstr ""
+"As a general rule, European legislation grants consumers a 14-calendar-day "
+"right of withdrawal on distance purchases."
 
 #: templates/pages/bulk.html:29
 msgid "Con consumo recurrente y necesidad de trazabilidad entre experimentos."
-msgstr "With recurring consumption and a need for traceability between experiments."
+msgstr ""
+"With recurring consumption and a need for traceability between experiments."
 
 #: templates/orders/confirmation.html:41
 msgid "Concepto (obligatorio)"
@@ -583,11 +791,16 @@ msgid "Condiciones"
 msgstr "Terms"
 
 #: config/urls.py:48
-msgid "Condiciones de devolución, cambio y reembolso de EuroPeptiva: qué cubrimos, el plazo de 48 horas para incidencias y la base legal de la exclusión."
-msgstr "EuroPeptiva's return, exchange and refund terms: what we cover, the 48-hour window for reporting issues and the legal basis for the exclusion."
+msgid ""
+"Condiciones de devolución, cambio y reembolso de EuroPeptiva: qué cubrimos, "
+"el plazo de 48 horas para incidencias y la base legal de la exclusión."
+msgstr ""
+"EuroPeptiva's return, exchange and refund terms: what we cover, the 48-hour "
+"window for reporting issues and the legal basis for the exclusion."
 
 #: templates/orders/checkout.html:125
-msgid "Confirma antes de las %(hour)s:00 h y tu pedido sale hoy mismo (%(days)s)"
+msgid ""
+"Confirma antes de las %(hour)s:00 h y tu pedido sale hoy mismo (%(days)s)"
 msgstr "Confirm before %(hour)s:00 and your order ships today (%(days)s)"
 
 #: templates/orders/checkout.html:74
@@ -599,8 +812,12 @@ msgid "Confirmar pedido →"
 msgstr "Place order →"
 
 #: orders/forms.py:39
-msgid "Confirmo que los productos son exclusivamente para investigación científica y no para consumo humano."
-msgstr "I confirm that the products are exclusively for scientific research and not for human consumption."
+msgid ""
+"Confirmo que los productos son exclusivamente para investigación científica "
+"y no para consumo humano."
+msgstr ""
+"I confirm that the products are exclusively for scientific research and not "
+"for human consumption."
 
 #: store/product_content.py:75
 msgid "Conservación y estabilidad"
@@ -610,7 +827,8 @@ msgstr "Storage and stability"
 msgid "Consultar pedido"
 msgstr "Track order"
 
-#: store/views.py:240 templates/pages/contact.html:5 templates/partials/footer.html:28 templates/partials/header.html:28
+#: store/views.py:265 templates/pages/contact.html:5
+#: templates/partials/footer.html:28 templates/partials/header.html:28
 msgid "Contacto"
 msgstr "Contact"
 
@@ -618,7 +836,7 @@ msgstr "Contact"
 msgid "Contexto de investigación"
 msgstr "Research background"
 
-#: store/models.py:272
+#: store/models.py:284
 msgid "Convertida en pedido"
 msgstr "Converted to an order"
 
@@ -655,8 +873,21 @@ msgid "Cómo funciona"
 msgstr "How it works"
 
 #: templates/pages/legal.html:37
-msgid "Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, no se admiten devoluciones salvo error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Las condiciones completas, el plazo de 48 horas para comunicar incidencias y la base legal de la exclusión están en la <a href=\"%(returns_url)s\" class=\"text-accent-mid underline\">política de devoluciones</a>."
-msgstr "Since the products are biologically active compounds requiring controlled storage conditions, returns are not accepted except in the event of an order error by EuroPeptiva or a verifiable product defect. The full terms, the 48-hour window for reporting issues and the legal basis for the exclusion are set out in the <a href=\"%(returns_url)s\" class=\"text-accent-mid underline\">returns policy</a>."
+msgid ""
+"Dado que los productos son compuestos biológicamente activos que requieren "
+"condiciones de almacenamiento controladas, no se admiten devoluciones salvo "
+"error en el pedido por parte de EuroPeptiva o defecto verificable del "
+"producto. Las condiciones completas, el plazo de 48 horas para comunicar "
+"incidencias y la base legal de la exclusión están en la <a "
+"href=\"%(returns_url)s\" class=\"text-accent-mid underline\">política de "
+"devoluciones</a>."
+msgstr ""
+"Since the products are biologically active compounds requiring controlled "
+"storage conditions, returns are not accepted except in the event of an order"
+" error by EuroPeptiva or a verifiable product defect. The full terms, the "
+"48-hour window for reporting issues and the legal basis for the exclusion "
+"are set out in the <a href=\"%(returns_url)s\" class=\"text-accent-mid "
+"underline\">returns policy</a>."
 
 #: templates/pages/privacy.html:69
 msgid "Datos de contacto: 1 año desde la última comunicación"
@@ -671,20 +902,31 @@ msgid "Datos de pedidos: 5 años (plazo de prescripción fiscal en España)"
 msgstr "Order data: 5 years (the tax limitation period in Spain)"
 
 #: templates/pages/returns.html:73
-msgid "Degradación por almacenamiento incorrecto tras la entrega. Las condiciones de conservación están en cada ficha de producto y en las preguntas frecuentes."
-msgstr "Degradation caused by incorrect storage after delivery. Storage conditions are given on every product page and in the FAQ."
+msgid ""
+"Degradación por almacenamiento incorrecto tras la entrega. Las condiciones "
+"de conservación están en cada ficha de producto y en las preguntas "
+"frecuentes."
+msgstr ""
+"Degradation caused by incorrect storage after delivery. Storage conditions "
+"are given on every product page and in the FAQ."
 
 #: templates/pages/returns.html:96
 msgid "Derecho de desistimiento y base legal"
 msgstr "Right of withdrawal and legal basis"
 
-#: store/models.py:273
+#: store/models.py:285
 msgid "Descartada"
 msgstr "Dropped"
 
 #: templates/pages/bulk.html:61
-msgid "Descuentos orientativos sobre el precio unitario de catálogo. ¿Necesitas combinar varios productos para llegar al tramo? Se estudia caso por caso — escríbenos y te lo cerramos en el presupuesto."
-msgstr "Indicative discounts on the catalog unit price. Need to combine several products to reach a tier? We look at it case by case — write to us and we'll settle it in the quote."
+msgid ""
+"Descuentos orientativos sobre el precio unitario de catálogo. ¿Necesitas "
+"combinar varios productos para llegar al tramo? Se estudia caso por caso — "
+"escríbenos y te lo cerramos en el presupuesto."
+msgstr ""
+"Indicative discounts on the catalog unit price. Need to combine several "
+"products to reach a tier? We look at it case by case — write to us and we'll"
+" settle it in the quote."
 
 #: templates/orders/cart.html:70
 msgid "Desde %(amount)s"
@@ -699,7 +941,8 @@ msgid "Desde %(v1)s unidades"
 msgstr "From %(v1)s units"
 
 #: store/product_content.py:28
-msgid "Desinfecta el tapón con una toallita de alcohol antes de cada extracción."
+msgid ""
+"Desinfecta el tapón con una toallita de alcohol antes de cada extracción."
 msgstr "Disinfect the stopper with an alcohol wipe before every withdrawal."
 
 #: templates/partials/footer.html:27
@@ -736,33 +979,53 @@ msgstr "Distributors"
 
 #: templates/pages/bulk.html:92
 msgid "Documentación válida para deducir el gasto en tu centro o empresa."
-msgstr "Documentation valid for deducting the expense at your institution or company."
+msgstr ""
+"Documentation valid for deducting the expense at your institution or "
+"company."
 
 #: templates/pages/cookies.html:15
 msgid "Duración"
 msgstr "Duration"
 
 #: store/product_content.py:30
-msgid "El 0,9 % de alcohol bencílico es lo que permite perforar el mismo vial varias veces sin que se contamine."
-msgstr "The 0.9% benzyl alcohol is what lets the same vial be pierced several times without it becoming contaminated."
+msgid ""
+"El 0,9 % de alcohol bencílico es lo que permite perforar el mismo vial "
+"varias veces sin que se contamine."
+msgstr ""
+"The 0.9% benzyl alcohol is what lets the same vial be pierced several times "
+"without it becoming contaminated."
 
 #: templates/orders/cart.html:113
 msgid "El carrito está vacío"
 msgstr "Your cart is empty"
 
 #: templates/pages/faq.html:60
-msgid "El coste exacto se calcula en el carrito según el país de destino, antes de confirmar el pedido."
-msgstr "The exact cost is calculated in the cart based on the destination country, before you confirm the order."
+msgid ""
+"El coste exacto se calcula en el carrito según el país de destino, antes de "
+"confirmar el pedido."
+msgstr ""
+"The exact cost is calculated in the cart based on the destination country, "
+"before you confirm the order."
 
 #: templates/pages/returns.html:25
-msgid "El motivo no es comercial: un vial de péptido que sale de nuestro control ya no puede reintroducirse en el circuito de venta. Basta una interrupción de la cadena de frío, imposible de verificar a posteriori, para que el compuesto se degrade. Reenviarlo a otro cliente sería una irresponsabilidad científica."
-msgstr "The reason is not commercial: once a peptide vial leaves our control it can no longer re-enter the supply chain. A single break in the cold chain — impossible to verify after the fact — is enough to degrade the compound. Passing it on to another customer would be scientifically irresponsible."
+msgid ""
+"El motivo no es comercial: un vial de péptido que sale de nuestro control ya"
+" no puede reintroducirse en el circuito de venta. Basta una interrupción de "
+"la cadena de frío, imposible de verificar a posteriori, para que el "
+"compuesto se degrade. Reenviarlo a otro cliente sería una irresponsabilidad "
+"científica."
+msgstr ""
+"The reason is not commercial: once a peptide vial leaves our control it can "
+"no longer re-enter the supply chain. A single break in the cold chain — "
+"impossible to verify after the fact — is enough to degrade the compound. "
+"Passing it on to another customer would be scientifically irresponsible."
 
 #: templates/orders/cart.html:46
 msgid "Eliminar"
 msgstr "Remove"
 
-#: orders/forms.py:20 orders/models.py:35 store/models.py:278 templates/pages/contact.html:16 templates/pages/contact.html:57
+#: orders/forms.py:20 orders/models.py:35 store/models.py:290
+#: templates/pages/contact.html:16 templates/pages/contact.html:57
 msgid "Email"
 msgstr "Email"
 
@@ -774,23 +1037,30 @@ msgstr "Order email"
 msgid "Embalaje discreto y factura con IVA"
 msgstr "Discreet packaging and a VAT invoice"
 
-#: store/models.py:277
+#: store/models.py:289
 msgid "Empresa / laboratorio"
 msgstr "Company / laboratory"
 
 #: templates/pages/legal.html:62
-msgid "En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se facilitan los siguientes datos de identificación:"
-msgstr "In compliance with Spanish Law 34/2002 on Information Society Services (LSSI-CE), the following identification details are provided:"
+msgid ""
+"En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la "
+"Información (LSSI-CE), se facilitan los siguientes datos de identificación:"
+msgstr ""
+"In compliance with Spanish Law 34/2002 on Information Society Services "
+"(LSSI-CE), the following identification details are provided:"
 
 #: store/product_content.py:45
 msgid "En lugar fresco y protegido de la luz. Sin abrir no necesita nevera."
-msgstr "In a cool place, protected from light. Unopened, it does not need refrigeration."
+msgstr ""
+"In a cool place, protected from light. Unopened, it does not need "
+"refrigeration."
 
 #: orders/models.py:12
 msgid "En preparación"
 msgstr "Being prepared"
 
-#: templates/store/bundle_detail.html:80 templates/store/product_detail.html:149
+#: templates/store/bundle_detail.html:80
+#: templates/store/product_detail.html:149
 msgid "En stock — envío en 24-72h."
 msgstr "In stock — ships in 24-72h."
 
@@ -799,8 +1069,12 @@ msgid "Entregado"
 msgstr "Delivered"
 
 #: templates/pages/returns.html:81
-msgid "Entregas fallidas por una dirección incorrecta o por no recoger el paquete a tiempo."
-msgstr "Failed deliveries caused by an incorrect address or by not collecting the parcel in time."
+msgid ""
+"Entregas fallidas por una dirección incorrecta o por no recoger el paquete a"
+" tiempo."
+msgstr ""
+"Failed deliveries caused by an incorrect address or by not collecting the "
+"parcel in time."
 
 #: orders/models.py:13
 msgid "Enviado"
@@ -815,8 +1089,14 @@ msgid "Enviarte confirmaciones y actualizaciones del estado del pedido"
 msgstr "Sending you confirmations and order status updates"
 
 #: templates/pages/returns.html:52
-msgid "Envíalo todo a <strong>%(email)s</strong>. Cada caso se estudia individualmente y te damos una respuesta con la solución —reposición o reembolso— en un máximo de 5 días hábiles."
-msgstr "Send it all to <strong>%(email)s</strong>. Each case is reviewed individually and we will come back to you with a resolution — replacement or refund — within a maximum of 5 working days."
+msgid ""
+"Envíalo todo a <strong>%(email)s</strong>. Cada caso se estudia "
+"individualmente y te damos una respuesta con la solución —reposición o "
+"reembolso— en un máximo de 5 días hábiles."
+msgstr ""
+"Send it all to <strong>%(email)s</strong>. Each case is reviewed "
+"individually and we will come back to you with a resolution — replacement or"
+" refund — within a maximum of 5 working days."
 
 #: templates/orders/cart.html:68 templates/orders/tracking.html:96
 msgid "Envío"
@@ -827,8 +1107,12 @@ msgid "Envío (España)"
 msgstr "Shipping (Spain)"
 
 #: templates/orders/checkout.html:118
-msgid "Envío gratis a partir de %(amount)s. Fuera de España: %(eu)s, se recalcula al elegir el país."
-msgstr "Free shipping from %(amount)s. Outside Spain: %(eu)s, recalculated when you choose your country."
+msgid ""
+"Envío gratis a partir de %(amount)s. Fuera de España: %(eu)s, se recalcula "
+"al elegir el país."
+msgstr ""
+"Free shipping from %(amount)s. Outside Spain: %(eu)s, recalculated when you "
+"choose your country."
 
 #: templates/pages/bulk.html:84
 msgid "Envío incluido"
@@ -859,8 +1143,15 @@ msgid "Escríbenos y te respondemos en menos de 24 horas."
 msgstr "Write to us and we'll reply within 24 hours."
 
 #: templates/pages/returns.html:101
-msgid "Ese derecho <strong>no se aplica a los productos de EuroPeptiva</strong>, al amparo del artículo 103 del Real Decreto Legislativo 1/2007 (texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios), que exceptúa expresamente:"
-msgstr "That right <strong>does not apply to EuroPeptiva products</strong>, under article 103 of Spanish Royal Legislative Decree 1/2007 (the consolidated Consumer Protection Act), which expressly excludes:"
+msgid ""
+"Ese derecho <strong>no se aplica a los productos de EuroPeptiva</strong>, al"
+" amparo del artículo 103 del Real Decreto Legislativo 1/2007 (texto "
+"refundido de la Ley General para la Defensa de los Consumidores y Usuarios),"
+" que exceptúa expresamente:"
+msgstr ""
+"That right <strong>does not apply to EuroPeptiva products</strong>, under "
+"article 103 of Spanish Royal Legislative Decree 1/2007 (the consolidated "
+"Consumer Protection Act), which expressly excludes:"
 
 #: orders/views.py:52
 msgid "Ese paquete ya no está disponible."
@@ -874,7 +1165,7 @@ msgstr "That product is no longer available."
 msgid "España %(es)s · resto de la UE %(eu)s"
 msgstr "Spain %(es)s · rest of the EU %(eu)s"
 
-#: store/models.py:281
+#: store/models.py:293
 msgid "Estado"
 msgstr "Status"
 
@@ -891,40 +1182,85 @@ msgid "Estado del pedido"
 msgstr "Order status"
 
 #: templates/pages/bulk.html:43
-msgid "Estudios largos que necesitan asegurar suministro y precio durante meses."
+msgid ""
+"Estudios largos que necesitan asegurar suministro y precio durante meses."
 msgstr "Long studies that need to secure supply and pricing for months."
 
 #: templates/pages/legal.html:18
-msgid "EuroPeptiva comercializa péptidos sintéticos y compuestos relacionados destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. Los productos no están aprobados por la AEMPS ni por ninguna agencia reguladora para uso en humanos, uso veterinario ni diagnóstico médico."
-msgstr "EuroPeptiva sells synthetic peptides and related compounds intended <strong>exclusively for scientific laboratory research</strong>. The products are not approved by the AEMPS or any other regulatory agency for human use, veterinary use or medical diagnosis."
+msgid ""
+"EuroPeptiva comercializa péptidos sintéticos y compuestos relacionados "
+"destinados <strong>exclusivamente a investigación científica en "
+"laboratorio</strong>. Los productos no están aprobados por la AEMPS ni por "
+"ninguna agencia reguladora para uso en humanos, uso veterinario ni "
+"diagnóstico médico."
+msgstr ""
+"EuroPeptiva sells synthetic peptides and related compounds intended "
+"<strong>exclusively for scientific laboratory research</strong>. The "
+"products are not approved by the AEMPS or any other regulatory agency for "
+"human use, veterinary use or medical diagnosis."
 
 #: templates/pages/about.html:18
-msgid "EuroPeptiva nace con el objetivo de facilitar el acceso a reactivos de investigación de alta calidad a investigadores, laboratorios y centros de I+D en España y la Unión Europea."
-msgstr "EuroPeptiva was founded to make high-quality research reagents easier to obtain for researchers, laboratories and R&D centres in Spain and the European Union."
+msgid ""
+"EuroPeptiva nace con el objetivo de facilitar el acceso a reactivos de "
+"investigación de alta calidad a investigadores, laboratorios y centros de "
+"I+D en España y la Unión Europea."
+msgstr ""
+"EuroPeptiva was founded to make high-quality research reagents easier to "
+"obtain for researchers, laboratories and R&D centres in Spain and the "
+"European Union."
 
 #: templates/pages/legal.html:26
-msgid "EuroPeptiva no se hace responsable del uso inadecuado de los productos por parte del comprador."
-msgstr "EuroPeptiva accepts no responsibility for improper use of the products by the buyer."
+msgid ""
+"EuroPeptiva no se hace responsable del uso inadecuado de los productos por "
+"parte del comprador."
+msgstr ""
+"EuroPeptiva accepts no responsibility for improper use of the products by "
+"the buyer."
 
 #: templates/pages/legal.html:42
-msgid "EuroPeptiva no se responsabiliza de los daños o perjuicios que pueda causar el uso inadecuado de los productos, ni del incumplimiento de la normativa aplicable por parte del comprador en su país o jurisdicción. Los productos se venden \"tal cual\" para investigación en laboratorio, sin garantía de resultados específicos en ningún tipo de aplicación."
-msgstr "EuroPeptiva accepts no liability for any loss or damage caused by improper use of the products, nor for the buyer's failure to comply with applicable regulations in their country or jurisdiction. The products are sold \"as is\" for laboratory research, with no guarantee of specific results in any type of application."
+msgid ""
+"EuroPeptiva no se responsabiliza de los daños o perjuicios que pueda causar "
+"el uso inadecuado de los productos, ni del incumplimiento de la normativa "
+"aplicable por parte del comprador en su país o jurisdicción. Los productos "
+"se venden \"tal cual\" para investigación en laboratorio, sin garantía de "
+"resultados específicos en ningún tipo de aplicación."
+msgstr ""
+"EuroPeptiva accepts no liability for any loss or damage caused by improper "
+"use of the products, nor for the buyer's failure to comply with applicable "
+"regulations in their country or jurisdiction. The products are sold \"as "
+"is\" for laboratory research, with no guarantee of specific results in any "
+"type of application."
 
 #: templates/pages/legal.html:32
-msgid "EuroPeptiva se reserva el derecho de rechazar pedidos si existen indicios de uso inadecuado o en caso de incumplimiento de las presentes condiciones."
-msgstr "EuroPeptiva reserves the right to refuse orders where there are indications of improper use or in the event of a breach of these conditions."
+msgid ""
+"EuroPeptiva se reserva el derecho de rechazar pedidos si existen indicios de"
+" uso inadecuado o en caso de incumplimiento de las presentes condiciones."
+msgstr ""
+"EuroPeptiva reserves the right to refuse orders where there are indications "
+"of improper use or in the event of a breach of these conditions."
 
 #: templates/pages/cookies.html:7
-msgid "EuroPeptiva utiliza únicamente cookies técnicas necesarias para el funcionamiento de la tienda. No usamos cookies de analítica, publicidad ni redes sociales."
-msgstr "EuroPeptiva uses only the technical cookies necessary for the shop to work. We do not use analytics, advertising or social media cookies."
+msgid ""
+"EuroPeptiva utiliza únicamente cookies técnicas necesarias para el "
+"funcionamiento de la tienda. No usamos cookies de analítica, publicidad ni "
+"redes sociales."
+msgstr ""
+"EuroPeptiva uses only the technical cookies necessary for the shop to work. "
+"We do not use analytics, advertising or social media cookies."
 
 #: templates/emails/order_confirmation.html:98
 msgid "EuroPeptiva — <a href=\"https://europeptiva.com\">europeptiva.com</a>"
 msgstr "EuroPeptiva — <a href=\"https://europeptiva.com\">europeptiva.com</a>"
 
 #: config/urls.py:32
-msgid "EuroPeptiva: proveedor especializado en péptidos de investigación científica, con pureza certificada por laboratorio independiente, stock en España y envío refrigerado a toda la UE."
-msgstr "EuroPeptiva: a specialist supplier of scientific research peptides, with purity certified by an independent laboratory, stock in Spain and refrigerated shipping across the EU."
+msgid ""
+"EuroPeptiva: proveedor especializado en péptidos de investigación "
+"científica, con pureza certificada por laboratorio independiente, stock en "
+"España y envío refrigerado a toda la UE."
+msgstr ""
+"EuroPeptiva: a specialist supplier of scientific research peptides, with "
+"purity certified by an independent laboratory, stock in Spain and "
+"refrigerated shipping across the EU."
 
 #: store/product_content.py:38
 msgid "Evita los ciclos de congelación y descongelación."
@@ -935,12 +1271,20 @@ msgid "Explora"
 msgstr "Explore"
 
 #: store/product_content.py:29
-msgid "Extrae solo el volumen que vayas a usar, siempre con aguja y jeringa estériles nuevas."
-msgstr "Withdraw only the volume you are going to use, always with a fresh sterile needle and syringe."
+msgid ""
+"Extrae solo el volumen que vayas a usar, siempre con aguja y jeringa "
+"estériles nuevas."
+msgstr ""
+"Withdraw only the volume you are going to use, always with a fresh sterile "
+"needle and syringe."
 
 #: templates/store/certificates.html:30
-msgid "FTIR/LC-MS confirma que el vial contiene el péptido indicado; HPLC mide la pureza y la potencia respecto a la etiqueta."
-msgstr "FTIR/LC-MS confirms that the vial contains the stated peptide; HPLC measures purity and potency against the label."
+msgid ""
+"FTIR/LC-MS confirma que el vial contiene el péptido indicado; HPLC mide la "
+"pureza y la potencia respecto a la etiqueta."
+msgstr ""
+"FTIR/LC-MS confirms that the vial contains the stated peptide; HPLC measures"
+" purity and potency against the label."
 
 #: templates/store/certificates.html:54
 msgid "Fecha de análisis"
@@ -979,8 +1323,14 @@ msgid "Guardar tu preferencia sobre el banner de cookies"
 msgstr "Storing your cookie banner preference"
 
 #: templates/pages/bulk.html:78
-msgid "HPLC de laboratorio independiente, disponible en <a href=\"%(certificates_url)s\" class=\"text-accent-mid underline\">certificados</a>."
-msgstr "Independent laboratory HPLC, available under <a href=\"%(certificates_url)s\" class=\"text-accent-mid underline\">certificates</a>."
+msgid ""
+"HPLC de laboratorio independiente, disponible en <a "
+"href=\"%(certificates_url)s\" class=\"text-accent-mid "
+"underline\">certificados</a>."
+msgstr ""
+"Independent laboratory HPLC, available under <a "
+"href=\"%(certificates_url)s\" class=\"text-accent-mid "
+"underline\">certificates</a>."
 
 #: templates/orders/confirmation.html:26
 msgid "Hemos enviado las instrucciones de pago a <strong>%(email)s</strong>."
@@ -995,7 +1345,9 @@ msgid "Hemos enviado los detalles del pedido a <strong>%(email)s</strong>."
 msgstr "We've sent the order details to <strong>%(email)s</strong>."
 
 #: templates/emails/order_confirmation.html:45
-msgid "Hemos recibido tu pedido correctamente. A continuación encontrarás los detalles:"
+msgid ""
+"Hemos recibido tu pedido correctamente. A continuación encontrarás los "
+"detalles:"
 msgstr "We've received your order successfully. Here are the details:"
 
 #: orders/views.py:195
@@ -1053,20 +1405,28 @@ msgid "Información de la transacción (importe, método de pago)"
 msgstr "Transaction information (amount, payment method)"
 
 #: config/urls.py:52
-msgid "Información sobre las cookies técnicas necesarias que utiliza EuroPeptiva para el funcionamiento de la tienda."
-msgstr "Information about the necessary technical cookies EuroPeptiva uses to run the shop."
+msgid ""
+"Información sobre las cookies técnicas necesarias que utiliza EuroPeptiva "
+"para el funcionamiento de la tienda."
+msgstr ""
+"Information about the necessary technical cookies EuroPeptiva uses to run "
+"the shop."
 
-#: templates/partials/header.html:21 templates/store/bundle_detail.html:12 templates/store/bundles.html:8 templates/store/product_detail.html:13
+#: templates/partials/header.html:21 templates/store/bundle_detail.html:12
+#: templates/store/bundles.html:8 templates/store/product_detail.html:13
 msgid "Inicio"
 msgstr "Home"
 
-#: templates/emails/order_confirmation.html:78 templates/orders/confirmation.html:30
+#: templates/emails/order_confirmation.html:78
+#: templates/orders/confirmation.html:30
 msgid "Instrucciones de transferencia bancaria"
 msgstr "Bank transfer instructions"
 
 #: templates/orders/tracking.html:7
-msgid "Introduce tu número de pedido y el email con el que realizaste la compra."
-msgstr "Enter your order number and the email address you used for the purchase."
+msgid ""
+"Introduce tu número de pedido y el email con el que realizaste la compra."
+msgstr ""
+"Enter your order number and the email address you used for the purchase."
 
 #: templates/orders/confirmation.html:79
 msgid "Ir al inicio"
@@ -1077,8 +1437,12 @@ msgid "LOTE %(lot)s"
 msgstr "LOT %(lot)s"
 
 #: store/product_content.py:20
-msgid "La solución debe quedar transparente. Si sale turbia o con partículas en suspensión, no la utilices."
-msgstr "The solution should come out clear. If it turns cloudy or shows suspended particles, do not use it."
+msgid ""
+"La solución debe quedar transparente. Si sale turbia o con partículas en "
+"suspensión, no la utilices."
+msgstr ""
+"The solution should come out clear. If it turns cloudy or shows suspended "
+"particles, do not use it."
 
 #: templates/pages/returns.html:30
 msgid "La única excepción: pedido dañado, incorrecto o defectuoso"
@@ -1097,56 +1461,130 @@ msgid "Laboratorios y centros de I+D"
 msgstr "Laboratories and R&D centres"
 
 #: templates/pages/legal.html:52
-msgid "Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada de la compraventa, las partes se someten, con renuncia a cualquier otro fuero que pudiera corresponderles, a los Juzgados y Tribunales del domicilio del consumidor, de conformidad con la normativa española de protección de consumidores y usuarios."
-msgstr "These conditions are governed by Spanish law. For any dispute arising from the sale, the parties submit, waiving any other jurisdiction that might apply to them, to the Courts of the consumer's place of residence, in accordance with Spanish consumer protection legislation."
+msgid ""
+"Las presentes condiciones se rigen por la legislación española. Para "
+"cualquier controversia derivada de la compraventa, las partes se someten, "
+"con renuncia a cualquier otro fuero que pudiera corresponderles, a los "
+"Juzgados y Tribunales del domicilio del consumidor, de conformidad con la "
+"normativa española de protección de consumidores y usuarios."
+msgstr ""
+"These conditions are governed by Spanish law. For any dispute arising from "
+"the sale, the parties submit, waiving any other jurisdiction that might "
+"apply to them, to the Courts of the consumer's place of residence, in "
+"accordance with Spanish consumer protection legislation."
 
 #: templates/pages/bulk.html:49
-msgid "Las unidades cuentan <strong>por producto</strong>, no sobre el total del pedido."
+msgid ""
+"Las unidades cuentan <strong>por producto</strong>, no sobre el total del "
+"pedido."
 msgstr "Units count <strong>per product</strong>, not across the whole order."
 
 #: store/product_content.py:23
 msgid "Llega en solución y listo para usar: no hay que reconstituir nada."
-msgstr "It arrives in solution and ready to use: there is nothing to reconstitute."
+msgstr ""
+"It arrives in solution and ready to use: there is nothing to reconstitute."
 
 #: templates/store/product_detail.html:129
 msgid "Llega liofilizado: necesitas agua bacteriostática para reconstituirlo."
-msgstr "It arrives lyophilized: you need bacteriostatic water to reconstitute it."
+msgstr ""
+"It arrives lyophilized: you need bacteriostatic water to reconstitute it."
 
 #: templates/pages/bulk.html:114
-msgid "Lo confirmas y preparamos el envío. No se cobra nada hasta que aceptas."
-msgstr "You confirm it and we prepare the shipment. Nothing is charged until you accept."
+msgid ""
+"Lo confirmas y preparamos el envío. No se cobra nada hasta que aceptas."
+msgstr ""
+"You confirm it and we prepare the shipment. Nothing is charged until you "
+"accept."
 
 #: templates/store/certificates.html:23
-msgid "Los análisis los realizan laboratorios externos especializados, ajenos al fabricante del péptido."
-msgstr "Testing is carried out by specialised external laboratories, unconnected to the peptide manufacturer."
+msgid ""
+"Los análisis los realizan laboratorios externos especializados, ajenos al "
+"fabricante del péptido."
+msgstr ""
+"Testing is carried out by specialised external laboratories, unconnected to "
+"the peptide manufacturer."
 
 #: templates/pages/returns.html:103
-msgid "Los bienes <strong>precintados que no sean aptos para ser devueltos por razones de protección de la salud o de higiene</strong> y que hayan sido desprecintados tras la entrega (art. 103.e)."
-msgstr "<strong>Sealed goods which are not suitable for return for health protection or hygiene reasons</strong> and which have been unsealed after delivery (art. 103.e)."
+msgid ""
+"Los bienes <strong>precintados que no sean aptos para ser devueltos por "
+"razones de protección de la salud o de higiene</strong> y que hayan sido "
+"desprecintados tras la entrega (art. 103.e)."
+msgstr ""
+"<strong>Sealed goods which are not suitable for return for health protection"
+" or hygiene reasons</strong> and which have been unsealed after delivery "
+"(art. 103.e)."
 
 #: templates/pages/returns.html:104
-msgid "Los bienes <strong>que puedan deteriorarse o caducar con rapidez</strong> (art. 103.d), como es el caso de los compuestos que requieren cadena de frío."
-msgstr "<strong>Goods liable to deteriorate or expire rapidly</strong> (art. 103.d), which is the case for compounds requiring a cold chain."
+msgid ""
+"Los bienes <strong>que puedan deteriorarse o caducar con rapidez</strong> "
+"(art. 103.d), como es el caso de los compuestos que requieren cadena de "
+"frío."
+msgstr ""
+"<strong>Goods liable to deteriorate or expire rapidly</strong> (art. 103.d),"
+" which is the case for compounds requiring a cold chain."
 
 #: templates/store/certificates.html:78
-msgid "Los certificados de análisis corresponden a lotes concretos recibidos de nuestros proveedores y se sustituyen conforme se reponen nuevos lotes. Si necesitas el CoA vigente de un lote específico, contacta con nosotros indicando el producto. Todos los productos son <strong>exclusivamente para uso en investigación científica</strong>, no aptos para consumo humano ni uso veterinario."
-msgstr "Certificates of analysis correspond to specific lots received from our suppliers and are replaced as new lots are restocked. If you need the current CoA for a specific lot, contact us stating the product. All products are <strong>for scientific research use only</strong>, not suitable for human consumption or veterinary use."
+msgid ""
+"Los certificados de análisis corresponden a lotes concretos recibidos de "
+"nuestros proveedores y se sustituyen conforme se reponen nuevos lotes. Si "
+"necesitas el CoA vigente de un lote específico, contacta con nosotros "
+"indicando el producto. Todos los productos son <strong>exclusivamente para "
+"uso en investigación científica</strong>, no aptos para consumo humano ni "
+"uso veterinario."
+msgstr ""
+"Certificates of analysis correspond to specific lots received from our "
+"suppliers and are replaced as new lots are restocked. If you need the "
+"current CoA for a specific lot, contact us stating the product. All products"
+" are <strong>for scientific research use only</strong>, not suitable for "
+"human consumption or veterinary use."
 
 #: templates/pages/bulk.html:157
-msgid "Los pedidos al por mayor están sujetos a las mismas condiciones que el resto del catálogo: productos destinados <strong>exclusivamente a investigación científica in vitro</strong>, no aptos para consumo humano ni veterinario. El comprador es responsable de verificar la legalidad de la importación y el uso en su jurisdicción."
-msgstr "Bulk orders are subject to the same conditions as the rest of the catalog: products intended <strong>exclusively for in vitro scientific research</strong>, not suitable for human or veterinary consumption. The buyer is responsible for verifying the legality of importing and using them in their jurisdiction."
+msgid ""
+"Los pedidos al por mayor están sujetos a las mismas condiciones que el resto"
+" del catálogo: productos destinados <strong>exclusivamente a investigación "
+"científica in vitro</strong>, no aptos para consumo humano ni veterinario. "
+"El comprador es responsable de verificar la legalidad de la importación y el"
+" uso en su jurisdicción."
+msgstr ""
+"Bulk orders are subject to the same conditions as the rest of the catalog: "
+"products intended <strong>exclusively for in vitro scientific "
+"research</strong>, not suitable for human or veterinary consumption. The "
+"buyer is responsible for verifying the legality of importing and using them "
+"in their jurisdiction."
 
 #: templates/pages/faq.html:39
-msgid "Los pedidos confirmados <strong>antes de las %(shipping_cutoff_hour)s:00 h %(shipping_cutoff_days_long)s salen el mismo día</strong>. A partir de esa hora, y los domingos y festivos, salen el siguiente día hábil."
-msgstr "Orders confirmed <strong>before %(shipping_cutoff_hour)s:00 %(shipping_cutoff_days_long)s ship the same day</strong>. After that time, and on Sundays and public holidays, they ship the next working day."
+msgid ""
+"Los pedidos confirmados <strong>antes de las %(shipping_cutoff_hour)s:00 h "
+"%(shipping_cutoff_days_long)s salen el mismo día</strong>. A partir de esa "
+"hora, y los domingos y festivos, salen el siguiente día hábil."
+msgstr ""
+"Orders confirmed <strong>before %(shipping_cutoff_hour)s:00 "
+"%(shipping_cutoff_days_long)s ship the same day</strong>. After that time, "
+"and on Sundays and public holidays, they ship the next working day."
 
 #: templates/pages/legal.html:31
-msgid "Los precios indicados en el sitio incluyen el IVA aplicable. Los gastos de envío se calculan en el proceso de compra según el destino y el importe del pedido."
-msgstr "The prices shown on the site include applicable VAT. Shipping costs are calculated during checkout according to the destination and the order amount."
+msgid ""
+"Los precios indicados en el sitio incluyen el IVA aplicable. Los gastos de "
+"envío se calculan en el proceso de compra según el destino y el importe del "
+"pedido."
+msgstr ""
+"The prices shown on the site include applicable VAT. Shipping costs are "
+"calculated during checkout according to the destination and the order "
+"amount."
 
 #: templates/pages/faq.html:31
-msgid "Los péptidos se almacenan liofilizados a -20°C y se envían con embalaje isotérmico para garantizar la cadena de frío durante el transporte. Al recibirlos, deben almacenarse a -20°C (o a 4°C si se van a usar en los próximos 30 días). Una vez reconstituidos con BAC Water, se conservan refrigerados (2-8°C) hasta 4 semanas."
-msgstr "Peptides are stored lyophilised at -20°C and shipped with isothermal packaging to guarantee the cold chain in transit. On arrival they should be stored at -20°C (or at 4°C if they will be used within the next 30 days). Once reconstituted with BAC Water, they keep refrigerated (2-8°C) for up to 4 weeks."
+msgid ""
+"Los péptidos se almacenan liofilizados a -20°C y se envían con embalaje "
+"isotérmico para garantizar la cadena de frío durante el transporte. Al "
+"recibirlos, deben almacenarse a -20°C (o a 4°C si se van a usar en los "
+"próximos 30 días). Una vez reconstituidos con BAC Water, se conservan "
+"refrigerados (2-8°C) hasta 4 semanas."
+msgstr ""
+"Peptides are stored lyophilised at -20°C and shipped with isothermal "
+"packaging to guarantee the cold chain in transit. On arrival they should be "
+"stored at -20°C (or at 4°C if they will be used within the next 30 days). "
+"Once reconstituted with BAC Water, they keep refrigerated (2-8°C) for up to "
+"4 weeks."
 
 #: templates/store/certificates.html:53
 msgid "Lote"
@@ -1169,8 +1607,12 @@ msgid "Manipulación"
 msgstr "Handling"
 
 #: templates/pages/about.html:35
-msgid "Mantenemos el stock en España y enviamos desde aquí: sin aduanas, sin esperas de semanas y con seguimiento desde el primer día."
-msgstr "We hold stock in Spain and ship from here: no customs, no waiting weeks, and tracking from day one."
+msgid ""
+"Mantenemos el stock en España y enviamos desde aquí: sin aduanas, sin "
+"esperas de semanas y con seguimiento desde el primer día."
+msgstr ""
+"We hold stock in Spain and ship from here: no customs, no waiting weeks, and"
+" tracking from day one."
 
 #: store/product_content.py:25
 msgid "Mantén la boquilla limpia y no la intercambies entre viales."
@@ -1185,16 +1627,32 @@ msgid "Mensaje enviado"
 msgstr "Message sent"
 
 #: templates/pages/returns.html:89
-msgid "Mientras el pedido no se haya preparado, se puede cancelar sin coste: escríbenos cuanto antes a <strong>%(email)s</strong> con tu número de pedido. Ten en cuenta que los pedidos confirmados antes de las %(hour)s:00 h salen el mismo día, así que el margen es corto. Si ya has pagado, el reembolso se hace por el mismo medio de pago."
-msgstr "As long as the order has not been prepared, it can be cancelled at no cost: write to <strong>%(email)s</strong> as soon as possible with your order number. Bear in mind that orders confirmed before %(hour)s:00 ship the same day, so the window is short. If you have already paid, the refund is issued to the original payment method."
+msgid ""
+"Mientras el pedido no se haya preparado, se puede cancelar sin coste: "
+"escríbenos cuanto antes a <strong>%(email)s</strong> con tu número de "
+"pedido. Ten en cuenta que los pedidos confirmados antes de las %(hour)s:00 h"
+" salen el mismo día, así que el margen es corto. Si ya has pagado, el "
+"reembolso se hace por el mismo medio de pago."
+msgstr ""
+"As long as the order has not been prepared, it can be cancelled at no cost: "
+"write to <strong>%(email)s</strong> as soon as possible with your order "
+"number. Bear in mind that orders confirmed before %(hour)s:00 ship the same "
+"day, so the window is short. If you have already paid, the refund is issued "
+"to the original payment method."
 
 #: templates/pages/bulk.html:70
 msgid "Mismo lote para toda la serie"
 msgstr "One lot for the whole series"
 
 #: templates/store/certificates.html:70
-msgid "Muy pronto disponibles aquí. Puedes solicitar el CoA de cualquier producto escribiendo a <a href=\"%(contact_url)s\" class=\"text-accent-mid underline\">contacto</a>."
-msgstr "Coming here very soon. You can request the CoA for any product by writing to <a href=\"%(contact_url)s\" class=\"text-accent-mid underline\">contact</a>."
+msgid ""
+"Muy pronto disponibles aquí. Puedes solicitar el CoA de cualquier producto "
+"escribiendo a <a href=\"%(contact_url)s\" class=\"text-accent-mid "
+"underline\">contacto</a>."
+msgstr ""
+"Coming here very soon. You can request the CoA for any product by writing to"
+" <a href=\"%(contact_url)s\" class=\"text-accent-mid "
+"underline\">contact</a>."
 
 #: templates/partials/cookie_banner.html:4
 msgid "Más información"
@@ -1209,16 +1667,28 @@ msgid "Mínimo %(bulk_min_units)s unidades por producto. Sin compromiso."
 msgstr "Minimum %(bulk_min_units)s units per product. No obligation."
 
 #: store/product_content.py:19
-msgid "No agites. Gira el vial con suavidad hasta que el liofilizado se disuelva del todo: la agitación fuerte degrada el péptido."
-msgstr "Do not shake. Swirl the vial gently until the lyophilized powder has fully dissolved: vigorous agitation degrades the peptide."
+msgid ""
+"No agites. Gira el vial con suavidad hasta que el liofilizado se disuelva "
+"del todo: la agitación fuerte degrada el péptido."
+msgstr ""
+"Do not shake. Swirl the vial gently until the lyophilized powder has fully "
+"dissolved: vigorous agitation degrades the peptide."
 
 #: templates/pages/privacy.html:26
-msgid "No almacenamos datos de tarjetas de crédito. Los pagos con tarjeta son procesados directamente por Mollie B.V. en sus servidores seguros."
-msgstr "We do not store credit card details. Card payments are processed directly by Mollie B.V. on their secure servers."
+msgid ""
+"No almacenamos datos de tarjetas de crédito. Los pagos con tarjeta son "
+"procesados directamente por Mollie B.V. en sus servidores seguros."
+msgstr ""
+"We do not store credit card details. Card payments are processed directly by"
+" Mollie B.V. on their secure servers."
 
 #: orders/views.py:232
-msgid "No encontramos ningún pedido con esos datos. Comprueba el número de pedido y el email."
-msgstr "We couldn't find an order with those details. Please check the order number and the email address."
+msgid ""
+"No encontramos ningún pedido con esos datos. Comprueba el número de pedido y"
+" el email."
+msgstr ""
+"We couldn't find an order with those details. Please check the order number "
+"and the email address."
 
 #: templates/partials/footer.html:36
 msgid "No es un producto farmacéutico."
@@ -1233,28 +1703,41 @@ msgid "No lo diluyas ni lo mezcles con otras soluciones."
 msgstr "Do not dilute it or mix it with other solutions."
 
 #: templates/pages/privacy.html:62
-msgid "No realizamos transferencias de datos personales fuera del Espacio Económico Europeo (EEE)."
-msgstr "We do not transfer personal data outside the European Economic Area (EEA)."
+msgid ""
+"No realizamos transferencias de datos personales fuera del Espacio Económico"
+" Europeo (EEE)."
+msgstr ""
+"We do not transfer personal data outside the European Economic Area (EEA)."
 
 #: templates/pages/returns.html:20
 msgid "No se aceptan devoluciones"
 msgstr "We do not accept returns"
 
 #: templates/pages/privacy.html:57
-msgid "No vendemos ni cedemos tus datos a terceros con fines comerciales. Los proveedores de servicios que acceden a tus datos están obligados contractualmente a tratarlos conforme al RGPD."
-msgstr "We do not sell or transfer your data to third parties for commercial purposes. Service providers who access your data are contractually bound to process it in accordance with the GDPR."
+msgid ""
+"No vendemos ni cedemos tus datos a terceros con fines comerciales. Los "
+"proveedores de servicios que acceden a tus datos están obligados "
+"contractualmente a tratarlos conforme al RGPD."
+msgstr ""
+"We do not sell or transfer your data to third parties for commercial "
+"purposes. Service providers who access your data are contractually bound to "
+"process it in accordance with the GDPR."
 
 #: orders/forms.py:18 orders/models.py:33 templates/pages/contact.html:52
 msgid "Nombre"
 msgstr "First name"
 
-#: store/models.py:276 templates/pages/privacy.html:20
+#: store/models.py:288 templates/pages/privacy.html:20
 msgid "Nombre y apellidos"
 msgstr "Full name"
 
 #: templates/pages/bulk.html:102
-msgid "Nos escribes qué productos y cuántas unidades necesitas, con el formulario de abajo."
-msgstr "You tell us which products and how many units you need, using the form below."
+msgid ""
+"Nos escribes qué productos y cuántas unidades necesitas, con el formulario "
+"de abajo."
+msgstr ""
+"You tell us which products and how many units you need, using the form "
+"below."
 
 #: orders/forms.py:26
 msgid "Notas del pedido (opcional)"
@@ -1292,20 +1775,28 @@ msgstr "Bundle · %(price)s€/unit"
 msgid "Pack × %(qty)s"
 msgstr "Bundle × %(qty)s"
 
-#: templates/partials/footer.html:22 templates/partials/header.html:23 templates/store/bundle_detail.html:14 templates/store/bundles.html:10 templates/store/index.html:110
+#: templates/partials/footer.html:22 templates/partials/header.html:23
+#: templates/store/bundle_detail.html:14 templates/store/bundles.html:10
+#: templates/store/index.html:110
 msgid "Packs"
 msgstr "Bundles"
 
-#: store/views.py:174 templates/store/bundles.html:13
+#: store/views.py:199 templates/store/bundles.html:13
 msgid "Packs de investigación"
 msgstr "Research Bundles"
 
-#: store/views.py:175
-msgid "Packs de péptidos de investigación EuroPeptiva: cada compuesto en su propio vial, a precio cerrado y con el ahorro frente a comprarlos por separado."
-msgstr "EuroPeptiva research peptide bundles: each compound in its own vial, at a fixed price, with the saving against buying them separately."
+#: store/views.py:200
+msgid ""
+"Packs de péptidos de investigación EuroPeptiva: cada compuesto en su propio "
+"vial, a precio cerrado y con el ahorro frente a comprarlos por separado."
+msgstr ""
+"EuroPeptiva research peptide bundles: each compound in its own vial, at a "
+"fixed price, with the saving against buying them separately."
 
 #: orders/views.py:252
-msgid "Pago con tarjeta no disponible en este momento. Por favor elige transferencia bancaria."
+msgid ""
+"Pago con tarjeta no disponible en este momento. Por favor elige "
+"transferencia bancaria."
 msgstr "Card payment is unavailable right now. Please choose bank transfer."
 
 #: templates/orders/confirmation.html:55
@@ -1321,12 +1812,24 @@ msgid "Paquete añadido al carrito."
 msgstr "Bundle added to your cart."
 
 #: templates/pages/privacy.html:90
-msgid "Para más información sobre las cookies que usamos, consulta nuestra <a href=\"%(cookies_url)s\" class=\"text-accent hover:underline\">Política de cookies</a>."
-msgstr "For more information about the cookies we use, see our <a href=\"%(cookies_url)s\" class=\"text-accent hover:underline\">Cookie policy</a>."
+msgid ""
+"Para más información sobre las cookies que usamos, consulta nuestra <a "
+"href=\"%(cookies_url)s\" class=\"text-accent hover:underline\">Política de "
+"cookies</a>."
+msgstr ""
+"For more information about the cookies we use, see our <a "
+"href=\"%(cookies_url)s\" class=\"text-accent hover:underline\">Cookie "
+"policy</a>."
 
 #: templates/pages/returns.html:57
-msgid "Pasadas esas 48 horas no podemos atribuir el problema al transporte, así que es el único plazo que podemos garantizar. Conserva el embalaje hasta comprobar que todo está correcto."
-msgstr "After those 48 hours we can no longer attribute the problem to transport, so it is the only window we can guarantee. Keep the packaging until you have checked that everything is in order."
+msgid ""
+"Pasadas esas 48 horas no podemos atribuir el problema al transporte, así que"
+" es el único plazo que podemos garantizar. Conserva el embalaje hasta "
+"comprobar que todo está correcto."
+msgstr ""
+"After those 48 hours we can no longer attribute the problem to transport, so"
+" it is the only window we can guarantee. Keep the packaging until you have "
+"checked that everything is in order."
 
 #: orders/forms.py:25 orders/models.py:40
 msgid "País"
@@ -1357,12 +1860,22 @@ msgid "Pedido:"
 msgstr "Order:"
 
 #: templates/pages/about.html:42
-msgid "Pedidos antes de las %(hour)s:00 h (%(days)s) salen el mismo día. Envío refrigerado a España en 24-72h, Europa en 3-5 días, con embalaje térmico. <strong class=\"text-accent\">Gratis desde %(amount)s.</strong>"
-msgstr "Orders before %(hour)s:00 (%(days)s) ship the same day. Refrigerated delivery to Spain in 24-72h, Europe in 3-5 days, with thermal packaging. <strong class=\"text-accent\">Free from %(amount)s.</strong>"
+msgid ""
+"Pedidos antes de las %(hour)s:00 h (%(days)s) salen el mismo día. Envío "
+"refrigerado a España en 24-72h, Europa en 3-5 días, con embalaje térmico. "
+"<strong class=\"text-accent\">Gratis desde %(amount)s.</strong>"
+msgstr ""
+"Orders before %(hour)s:00 (%(days)s) ship the same day. Refrigerated "
+"delivery to Spain in 24-72h, Europe in 3-5 days, with thermal packaging. "
+"<strong class=\"text-accent\">Free from %(amount)s.</strong>"
 
 #: templates/partials/shipping_bar.html:8
-msgid "Pedidos antes de las <strong class=\"font-semibold\">%(hour)s:00 h</strong> salen el mismo día (%(days)s)"
-msgstr "Orders placed before <strong class=\"font-semibold\">%(hour)s:00</strong> ship the same day (%(days)s)"
+msgid ""
+"Pedidos antes de las <strong class=\"font-semibold\">%(hour)s:00 h</strong> "
+"salen el mismo día (%(days)s)"
+msgstr ""
+"Orders placed before <strong class=\"font-semibold\">%(hour)s:00</strong> "
+"ship the same day (%(days)s)"
 
 #: templates/pages/bulk.html:120
 msgid "Pedir presupuesto"
@@ -1413,8 +1926,12 @@ msgid "Política de privacidad"
 msgstr "Privacy policy"
 
 #: config/urls.py:40
-msgid "Política de privacidad de EuroPeptiva: cómo tratamos tus datos personales conforme al RGPD."
-msgstr "EuroPeptiva's privacy policy: how we process your personal data in accordance with the GDPR."
+msgid ""
+"Política de privacidad de EuroPeptiva: cómo tratamos tus datos personales "
+"conforme al RGPD."
+msgstr ""
+"EuroPeptiva's privacy policy: how we process your personal data in "
+"accordance with the GDPR."
 
 #: templates/pages/faq.html:55
 msgid "Por debajo de ese importe:"
@@ -1456,7 +1973,7 @@ msgstr "Product question"
 msgid "Preguntas frecuentes"
 msgstr "Frequently asked questions"
 
-#: store/models.py:271
+#: store/models.py:283
 msgid "Presupuesto enviado"
 msgstr "Quote sent"
 
@@ -1485,52 +2002,85 @@ msgid "Productos añadidos al carrito."
 msgstr "Products added to your cart."
 
 #: templates/partials/disclaimer_banner.html:4
-msgid "Productos destinados exclusivamente a investigación científica in vitro. No aptos para consumo humano o veterinario."
-msgstr "Products intended exclusively for in vitro scientific research. Not suitable for human or veterinary consumption."
+msgid ""
+"Productos destinados exclusivamente a investigación científica in vitro. No "
+"aptos para consumo humano o veterinario."
+msgstr ""
+"Products intended exclusively for in vitro scientific research. Not suitable"
+" for human or veterinary consumption."
 
 #: templates/store/index.html:343
-msgid "Productos etiquetados y comercializados solo para investigación científica."
+msgid ""
+"Productos etiquetados y comercializados solo para investigación científica."
 msgstr "Products labelled and sold for scientific research only."
 
-#: store/models.py:280
+#: store/models.py:292
 msgid "Productos y cantidades"
 msgstr "Products and quantities"
 
 #: templates/pages/about.html:10
-msgid "Proveedor especializado en péptidos de investigación científica.<br>Pureza certificada. Envío a España y Europa."
-msgstr "A specialist supplier of scientific research peptides.<br>Certified purity. Shipping to Spain and Europe."
+msgid ""
+"Proveedor especializado en péptidos de investigación científica.<br>Pureza "
+"certificada. Envío a España y Europa."
+msgstr ""
+"A specialist supplier of scientific research peptides.<br>Certified purity. "
+"Shipping to Spain and Europe."
 
 #: templates/pages/bulk.html:42
 msgid "Proyectos de investigación"
 msgstr "Research projects"
 
-#: templates/store/catalog.html:78
-msgid "Prueba con otro término o <a href=\"%(catalog_url)s\" class=\"text-accent-mid underline\">ver todos</a>."
-msgstr "Try another term or <a href=\"%(catalog_url)s\" class=\"text-accent-mid underline\">view all</a>."
+#: templates/store/catalog.html:102
+msgid ""
+"Prueba con otro término o <a href=\"%(catalog_url)s\" class=\"text-accent-"
+"mid underline\">ver todos</a>."
+msgstr ""
+"Try another term or <a href=\"%(catalog_url)s\" class=\"text-accent-mid "
+"underline\">view all</a>."
 
 #: templates/pages/cookies.html:39
-msgid "Puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que si desactivas las cookies técnicas, el carrito y el proceso de compra dejarán de funcionar correctamente."
-msgstr "You can configure your browser to block or delete cookies. Bear in mind that if you disable technical cookies, the cart and the checkout process will stop working properly."
+msgid ""
+"Puedes configurar tu navegador para bloquear o eliminar cookies. Ten en "
+"cuenta que si desactivas las cookies técnicas, el carrito y el proceso de "
+"compra dejarán de funcionar correctamente."
+msgstr ""
+"You can configure your browser to block or delete cookies. Bear in mind that"
+" if you disable technical cookies, the cart and the checkout process will "
+"stop working properly."
 
 #: templates/pages/privacy.html:75
 msgid "Puedes ejercer en cualquier momento los siguientes derechos:"
 msgstr "You may exercise the following rights at any time:"
 
 #: templates/pages/privacy.html:84
-msgid "Puedes ejercer estos derechos enviando un email a <strong>info@europeptiva.com</strong> con asunto \"Derechos RGPD\" e indicando tu nombre y número de pedido (si aplica)."
-msgstr "You can exercise these rights by emailing <strong>info@europeptiva.com</strong> with the subject \"GDPR Rights\", stating your name and order number (if applicable)."
+msgid ""
+"Puedes ejercer estos derechos enviando un email a "
+"<strong>info@europeptiva.com</strong> con asunto \"Derechos RGPD\" e "
+"indicando tu nombre y número de pedido (si aplica)."
+msgstr ""
+"You can exercise these rights by emailing "
+"<strong>info@europeptiva.com</strong> with the subject \"GDPR Rights\", "
+"stating your name and order number (if applicable)."
 
 #: templates/store/product_detail.html:75
 msgid "Pureza"
 msgstr "Purity"
 
 #: templates/pages/about.html:28
-msgid "Pureza &gt;99%% confirmada por HPLC. Certificado de análisis (CoA) disponible para cada lote."
-msgstr "Purity &gt;99%% confirmed by HPLC. Certificate of analysis (CoA) available for every lot."
+msgid ""
+"Pureza &gt;99%% confirmada por HPLC. Certificado de análisis (CoA) "
+"disponible para cada lote."
+msgstr ""
+"Purity &gt;99%% confirmed by HPLC. Certificate of analysis (CoA) available "
+"for every lot."
 
 #: templates/store/index.html:96
 msgid "Pureza verificada · %(purity)s"
 msgstr "Verified purity · %(purity)s"
+
+#: store/models.py:58
+msgid "Péptidos"
+msgstr "Peptides"
 
 #: store/views.py:51
 msgid "Péptidos de Investigación"
@@ -1545,16 +2095,27 @@ msgid "Péptidos de investigación científica"
 msgstr "Scientific research peptides"
 
 #: store/views.py:52
-msgid "Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Certificado de análisis por lote, stock en España y envío refrigerado."
-msgstr "High-purity research peptides (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 and more. Certificate of analysis per lot, stock in Spain and refrigerated shipping."
+msgid ""
+"Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, "
+"Semaglutide, BPC-157, TB-500 y más. Certificado de análisis por lote, stock "
+"en España y envío refrigerado."
+msgstr ""
+"High-purity research peptides (≥99% HPLC): Retatrutide, Semaglutide, "
+"BPC-157, TB-500 and more. Certificate of analysis per lot, stock in Spain "
+"and refrigerated shipping."
 
 #: templates/store/index.html:26
 msgid "Péptidos de investigación de alta pureza, para ciencia seria."
 msgstr "High-purity research peptides, for serious science."
 
-#: templates/store/bundle_detail.html:87 templates/store/product_detail.html:158
-msgid "Pídelo antes de las <strong class=\"font-semibold text-primary\">%(hour)s:00 h</strong> y sale hoy mismo (%(days)s)"
-msgstr "Order before <strong class=\"font-semibold text-primary\">%(hour)s:00</strong> and it ships today (%(days)s)"
+#: templates/store/bundle_detail.html:87
+#: templates/store/product_detail.html:158
+msgid ""
+"Pídelo antes de las <strong class=\"font-semibold text-primary\">%(hour)s:00"
+" h</strong> y sale hoy mismo (%(days)s)"
+msgstr ""
+"Order before <strong class=\"font-semibold text-"
+"primary\">%(hour)s:00</strong> and it ships today (%(days)s)"
 
 #: templates/pages/legal.html:24
 msgid "Que cumplirá con toda la normativa aplicable en su jurisdicción"
@@ -1577,8 +2138,14 @@ msgid "Reconstitución y manipulación"
 msgstr "Reconstitution and handling"
 
 #: templates/pages/returns.html:113
-msgid "Recuerda que todos los productos se venden <strong>exclusivamente para investigación científica in vitro</strong>. No son aptos para consumo humano ni veterinario, y su uso indebido no da derecho a devolución ni reembolso."
-msgstr "Remember that all products are sold <strong>exclusively for in vitro scientific research</strong>. They are not suitable for human or veterinary consumption, and improper use gives no right to a return or refund."
+msgid ""
+"Recuerda que todos los productos se venden <strong>exclusivamente para "
+"investigación científica in vitro</strong>. No son aptos para consumo humano"
+" ni veterinario, y su uso indebido no da derecho a devolución ni reembolso."
+msgstr ""
+"Remember that all products are sold <strong>exclusively for in vitro "
+"scientific research</strong>. They are not suitable for human or veterinary "
+"consumption, and improper use gives no right to a return or refund."
 
 #: orders/models.py:16
 msgid "Reembolsado"
@@ -1589,12 +2156,22 @@ msgid "Refrigerado entre 2 y 8 °C y protegido de la luz."
 msgstr "Refrigerated between 2 and 8 °C and protected from light."
 
 #: config/urls.py:36
-msgid "Resolvemos tus dudas sobre pureza, envío, almacenamiento y reconstitución de péptidos de investigación EuroPeptiva."
-msgstr "Answers to your questions about the purity, shipping, storage and reconstitution of EuroPeptiva research peptides."
+msgid ""
+"Resolvemos tus dudas sobre pureza, envío, almacenamiento y reconstitución de"
+" péptidos de investigación EuroPeptiva."
+msgstr ""
+"Answers to your questions about the purity, shipping, storage and "
+"reconstitution of EuroPeptiva research peptides."
 
 #: templates/pages/returns.html:77
-msgid "Resultados experimentales que no cumplen tus expectativas. Los productos se venden con su certificado de análisis, sin garantía de rendimiento en ninguna aplicación concreta."
-msgstr "Experimental results that fall short of your expectations. Products are sold with their certificate of analysis, with no guarantee of performance in any specific application."
+msgid ""
+"Resultados experimentales que no cumplen tus expectativas. Los productos se "
+"venden con su certificado de análisis, sin garantía de rendimiento en "
+"ninguna aplicación concreta."
+msgstr ""
+"Experimental results that fall short of your expectations. Products are sold"
+" with their certificate of analysis, with no guarantee of performance in any"
+" specific application."
 
 #: templates/orders/cart.html:61
 msgid "Resumen"
@@ -1613,8 +2190,20 @@ msgid "Se investigan a menudo junto a este"
 msgstr "Often researched alongside this one"
 
 #: templates/pages/faq.html:93
-msgid "Se recomienda usar <strong>BAC Water estéril</strong> (agua bacteriostática al 0.9%%). Añade el volumen de agua deseado al vial de péptido liofilizado usando una jeringa estéril, sin agitar — deja que se disuelva suavemente inclinando el vial. La concentración final dependerá del volumen añadido y la dosis mg del vial. Guarda el péptido reconstituido a 2-8°C y úsalo en un máximo de 4 semanas."
-msgstr "We recommend using <strong>sterile BAC Water</strong> (0.9%% bacteriostatic water). Add the desired volume of water to the lyophilised peptide vial with a sterile syringe, without shaking — let it dissolve gently by tilting the vial. The final concentration will depend on the volume added and the mg dose in the vial. Store the reconstituted peptide at 2-8°C and use it within a maximum of 4 weeks."
+msgid ""
+"Se recomienda usar <strong>BAC Water estéril</strong> (agua bacteriostática "
+"al 0.9%%). Añade el volumen de agua deseado al vial de péptido liofilizado "
+"usando una jeringa estéril, sin agitar — deja que se disuelva suavemente "
+"inclinando el vial. La concentración final dependerá del volumen añadido y "
+"la dosis mg del vial. Guarda el péptido reconstituido a 2-8°C y úsalo en un "
+"máximo de 4 semanas."
+msgstr ""
+"We recommend using <strong>sterile BAC Water</strong> (0.9%% bacteriostatic "
+"water). Add the desired volume of water to the lyophilised peptide vial with"
+" a sterile syringe, without shaking — let it dissolve gently by tilting the "
+"vial. The final concentration will depend on the volume added and the mg "
+"dose in the vial. Store the reconstituted peptide at 2-8°C and use it within"
+" a maximum of 4 weeks."
 
 #: orders/views.py:239 templates/orders/tracking.html:6
 msgid "Seguimiento de pedido"
@@ -1649,30 +2238,49 @@ msgid "Sesión de usuario y carrito de compra"
 msgstr "User session and shopping cart"
 
 #: templates/pages/privacy.html:85
-msgid "Si consideras que no hemos atendido correctamente tu solicitud, puedes presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (aepd.es)."
-msgstr "If you believe we have not handled your request properly, you can lodge a complaint with the <strong>Spanish Data Protection Agency</strong> (aepd.es)."
+msgid ""
+"Si consideras que no hemos atendido correctamente tu solicitud, puedes "
+"presentar una reclamación ante la <strong>Agencia Española de Protección de "
+"Datos</strong> (aepd.es)."
+msgstr ""
+"If you believe we have not handled your request properly, you can lodge a "
+"complaint with the <strong>Spanish Data Protection Agency</strong> "
+"(aepd.es)."
 
 #: templates/pages/returns.html:32
-msgid "Si el pedido llega roto, con el embalaje térmico comprometido, con un producto distinto al que pediste o con un defecto verificable, lo resolvemos nosotros. Sin coste para ti."
-msgstr "If your order arrives broken, with the thermal packaging compromised, containing a different product from the one you ordered, or with a verifiable defect, we will put it right. At no cost to you."
+msgid ""
+"Si el pedido llega roto, con el embalaje térmico comprometido, con un "
+"producto distinto al que pediste o con un defecto verificable, lo resolvemos"
+" nosotros. Sin coste para ti."
+msgstr ""
+"If your order arrives broken, with the thermal packaging compromised, "
+"containing a different product from the one you ordered, or with a "
+"verifiable defect, we will put it right. At no cost to you."
 
 #: templates/pages/bulk.html:71
-msgid "Siempre que el stock lo permita, para que tus resultados sean comparables entre sí."
-msgstr "Stock permitting, so that your results are comparable with each other."
+msgid ""
+"Siempre que el stock lo permita, para que tus resultados sean comparables "
+"entre sí."
+msgstr ""
+"Stock permitting, so that your results are comparable with each other."
 
-#: templates/store/catalog.html:70
+#: templates/store/catalog.html:94
 msgid "Siguiente →"
 msgstr "Next →"
 
-#: store/models.py:270
+#: store/models.py:282
 msgid "Sin atender"
 msgstr "Not yet handled"
 
 #: store/product_content.py:36
-msgid "Sin reconstituir: refrigerado entre 2 y 8 °C, protegido de la luz y de la humedad."
-msgstr "Before reconstitution: refrigerated between 2 and 8 °C, protected from light and moisture."
+msgid ""
+"Sin reconstituir: refrigerado entre 2 y 8 °C, protegido de la luz y de la "
+"humedad."
+msgstr ""
+"Before reconstitution: refrigerated between 2 and 8 °C, protected from light"
+" and moisture."
 
-#: templates/store/catalog.html:77
+#: templates/store/catalog.html:101
 msgid "Sin resultados"
 msgstr "No results"
 
@@ -1688,61 +2296,100 @@ msgstr "About EuroPeptiva"
 msgid "Sobre estos certificados"
 msgstr "About these certificates"
 
-#: config/urls.py:31 templates/partials/footer.html:25 templates/partials/header.html:27
+#: config/urls.py:31 templates/partials/footer.html:25
+#: templates/partials/header.html:27
 msgid "Sobre nosotros"
 msgstr "About us"
 
-#: store/models.py:285
+#: store/models.py:297
 msgid "Solicitud al por mayor"
 msgstr "Bulk request"
 
-#: store/models.py:286
+#: store/models.py:298
 msgid "Solicitudes al por mayor"
 msgstr "Bulk requests"
 
 #: templates/pages/contact.html:36
-msgid "Solo atendemos consultas sobre pedidos e investigación científica. No respondemos preguntas sobre uso en humanos."
-msgstr "We only handle enquiries about orders and scientific research. We do not answer questions about use in humans."
+msgid ""
+"Solo atendemos consultas sobre pedidos e investigación científica. No "
+"respondemos preguntas sobre uso en humanos."
+msgstr ""
+"We only handle enquiries about orders and scientific research. We do not "
+"answer questions about use in humans."
 
 #: templates/partials/footer.html:36
 msgid "Solo para uso en investigación científica."
 msgstr "For scientific research use only."
+
+#: store/models.py:59
+msgid "Sprays nasales"
+msgstr "Nasal sprays"
 
 #: templates/pages/about.html:34 templates/store/index.html:328
 msgid "Stock en España"
 msgstr "Stock in Spain"
 
 #: templates/store/product_detail.html:147
-msgid "Stock limitado, reposición por lotes — envío en 24-72h mientras haya unidades disponibles."
-msgstr "Limited stock, restocked by lot — ships in 24-72h while units are available."
+msgid ""
+"Stock limitado, reposición por lotes — envío en 24-72h mientras haya "
+"unidades disponibles."
+msgstr ""
+"Limited stock, restocked by lot — ships in 24-72h while units are available."
 
 #: templates/orders/cart.html:64 templates/orders/checkout.html:109
 msgid "Subtotal"
 msgstr "Subtotal"
 
 #: templates/pages/bulk.html:11
-msgid "Suministramos volúmenes grandes a laboratorios, centros de I+D y distribuidores. Precio por tramos, mismo lote para toda la serie y presupuesto cerrado en 24-48 h."
-msgstr "We supply large volumes to laboratories, R&D centres and distributors. Tiered pricing, a single lot for the whole series and a firm quote within 24-48 h."
+msgid ""
+"Suministramos volúmenes grandes a laboratorios, centros de I+D y "
+"distribuidores. Precio por tramos, mismo lote para toda la serie y "
+"presupuesto cerrado en 24-48 h."
+msgstr ""
+"We supply large volumes to laboratories, R&D centres and distributors. "
+"Tiered pricing, a single lot for the whole series and a firm quote within "
+"24-48 h."
+
+#: store/models.py:60
+msgid "Suministros de investigación"
+msgstr "Research supplies"
 
 #: templates/pages/faq.html:85
-msgid "Sí, enviamos a todos los países de la Unión Europea. El comprador es responsable de verificar la legalidad de la importación y uso de péptidos de investigación en su país. No realizamos envíos fuera de la UE."
-msgstr "Yes, we ship to every country in the European Union. The buyer is responsible for verifying the legality of importing and using research peptides in their country. We do not ship outside the EU."
+msgid ""
+"Sí, enviamos a todos los países de la Unión Europea. El comprador es "
+"responsable de verificar la legalidad de la importación y uso de péptidos de"
+" investigación en su país. No realizamos envíos fuera de la UE."
+msgstr ""
+"Yes, we ship to every country in the European Union. The buyer is "
+"responsible for verifying the legality of importing and using research "
+"peptides in their country. We do not ship outside the EU."
 
 #: orders/models.py:21
 msgid "Tarjeta (Mollie)"
 msgstr "Card (Mollie)"
 
 #: templates/pages/bulk.html:110
-msgid "Te enviamos un presupuesto cerrado, con plazo de entrega, en 24-48 h laborables."
-msgstr "We send you a firm quote, with a delivery time, within 24-48 working hours."
+msgid ""
+"Te enviamos un presupuesto cerrado, con plazo de entrega, en 24-48 h "
+"laborables."
+msgstr ""
+"We send you a firm quote, with a delivery time, within 24-48 working hours."
 
 #: templates/orders/cart.html:79
-msgid "Te faltan <strong class=\"font-semibold\">%(amount)s</strong> para el envío gratis"
-msgstr "You're <strong class=\"font-semibold\">%(amount)s</strong> away from free shipping"
+msgid ""
+"Te faltan <strong class=\"font-semibold\">%(amount)s</strong> para el envío "
+"gratis"
+msgstr ""
+"You're <strong class=\"font-semibold\">%(amount)s</strong> away from free "
+"shipping"
 
 #: templates/pages/bulk.html:126
-msgid "Te respondemos con el presupuesto en 24-48 h laborables al email que nos has dejado. Revisa también la carpeta de spam."
-msgstr "We'll send the quote to the email you gave us within 24-48 working hours. Do check your spam folder too."
+msgid ""
+"Te respondemos con el presupuesto en 24-48 h laborables al email que nos has"
+" dejado. Revisa también la carpeta de spam."
+msgstr ""
+"We'll send the quote to the email you gave us within 24-48 working hours. Do"
+" check your spam folder too."
 
 #: templates/pages/contact.html:46
 msgid "Te responderemos en menos de 24h."
@@ -1756,53 +2403,113 @@ msgstr "Phone"
 msgid "Teléfono (opcional)"
 msgstr "Phone (optional)"
 
-#: store/models.py:279
+#: store/models.py:291
 msgid "Teléfono / WhatsApp"
 msgstr "Phone / WhatsApp"
+
+#: templates/store/catalog.html:21
+msgid "Tipo de producto"
+msgstr "Product type"
 
 #: templates/orders/confirmation.html:33
 msgid "Titular"
 msgstr "Account holder"
+
+#: templates/store/catalog.html:45
+msgid "Todas"
+msgstr "All"
 
 #: templates/pages/faq.html:6
 msgid "Todo lo que necesitas saber antes de hacer tu pedido."
 msgstr "Everything you need to know before placing your order."
 
 #: templates/pages/bulk.html:85
-msgid "Todo pedido al por mayor supera los %(v1)s, así que el transporte refrigerado va sin coste."
-msgstr "Every bulk order exceeds %(v1)s, so refrigerated transport is free of charge."
+msgid ""
+"Todo pedido al por mayor supera los %(v1)s, así que el transporte "
+"refrigerado va sin coste."
+msgstr ""
+"Every bulk order exceeds %(v1)s, so refrigerated transport is free of "
+"charge."
 
-#: templates/store/catalog.html:22
+#: templates/store/catalog.html:25
 msgid "Todos"
 msgstr "All"
 
 #: templates/pages/legal.html:47
-msgid "Todos los contenidos de este sitio (textos, imágenes, diseño gráfico, logotipos, código fuente) son propiedad de EuroPeptiva o de sus licenciantes y están protegidos por la legislación de propiedad intelectual española y comunitaria. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa."
-msgstr "All content on this site (text, images, graphic design, logos, source code) is the property of EuroPeptiva or its licensors and is protected by Spanish and EU intellectual property law. Its reproduction, distribution or public communication without express authorisation is prohibited."
+msgid ""
+"Todos los contenidos de este sitio (textos, imágenes, diseño gráfico, "
+"logotipos, código fuente) son propiedad de EuroPeptiva o de sus licenciantes"
+" y están protegidos por la legislación de propiedad intelectual española y "
+"comunitaria. Queda prohibida su reproducción, distribución o comunicación "
+"pública sin autorización expresa."
+msgstr ""
+"All content on this site (text, images, graphic design, logos, source code) "
+"is the property of EuroPeptiva or its licensors and is protected by Spanish "
+"and EU intellectual property law. Its reproduction, distribution or public "
+"communication without express authorisation is prohibited."
 
 #: templates/pages/about.html:97
-msgid "Todos los productos de EuroPeptiva están destinados <strong>exclusivamente para uso en investigación científica</strong>. No están aprobados para consumo humano, uso veterinario ni diagnóstico médico. Al realizar una compra, el cliente confirma que usará los productos con fines de investigación y que cumplirá con la normativa vigente en su jurisdicción."
-msgstr "All EuroPeptiva products are intended <strong>for scientific research use only</strong>. They are not approved for human consumption, veterinary use or medical diagnosis. By making a purchase, the customer confirms that they will use the products for research purposes and will comply with the regulations in force in their jurisdiction."
+msgid ""
+"Todos los productos de EuroPeptiva están destinados <strong>exclusivamente "
+"para uso en investigación científica</strong>. No están aprobados para "
+"consumo humano, uso veterinario ni diagnóstico médico. Al realizar una "
+"compra, el cliente confirma que usará los productos con fines de "
+"investigación y que cumplirá con la normativa vigente en su jurisdicción."
+msgstr ""
+"All EuroPeptiva products are intended <strong>for scientific research use "
+"only</strong>. They are not approved for human consumption, veterinary use "
+"or medical diagnosis. By making a purchase, the customer confirms that they "
+"will use the products for research purposes and will comply with the "
+"regulations in force in their jurisdiction."
 
 #: templates/pages/faq.html:15
-msgid "Todos los productos de EuroPeptiva son péptidos sintéticos destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. No están aprobados para uso en humanos, veterinario ni diagnóstico médico. Son utilizados por investigadores, laboratorios universitarios y centros de I+D."
-msgstr "All EuroPeptiva products are synthetic peptides intended <strong>exclusively for scientific laboratory research</strong>. They are not approved for human use, veterinary use or medical diagnosis. They are used by researchers, university laboratories and R&D centres."
+msgid ""
+"Todos los productos de EuroPeptiva son péptidos sintéticos destinados "
+"<strong>exclusivamente a investigación científica en laboratorio</strong>. "
+"No están aprobados para uso en humanos, veterinario ni diagnóstico médico. "
+"Son utilizados por investigadores, laboratorios universitarios y centros de "
+"I+D."
+msgstr ""
+"All EuroPeptiva products are synthetic peptides intended <strong>exclusively"
+" for scientific laboratory research</strong>. They are not approved for "
+"human use, veterinary use or medical diagnosis. They are used by "
+"researchers, university laboratories and R&D centres."
 
 #: templates/pages/faq.html:23
-msgid "Todos nuestros péptidos tienen una pureza <strong>&gt;99%%</strong>, verificada por cromatografía líquida de alta eficiencia (HPLC). El certificado de análisis (CoA) está disponible bajo petición para cada lote. Para solicitarlo, escríbenos a info@europeptiva.com indicando el producto y el número de pedido."
-msgstr "All our peptides have a purity of <strong>&gt;99%%</strong>, verified by high-performance liquid chromatography (HPLC). The certificate of analysis (CoA) is available on request for every lot. To request one, write to info@europeptiva.com stating the product and the order number."
+msgid ""
+"Todos nuestros péptidos tienen una pureza <strong>&gt;99%%</strong>, "
+"verificada por cromatografía líquida de alta eficiencia (HPLC). El "
+"certificado de análisis (CoA) está disponible bajo petición para cada lote. "
+"Para solicitarlo, escríbenos a info@europeptiva.com indicando el producto y "
+"el número de pedido."
+msgstr ""
+"All our peptides have a purity of <strong>&gt;99%%</strong>, verified by "
+"high-performance liquid chromatography (HPLC). The certificate of analysis "
+"(CoA) is available on request for every lot. To request one, write to "
+"info@europeptiva.com stating the product and the order number."
 
-#: templates/orders/cart.html:93 templates/orders/checkout.html:129 templates/orders/tracking.html:100 templates/orders/tracking.html:43
+#: templates/orders/cart.html:93 templates/orders/checkout.html:129
+#: templates/orders/tracking.html:100 templates/orders/tracking.html:43
 msgid "Total"
 msgstr "Total"
 
 #: store/product_content.py:17
-msgid "Trabaja sobre superficie limpia y desinfecta el tapón del vial con una toallita de alcohol antes de perforarlo."
-msgstr "Work on a clean surface and disinfect the vial stopper with an alcohol wipe before piercing it."
+msgid ""
+"Trabaja sobre superficie limpia y desinfecta el tapón del vial con una "
+"toallita de alcohol antes de perforarlo."
+msgstr ""
+"Work on a clean surface and disinfect the vial stopper with an alcohol wipe "
+"before piercing it."
 
 #: templates/pages/returns.html:11
-msgid "Trabajamos con compuestos biológicamente activos que viajan en cadena de frío. Por eso las condiciones de devolución son estrictas: revisa bien tu pedido antes de confirmarlo."
-msgstr "We work with biologically active compounds that travel cold-chain. That is why our return terms are strict: please review your order carefully before confirming it."
+msgid ""
+"Trabajamos con compuestos biológicamente activos que viajan en cadena de "
+"frío. Por eso las condiciones de devolución son estrictas: revisa bien tu "
+"pedido antes de confirmarlo."
+msgstr ""
+"We work with biologically active compounds that travel cold-chain. That is "
+"why our return terms are strict: please review your order carefully before "
+"confirming it."
 
 #: templates/pages/bulk.html:48
 msgid "Tramos de precio"
@@ -1817,8 +2524,13 @@ msgid "Transparencia"
 msgstr "Transparency"
 
 #: templates/pages/bulk.html:148
-msgid "Tratamos tus datos solo para responder a esta solicitud. Más información en la <a href=\"%(privacy_url)s\" class=\"underline\">política de privacidad</a>."
-msgstr "We process your data solely to respond to this request. More information in our <a href=\"%(privacy_url)s\" class=\"underline\">privacy policy</a>."
+msgid ""
+"Tratamos tus datos solo para responder a esta solicitud. Más información en "
+"la <a href=\"%(privacy_url)s\" class=\"underline\">política de "
+"privacidad</a>."
+msgstr ""
+"We process your data solely to respond to this request. More information in "
+"our <a href=\"%(privacy_url)s\" class=\"underline\">privacy policy</a>."
 
 #: orders/views.py:71 templates/orders/cart.html:8
 msgid "Tu carrito"
@@ -1828,33 +2540,57 @@ msgstr "Your cart"
 msgid "Tu número de pedido (PEP-XXXXXXXX)."
 msgstr "Your order number (PEP-XXXXXXXX)."
 
-#: templates/orders/confirmation.html:12 templates/orders/confirmation.html:24 templates/orders/confirmation.html:68
+#: templates/orders/confirmation.html:12 templates/orders/confirmation.html:24
+#: templates/orders/confirmation.html:68
 msgid "Tu número de pedido es:"
 msgstr "Your order number is:"
 
 #: templates/emails/order_confirmation.html:86
-msgid "Tu pago con tarjeta ha sido registrado y será procesado en breve. Recibirás una confirmación adicional cuando el pago sea verificado."
-msgstr "Your card payment has been registered and will be processed shortly. You'll receive a further confirmation once the payment is verified."
+msgid ""
+"Tu pago con tarjeta ha sido registrado y será procesado en breve. Recibirás "
+"una confirmación adicional cuando el pago sea verificado."
+msgstr ""
+"Your card payment has been registered and will be processed shortly. You'll "
+"receive a further confirmation once the payment is verified."
 
 #: templates/orders/confirmation.html:58
-msgid "Tu pago está siendo procesado. Si el pago fue completado, recibirás la confirmación por email en unos minutos."
-msgstr "Your payment is being processed. If it went through, you'll receive confirmation by email within a few minutes."
+msgid ""
+"Tu pago está siendo procesado. Si el pago fue completado, recibirás la "
+"confirmación por email en unos minutos."
+msgstr ""
+"Your payment is being processed. If it went through, you'll receive "
+"confirmation by email within a few minutes."
 
 #: templates/orders/confirmation.html:16
-msgid "Tu pago ha sido procesado correctamente. Tu pedido entrará en preparación en breve."
-msgstr "Your payment went through successfully. Your order will be prepared shortly."
+msgid ""
+"Tu pago ha sido procesado correctamente. Tu pedido entrará en preparación en"
+" breve."
+msgstr ""
+"Your payment went through successfully. Your order will be prepared shortly."
 
 #: templates/orders/checkout.html:93
 msgid "Tu pedido"
 msgstr "Your order"
 
 #: templates/orders/confirmation.html:49
-msgid "Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1-2 días hábiles). Incluye el número de pedido en el concepto."
-msgstr "Your order will be processed as soon as we receive confirmation of the transfer (1-2 working days). Please include the order number as the reference."
+msgid ""
+"Tu pedido se procesará en cuanto recibamos la confirmación de la "
+"transferencia (1-2 días hábiles). Incluye el número de pedido en el "
+"concepto."
+msgstr ""
+"Your order will be processed as soon as we receive confirmation of the "
+"transfer (1-2 working days). Please include the order number as the "
+"reference."
 
 #: templates/emails/order_confirmation.html:84
-msgid "Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1–2 días hábiles). <strong>No olvides incluir el número de pedido en el concepto.</strong>"
-msgstr "Your order will be processed as soon as we receive confirmation of the transfer (1–2 working days). <strong>Don't forget to include the order number as the reference.</strong>"
+msgid ""
+"Tu pedido se procesará en cuanto recibamos la confirmación de la "
+"transferencia (1–2 días hábiles). <strong>No olvides incluir el número de "
+"pedido en el concepto.</strong>"
+msgstr ""
+"Your order will be processed as soon as we receive confirmation of the "
+"transfer (1–2 working days). <strong>Don't forget to include the order "
+"number as the reference.</strong>"
 
 #: templates/store/bundle_detail.html:122
 msgid "Un pack no es un blend"
@@ -1865,16 +2601,25 @@ msgid "Una descripción breve de qué ha pasado."
 msgstr "A short description of what happened."
 
 #: templates/pages/returns.html:22
-msgid "Una vez enviado el pedido, no admitimos devoluciones ni cambios, y no reembolsamos pedidos por cambio de opinión o porque el producto ya no se necesite."
-msgstr "Once an order has shipped we do not accept returns or exchanges, and we do not issue refunds for a change of mind or because the product is no longer needed."
+msgid ""
+"Una vez enviado el pedido, no admitimos devoluciones ni cambios, y no "
+"reembolsamos pedidos por cambio de opinión o porque el producto ya no se "
+"necesite."
+msgstr ""
+"Once an order has shipped we do not accept returns or exchanges, and we do "
+"not issue refunds for a change of mind or because the product is no longer "
+"needed."
 
 #: store/product_content.py:46
 msgid "Una vez perforado el vial, utilízalo dentro de los 28 días siguientes."
 msgstr "Once the vial has been pierced, use it within the following 28 days."
 
 #: templates/partials/cookie_banner.html:3
-msgid "Usamos cookies técnicas necesarias para el funcionamiento de la tienda (sesión y carrito)."
-msgstr "We use technical cookies necessary for the shop to work (session and cart)."
+msgid ""
+"Usamos cookies técnicas necesarias para el funcionamiento de la tienda "
+"(sesión y carrito)."
+msgstr ""
+"We use technical cookies necessary for the shop to work (session and cart)."
 
 #: templates/store/index.html:342
 msgid "Uso exclusivo I+D"
@@ -1884,7 +2629,8 @@ msgstr "R&D use only"
 msgid "Ver PDF ↗"
 msgstr "View PDF ↗"
 
-#: templates/orders/cart.html:115 templates/store/index.html:219 templates/store/index.html:35
+#: templates/orders/cart.html:115 templates/store/index.html:219
+#: templates/store/index.html:35
 msgid "Ver catálogo"
 msgstr "View catalog"
 
@@ -1913,8 +2659,12 @@ msgid "Ver todos los packs →"
 msgstr "View all bundles →"
 
 #: templates/pages/returns.html:69
-msgid "Viales abiertos, reconstituidos o manipulados, salvo que el defecto fuera evidente antes de abrirlos."
-msgstr "Vials that have been opened, reconstituted or handled, unless the defect was evident before opening."
+msgid ""
+"Viales abiertos, reconstituidos o manipulados, salvo que el defecto fuera "
+"evidente antes de abrirlos."
+msgstr ""
+"Vials that have been opened, reconstituted or handled, unless the defect was"
+" evident before opening."
 
 #: templates/pages/bulk.html:8
 msgid "Volumen"
@@ -1925,8 +2675,12 @@ msgid "Volver a intentar el pago"
 msgstr "Try the payment again"
 
 #: store/product_content.py:37
-msgid "Ya reconstituido: en nevera y a resguardo de la luz. En solución el péptido aguanta mucho menos que en polvo, así que conviene usarlo pronto."
-msgstr "After reconstitution: in the fridge and away from light. In solution the peptide lasts far less than as a powder, so it is best used soon."
+msgid ""
+"Ya reconstituido: en nevera y a resguardo de la luz. En solución el péptido "
+"aguanta mucho menos que en polvo, así que conviene usarlo pronto."
+msgstr ""
+"After reconstitution: in the fridge and away from light. In solution the "
+"peptide lasts far less than as a powder, so it is best used soon."
 
 #: store/urls.py:13
 msgid "al-por-mayor/"
@@ -2081,30 +2835,50 @@ msgid "¿Qué métodos de pago aceptáis?"
 msgstr "Which payment methods do you accept?"
 
 #: templates/pages/contact.html:6
-msgid "¿Tienes alguna pregunta sobre nuestros productos o tu pedido? Escríbenos y te respondemos en menos de 24 horas."
-msgstr "Have a question about our products or your order? Write to us and we'll reply within 24 hours."
+msgid ""
+"¿Tienes alguna pregunta sobre nuestros productos o tu pedido? Escríbenos y "
+"te respondemos en menos de 24 horas."
+msgstr ""
+"Have a question about our products or your order? Write to us and we'll "
+"reply within 24 hours."
 
 #: templates/orders/tracking.html:122
-msgid "¿Tienes algún problema? <a href=\"%(contact_url)s\" class=\"text-accent hover:underline\">Contacta con nosotros</a>"
-msgstr "Having a problem? <a href=\"%(contact_url)s\" class=\"text-accent hover:underline\">Get in touch</a>"
+msgid ""
+"¿Tienes algún problema? <a href=\"%(contact_url)s\" class=\"text-accent "
+"hover:underline\">Contacta con nosotros</a>"
+msgstr ""
+"Having a problem? <a href=\"%(contact_url)s\" class=\"text-accent "
+"hover:underline\">Get in touch</a>"
 
-#: store/views.py:241
-msgid "¿Tienes dudas sobre nuestros péptidos de investigación o certificados de análisis? Contacta con el equipo de EuroPeptiva."
-msgstr "Questions about our research peptides or certificates of analysis? Get in touch with the EuroPeptiva team."
+#: store/views.py:266
+msgid ""
+"¿Tienes dudas sobre nuestros péptidos de investigación o certificados de "
+"análisis? Contacta con el equipo de EuroPeptiva."
+msgstr ""
+"Questions about our research peptides or certificates of analysis? Get in "
+"touch with the EuroPeptiva team."
 
 #: templates/pages/faq.html:99
 msgid "¿Tienes más preguntas?"
 msgstr "Still have questions?"
 
 #: templates/emails/order_confirmation.html:99
-msgid "¿Tienes preguntas? Escríbenos a <a href=\"mailto:info@europeptiva.com\">info@europeptiva.com</a>"
-msgstr "Questions? Write to us at <a href=\"mailto:info@europeptiva.com\">info@europeptiva.com</a>"
+msgid ""
+"¿Tienes preguntas? Escríbenos a <a "
+"href=\"mailto:info@europeptiva.com\">info@europeptiva.com</a>"
+msgstr ""
+"Questions? Write to us at <a "
+"href=\"mailto:info@europeptiva.com\">info@europeptiva.com</a>"
 
 #: templates/pages/returns.html:87
 msgid "¿Y si el pedido todavía no ha salido?"
 msgstr "What if the order has not shipped yet?"
 
-#: templates/store/catalog.html:65
+#: templates/store/catalog.html:41
+msgid "Área de investigación"
+msgstr "Research area"
+
+#: templates/store/catalog.html:89
 msgid "← Anterior"
 msgstr "← Previous"
 
@@ -2113,8 +2887,12 @@ msgid "≥99%% pureza HPLC"
 msgstr "≥99%% HPLC purity"
 
 #: templates/orders/cart.html:88
-msgid "✓ <strong class=\"font-semibold\">Envío gratis</strong> aplicado a este pedido"
-msgstr "✓ <strong class=\"font-semibold\">Free shipping</strong> applied to this order"
+msgid ""
+"✓ <strong class=\"font-semibold\">Envío gratis</strong> aplicado a este "
+"pedido"
+msgstr ""
+"✓ <strong class=\"font-semibold\">Free shipping</strong> applied to this "
+"order"
 
 #: templates/pages/bulk.html:125
 msgid "✓ Solicitud recibida"

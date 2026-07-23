@@ -57,8 +57,16 @@ def catalog(request):
     from django.core.paginator import Paginator
     peptides = Peptide.objects.filter(is_active=True).prefetch_related('variants')
     category_slug = request.GET.get('category')
+    format_slug = request.GET.get('format')
     query = request.GET.get('q', '').strip()
 
+    # Dos ejes independientes, como en PurityBase: el formato es el nivel de
+    # arriba (Péptidos / Sprays nasales / Suministros) y la categoría filtra por
+    # objetivo dentro de él. Se combinan, no se excluyen.
+    if format_slug in dict(Peptide.FORMAT_CHOICES):
+        peptides = peptides.filter(product_format=format_slug)
+    else:
+        format_slug = None
     if category_slug:
         peptides = peptides.filter(category__slug=category_slug)
     if query:
@@ -72,11 +80,28 @@ def catalog(request):
     page = request.GET.get('page')
     peptides_page = paginator.get_page(page)
 
-    categories = Category.objects.filter(is_active=True)
+    activos = Peptide.objects.filter(is_active=True)
+    formats = [
+        {'slug': slug, 'label': label,
+         'count': activos.filter(product_format=slug).count()}
+        for slug, label in Peptide.FORMAT_PUBLIC_LABELS.items()
+    ]
+    formats = [f for f in formats if f['count']]
+
+    # Las categorías que se ofrecen son solo las que tienen algo dentro del
+    # formato elegido: en "Sprays nasales" no pinta nada un filtro "Control de
+    # peso" que devolveria cero resultados.
+    categories = Category.objects.filter(is_active=True, peptides__is_active=True)
+    if format_slug:
+        categories = categories.filter(peptides__product_format=format_slug)
+    categories = categories.distinct()
+
     return render(request, 'store/catalog.html', {
         'peptides': peptides_page,
         'categories': categories,
+        'formats': formats,
         'current_category': category_slug,
+        'current_format': format_slug,
         'query': query,
         'page_title': _('Catálogo de Péptidos'),
         'page_description': _('Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥99% verificada por HPLC, con certificado de análisis por lote.'),
