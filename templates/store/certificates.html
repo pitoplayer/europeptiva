@@ -43,7 +43,7 @@
         {% for cert in certificates %}
         <div class="border border-gray-200 rounded-xl p-5 bg-white hover:shadow-md transition-shadow flex flex-col">
             <div class="flex items-start justify-between mb-3">
-                <h3 class="font-semibold text-primary">{{ cert.peptide.name }}</h3>
+                <h3 class="font-semibold text-primary">{% blocktranslate with v1=cert.peptide.name %}{{ v1 }}{% endblocktranslate %}</h3>
                 {% if cert.purity %}
                 <span class="shrink-0 bg-accent-light text-accent-mid text-xs font-semibold px-2 py-0.5 rounded-full border border-accent-border">{{ cert.purity }}</span>
                 {% endif %}

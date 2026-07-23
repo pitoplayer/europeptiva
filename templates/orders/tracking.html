@@ -37,11 +37,11 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-400 text-xs mb-1">{% translate "Número de pedido" %}</p>
-                    <p class="text-xl font-bold">{{ order.order_number }}</p>
+                    <p class="text-xl font-bold">{% blocktranslate with v1=order.order_number %}{{ v1 }}{% endblocktranslate %}</p>
                 </div>
                 <div class="text-right">
                     <p class="text-gray-400 text-xs mb-1">{% translate "Total" %}</p>
-                    <p class="text-xl font-bold">{{ order.total }}€</p>
+                    <p class="text-xl font-bold">{% blocktranslate with v1=order.total %}{{ v1 }}€{% endblocktranslate %}</p>
                 </div>
             </div>
         </div>
@@ -105,10 +105,10 @@
             <!-- Dirección -->
             <div class="bg-gray-50 rounded-lg p-4 text-sm text-gray-600">
                 <p class="font-semibold text-gray-800 mb-1">{% translate "Dirección de envío" %}</p>
-                <p>{{ order.shipping_first_name }} {{ order.shipping_last_name }}</p>
-                <p>{{ order.shipping_address }}</p>
-                <p>{{ order.shipping_postal_code }} {{ order.shipping_city }}</p>
-                <p>{{ order.get_shipping_country_display }}</p>
+                <p>{% blocktranslate with v1=order.shipping_first_name v2=order.shipping_last_name %}{{ v1 }} {{ v2 }}{% endblocktranslate %}</p>
+                <p>{% blocktranslate with v1=order.shipping_address %}{{ v1 }}{% endblocktranslate %}</p>
+                <p>{% blocktranslate with v1=order.shipping_city v2=order.shipping_postal_code %}{{ v2 }} {{ v1 }}{% endblocktranslate %}</p>
+                <p>{% blocktranslate with v1=order.get_shipping_country_display %}{{ v1 }}{% endblocktranslate %}</p>
             </div>
 
             <p class="text-xs text-gray-400 mt-4 text-center">

@@ -10,7 +10,7 @@
         <div class="text-6xl mb-6">✅</div>
         <h1 class="text-3xl font-bold text-primary mb-4">{% translate "¡Pago confirmado!" %}</h1>
         <p class="text-gray-600 mb-2">{% translate "Tu número de pedido es:" %}</p>
-        <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
+        <p class="text-2xl font-bold text-accent mb-4">{% blocktranslate with v1=order.order_number %}{{ v1 }}{% endblocktranslate %}</p>
         <p class="text-gray-600 mb-8">{% blocktranslate with email=order.shipping_email %}Hemos enviado los detalles del pedido a <strong>{{ email }}</strong>.{% endblocktranslate %}</p>
         <div class="bg-accent-light border border-accent-border rounded-xl p-5 mb-8 text-sm text-accent">
             {% translate "Tu pago ha sido procesado correctamente. Tu pedido entrará en preparación en breve." %}
@@ -22,7 +22,7 @@
         <div class="text-6xl mb-6">🏦</div>
         <h1 class="text-3xl font-bold text-primary mb-4">{% translate "Pedido recibido" %}</h1>
         <p class="text-gray-600 mb-2">{% translate "Tu número de pedido es:" %}</p>
-        <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
+        <p class="text-2xl font-bold text-accent mb-4">{% blocktranslate with v1=order.order_number %}{{ v1 }}{% endblocktranslate %}</p>
         <p class="text-gray-600 mb-8">{% blocktranslate with email=order.shipping_email %}Hemos enviado las instrucciones de pago a <strong>{{ email }}</strong>.{% endblocktranslate %}</p>
     </div>
 
@@ -54,7 +54,7 @@
         <div class="text-6xl mb-6">⏳</div>
         <h1 class="text-3xl font-bold text-primary mb-4">{% translate "Pago pendiente" %}</h1>
         <p class="text-gray-600 mb-2">{% translate "Pedido:" %}</p>
-        <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
+        <p class="text-2xl font-bold text-accent mb-4">{% blocktranslate with v1=order.order_number %}{{ v1 }}{% endblocktranslate %}</p>
         <p class="text-gray-600 mb-8">{% translate "Tu pago está siendo procesado. Si el pago fue completado, recibirás la confirmación por email en unos minutos." %}</p>
         <a href="{% url 'mollie_payment' order.order_number %}" class="inline-block bg-accent text-white px-8 py-3 rounded-xl font-semibold hover:bg-green-500 transition-colors">
             {% translate "Volver a intentar el pago" %}
@@ -66,7 +66,7 @@
         <div class="text-6xl mb-6">✅</div>
         <h1 class="text-3xl font-bold text-primary mb-4">{% translate "Pedido confirmado" %}</h1>
         <p class="text-gray-600 mb-2">{% translate "Tu número de pedido es:" %}</p>
-        <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
+        <p class="text-2xl font-bold text-accent mb-4">{% blocktranslate with v1=order.order_number %}{{ v1 }}{% endblocktranslate %}</p>
         <p class="text-gray-600 mb-8">{% blocktranslate with email=order.shipping_email %}Hemos enviado los detalles a <strong>{{ email }}</strong>.{% endblocktranslate %}</p>
     </div>
     {% endif %}

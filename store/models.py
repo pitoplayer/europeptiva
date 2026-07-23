@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 
 
@@ -138,23 +139,23 @@ class Certificate(models.Model):
 
 class BulkEnquiry(models.Model):
     STATUS_CHOICES = [
-        ('new', 'Sin atender'),
-        ('quoted', 'Presupuesto enviado'),
-        ('won', 'Convertida en pedido'),
-        ('lost', 'Descartada'),
+        ('new', _('Sin atender')),
+        ('quoted', _('Presupuesto enviado')),
+        ('won', _('Convertida en pedido')),
+        ('lost', _('Descartada')),
     ]
 
-    name = models.CharField(max_length=120, verbose_name="Nombre y apellidos")
-    organization = models.CharField(max_length=150, blank=True, verbose_name="Empresa / laboratorio")
-    email = models.EmailField(verbose_name="Email")
-    phone = models.CharField(max_length=40, blank=True, verbose_name="Teléfono / WhatsApp")
-    message = models.TextField(verbose_name="Productos y cantidades")
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='new', verbose_name="Estado")
+    name = models.CharField(max_length=120, verbose_name=_("Nombre y apellidos"))
+    organization = models.CharField(max_length=150, blank=True, verbose_name=_("Empresa / laboratorio"))
+    email = models.EmailField(verbose_name=_("Email"))
+    phone = models.CharField(max_length=40, blank=True, verbose_name=_("Teléfono / WhatsApp"))
+    message = models.TextField(verbose_name=_("Productos y cantidades"))
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='new', verbose_name=_("Estado"))
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Solicitud al por mayor"
-        verbose_name_plural = "Solicitudes al por mayor"
+        verbose_name = _("Solicitud al por mayor")
+        verbose_name_plural = _("Solicitudes al por mayor")
         ordering = ['-created_at']
 
     def __str__(self):

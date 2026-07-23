@@ -47,7 +47,7 @@
                 <div>
                     {% if certificate %}
                     <p class="text-xs font-semibold text-primary">{% translate "Ver certificado de análisis (CoA) ↗" %}</p>
-                    <p class="text-xs text-gray-400">Lote {{ certificate.lot_number }} · {{ certificate.lab_name }}</p>
+                    <p class="text-xs text-gray-400">{% blocktranslate with v1=certificate.lab_name v2=certificate.lot_number %}Lote {{ v2 }} · {{ v1 }}{% endblocktranslate %}</p>
                     {% else %}
                     <p class="text-xs font-semibold text-primary">{% translate "Certificado de análisis disponible" %}</p>
                     <p class="text-xs text-gray-400">{% translate "Ver todos los certificados" %}</p>
@@ -58,9 +58,9 @@
 
         <!-- Info -->
         <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">{{ peptide.category }}</p>
-            <h1 class="text-3xl font-bold text-primary mb-3">{{ peptide.name }}</h1>
-            <p class="text-gray-500 leading-relaxed mb-8">{{ peptide.short_description }}</p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">{% blocktranslate with v1=peptide.category %}{{ v1 }}{% endblocktranslate %}</p>
+            <h1 class="text-3xl font-bold text-primary mb-3">{% blocktranslate with v1=peptide.name %}{{ v1 }}{% endblocktranslate %}</h1>
+            <p class="text-gray-500 leading-relaxed mb-8">{% blocktranslate with v1=peptide.short_description %}{{ v1 }}{% endblocktranslate %}</p>
 
             <!-- Especificaciones -->
             <div class="border border-gray-200 rounded-xl overflow-hidden mb-8">
@@ -68,24 +68,24 @@
                     <tbody class="divide-y divide-gray-100">
                         <tr>
                             <td class="px-4 py-3 text-gray-400 font-medium w-40">{% translate "Pureza" %}</td>
-                            <td class="px-4 py-3 font-semibold text-accent-mid">{{ peptide.purity }}</td>
+                            <td class="px-4 py-3 font-semibold text-accent-mid">{% blocktranslate with v1=peptide.purity %}{{ v1 }}{% endblocktranslate %}</td>
                         </tr>
                         {% if peptide.molecular_formula %}
                         <tr>
                             <td class="px-4 py-3 text-gray-400 font-medium">{% translate "Fórmula molecular" %}</td>
-                            <td class="px-4 py-3 font-mono text-primary">{{ peptide.molecular_formula|safe }}</td>
+                            <td class="px-4 py-3 font-mono text-primary">{% blocktranslate with v1=peptide.molecular_formula|safe %}{{ v1 }}{% endblocktranslate %}</td>
                         </tr>
                         {% endif %}
                         {% if peptide.molecular_weight %}
                         <tr>
                             <td class="px-4 py-3 text-gray-400 font-medium">{% translate "Peso molecular" %}</td>
-                            <td class="px-4 py-3 text-primary">{{ peptide.molecular_weight }} Da</td>
+                            <td class="px-4 py-3 text-primary">{% blocktranslate with v1=peptide.molecular_weight %}{{ v1 }} Da{% endblocktranslate %}</td>
                         </tr>
                         {% endif %}
                         {% if peptide.cas_number %}
                         <tr>
                             <td class="px-4 py-3 text-gray-400 font-medium">{% translate "Número CAS" %}</td>
-                            <td class="px-4 py-3 font-mono text-primary">{{ peptide.cas_number }}</td>
+                            <td class="px-4 py-3 font-mono text-primary">{% blocktranslate with v1=peptide.cas_number %}{{ v1 }}{% endblocktranslate %}</td>
                         </tr>
                         {% endif %}
                     </tbody>

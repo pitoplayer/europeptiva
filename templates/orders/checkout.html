@@ -27,7 +27,7 @@
                             {% if field.field.required %}required{% endif %}
                             class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent {% if field.errors %}border-red-400{% endif %}">
                         {% for error in field.errors %}
-                        <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                        <p class="text-red-500 text-xs mt-1">{% blocktranslate %}{{ error }}{% endblocktranslate %}</p>
                         {% endfor %}
                     </div>
                     {% endif %}
@@ -65,7 +65,7 @@
                     {% endfor %}
                 </div>
                 {% for error in form.payment_method.errors %}
-                <p class="text-red-500 text-xs mt-2">{{ error }}</p>
+                <p class="text-red-500 text-xs mt-2">{% blocktranslate %}{{ error }}{% endblocktranslate %}</p>
                 {% endfor %}
             </div>
 
@@ -80,7 +80,7 @@
                     <span class="text-sm text-gray-700">{{ field.label }}</span>
                 </label>
                 {% for error in field.errors %}
-                <p class="text-red-500 text-xs">{{ error }}</p>
+                <p class="text-red-500 text-xs">{% blocktranslate %}{{ error }}{% endblocktranslate %}</p>
                 {% endfor %}
                 {% endif %}
                 {% endfor %}

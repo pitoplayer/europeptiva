@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models import Q
+from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
 from .models import Category, Peptide, Certificate
 from .bulk import BULK_MIN_UNITS, BULK_TIERS
@@ -43,8 +44,8 @@ def index(request):
         'categories': categories,
         'latest_certificate': latest_certificate,
         'hero_peptides': hero_peptides,
-        'page_title': 'Péptidos de Investigación',
-        'page_description': 'Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado de análisis por lote y envío refrigerado.',
+        'page_title': _('Péptidos de Investigación'),
+        'page_description': _('Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado de análisis por lote y envío refrigerado.'),
     })
 
 
@@ -73,8 +74,8 @@ def catalog(request):
         'categories': categories,
         'current_category': category_slug,
         'query': query,
-        'page_title': 'Catálogo de Péptidos',
-        'page_description': 'Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥99% verificada por HPLC, con certificado de análisis por lote.',
+        'page_title': _('Catálogo de Péptidos'),
+        'page_description': _('Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥99% verificada por HPLC, con certificado de análisis por lote.'),
     })
 
 
@@ -110,7 +111,7 @@ def product_detail(request, slug):
         'variants': variants,
         'certificate': certificate,
         'page_title': peptide.name,
-        'page_description': peptide.short_description or f'{peptide.name} — péptido de investigación de pureza ≥99%, verificado por HPLC. Certificado de análisis disponible.',
+        'page_description': peptide.short_description or _('%(name)s — péptido de investigación de pureza ≥99%%, verificado por HPLC. Certificado de análisis disponible.') % {'name': peptide.name},
         'product_schema_json': mark_safe(json.dumps(product_schema).replace('</', '<\\/')),
     })
 
@@ -119,8 +120,8 @@ def certificates(request):
     certs = Certificate.objects.filter(is_active=True, peptide__is_active=True).select_related('peptide')
     return render(request, 'store/certificates.html', {
         'certificates': certs,
-        'page_title': 'Certificados de Análisis (CoA)',
-        'page_description': 'Certificados de análisis (CoA) por lote de los péptidos de investigación EuroPeptiva: identidad confirmada y pureza verificada por HPLC en laboratorios independientes.',
+        'page_title': _('Certificados de Análisis (CoA)'),
+        'page_description': _('Certificados de análisis (CoA) por lote de los péptidos de investigación EuroPeptiva: identidad confirmada y pureza verificada por HPLC en laboratorios independientes.'),
     })
 
 
@@ -146,8 +147,8 @@ def contact(request):
 
     return render(request, 'pages/contact.html', {
         'contact_sent': sent,
-        'page_title': 'Contacto',
-        'page_description': '¿Tienes dudas sobre nuestros péptidos de investigación o certificados de análisis? Contacta con el equipo de EuroPeptiva.',
+        'page_title': _('Contacto'),
+        'page_description': _('¿Tienes dudas sobre nuestros péptidos de investigación o certificados de análisis? Contacta con el equipo de EuroPeptiva.'),
     })
 
 
@@ -189,7 +190,7 @@ def bulk(request):
         'bulk_sent': sent,
         'bulk_tiers': BULK_TIERS,
         'bulk_min_units': BULK_MIN_UNITS,
-        'page_title': 'Compra al por mayor',
+        'page_title': _('Compra al por mayor'),
         'page_description': (
             'Precios por volumen en péptidos de investigación para laboratorios, '
             'centros de I+D y distribuidores. Descuentos desde 10 unidades por producto, '

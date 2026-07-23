@@ -6,3 +6,4 @@ mollie-api-python==4.0.0
 # Producción
 gunicorn
 psycopg2-binary
+polib==1.2.0
