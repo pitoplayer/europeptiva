@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from modeltranslation.admin import TranslationAdmin
 from .models import BulkEnquiry, Category, Peptide, PeptideVariant, Certificate
 
 
@@ -15,14 +16,18 @@ class CertificateInline(admin.TabularInline):
     fields = ['lab_name', 'lot_number', 'tested_date', 'purity', 'file', 'is_active']
 
 
+# TranslationAdmin en vez de ModelAdmin: pinta un campo por idioma en los que
+# están registrados en store/translation.py y reescribe prepopulated_fields al
+# campo del idioma por defecto (slug se sigue generando desde el nombre en
+# español, que es el que va en la URL).
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin):
     list_display = ['name', 'slug', 'is_active']
     prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Peptide)
-class PeptideAdmin(admin.ModelAdmin):
+class PeptideAdmin(TranslationAdmin):
     list_display = ['name', 'category', 'purity', 'is_active', 'is_featured', 'stock_status']
     list_filter = ['category', 'is_active', 'is_featured']
     search_fields = ['name', 'cas_number']

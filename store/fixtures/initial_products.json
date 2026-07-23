@@ -6,7 +6,11 @@
       "name": "Pérdida de Grasa",
       "slug": "perdida-de-grasa",
       "description": "Péptidos investigados en el ámbito del metabolismo, la composición corporal y la pérdida de grasa.",
-      "is_active": true
+      "is_active": true,
+      "name_es": "Pérdida de Grasa",
+      "description_es": "Péptidos investigados en el ámbito del metabolismo, la composición corporal y la pérdida de grasa.",
+      "name_en": "Fat Loss",
+      "description_en": "Peptides researched in the fields of metabolism, body composition and fat loss."
     }
   },
   {
@@ -16,7 +20,11 @@
       "name": "Recuperación",
       "slug": "recuperacion",
       "description": "Péptidos para investigación en regeneración tisular y recuperación.",
-      "is_active": true
+      "is_active": true,
+      "name_es": "Recuperación",
+      "description_es": "Péptidos para investigación en regeneración tisular y recuperación.",
+      "name_en": "Recovery",
+      "description_en": "Peptides for research into tissue regeneration and recovery."
     }
   },
   {
@@ -26,7 +34,11 @@
       "name": "Disolventes y Auxiliares",
       "slug": "disolventes-auxiliares",
       "description": "Agua bacteriostática y otros auxiliares para reconstitución de péptidos.",
-      "is_active": true
+      "is_active": true,
+      "name_es": "Disolventes y Auxiliares",
+      "description_es": "Agua bacteriostática y otros auxiliares para reconstitución de péptidos.",
+      "name_en": "Solvents and Accessories",
+      "description_en": "Bacteriostatic water and other accessories for reconstituting peptides."
     }
   },
   {
@@ -36,7 +48,11 @@
       "name": "Cabello y Piel",
       "slug": "cabello-piel",
       "description": "Péptidos investigados en regeneración cutánea, pigmentación y crecimiento del folículo piloso.",
-      "is_active": true
+      "is_active": true,
+      "name_es": "Cabello y Piel",
+      "description_es": "Péptidos investigados en regeneración cutánea, pigmentación y crecimiento del folículo piloso.",
+      "name_en": "Hair and Skin",
+      "description_en": "Peptides researched in skin regeneration, pigmentation and hair follicle growth."
     }
   },
   {
@@ -46,7 +62,11 @@
       "name": "Spray Nasal",
       "slug": "spray-nasal",
       "description": "Péptidos neurotróficos investigados habitualmente mediante administración intranasal.",
-      "is_active": true
+      "is_active": true,
+      "name_es": "Spray Nasal",
+      "description_es": "Péptidos neurotróficos investigados habitualmente mediante administración intranasal.",
+      "name_en": "Nasal Spray",
+      "description_en": "Neurotrophic peptides commonly researched through intranasal administration."
     }
   },
   {
@@ -56,7 +76,11 @@
       "name": "Longevidad y Antienvejecimiento",
       "slug": "longevidad-antienvejecimiento",
       "description": "Péptidos y coenzimas investigados en metabolismo celular, estrés oxidativo y envejecimiento.",
-      "is_active": true
+      "is_active": true,
+      "name_es": "Longevidad y Antienvejecimiento",
+      "description_es": "Péptidos y coenzimas investigados en metabolismo celular, estrés oxidativo y envejecimiento.",
+      "name_en": "Longevity and Anti-Aging",
+      "description_en": "Peptides and coenzymes researched in cellular metabolism, oxidative stress and aging."
     }
   },
   {
@@ -76,7 +100,11 @@
       "is_active": true,
       "is_featured": true,
       "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z"
+      "updated_at": "2026-07-02T00:00:00Z",
+      "short_description_es": "Péptido de investigación que actúa sobre tres vías metabólicas a la vez (GLP-1, GIP y glucagón).",
+      "description_es": "Retatrutide es un péptido sintético estudiado por su efecto combinado sobre tres receptores relacionados con el metabolismo, el apetito y el peso corporal. Es uno de los péptidos más investigados hoy en el ámbito metabólico.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Research peptide acting on three metabolic pathways at once (GLP-1, GIP and glucagon).",
+      "description_en": "Retatrutide is a synthetic peptide studied for its combined effect on three receptors linked to metabolism, appetite and body weight. It is one of the most researched peptides in the metabolic field today.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -96,7 +124,11 @@
       "is_active": true,
       "is_featured": true,
       "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z"
+      "updated_at": "2026-07-02T00:00:00Z",
+      "short_description_es": "Péptido de acción prolongada, uno de los más estudiados en investigación sobre diabetes tipo 2 y control de peso.",
+      "description_es": "La Semaglutida es un péptido GLP-1 de referencia en investigación metabólica, conocido por su efecto duradero sobre el apetito y los niveles de glucosa.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Long-acting peptide, one of the most studied in research on type 2 diabetes and weight control.",
+      "description_en": "Semaglutide is a benchmark GLP-1 peptide in metabolic research, known for its lasting effect on appetite and glucose levels.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -116,7 +148,11 @@
       "is_active": true,
       "is_featured": true,
       "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z"
+      "updated_at": "2026-07-02T00:00:00Z",
+      "short_description_es": "Péptido derivado del jugo gástrico, investigado por su papel en la regeneración de tejidos.",
+      "description_es": "BPC-157 es un péptido muy estudiado por su posible papel en la reparación de tejidos, la reducción de la inflamación y la formación de nuevos vasos sanguíneos.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Peptide derived from gastric juice, researched for its role in tissue regeneration.",
+      "description_en": "BPC-157 is a widely studied peptide for its possible role in tissue repair, reducing inflammation and forming new blood vessels.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -136,7 +172,11 @@
       "is_active": true,
       "is_featured": true,
       "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z"
+      "updated_at": "2026-07-02T00:00:00Z",
+      "short_description_es": "Fragmento sintético de una proteína natural, investigado en regeneración muscular y de tejidos.",
+      "description_es": "TB-500 es un péptido derivado de la Timosina Beta-4, estudiado por su papel en la reparación de tejidos, la movilidad celular y la formación de nuevos vasos sanguíneos.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Synthetic fragment of a natural protein, researched in muscle and tissue regeneration.",
+      "description_en": "TB-500 is a peptide derived from Thymosin Beta-4, studied for its role in tissue repair, cell motility and the formation of new blood vessels.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -156,7 +196,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-02T00:00:00Z",
-      "updated_at": "2026-07-02T00:00:00Z"
+      "updated_at": "2026-07-02T00:00:00Z",
+      "short_description_es": "Agua estéril con conservante, para disolver péptidos liofilizados de forma segura.",
+      "description_es": "El Agua Bacteriostática (BAC Water) es el disolvente estándar para reconstituir péptidos liofilizados. Su 0.9% de alcohol bencílico permite usar el mismo vial varias veces sin riesgo de contaminación.\n\nConservar en lugar fresco y protegido de la luz. Usar dentro de los 28 días tras abrir el vial.",
+      "short_description_en": "Sterile water with preservative, to dissolve lyophilized peptides safely.",
+      "description_en": "Bacteriostatic Water (BAC Water) is the standard solvent for reconstituting lyophilized peptides. Its 0.9% benzyl alcohol lets the same vial be used several times without risk of contamination.\n\nStore in a cool place, protected from light. Use within 28 days of opening the vial."
     }
   },
   {
@@ -176,7 +220,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-07T00:00:00Z",
-      "updated_at": "2026-07-07T00:00:00Z"
+      "updated_at": "2026-07-07T00:00:00Z",
+      "short_description_es": "Péptido de cobre investigado por su papel en la regeneración de la piel y el cabello.",
+      "description_es": "El GHK-Cu es un péptido natural muy estudiado en investigación dermatológica por su efecto sobre la producción de colágeno, la reparación de tejidos y el crecimiento del folículo piloso.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Copper peptide researched for its role in skin and hair regeneration.",
+      "description_en": "GHK-Cu is a natural peptide widely studied in dermatological research for its effect on collagen production, tissue repair and hair follicle growth.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -196,7 +244,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-07T00:00:00Z",
-      "updated_at": "2026-07-07T00:00:00Z"
+      "updated_at": "2026-07-07T00:00:00Z",
+      "short_description_es": "Péptido investigado por su efecto sobre la pigmentación y la protección frente al sol.",
+      "description_es": "Melanotan I es un péptido que imita a una hormona natural del cuerpo y se investiga por su capacidad de estimular la producción de melanina, protegiendo la piel frente a la radiación UV.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Peptide researched for its effect on pigmentation and protection from the sun.",
+      "description_en": "Melanotan I is a peptide that mimics a hormone the body produces naturally, and is researched for its ability to stimulate melanin production, protecting the skin from UV radiation.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -216,7 +268,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-07T00:00:00Z",
-      "updated_at": "2026-07-07T00:00:00Z"
+      "updated_at": "2026-07-07T00:00:00Z",
+      "short_description_es": "Péptido investigado en pigmentación cutánea y regulación del apetito.",
+      "description_es": "Melanotan II es una versión más estable de una hormona natural, estudiada por su efecto sobre la pigmentación de la piel y su influencia en el apetito y el balance energético.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Peptide researched in skin pigmentation and appetite regulation.",
+      "description_en": "Melanotan II is a more stable version of a natural hormone, studied for its effect on skin pigmentation and its influence on appetite and energy balance.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -236,7 +292,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-07T00:00:00Z",
-      "updated_at": "2026-07-07T00:00:00Z"
+      "updated_at": "2026-07-07T00:00:00Z",
+      "short_description_es": "Péptido investigado por su capacidad de estimular la hormona del crecimiento.",
+      "description_es": "La Tesamorelina es un péptido estudiado por su efecto sobre la liberación natural de hormona del crecimiento, con especial interés en investigación sobre metabolismo de grasas y composición corporal.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Peptide researched for its ability to stimulate growth hormone.",
+      "description_en": "Tesamorelin is a peptide studied for its effect on the natural release of growth hormone, with particular interest in research on fat metabolism and body composition.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -256,7 +316,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-07T00:00:00Z",
-      "updated_at": "2026-07-07T00:00:00Z"
+      "updated_at": "2026-07-07T00:00:00Z",
+      "short_description_es": "Péptido nootrópico en spray nasal, investigado por su efecto sobre la memoria y la protección neuronal.",
+      "description_es": "Semax es un péptido estudiado por su posible efecto sobre la memoria, la atención y la protección de las neuronas. Se presenta en spray nasal, listo para usar.\n\nConservar refrigerado y protegido de la luz.",
+      "short_description_en": "Nootropic peptide in nasal spray, researched for its effect on memory and neuronal protection.",
+      "description_en": "Semax is a peptide studied for its possible effect on memory, attention and the protection of neurons. It comes as a nasal spray, ready to use.\n\nStore refrigerated and protected from light."
     }
   },
   {
@@ -276,7 +340,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-07T00:00:00Z",
-      "updated_at": "2026-07-07T00:00:00Z"
+      "updated_at": "2026-07-07T00:00:00Z",
+      "short_description_es": "Péptido ansiolítico en spray nasal, investigado por su efecto calmante sin sedación.",
+      "description_es": "Selank es un péptido derivado de una proteína natural del sistema inmune, estudiado por su efecto ansiolítico y su influencia sobre el estado de ánimo. Se presenta en spray nasal, listo para usar.\n\nConservar refrigerado y protegido de la luz.",
+      "short_description_en": "Anxiolytic peptide in nasal spray, researched for its calming effect without sedation.",
+      "description_en": "Selank is a peptide derived from a natural protein of the immune system, studied for its anxiolytic effect and its influence on mood. It comes as a nasal spray, ready to use.\n\nStore refrigerated and protected from light."
     }
   },
   {
@@ -296,7 +364,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Péptido doble agonista GLP-1/GIP, uno de los más demandados hoy en investigación metabólica.",
+      "description_es": "La Tirzepatida es un péptido sintético que activa a la vez los receptores GLP-1 y GIP, y es hoy uno de los reactivos de referencia en investigación sobre metabolismo, apetito y control de peso.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Dual GLP-1/GIP agonist peptide, one of the most sought-after in metabolic research today.",
+      "description_en": "Tirzepatide is a synthetic peptide that activates the GLP-1 and GIP receptors at the same time, and is today one of the benchmark reagents in research on metabolism, appetite and weight control.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -316,7 +388,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Péptido derivado del ADN mitocondrial, investigado por su papel en el metabolismo celular y la longevidad.",
+      "description_es": "MOTS-c es un péptido de 16 aminoácidos codificado en el propio genoma mitocondrial, estudiado como regulador metabólico y por su papel en la comunicación entre mitocondria y núcleo celular.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Peptide derived from mitochondrial DNA, researched for its role in cellular metabolism and longevity.",
+      "description_en": "MOTS-c is a 16-amino-acid peptide encoded in the mitochondrial genome itself, studied as a metabolic regulator and for its role in the communication between the mitochondria and the cell nucleus.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -336,7 +412,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Mezcla de TB-500 y BPC-157 en un mismo vial (10 mg + 10 mg), pensada para investigar su efecto combinado.",
+      "description_es": "Wolverine Blend combina en un mismo vial dos de los péptidos más estudiados en regeneración tisular: TB-500 y BPC-157, para investigar su posible efecto sinérgico en un solo modelo.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Blend of TB-500 and BPC-157 in a single vial (10 mg + 10 mg), meant for researching their combined effect.",
+      "description_en": "Wolverine Blend puts two of the most studied peptides in tissue regeneration into a single vial: TB-500 and BPC-157, to research their possible synergistic effect in one model.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -356,7 +436,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Mezcla de GHK-Cu, Melanotan I y BPC-157, investigada en regeneración y protección de la piel.",
+      "description_es": "Glow70 Blend combina en un mismo vial tres péptidos de referencia en biología cutánea: GHK-Cu, Melanotan I y BPC-157, para investigar sus efectos combinados sobre la piel.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Blend of GHK-Cu, Melanotan I and BPC-157, researched in skin regeneration and protection.",
+      "description_en": "Glow70 Blend puts three benchmark peptides in skin biology into a single vial: GHK-Cu, Melanotan I and BPC-157, to research their combined effects on the skin.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -376,7 +460,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Análogo de acción prolongada del IGF-1, investigado en crecimiento y reparación muscular.",
+      "description_es": "IGF-1 LR3 es un análogo sintético del IGF-1 humano modificado para resistir mejor su degradación, muy utilizado en investigación sobre crecimiento celular y reparación de tejido muscular.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Long-acting analog of IGF-1, researched in muscle growth and repair.",
+      "description_en": "IGF-1 LR3 is a synthetic analog of human IGF-1 modified to resist degradation better, widely used in research on cell growth and muscle tissue repair.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -396,7 +484,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Antioxidante maestro del cuerpo, investigado por su papel en la desintoxicación celular.",
+      "description_es": "El Glutatión (GSH) es un tripéptido natural con un papel central en el equilibrio antioxidante de las células, estudiado en investigación sobre desintoxicación celular y estrés oxidativo.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "The body's master antioxidant, researched for its role in cellular detoxification.",
+      "description_en": "Glutathione (GSH) is a natural tripeptide with a central role in the antioxidant balance of cells, studied in research on cellular detoxification and oxidative stress.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -416,7 +508,11 @@
       "is_active": true,
       "is_featured": false,
       "created_at": "2026-07-09T00:00:00Z",
-      "updated_at": "2026-07-09T00:00:00Z"
+      "updated_at": "2026-07-09T00:00:00Z",
+      "short_description_es": "Coenzima esencial para la energía celular, investigada en envejecimiento y reparación del ADN.",
+      "description_es": "El NAD+ es una coenzima presente en todas las células, estudiada por su papel en la producción de energía, la reparación del ADN y los mecanismos asociados al envejecimiento celular.\n\nConservar refrigerado y protegido de la luz. Reconstituir con BAC Water estéril.",
+      "short_description_en": "Essential coenzyme for cellular energy, researched in aging and DNA repair.",
+      "description_en": "NAD+ is a coenzyme present in every cell, studied for its role in energy production, DNA repair and the mechanisms associated with cellular aging.\n\nStore refrigerated and protected from light. Reconstitute with sterile BAC Water."
     }
   },
   {
@@ -660,51 +756,121 @@
   {
     "model": "store.peptidevariant",
     "pk": 18,
-    "fields": {"peptide": 12, "size_mg": 10, "price": "59.95", "stock": 40, "sku": "tirzepatide-10mg", "is_active": true}
+    "fields": {
+      "peptide": 12,
+      "size_mg": 10,
+      "price": "59.95",
+      "stock": 40,
+      "sku": "tirzepatide-10mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 19,
-    "fields": {"peptide": 12, "size_mg": 20, "price": "99.95", "stock": 25, "sku": "tirzepatide-20mg", "is_active": true}
+    "fields": {
+      "peptide": 12,
+      "size_mg": 20,
+      "price": "99.95",
+      "stock": 25,
+      "sku": "tirzepatide-20mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 20,
-    "fields": {"peptide": 13, "size_mg": 10, "price": "54.95", "stock": 40, "sku": "mots-c-10mg", "is_active": true}
+    "fields": {
+      "peptide": 13,
+      "size_mg": 10,
+      "price": "54.95",
+      "stock": 40,
+      "sku": "mots-c-10mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 21,
-    "fields": {"peptide": 13, "size_mg": 40, "price": "114.95", "stock": 25, "sku": "mots-c-40mg", "is_active": true}
+    "fields": {
+      "peptide": 13,
+      "size_mg": 40,
+      "price": "114.95",
+      "stock": 25,
+      "sku": "mots-c-40mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 22,
-    "fields": {"peptide": 14, "size_mg": 20, "price": "110.00", "stock": 30, "sku": "wolverine-blend-20mg", "is_active": true}
+    "fields": {
+      "peptide": 14,
+      "size_mg": 20,
+      "price": "110.00",
+      "stock": 30,
+      "sku": "wolverine-blend-20mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 23,
-    "fields": {"peptide": 15, "size_mg": 70, "price": "119.95", "stock": 30, "sku": "glow70-blend-70mg", "is_active": true}
+    "fields": {
+      "peptide": 15,
+      "size_mg": 70,
+      "price": "119.95",
+      "stock": 30,
+      "sku": "glow70-blend-70mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 24,
-    "fields": {"peptide": 16, "size_mg": 1, "price": "89.95", "stock": 30, "sku": "igf-1-lr3-1mg", "is_active": true}
+    "fields": {
+      "peptide": 16,
+      "size_mg": 1,
+      "price": "89.95",
+      "stock": 30,
+      "sku": "igf-1-lr3-1mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 25,
-    "fields": {"peptide": 17, "size_mg": 1500, "price": "84.95", "stock": 30, "sku": "glutation-1500mg", "is_active": true}
+    "fields": {
+      "peptide": 17,
+      "size_mg": 1500,
+      "price": "84.95",
+      "stock": 30,
+      "sku": "glutation-1500mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 26,
-    "fields": {"peptide": 18, "size_mg": 500, "price": "69.95", "stock": 30, "sku": "nad-plus-500mg", "is_active": true}
+    "fields": {
+      "peptide": 18,
+      "size_mg": 500,
+      "price": "69.95",
+      "stock": 30,
+      "sku": "nad-plus-500mg",
+      "is_active": true
+    }
   },
   {
     "model": "store.peptidevariant",
     "pk": 27,
-    "fields": {"peptide": 18, "size_mg": 1000, "price": "114.95", "stock": 20, "sku": "nad-plus-1000mg", "is_active": true}
+    "fields": {
+      "peptide": 18,
+      "size_mg": 1000,
+      "price": "114.95",
+      "stock": 20,
+      "sku": "nad-plus-1000mg",
+      "is_active": true
+    }
   }
 ]

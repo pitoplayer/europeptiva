@@ -7,6 +7,7 @@ from django.urls import reverse
 
 from django.core import mail
 from django.test import override_settings
+from django.utils import translation
 
 from .models import BulkEnquiry, Category, Certificate, Peptide, PeptideVariant
 
@@ -196,3 +197,51 @@ class DevolucionesTest(TestCase):
     def test_aparece_en_el_sitemap(self):
         self.assertContains(self.client.get('/sitemap.xml'), '/devoluciones/')
 
+
+
+class ContenidoTraducidoTest(TestCase):
+    """El catálogo vive en la BD, así que traducir las plantillas no basta."""
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.categoria = Category.objects.create(
+            name='Recuperación', name_en='Recovery',
+            description='Péptidos para regeneración.', description_en='Peptides for regeneration.',
+        )
+        cls.bpc = crear_peptido(name='BPC-157', category=cls.categoria)
+        cls.bpc.short_description_en = 'Peptide researched in tissue regeneration.'
+        cls.bpc.description_en = 'BPC-157 is a widely studied peptide.'
+        cls.bpc.save()
+        cls.sin_traducir = crear_peptido(name='TB-500', category=cls.categoria)
+        PeptideVariant.objects.create(peptide=cls.bpc, size_mg=10, price=Decimal('49.90'), stock=10)
+        PeptideVariant.objects.create(peptide=cls.sin_traducir, size_mg=10, price=Decimal('39.90'), stock=10)
+
+    def setUp(self):
+        # Pedir una URL /en/ deja el idioma activo en el hilo, así que sin esto
+        # el test siguiente arranca en inglés y hasta reverse() da URLs /en/.
+        translation.activate('es')
+
+    def test_ficha_en_ingles_usa_el_texto_ingles(self):
+        resp = self.client.get(f'/en/product/{self.bpc.slug}/')
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'BPC-157 is a widely studied peptide.')
+        self.assertNotContains(resp, 'Descripción completa de BPC-157.')
+
+    def test_ficha_en_espanol_no_cambia(self):
+        resp = self.client.get(reverse('product_detail', args=[self.bpc.slug]))
+        self.assertContains(resp, 'Descripción completa de BPC-157.')
+
+    def test_categoria_traducida_en_el_catalogo(self):
+        self.assertContains(self.client.get(reverse('catalog')), 'Recuperación')
+        self.assertContains(self.client.get('/en/catalog/'), 'Recovery')
+
+    def test_sin_traduccion_cae_al_espanol(self):
+        # Si nadie ha traducido un producto todavía, la ficha inglesa enseña el
+        # texto español antes que un hueco en blanco.
+        resp = self.client.get(f'/en/product/{self.sin_traducir.slug}/')
+        self.assertContains(resp, 'Descripción completa de TB-500.')
+
+    def test_busqueda_en_ingles_encuentra_por_texto_ingles(self):
+        resp = self.client.get('/en/catalog/', {'q': 'tissue regeneration'})
+        self.assertContains(resp, f'/en/product/{self.bpc.slug}/')
+        self.assertNotContains(resp, f'/en/product/{self.sin_traducir.slug}/')

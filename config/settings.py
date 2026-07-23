@@ -15,6 +15,9 @@ CSRF_TRUSTED_ORIGINS = env.list(
 )
 
 INSTALLED_APPS = [
+    # Antes de django.contrib.admin: modeltranslation tiene que registrar los
+    # campos traducidos antes de que el admin construya sus formularios.
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
