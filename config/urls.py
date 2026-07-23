@@ -41,6 +41,10 @@ urlpatterns += i18n_patterns(
         'page_title': _('Aviso legal'),
         'page_description': _('Aviso legal e información sobre el responsable del sitio web europeptiva.com.'),
     }), name='legal'),
+    path(_('devoluciones/'), TemplateView.as_view(template_name='pages/returns.html', extra_context={
+        'page_title': _('Política de devoluciones'),
+        'page_description': _('Condiciones de devolución, cambio y reembolso de EuroPeptiva: qué cubrimos, el plazo de 48 horas para incidencias y la base legal de la exclusión.'),
+    }), name='returns'),
     path('cookies/', TemplateView.as_view(template_name='pages/cookies.html', extra_context={
         'page_title': _('Política de cookies'),
         'page_description': _('Información sobre las cookies técnicas necesarias que utiliza EuroPeptiva para el funcionamiento de la tienda.'),

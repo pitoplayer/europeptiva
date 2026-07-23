@@ -177,3 +177,22 @@ class CompraAlPorMayorTest(TestCase):
     def test_aparece_en_el_sitemap(self):
         resp = self.client.get('/sitemap.xml')
         self.assertContains(resp, '/al-por-mayor/')
+
+
+class DevolucionesTest(TestCase):
+    def test_pagina_carga_en_ambos_idiomas(self):
+        for url in ('/devoluciones/', '/en/returns/'):
+            self.assertEqual(self.client.get(url).status_code, 200, url)
+
+    def test_recoge_la_excepcion_de_48h_y_la_base_legal(self):
+        html = self.client.get('/devoluciones/').content.decode()
+        self.assertIn('48 horas', html)
+        self.assertIn('103', html)          # arts. 103.d/103.e del RDL 1/2007
+
+    def test_enlazada_desde_el_pie_y_el_aviso_legal(self):
+        for url in ('/', '/aviso-legal/'):
+            self.assertIn('/devoluciones/', self.client.get(url).content.decode(), url)
+
+    def test_aparece_en_el_sitemap(self):
+        self.assertContains(self.client.get('/sitemap.xml'), '/devoluciones/')
+

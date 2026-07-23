@@ -34,7 +34,7 @@
 
         <section>
             <h2 class="text-lg font-bold text-primary mb-3">{% translate "3. Devoluciones" %}</h2>
-            <p>{% blocktranslate %}Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, solo se aceptarán devoluciones en caso de error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Para cualquier incidencia, contacta en un plazo máximo de 48 horas desde la recepción del pedido a <strong>info@europeptiva.com</strong>.{% endblocktranslate %}</p>
+            <p>{% url 'returns' as returns_url %}{% blocktranslate %}Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, no se admiten devoluciones salvo error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Las condiciones completas, el plazo de 48 horas para comunicar incidencias y la base legal de la exclusión están en la <a href="{{ returns_url }}" class="text-accent-mid underline">política de devoluciones</a>.{% endblocktranslate %}</p>
         </section>
 
         <section>

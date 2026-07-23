@@ -267,6 +267,14 @@ msgid ""
 "pago"
 msgstr "<strong>Spain:</strong> 24-72 working hours from payment confirmation"
 
+#: templates/pages/returns.html:44
+msgid ""
+"<strong>Fotografías</strong> del problema: el vial, la etiqueta con el "
+"número de lote y el embalaje tal y como te llegó."
+msgstr ""
+"<strong>Photographs</strong> of the problem: the vial, the label showing the"
+" lot number, and the packaging exactly as it reached you."
+
 #: templates/pages/privacy.html:45
 msgid ""
 "<strong>Interés legítimo</strong> (Art. 6.1.f RGPD): prevención del fraude"
@@ -426,6 +434,18 @@ msgstr ""
 "By accessing this website and making a purchase, the user declares that "
 "they:"
 
+#: templates/pages/returns.html:106
+msgid ""
+"Al confirmar el pedido aceptas expresamente estas condiciones, que se te "
+"informan antes de la compra tal y como exige la normativa. Esta exclusión no"
+" afecta a tus derechos legales en caso de producto defectuoso, dañado o no "
+"conforme con lo pedido, que quedan cubiertos por el apartado anterior."
+msgstr ""
+"By confirming your order you expressly accept these terms, which are "
+"disclosed to you before purchase as the legislation requires. This exclusion"
+" does not affect your statutory rights in the event of a defective, damaged "
+"or non-conforming product, which are covered by the section above."
+
 #: templates/partials/footer.html:23 templates/partials/header.html:25
 msgid "Al por mayor"
 msgstr "Bulk orders"
@@ -481,7 +501,7 @@ msgstr "Legal Notice"
 msgid "Aviso importante"
 msgstr "Important notice"
 
-#: config/urls.py:41 templates/partials/footer.html:28
+#: config/urls.py:41 templates/partials/footer.html:29
 msgid "Aviso legal"
 msgstr "Legal notice"
 
@@ -553,6 +573,14 @@ msgstr "Cold chain"
 #: templates/pages/about.html:27
 msgid "Calidad verificada"
 msgstr "Verified quality"
+
+#: templates/pages/returns.html:65
+msgid ""
+"Cambio de opinión, pedido duplicado por error o producto que ya no "
+"necesitas."
+msgstr ""
+"A change of mind, an order duplicated by mistake, or a product you no longer"
+" need."
 
 #: orders/models.py:15
 msgid "Cancelado"
@@ -655,6 +683,14 @@ msgstr ""
 "Compounds synthesised in the EU, verified by an independent laboratory and "
 "shipped cold-chain. No shortcuts, no supplement marketing."
 
+#: templates/pages/returns.html:100
+msgid ""
+"Con carácter general, la normativa europea reconoce al consumidor un derecho"
+" de desistimiento de 14 días naturales en las compras a distancia."
+msgstr ""
+"As a general rule, European legislation grants consumers a 14-calendar-day "
+"right of withdrawal on distance purchases."
+
 #: templates/pages/bulk.html:29
 msgid "Con consumo recurrente y necesidad de trazabilidad entre experimentos."
 msgstr ""
@@ -663,6 +699,18 @@ msgstr ""
 #: templates/orders/confirmation.html:41
 msgid "Concepto (obligatorio)"
 msgstr "Reference (required)"
+
+#: templates/pages/returns.html:8
+msgid "Condiciones"
+msgstr "Terms"
+
+#: config/urls.py:46
+msgid ""
+"Condiciones de devolución, cambio y reembolso de EuroPeptiva: qué cubrimos, "
+"el plazo de 48 horas para incidencias y la base legal de la exclusión."
+msgstr ""
+"EuroPeptiva's return, exchange and refund terms: what we cover, the 48-hour "
+"window for reporting issues and the legal basis for the exclusion."
 
 #: templates/orders/checkout.html:121
 msgid ""
@@ -690,7 +738,7 @@ msgid "Consultar pedido"
 msgstr "Track order"
 
 #: store/views.py:150 templates/pages/contact.html:5
-#: templates/partials/footer.html:26 templates/partials/header.html:27
+#: templates/partials/footer.html:27 templates/partials/header.html:27
 msgid "Contacto"
 msgstr "Contact"
 
@@ -702,7 +750,7 @@ msgstr "Converted to an order"
 msgid "Cookie"
 msgstr "Cookie"
 
-#: templates/partials/footer.html:29
+#: templates/partials/footer.html:30
 msgid "Cookies"
 msgstr "Cookies"
 
@@ -733,16 +781,19 @@ msgstr "How it works"
 #: templates/pages/legal.html:37
 msgid ""
 "Dado que los productos son compuestos biológicamente activos que requieren "
-"condiciones de almacenamiento controladas, solo se aceptarán devoluciones en"
-" caso de error en el pedido por parte de EuroPeptiva o defecto verificable "
-"del producto. Para cualquier incidencia, contacta en un plazo máximo de 48 "
-"horas desde la recepción del pedido a <strong>info@europeptiva.com</strong>."
+"condiciones de almacenamiento controladas, no se admiten devoluciones salvo "
+"error en el pedido por parte de EuroPeptiva o defecto verificable del "
+"producto. Las condiciones completas, el plazo de 48 horas para comunicar "
+"incidencias y la base legal de la exclusión están en la <a "
+"href=\"%(returns_url)s\" class=\"text-accent-mid underline\">política de "
+"devoluciones</a>."
 msgstr ""
 "Since the products are biologically active compounds requiring controlled "
-"storage conditions, returns will only be accepted in the event of an order "
-"error by EuroPeptiva or a verifiable product defect. For any issue, contact "
-"<strong>info@europeptiva.com</strong> within a maximum of 48 hours of "
-"receiving the order."
+"storage conditions, returns are not accepted except in the event of an order"
+" error by EuroPeptiva or a verifiable product defect. The full terms, the "
+"48-hour window for reporting issues and the legal basis for the exclusion "
+"are set out in the <a href=\"%(returns_url)s\" class=\"text-accent-mid "
+"underline\">returns policy</a>."
 
 #: templates/pages/privacy.html:69
 msgid "Datos de contacto: 1 año desde la última comunicación"
@@ -755,6 +806,19 @@ msgstr "Shipping details"
 #: templates/pages/privacy.html:68
 msgid "Datos de pedidos: 5 años (plazo de prescripción fiscal en España)"
 msgstr "Order data: 5 years (the tax limitation period in Spain)"
+
+#: templates/pages/returns.html:73
+msgid ""
+"Degradación por almacenamiento incorrecto tras la entrega. Las condiciones "
+"de conservación están en cada ficha de producto y en las preguntas "
+"frecuentes."
+msgstr ""
+"Degradation caused by incorrect storage after delivery. Storage conditions "
+"are given on every product page and in the FAQ."
+
+#: templates/pages/returns.html:96
+msgid "Derecho de desistimiento y base legal"
+msgstr "Right of withdrawal and legal basis"
 
 #: store/models.py:145
 msgid "Descartada"
@@ -785,6 +849,10 @@ msgstr "From €%(p)s"
 #: templates/pages/bulk.html:54
 msgid "Desde %(v1)s unidades"
 msgstr "From %(v1)s units"
+
+#: templates/partials/footer.html:26
+msgid "Devoluciones"
+msgstr "Returns"
 
 #: orders/models.py:37
 msgid "Dirección"
@@ -832,6 +900,19 @@ msgstr ""
 "The exact cost is calculated in the cart based on the destination country, "
 "before you confirm the order."
 
+#: templates/pages/returns.html:25
+msgid ""
+"El motivo no es comercial: un vial de péptido que sale de nuestro control ya"
+" no puede reintroducirse en el circuito de venta. Basta una interrupción de "
+"la cadena de frío, imposible de verificar a posteriori, para que el "
+"compuesto se degrade. Reenviarlo a otro cliente sería una irresponsabilidad "
+"científica."
+msgstr ""
+"The reason is not commercial: once a peptide vial leaves our control it can "
+"no longer re-enter the supply chain. A single break in the cold chain — "
+"impossible to verify after the fact — is enough to degrade the compound. "
+"Passing it on to another customer would be scientifically irresponsible."
+
 #: templates/orders/cart.html:41
 msgid "Eliminar"
 msgstr "Remove"
@@ -873,6 +954,14 @@ msgstr "In stock — ships in 24-72h."
 msgid "Entregado"
 msgstr "Delivered"
 
+#: templates/pages/returns.html:81
+msgid ""
+"Entregas fallidas por una dirección incorrecta o por no recoger el paquete a"
+" tiempo."
+msgstr ""
+"Failed deliveries caused by an incorrect address or by not collecting the "
+"parcel in time."
+
 #: orders/models.py:13
 msgid "Enviado"
 msgstr "Shipped"
@@ -884,6 +973,16 @@ msgstr "Send message"
 #: templates/pages/privacy.html:33
 msgid "Enviarte confirmaciones y actualizaciones del estado del pedido"
 msgstr "Sending you confirmations and order status updates"
+
+#: templates/pages/returns.html:52
+msgid ""
+"Envíalo todo a <strong>%(email)s</strong>. Cada caso se estudia "
+"individualmente y te damos una respuesta con la solución —reposición o "
+"reembolso— en un máximo de 5 días hábiles."
+msgstr ""
+"Send it all to <strong>%(email)s</strong>. Each case is reviewed "
+"individually and we will come back to you with a resolution — replacement or"
+" refund — within a maximum of 5 working days."
 
 #: templates/orders/cart.html:63 templates/orders/tracking.html:96
 msgid "Envío"
@@ -917,9 +1016,24 @@ msgstr "Fast shipping"
 msgid "Error al procesar el pago. Inténtalo de nuevo."
 msgstr "There was a problem processing the payment. Please try again."
 
+#: templates/pages/returns.html:36
+msgid "Escríbenos dentro de las 48 horas siguientes a la entrega, con:"
+msgstr "Write to us within 48 hours of delivery, including:"
+
 #: templates/pages/faq.html:100
 msgid "Escríbenos y te respondemos en menos de 24 horas."
 msgstr "Write to us and we'll reply within 24 hours."
+
+#: templates/pages/returns.html:101
+msgid ""
+"Ese derecho <strong>no se aplica a los productos de EuroPeptiva</strong>, al"
+" amparo del artículo 103 del Real Decreto Legislativo 1/2007 (texto "
+"refundido de la Ley General para la Defensa de los Consumidores y Usuarios),"
+" que exceptúa expresamente:"
+msgstr ""
+"That right <strong>does not apply to EuroPeptiva products</strong>, under "
+"article 103 of Spanish Royal Legislative Decree 1/2007 (the consolidated "
+"Consumer Protection Act), which expressly excludes:"
 
 #: orders/views.py:35
 msgid "Ese producto ya no está disponible."
@@ -1160,7 +1274,7 @@ msgstr "Include your order number (PEP-XXXXXXXX) in the message."
 msgid "Información de la transacción (importe, método de pago)"
 msgstr "Transaction information (amount, payment method)"
 
-#: config/urls.py:46
+#: config/urls.py:50
 msgid ""
 "Información sobre las cookies técnicas necesarias que utiliza EuroPeptiva "
 "para el funcionamiento de la tienda."
@@ -1190,6 +1304,10 @@ msgstr "Go to homepage"
 #: templates/store/index.html:95
 msgid "LOTE %(lot)s"
 msgstr "LOT %(lot)s"
+
+#: templates/pages/returns.html:30
+msgid "La única excepción: pedido dañado, incorrecto o defectuoso"
+msgstr "The one exception: damaged, incorrect or defective orders"
 
 #: templates/store/certificates.html:52
 msgid "Laboratorio"
@@ -1236,6 +1354,25 @@ msgid ""
 msgstr ""
 "Testing is carried out by specialised external laboratories, unconnected to "
 "the peptide manufacturer."
+
+#: templates/pages/returns.html:103
+msgid ""
+"Los bienes <strong>precintados que no sean aptos para ser devueltos por "
+"razones de protección de la salud o de higiene</strong> y que hayan sido "
+"desprecintados tras la entrega (art. 103.e)."
+msgstr ""
+"<strong>Sealed goods which are not suitable for return for health protection"
+" or hygiene reasons</strong> and which have been unsealed after delivery "
+"(art. 103.e)."
+
+#: templates/pages/returns.html:104
+msgid ""
+"Los bienes <strong>que puedan deteriorarse o caducar con rapidez</strong> "
+"(art. 103.d), como es el caso de los compuestos que requieren cadena de "
+"frío."
+msgstr ""
+"<strong>Goods liable to deteriorate or expire rapidly</strong> (art. 103.d),"
+" which is the case for compounds requiring a cold chain."
 
 #: templates/store/certificates.html:78
 msgid ""
@@ -1324,6 +1461,20 @@ msgstr "Message"
 msgid "Mensaje enviado"
 msgstr "Message sent"
 
+#: templates/pages/returns.html:89
+msgid ""
+"Mientras el pedido no se haya preparado, se puede cancelar sin coste: "
+"escríbenos cuanto antes a <strong>%(email)s</strong> con tu número de "
+"pedido. Ten en cuenta que los pedidos confirmados antes de las %(hour)s:00 h"
+" salen el mismo día, así que el margen es corto. Si ya has pagado, el "
+"reembolso se hace por el mismo medio de pago."
+msgstr ""
+"As long as the order has not been prepared, it can be cancelled at no cost: "
+"write to <strong>%(email)s</strong> as soon as possible with your order "
+"number. Bear in mind that orders confirmed before %(hour)s:00 ship the same "
+"day, so the window is short. If you have already paid, the refund is issued "
+"to the original payment method."
+
 #: templates/pages/bulk.html:70
 msgid "Mismo lote para toda la serie"
 msgstr "One lot for the whole series"
@@ -1366,7 +1517,7 @@ msgstr ""
 "We couldn't find an order with those details. Please check the order number "
 "and the email address."
 
-#: templates/partials/footer.html:34
+#: templates/partials/footer.html:35
 msgid "No es un producto farmacéutico."
 msgstr "Not a pharmaceutical product."
 
@@ -1376,6 +1527,10 @@ msgid ""
 " Europeo (EEE)."
 msgstr ""
 "We do not transfer personal data outside the European Economic Area (EEA)."
+
+#: templates/pages/returns.html:20
+msgid "No se aceptan devoluciones"
+msgstr "We do not accept returns"
 
 #: templates/pages/privacy.html:57
 msgid ""
@@ -1450,6 +1605,16 @@ msgstr ""
 "For more information about the cookies we use, see our <a "
 "href=\"%(cookies_url)s\" class=\"text-accent hover:underline\">Cookie "
 "policy</a>."
+
+#: templates/pages/returns.html:57
+msgid ""
+"Pasadas esas 48 horas no podemos atribuir el problema al transporte, así que"
+" es el único plazo que podemos garantizar. Conserva el embalaje hasta "
+"comprobar que todo está correcto."
+msgstr ""
+"After those 48 hours we can no longer attribute the problem to transport, so"
+" it is the only window we can guarantee. Keep the packaging until you have "
+"checked that everything is in order."
 
 #: orders/forms.py:25 orders/models.py:40
 msgid "País"
@@ -1533,9 +1698,13 @@ msgstr "Cookie Policy"
 msgid "Política de Privacidad"
 msgstr "Privacy Policy"
 
-#: config/urls.py:45
+#: config/urls.py:49
 msgid "Política de cookies"
 msgstr "Cookie policy"
+
+#: config/urls.py:45 templates/pages/returns.html:9
+msgid "Política de devoluciones"
+msgstr "Returns policy"
 
 #: config/urls.py:37
 msgid "Política de privacidad"
@@ -1585,7 +1754,7 @@ msgstr "Frequently asked questions"
 msgid "Presupuesto enviado"
 msgstr "Quote sent"
 
-#: templates/partials/footer.html:27
+#: templates/partials/footer.html:28
 msgid "Privacidad"
 msgstr "Privacy"
 
@@ -1728,6 +1897,20 @@ msgstr "Will use the products solely for scientific research"
 msgid "Qué incluye"
 msgstr "What's included"
 
+#: templates/pages/returns.html:61
+msgid "Qué no cubre"
+msgstr "What is not covered"
+
+#: templates/pages/returns.html:113
+msgid ""
+"Recuerda que todos los productos se venden <strong>exclusivamente para "
+"investigación científica in vitro</strong>. No son aptos para consumo humano"
+" ni veterinario, y su uso indebido no da derecho a devolución ni reembolso."
+msgstr ""
+"Remember that all products are sold <strong>exclusively for in vitro "
+"scientific research</strong>. They are not suitable for human or veterinary "
+"consumption, and improper use gives no right to a return or refund."
+
 #: orders/models.py:16
 msgid "Reembolsado"
 msgstr "Refunded"
@@ -1739,6 +1922,16 @@ msgid ""
 msgstr ""
 "Answers to your questions about the purity, shipping, storage and "
 "reconstitution of EuroPeptiva research peptides."
+
+#: templates/pages/returns.html:77
+msgid ""
+"Resultados experimentales que no cumplen tus expectativas. Los productos se "
+"venden con su certificado de análisis, sin garantía de rendimiento en "
+"ninguna aplicación concreta."
+msgstr ""
+"Experimental results that fall short of your expectations. Products are sold"
+" with their certificate of analysis, with no guarantee of performance in any"
+" specific application."
 
 #: templates/orders/cart.html:56
 msgid "Resumen"
@@ -1810,6 +2003,16 @@ msgstr ""
 "complaint with the <strong>Spanish Data Protection Agency</strong> "
 "(aepd.es)."
 
+#: templates/pages/returns.html:32
+msgid ""
+"Si el pedido llega roto, con el embalaje térmico comprometido, con un "
+"producto distinto al que pediste o con un defecto verificable, lo resolvemos"
+" nosotros. Sin coste para ti."
+msgstr ""
+"If your order arrives broken, with the thermal packaging compromised, "
+"containing a different product from the one you ordered, or with a "
+"verifiable defect, we will put it right. At no cost to you."
+
 #: templates/pages/bulk.html:71
 msgid ""
 "Siempre que el stock lo permita, para que tus resultados sean comparables "
@@ -1862,7 +2065,7 @@ msgstr ""
 "We only handle enquiries about orders and scientific research. We do not "
 "answer questions about use in humans."
 
-#: templates/partials/footer.html:34
+#: templates/partials/footer.html:35
 msgid "Solo para uso en investigación científica."
 msgstr "For scientific research use only."
 
@@ -2030,6 +2233,16 @@ msgstr ""
 msgid "Total"
 msgstr "Total"
 
+#: templates/pages/returns.html:11
+msgid ""
+"Trabajamos con compuestos biológicamente activos que viajan en cadena de "
+"frío. Por eso las condiciones de devolución son estrictas: revisa bien tu "
+"pedido antes de confirmarlo."
+msgstr ""
+"We work with biologically active compounds that travel cold-chain. That is "
+"why our return terms are strict: please review your order carefully before "
+"confirming it."
+
 #: templates/pages/bulk.html:48
 msgid "Tramos de precio"
 msgstr "Pricing tiers"
@@ -2054,6 +2267,10 @@ msgstr ""
 #: orders/views.py:54 templates/orders/cart.html:8
 msgid "Tu carrito"
 msgstr "Your cart"
+
+#: templates/pages/returns.html:40
+msgid "Tu número de pedido (PEP-XXXXXXXX)."
+msgstr "Your order number (PEP-XXXXXXXX)."
 
 #: templates/orders/confirmation.html:12 templates/orders/confirmation.html:24
 #: templates/orders/confirmation.html:68
@@ -2107,6 +2324,20 @@ msgstr ""
 "transfer (1–2 working days). <strong>Don't forget to include the order "
 "number as the reference.</strong>"
 
+#: templates/pages/returns.html:48
+msgid "Una descripción breve de qué ha pasado."
+msgstr "A short description of what happened."
+
+#: templates/pages/returns.html:22
+msgid ""
+"Una vez enviado el pedido, no admitimos devoluciones ni cambios, y no "
+"reembolsamos pedidos por cambio de opinión o porque el producto ya no se "
+"necesite."
+msgstr ""
+"Once an order has shipped we do not accept returns or exchanges, and we do "
+"not issue refunds for a change of mind or because the product is no longer "
+"needed."
+
 #: templates/partials/cookie_banner.html:3
 msgid ""
 "Usamos cookies técnicas necesarias para el funcionamiento de la tienda "
@@ -2147,6 +2378,14 @@ msgstr "View the full catalog →"
 msgid "Ver todos los certificados"
 msgstr "View all certificates"
 
+#: templates/pages/returns.html:69
+msgid ""
+"Viales abiertos, reconstituidos o manipulados, salvo que el defecto fuera "
+"evidente antes de abrirlos."
+msgstr ""
+"Vials that have been opened, reconstituted or handled, unless the defect was"
+" evident before opening."
+
 #: templates/pages/bulk.html:8
 msgid "Volumen"
 msgstr "Volume"
@@ -2186,6 +2425,10 @@ msgstr "contact/"
 #: orders/shipping.py:11
 msgid "de lunes a sábado"
 msgstr "Monday to Saturday"
+
+#: config/urls.py:44
+msgid "devoluciones/"
+msgstr "returns/"
 
 #: config/urls.py:32
 msgid "faq/"
@@ -2318,6 +2561,10 @@ msgid ""
 msgstr ""
 "Questions? Write to us at <a "
 "href=\"mailto:info@europeptiva.com\">info@europeptiva.com</a>"
+
+#: templates/pages/returns.html:87
+msgid "¿Y si el pedido todavía no ha salido?"
+msgstr "What if the order has not shipped yet?"
 
 #: templates/store/catalog.html:93
 msgid "← Anterior"
