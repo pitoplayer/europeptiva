@@ -66,6 +66,8 @@
 
 **Ficha de producto reestructurada al estilo PurityBase (2026-07-23):** la ficha tenía un único bloque plano de "Descripción técnica" al final. Ahora, debajo de la caja de compra, van tres secciones: **Contexto de investigación** (campo nuevo `Peptide.research_background`, traducible; **está vacío a propósito** — mientras lo esté, la ficha enseña `description`, que es lo que había antes, así que se puede ir rellenando producto a producto desde el admin sin romper nada), **Reconstitución y manipulación** y **Conservación y estabilidad**. Estas dos últimas **no están en la BD**: son protocolo idéntico para todos los productos del mismo formato, así que viven en `store/product_content.py` y la ficha elige el bloque con el campo nuevo `Peptide.product_format` (`vial` liofilizado / `spray` nasal listo / `solvent` disolvente). Por eso la migración `0009` también **quita el párrafo de conservación del final de cada `description`**: si no, saldría dos veces en la misma página. Añadido además: **upsell de agua bacteriostática** en los liofilizados (`orders/views.py` acepta ya varias `variant_id` en el mismo POST, así que péptido y agua entran al carrito de una vez; no se ofrece si el agua está agotada ni en la ficha del agua misma) y **productos relacionados** al pie (misma categoría primero, completando con el resto hasta cuatro). La tarjeta de producto se sacó a `templates/partials/product_card.html`, que ahora comparten catálogo y relacionados. De paso: `PeptideVariant.size_display` — el campo se llama `size_mg` pero el agua se vende en ml, y el catálogo y el selector la anunciaban como "3mg". El SKU se sigue generando con `mg` para no romper los que ya existen. 9 tests nuevos.
 
+**Contexto de investigación de los 18 productos (2026-07-23):** escritos en español e inglés en la migración `0010` (indexada por slug, como las demás). Reglas que sigue el texto, por si hay que ampliarlo o revisarlo: qué es la molécula y qué se ha estudiado de ella, sin eficacia, dosis ni uso humano; y **se dice siempre de dónde viene la evidencia**. Donde es solo preclínica (BPC-157, TB-500, MOTS-c) el texto lo afirma explícitamente; donde la literatura procede casi toda de un país (Semax y Selank, desarrollo ruso) también; y los dos blends dicen que lo publicado va de cada componente por separado, no de la mezcla. Esa distinción entre "estudiado en roedores" y "con ensayos clínicos amplios" es lo que impide que la ficha se lea como una promesa, y conviene mantenerla si se editan los textos. Falta que el usuario los revise.
+
 **SEO:**
 - sitemap.xml en /sitemap.xml
 - robots.txt en /robots.txt
@@ -91,10 +93,6 @@ source .venv/bin/activate
 python manage.py runserver
 ```
 Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
-
-## Contenido pendiente de escribir
-
-- [ ] **`research_background` de los 18 productos.** Campo vacío en todos: la ficha cae a `description` mientras tanto, así que no urge, pero es el texto que diferencia la ficha de la de un competidor. Se edita en el admin, que ya tiene pestaña por idioma (español e inglés).
 
 ## Pendiente antes de lanzar
 
