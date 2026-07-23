@@ -111,8 +111,8 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 
 ### Post-lanzamiento
 - [x] Cambiar URL del admin: /admin/ → /gestion-interna/
-- [ ] Configurar dominio DNS en Hetzner (europeptiva.com + europeptiva.es)
-- [ ] Conectar dominos .com y .es al VPS
+- [ ] Configurar dominio DNS en Hetzner (europeptiva.com + europeptiva.es) — el `.com` ya resuelve y sirve con SSL; el `.es` no resuelve todavía (comprobado 23/07/2026)
+- [ ] Conectar dominos .com y .es al VPS. Ojo al hacerlo: ambos servirían contenido idéntico y el `canonical` de `base.html` se genera con `request.get_host`, así que cada dominio se declararía canónico de sí mismo y Google lo leería como contenido duplicado. Hay que decidir dominio principal y resolverlo con redirect o canonical fijo
 
 ## Timeline
 
@@ -123,4 +123,14 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 | Semana 3 | Checkout + pagos | ✅ Completo |
 | Semana 4 | Legal, SEO, infra | ✅ Completo |
 | Extras | Automatizaciones + Mollie + deploy | ✅ Completo |
-| **28 jul** | **Lanzamiento** | 🎯 5 días (a 23/07/2026) |
+| — | **Lanzamiento** | ⏸️ Aplazado indefinidamente (23/07/2026). Sin fecha objetivo. |
+
+## Trabajo desbloqueado por el aplazamiento
+
+Sin fecha de lanzamiento entran en juego cosas que antes no cabían:
+
+- [ ] **Internacionalización (i18n).** La web es solo español: 0 usos de `{% trans %}`, sin `locale/`, sin `LocaleMiddleware`, `lang="es"` fijo y sin `hreflang`. Se vende a toda la UE, así que el mercado no hispanohablante aterriza en una página que no entiende y acepta el descargo de "solo investigación in vitro" a través de la traducción automática del navegador. Orden sugerido: inglés primero, alemán después. Alcance real: ~15 plantillas + los textos de producto, que están en la BD y necesitan solución aparte (django-modeltranslation o campos por idioma).
+- [ ] **Confirmar los tramos de `store/bulk.py`** (15/20/25 %) contra el margen real de Peptaura antes de que la página reciba tráfico.
+- [ ] **Decidir el valor real de `purity`.** El modelo y las fixtures traen `>98%` mientras los badges de marketing dicen ≥99%: la ficha de producto se contradice consigo misma.
+- [ ] **Revisar la política de distribuidores** de `/al-por-mayor/`: vender para reventa expone a EuroPeptiva si el intermediario lo revende para consumo humano.
+- [ ] **Confirmar que el transportista recoge los sábados**, que es lo que promete el mensaje de envío el mismo día (L–S).

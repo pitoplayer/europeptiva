@@ -32,7 +32,7 @@ Lee `STATUS.md` al empezar — se mantiene actualizado con el estado y los próx
 - **Proveedor:** Peptaura (marketplace)
 - **Socio:** se da de alta como autónomo a su nombre
 - **Presupuesto inicial:** 500€
-- **Fecha objetivo de lanzamiento:** 28 julio / primera semana de agosto 2026
+- **Fecha objetivo de lanzamiento:** aplazada indefinidamente (decisión del 23/07/2026). Era el 28 de julio de 2026. No hay prisa: se prioriza hacer las cosas bien sobre llegar a una fecha.
 
 ## Stack técnico (decidido, no cambiar sin motivo)
 
