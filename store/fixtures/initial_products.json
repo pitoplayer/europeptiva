@@ -3,41 +3,41 @@
     "model": "store.category",
     "pk": 1,
     "fields": {
-      "name": "Control de peso",
-      "slug": "control-de-peso",
-      "description": "Péptidos investigados en el ámbito del metabolismo, la composición corporal y el control de peso.",
+      "name": "Péptidos metabólicos",
+      "slug": "peptidos-metabolicos",
+      "description": "Agonistas de los receptores de incretinas (GLP-1, GIP, glucagón) y análogos relacionados, investigados en homeostasis de la glucosa y metabolismo energético.",
       "is_active": true,
-      "name_es": "Control de peso",
-      "description_es": "Péptidos investigados en el ámbito del metabolismo, la composición corporal y el control de peso.",
-      "name_en": "Weight Management",
-      "description_en": "Peptides researched in the fields of metabolism, body composition and weight management."
+      "name_es": "Péptidos metabólicos",
+      "description_es": "Agonistas de los receptores de incretinas (GLP-1, GIP, glucagón) y análogos relacionados, investigados en homeostasis de la glucosa y metabolismo energético.",
+      "name_en": "Metabolic peptides",
+      "description_en": "Incretin receptor agonists (GLP-1, GIP, glucagon) and related analogues, researched in glucose homeostasis and energy metabolism."
     }
   },
   {
     "model": "store.category",
     "pk": 2,
     "fields": {
-      "name": "Recuperación y reparación",
-      "slug": "recuperacion-y-reparacion",
-      "description": "Péptidos para investigación en regeneración tisular y recuperación.",
+      "name": "Señalización y reparación",
+      "slug": "senalizacion-y-reparacion",
+      "description": "Péptidos y factores de crecimiento investigados en vías de señalización celular, angiogénesis y regeneración tisular in vitro.",
       "is_active": true,
-      "name_es": "Recuperación y reparación",
-      "description_es": "Péptidos para investigación en regeneración tisular y recuperación.",
-      "name_en": "Recovery & Repair",
-      "description_en": "Peptides for research into tissue regeneration and recovery."
+      "name_es": "Señalización y reparación",
+      "description_es": "Péptidos y factores de crecimiento investigados en vías de señalización celular, angiogénesis y regeneración tisular in vitro.",
+      "name_en": "Signalling & repair",
+      "description_en": "Peptides and growth factors researched in cell-signalling pathways, angiogenesis and tissue regeneration in vitro."
     }
   },
   {
     "model": "store.category",
     "pk": 3,
     "fields": {
-      "name": "Suministros de investigación",
-      "slug": "suministros-de-investigacion",
-      "description": "Agua bacteriostática y otros auxiliares para reconstitución de péptidos.",
+      "name": "Disolventes y auxiliares",
+      "slug": "disolventes-y-auxiliares",
+      "description": "Agua bacteriostática y otros auxiliares para la reconstitución de péptidos.",
       "is_active": true,
-      "name_es": "Suministros de investigación",
-      "description_es": "Agua bacteriostática y otros auxiliares para reconstitución de péptidos.",
-      "name_en": "Research Supplies",
+      "name_es": "Disolventes y auxiliares",
+      "description_es": "Agua bacteriostática y otros auxiliares para la reconstitución de péptidos.",
+      "name_en": "Solvents & accessories",
       "description_en": "Bacteriostatic water and other accessories for reconstituting peptides."
     }
   },
@@ -45,28 +45,28 @@
     "model": "store.category",
     "pk": 4,
     "fields": {
-      "name": "Cabello y piel",
-      "slug": "cabello-y-piel",
-      "description": "Péptidos investigados en regeneración cutánea, pigmentación y crecimiento del folículo piloso.",
+      "name": "Melanocortinas y péptidos de cobre",
+      "slug": "melanocortinas-y-cobre",
+      "description": "Agonistas del receptor de melanocortina y tripéptidos de cobre, investigados en pigmentación y matriz extracelular.",
       "is_active": true,
-      "name_es": "Cabello y piel",
-      "description_es": "Péptidos investigados en regeneración cutánea, pigmentación y crecimiento del folículo piloso.",
-      "name_en": "Hair & Skin",
-      "description_en": "Peptides researched in skin regeneration, pigmentation and hair follicle growth."
+      "name_es": "Melanocortinas y péptidos de cobre",
+      "description_es": "Agonistas del receptor de melanocortina y tripéptidos de cobre, investigados en pigmentación y matriz extracelular.",
+      "name_en": "Melanocortins & copper peptides",
+      "description_en": "Melanocortin receptor agonists and copper tripeptides, researched in pigmentation and extracellular matrix."
     }
   },
   {
     "model": "store.category",
     "pk": 6,
     "fields": {
-      "name": "Envejecimiento saludable",
-      "slug": "envejecimiento-saludable",
-      "description": "Péptidos y coenzimas investigados en metabolismo celular, estrés oxidativo y envejecimiento.",
+      "name": "Metabolismo celular y antioxidantes",
+      "slug": "metabolismo-celular",
+      "description": "Péptidos mitocondriales, coenzimas y antioxidantes investigados en metabolismo celular y estrés oxidativo.",
       "is_active": true,
-      "name_es": "Envejecimiento saludable",
-      "description_es": "Péptidos y coenzimas investigados en metabolismo celular, estrés oxidativo y envejecimiento.",
-      "name_en": "Healthy Aging",
-      "description_en": "Peptides and coenzymes researched in cellular metabolism, oxidative stress and aging."
+      "name_es": "Metabolismo celular y antioxidantes",
+      "description_es": "Péptidos mitocondriales, coenzimas y antioxidantes investigados en metabolismo celular y estrés oxidativo.",
+      "name_en": "Cellular metabolism & antioxidants",
+      "description_en": "Mitochondrial peptides, coenzymes and antioxidants researched in cellular metabolism and oxidative stress."
     }
   },
   {
@@ -328,7 +328,7 @@
       "name": "Semax",
       "slug": "semax",
       "cas_number": "80714-61-0",
-      "category": 7,
+      "category": 10,
       "short_description": "Péptido nootrópico en spray nasal, investigado por su efecto sobre la memoria y la protección neuronal.",
       "description": "Semax es un péptido estudiado por su posible efecto sobre la memoria, la atención y la protección de las neuronas. Se presenta en spray nasal, listo para usar.",
       "molecular_formula": "C<sub>37</sub>H<sub>51</sub>N<sub>9</sub>O<sub>10</sub>S",
@@ -356,7 +356,7 @@
       "name": "Selank",
       "slug": "selank",
       "cas_number": "129954-34-3",
-      "category": 7,
+      "category": 10,
       "short_description": "Péptido ansiolítico en spray nasal, investigado por su efecto calmante sin sedación.",
       "description": "Selank es un péptido derivado de una proteína natural del sistema inmune, estudiado por su efecto ansiolítico y su influencia sobre el estado de ánimo. Se presenta en spray nasal, listo para usar.",
       "molecular_formula": "C<sub>33</sub>H<sub>57</sub>N<sub>11</sub>O<sub>9</sub>",
@@ -440,7 +440,7 @@
       "name": "Wolverine Blend",
       "slug": "wolverine-blend",
       "cas_number": "",
-      "category": 8,
+      "category": 11,
       "short_description": "Mezcla de TB-500 y BPC-157 en un mismo vial (10 mg + 10 mg), pensada para investigar su efecto combinado.",
       "description": "Wolverine Blend combina en un mismo vial dos de los péptidos más estudiados en regeneración tisular: TB-500 y BPC-157, para investigar su posible efecto sinérgico en un solo modelo.",
       "molecular_formula": "",
@@ -468,7 +468,7 @@
       "name": "Glow70 Blend",
       "slug": "glow70-blend",
       "cas_number": "",
-      "category": 8,
+      "category": 11,
       "short_description": "Mezcla de GHK-Cu, Melanotan I y BPC-157, investigada en regeneración y protección de la piel.",
       "description": "Glow70 Blend combina en un mismo vial tres péptidos de referencia en biología cutánea: GHK-Cu, Melanotan I y BPC-157, para investigar sus efectos combinados sobre la piel.",
       "molecular_formula": "",
@@ -933,21 +933,21 @@
   },
   {
     "model": "store.category",
-    "pk": 7,
+    "pk": 10,
     "fields": {
-      "name": "Cognitivo",
-      "slug": "cognitivo",
-      "description": "Péptidos investigados en señalización del sistema nervioso central y función cognitiva.",
+      "name": "Neuropéptidos",
+      "slug": "neuropeptidos",
+      "description": "Neuropéptidos investigados en la señalización del sistema nervioso central.",
       "is_active": true,
-      "name_es": "Cognitivo",
-      "name_en": "Cognitive",
-      "description_es": "Péptidos investigados en señalización del sistema nervioso central y función cognitiva.",
-      "description_en": "Peptides researched in central nervous system signalling and cognitive function."
+      "name_es": "Neuropéptidos",
+      "name_en": "Neuropeptides",
+      "description_es": "Neuropéptidos investigados en la señalización del sistema nervioso central.",
+      "description_en": "Neuropeptides researched in central nervous system signalling."
     }
   },
   {
     "model": "store.category",
-    "pk": 8,
+    "pk": 11,
     "fields": {
       "name": "Blends",
       "slug": "blends",
