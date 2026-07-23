@@ -19,10 +19,26 @@ def index(request):
                           .exclude(purity='')
                           .order_by('-tested_date')
                           .first())
+    # Las 3 imágenes del hero salen de la BD para que enlacen a su ficha y no
+    # queden apuntando a un producto desactivado. Si falta alguno, se rellena
+    # con destacados para no dejar el hueco vacío.
+    hero_slugs = ['retatrutide', 'semaglutide', 'bpc-157']
+    by_slug = {p.slug: p for p in Peptide.objects.filter(slug__in=hero_slugs, is_active=True)
+               if p.main_image}
+    hero_peptides = [by_slug[s] for s in hero_slugs if s in by_slug]
+    if len(hero_peptides) < 3:
+        chosen = {p.pk for p in hero_peptides}
+        for p in featured:
+            if len(hero_peptides) == 3:
+                break
+            if p.pk not in chosen and p.main_image:
+                hero_peptides.append(p)
+                chosen.add(p.pk)
     return render(request, 'store/index.html', {
         'featured_peptides': featured,
         'categories': categories,
         'latest_certificate': latest_certificate,
+        'hero_peptides': hero_peptides,
         'page_title': 'Péptidos de Investigación',
         'page_description': 'Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado de análisis por lote y envío refrigerado.',
     })

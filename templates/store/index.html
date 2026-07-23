@@ -74,18 +74,18 @@
             <div class="relative hidden md:block">
                 <div class="flex flex-col gap-3">
                     <!-- Imagen grande arriba -->
-                    <div class="bg-gray-50 border border-gray-200 rounded-2xl aspect-[16/10] overflow-hidden">
-                        <img src="/media/peptides/retatrutide.png" alt="Caja y vial de Retatrutide EuroPeptiva" class="w-full h-full object-cover">
-                    </div>
+                    {% if hero_peptides.0 %}
+                    <a href="{% url 'product_detail' hero_peptides.0.slug %}" class="group block bg-gray-50 border border-gray-200 rounded-2xl aspect-[16/10] overflow-hidden hover:border-accent-border transition-colors">
+                        <img src="{{ hero_peptides.0.main_image.url }}" alt="{{ hero_peptides.0.name }} EuroPeptiva" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    {% endif %}
                     <div class="grid grid-cols-2 gap-3">
-                        <!-- Imagen abajo izquierda -->
-                        <div class="bg-gray-50 border border-gray-200 rounded-2xl aspect-square overflow-hidden">
-                            <img src="/media/peptides/semaglutide.png" alt="Caja de Semaglutide EuroPeptiva" class="w-full h-full object-cover object-center">
-                        </div>
-                        <!-- Imagen abajo derecha -->
-                        <div class="bg-gray-50 border border-gray-200 rounded-2xl aspect-square overflow-hidden">
-                            <img src="/media/peptides/bpc-157.png" alt="Vial de BPC-157 EuroPeptiva" class="w-full h-full object-cover object-center">
-                        </div>
+                        <!-- Imágenes abajo izquierda y derecha -->
+                        {% for p in hero_peptides|slice:"1:3" %}
+                        <a href="{% url 'product_detail' p.slug %}" class="group block bg-gray-50 border border-gray-200 rounded-2xl aspect-square overflow-hidden hover:border-accent-border transition-colors">
+                            <img src="{{ p.main_image.url }}" alt="{{ p.name }} EuroPeptiva" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105">
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <!-- Floating badge: último lote con CoA publicado -->
