@@ -147,6 +147,147 @@
 </section>
 {% endif %}
 
+<!-- Explora por categoría (scroll sticky) -->
+{% if categories %}
+<section class="bg-gray-50 border-y border-gray-200 py-16">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="mb-10">
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Explora</p>
+            <h2 class="text-2xl font-bold text-primary">Compra por categoría</h2>
+        </div>
+
+        <div class="grid md:grid-cols-[240px_1fr] gap-8">
+
+            <!-- Lista sticky de categorías -->
+            <div class="hidden md:block">
+                <ul class="sticky top-28 space-y-5">
+                    {% for cat in categories %}
+                    <li>
+                        <a href="{% url 'catalog' %}?category={{ cat.slug }}"
+                           data-cat-nav="{{ cat.slug }}"
+                           class="cat-nav-link block font-semibold text-gray-300 transition-colors duration-300 hover:text-primary">
+                            {{ cat.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Paneles de categoría -->
+            <div class="space-y-6">
+                {% for cat in categories %}
+                <a href="{% url 'catalog' %}?category={{ cat.slug }}"
+                   data-cat-panel="{{ cat.slug }}"
+                   class="cat-panel group grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-2xl border border-gray-200 bg-primary">
+
+                    <!-- Lado texto -->
+                    <div class="relative overflow-hidden p-8 md:p-10 flex flex-col justify-center">
+                        <div class="blob absolute -left-16 -top-16 w-64 h-64 bg-accent opacity-20 blur-3xl"></div>
+                        <span class="relative text-6xl font-bold text-white/10 leading-none mb-3">{{ forloop.counter|stringformat:"02d" }}</span>
+                        <h3 class="relative text-white text-2xl md:text-3xl font-bold mb-3">{{ cat.name }}</h3>
+                        <p class="relative text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">{{ cat.description }}</p>
+
+                        <div class="relative flex flex-wrap items-center gap-3 mb-7">
+                            <span class="text-xs font-semibold text-accent-mid bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                                {{ cat.active_product_count }} producto{{ cat.active_product_count|pluralize }}
+                            </span>
+                            {% with price=cat.cheapest_price %}
+                            {% if price %}
+                            <span class="text-xs font-semibold text-white/60">Desde {{ price }} €</span>
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <span class="relative inline-flex items-center gap-2 text-sm font-semibold text-white bg-accent px-5 py-2.5 rounded-lg w-fit group-hover:bg-accent-mid transition-colors">
+                            Ver catálogo
+                            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </span>
+                    </div>
+
+                    <!-- Lado imagen -->
+                    <div class="relative bg-gray-50 aspect-[4/3] md:aspect-auto overflow-hidden">
+                        {% with img=cat.representative_image %}
+                        {% if img %}
+                        <img src="{{ img.url }}" alt="{{ cat.name }}" class="cat-panel-img absolute inset-0 w-full h-full object-cover object-center scale-110 group-hover:scale-[1.18] transition-transform duration-500">
+                        {% endif %}
+                        {% endwith %}
+                        <span class="absolute top-4 right-4 bg-white text-accent-mid text-xs font-semibold px-3 py-1 rounded-full border border-accent-border shadow-sm">≥98% HPLC</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+    var navLinks = document.querySelectorAll('.cat-nav-link');
+    var panels = document.querySelectorAll('.cat-panel');
+    if (!navLinks.length || !panels.length || typeof gsap === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setActive(slug) {
+        navLinks.forEach(function (link) {
+            var active = link.dataset.catNav === slug;
+            link.classList.toggle('text-primary', active);
+            link.classList.toggle('text-gray-300', !active);
+        });
+    }
+
+    // Resalta la categoría activa según qué panel cruza el centro de la pantalla
+    panels.forEach(function (panel) {
+        ScrollTrigger.create({
+            trigger: panel,
+            start: 'top center',
+            end: 'bottom center',
+            onToggle: function (self) {
+                if (self.isActive) setActive(panel.dataset.catPanel);
+            },
+        });
+    });
+
+    if (!reduceMotion) {
+        // Entrada suave de cada panel al aparecer
+        panels.forEach(function (panel) {
+            gsap.from(panel, {
+                opacity: 0,
+                scale: 0.96,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: panel,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                },
+            });
+        });
+
+        // Parallax sutil de la imagen de fondo dentro de cada panel
+        document.querySelectorAll('.cat-panel-img').forEach(function (img) {
+            gsap.to(img, {
+                yPercent: 12,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img.closest('.cat-panel'),
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+            });
+        });
+    }
+})();
+</script>
+{% endif %}
+
 <!-- Por qué EuroPeptiva -->
 <section class="bg-primary py-16 mt-8">
     <div class="max-w-7xl mx-auto px-6">
