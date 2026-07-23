@@ -306,6 +306,17 @@ class FichaEstructuradaTest(TestCase):
         self.assertContains(resp, 'Lo que se ha estudiado de BPC-157.')
         self.assertNotContains(resp, 'Descripción completa de BPC-157.')
 
+    def test_no_se_escapa_sintaxis_de_plantilla_al_html(self):
+        """Django solo trata {# #} como comentario si cabe en una línea.
+
+        Uno de dos líneas se renderiza tal cual y el visitante se lo come.
+        """
+        for url in (reverse('index'), reverse('catalog'),
+                    reverse('product_detail', args=[self.bpc.slug])):
+            html = self.client.get(url).content.decode()
+            for resto in ('{#', '#}', '{%', '%}'):
+                self.assertNotIn(resto, html, f'{url} deja escapar "{resto}"')
+
     def test_el_disolvente_se_mide_en_ml(self):
         self.assertEqual(self.agua_3ml.size_display, '3 ml')
         self.assertEqual(self.bpc.variants.first().size_display, '10 mg')

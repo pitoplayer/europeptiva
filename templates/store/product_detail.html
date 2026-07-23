@@ -182,8 +182,10 @@
     <!-- Contenido largo: contexto, manipulación y conservación -->
     <div class="mt-16 border-t border-gray-100 pt-12 max-w-3xl space-y-10">
 
-        {# research_background es el texto propio del producto. Mientras esté
-           vacío se enseña la descripción completa, que es lo que había antes. #}
+        {% comment %}
+        research_background es el texto propio del producto. Mientras esté
+        vacío se enseña la descripción completa, que es lo que había antes.
+        {% endcomment %}
         {% firstof peptide.research_background peptide.description as intro %}
         {% if intro %}
         <section>
