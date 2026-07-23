@@ -12,11 +12,19 @@ from .forms import ContactForm
 def index(request):
     featured = Peptide.objects.filter(is_active=True, is_featured=True).prefetch_related('variants')[:8]
     categories = Category.objects.filter(is_active=True)
+    # Lote real para el badge del hero: el CoA publicado más reciente
+    latest_certificate = (Certificate.objects
+                          .filter(is_active=True, peptide__is_active=True)
+                          .exclude(lot_number='')
+                          .exclude(purity='')
+                          .order_by('-tested_date')
+                          .first())
     return render(request, 'store/index.html', {
         'featured_peptides': featured,
         'categories': categories,
+        'latest_certificate': latest_certificate,
         'page_title': 'Péptidos de Investigación',
-        'page_description': 'Péptidos de investigación de alta pureza (≥98% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado de análisis por lote y envío refrigerado.',
+        'page_description': 'Péptidos de investigación de alta pureza (≥99% HPLC): Retatrutide, Semaglutide, BPC-157, TB-500 y más. Sintetizados en la UE, con certificado de análisis por lote y envío refrigerado.',
     })
 
 
@@ -46,7 +54,7 @@ def catalog(request):
         'current_category': category_slug,
         'query': query,
         'page_title': 'Catálogo de Péptidos',
-        'page_description': 'Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥98% verificada por HPLC, con certificado de análisis por lote.',
+        'page_description': 'Catálogo completo de péptidos de investigación EuroPeptiva: Retatrutide, Semaglutide, BPC-157, TB-500, BAC Water. Pureza ≥99% verificada por HPLC, con certificado de análisis por lote.',
     })
 
 
@@ -82,7 +90,7 @@ def product_detail(request, slug):
         'variants': variants,
         'certificate': certificate,
         'page_title': peptide.name,
-        'page_description': peptide.short_description or f'{peptide.name} — péptido de investigación de pureza ≥98%, verificado por HPLC. Certificado de análisis disponible.',
+        'page_description': peptide.short_description or f'{peptide.name} — péptido de investigación de pureza ≥99%, verificado por HPLC. Certificado de análisis disponible.',
         'product_schema_json': mark_safe(json.dumps(product_schema).replace('</', '<\\/')),
     })
 
