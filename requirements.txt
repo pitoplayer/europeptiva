@@ -1,6 +1,8 @@
 Django==5.0
 django-environ==0.14.0
-django-modeltranslation==0.20.3
+# 0.20+ exige Django>=5.1; la serie 0.19 es la última que funciona con el 5.0
+# que pinnea la línea de arriba. Al subir Django, subir también esta.
+django-modeltranslation==0.19.17
 Pillow==12.3.0
 mollie-api-python==4.0.0
 
