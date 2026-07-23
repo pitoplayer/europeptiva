@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-6 py-12">
 
     <!-- Cabecera -->
     <div class="mb-8">
-        <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Catálogo</p>
-        <h1 class="text-3xl font-bold text-primary">Péptidos de investigación</h1>
+        <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">{% translate "Catálogo" %}</p>
+        <h1 class="text-3xl font-bold text-primary">{% translate "Péptidos de investigación" %}</h1>
     </div>
 
     <div class="flex flex-col md:flex-row gap-8">
@@ -14,11 +15,11 @@
         <!-- Sidebar -->
         <aside class="md:w-52 shrink-0">
             <div class="border border-gray-200 rounded-xl p-5">
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Categorías</h3>
+                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">{% translate "Categorías" %}</h3>
                 <ul class="space-y-2 text-sm">
                     <li>
                         <a href="{% url 'catalog' %}" class="block px-3 py-2 rounded-lg transition-colors {% if not current_category %}bg-accent-light text-accent font-semibold{% else %}text-gray-600 hover:bg-gray-50{% endif %}">
-                            Todos
+                            {% translate "Todos" %}
                         </a>
                     </li>
                     {% for cat in categories %}
@@ -38,10 +39,10 @@
             <!-- Buscador -->
             <form method="GET" class="mb-6 flex gap-2">
                 {% if current_category %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
-                <input type="text" name="q" value="{{ query }}" placeholder="Buscar compuesto o número CAS..."
+                <input type="text" name="q" value="{{ query }}" placeholder="{% translate 'Buscar compuesto o número CAS...' %}"
                     class="flex-grow border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
                 <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition-colors">
-                    Buscar
+                    {% translate "Buscar" %}
                 </button>
                 {% if query %}
                 <a href="{% url 'catalog' %}{% if current_category %}?category={{ current_category }}{% endif %}" class="px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-500 hover:bg-gray-50 transition-colors">
@@ -71,13 +72,13 @@
                         {% if peptide.cas_number %}<p class="text-xs text-gray-400 mb-1">CAS {{ peptide.cas_number }}</p>{% endif %}
                         {% with cheapest=peptide.get_cheapest_variant %}
                         {% if cheapest %}
-                        <p class="text-xs text-gray-400 mb-3">{{ cheapest.size_mg }}mg · liofilizado</p>
+                        <p class="text-xs text-gray-400 mb-3">{% blocktranslate with mg=cheapest.size_mg %}{{ mg }}mg · liofilizado{% endblocktranslate %}</p>
                         <div class="flex items-center justify-between">
                             <span class="font-bold text-primary">{{ cheapest.price }} €</span>
-                            <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">Ver producto</a>
+                            <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">{% translate "Ver producto" %}</a>
                         </div>
                         {% else %}
-                        <p class="text-sm text-gray-400">Sin stock</p>
+                        <p class="text-sm text-gray-400">{% translate "Sin stock" %}</p>
                         {% endif %}
                         {% endwith %}
                     </div>
@@ -89,20 +90,20 @@
             <div class="flex items-center justify-center gap-3 mt-10">
                 {% if peptides.has_previous %}
                 <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.previous_page_number }}"
-                    class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">← Anterior</a>
+                    class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">{% translate "← Anterior" %}</a>
                 {% endif %}
                 <span class="text-sm text-gray-400">{{ peptides.number }} / {{ peptides.paginator.num_pages }}</span>
                 {% if peptides.has_next %}
                 <a href="?{% if current_category %}category={{ current_category }}&{% endif %}{% if query %}q={{ query }}&{% endif %}page={{ peptides.next_page_number }}"
-                    class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">Siguiente →</a>
+                    class="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors">{% translate "Siguiente →" %}</a>
                 {% endif %}
             </div>
             {% endif %}
 
             {% else %}
             <div class="text-center py-20 text-gray-400">
-                <p class="text-lg font-semibold mb-2">Sin resultados</p>
-                <p class="text-sm">Prueba con otro término o <a href="{% url 'catalog' %}" class="text-accent-mid underline">ver todos</a>.</p>
+                <p class="text-lg font-semibold mb-2">{% translate "Sin resultados" %}</p>
+                <p class="text-sm">{% url 'catalog' as catalog_url %}{% blocktranslate %}Prueba con otro término o <a href="{{ catalog_url }}" class="text-accent-mid underline">ver todos</a>.{% endblocktranslate %}</p>
             </div>
             {% endif %}
 

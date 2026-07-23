@@ -1,3 +1,4 @@
+{% load i18n %}
 <footer class="bg-primary text-gray-400 mt-20">
     <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
 
@@ -17,20 +18,20 @@
 
         <!-- Links -->
         <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-            <a href="{% url 'catalog' %}" class="hover:text-white transition-colors">Catálogo</a>
-            <a href="{% url 'certificates' %}" class="hover:text-white transition-colors">Certificados</a>
-            <a href="{% url 'bulk' %}" class="hover:text-white transition-colors">Al por mayor</a>
-            <a href="{% url 'about' %}" class="hover:text-white transition-colors">Sobre nosotros</a>
+            <a href="{% url 'catalog' %}" class="hover:text-white transition-colors">{% translate "Catálogo" %}</a>
+            <a href="{% url 'certificates' %}" class="hover:text-white transition-colors">{% translate "Certificados" %}</a>
+            <a href="{% url 'bulk' %}" class="hover:text-white transition-colors">{% translate "Al por mayor" %}</a>
+            <a href="{% url 'about' %}" class="hover:text-white transition-colors">{% translate "Sobre nosotros" %}</a>
             <a href="{% url 'faq' %}" class="hover:text-white transition-colors">FAQ</a>
-            <a href="{% url 'contact' %}" class="hover:text-white transition-colors">Contacto</a>
-            <a href="{% url 'privacy' %}" class="hover:text-white transition-colors">Privacidad</a>
-            <a href="{% url 'legal' %}" class="hover:text-white transition-colors">Aviso legal</a>
-            <a href="{% url 'cookies' %}" class="hover:text-white transition-colors">Cookies</a>
+            <a href="{% url 'contact' %}" class="hover:text-white transition-colors">{% translate "Contacto" %}</a>
+            <a href="{% url 'privacy' %}" class="hover:text-white transition-colors">{% translate "Privacidad" %}</a>
+            <a href="{% url 'legal' %}" class="hover:text-white transition-colors">{% translate "Aviso legal" %}</a>
+            <a href="{% url 'cookies' %}" class="hover:text-white transition-colors">{% translate "Cookies" %}</a>
         </nav>
 
         <!-- Copyright -->
         <p class="text-xs text-gray-500 text-center md:text-right">
-            © {% now "Y" %} EuroPeptiva.<br class="hidden md:block">Solo para uso en investigación científica.<br class="hidden md:block">No es un producto farmacéutico.
+            © {% now "Y" %} EuroPeptiva.<br class="hidden md:block">{% translate "Solo para uso en investigación científica." %}<br class="hidden md:block">{% translate "No es un producto farmacéutico." %}
         </p>
 
     </div>

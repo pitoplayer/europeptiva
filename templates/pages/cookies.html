@@ -1,41 +1,42 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
 <div class="max-w-3xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold text-primary mb-8">Política de Cookies</h1>
+    <h1 class="text-3xl font-bold text-primary mb-8">{% translate "Política de Cookies" %}</h1>
     <div class="space-y-6 text-gray-700">
-        <p>EuroPeptiva utiliza únicamente cookies técnicas necesarias para el funcionamiento de la tienda. No usamos cookies de analítica, publicidad ni redes sociales.</p>
+        <p>{% translate "EuroPeptiva utiliza únicamente cookies técnicas necesarias para el funcionamiento de la tienda. No usamos cookies de analítica, publicidad ni redes sociales." %}</p>
         <section>
-            <h2 class="text-xl font-bold text-primary mb-3">Cookies propias que utilizamos</h2>
+            <h2 class="text-xl font-bold text-primary mb-3">{% translate "Cookies propias que utilizamos" %}</h2>
             <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-4 py-3 text-left font-semibold text-primary">Cookie</th>
-                        <th class="px-4 py-3 text-left font-semibold text-primary">Finalidad</th>
-                        <th class="px-4 py-3 text-left font-semibold text-primary">Duración</th>
+                        <th class="px-4 py-3 text-left font-semibold text-primary">{% translate "Cookie" %}</th>
+                        <th class="px-4 py-3 text-left font-semibold text-primary">{% translate "Finalidad" %}</th>
+                        <th class="px-4 py-3 text-left font-semibold text-primary">{% translate "Duración" %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="border-t border-gray-200">
                         <td class="px-4 py-3 font-mono text-xs">sessionid</td>
-                        <td class="px-4 py-3">Sesión de usuario y carrito de compra</td>
-                        <td class="px-4 py-3">Sesión / 2 semanas</td>
+                        <td class="px-4 py-3">{% translate "Sesión de usuario y carrito de compra" %}</td>
+                        <td class="px-4 py-3">{% translate "Sesión / 2 semanas" %}</td>
                     </tr>
                     <tr class="border-t border-gray-200">
                         <td class="px-4 py-3 font-mono text-xs">csrftoken</td>
-                        <td class="px-4 py-3">Seguridad contra ataques CSRF</td>
-                        <td class="px-4 py-3">1 año</td>
+                        <td class="px-4 py-3">{% translate "Seguridad contra ataques CSRF" %}</td>
+                        <td class="px-4 py-3">{% translate "1 año" %}</td>
                     </tr>
                     <tr class="border-t border-gray-200">
                         <td class="px-4 py-3 font-mono text-xs">cookies_accepted</td>
-                        <td class="px-4 py-3">Guardar tu preferencia sobre el banner de cookies</td>
-                        <td class="px-4 py-3">Indefinido (localStorage)</td>
+                        <td class="px-4 py-3">{% translate "Guardar tu preferencia sobre el banner de cookies" %}</td>
+                        <td class="px-4 py-3">{% translate "Indefinido (localStorage)" %}</td>
                     </tr>
                 </tbody>
             </table>
         </section>
         <section>
-            <h2 class="text-xl font-bold text-primary mb-2">¿Cómo gestionar las cookies?</h2>
-            <p>Puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que si desactivas las cookies técnicas, el carrito y el proceso de compra dejarán de funcionar correctamente.</p>
+            <h2 class="text-xl font-bold text-primary mb-2">{% translate "¿Cómo gestionar las cookies?" %}</h2>
+            <p>{% translate "Puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que si desactivas las cookies técnicas, el carrito y el proceso de compra dejarán de funcionar correctamente." %}</p>
         </section>
     </div>
 </div>

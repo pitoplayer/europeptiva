@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load i18n %}
 {% load shipping_extras %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto px-6 py-12">
-    <h1 class="text-2xl font-bold text-primary mb-8">Tu carrito</h1>
+    <h1 class="text-2xl font-bold text-primary mb-8">{% translate "Tu carrito" %}</h1>
 
     {% if items %}
     <div class="flex flex-col lg:flex-row gap-8">
@@ -20,7 +22,7 @@
                     </div>
                     <div class="flex-grow min-w-0">
                         <a href="{% url 'product_detail' item.slug %}" class="font-semibold text-primary hover:text-accent-mid transition-colors">{{ item.name }}</a>
-                        <p class="text-xs text-gray-400 mt-0.5">{{ item.size_mg }}mg · liofilizado · {{ item.price }}€/ud</p>
+                        <p class="text-xs text-gray-400 mt-0.5">{% blocktranslate with mg=item.size_mg price=item.price %}{{ mg }}mg · liofilizado · {{ price }}€/ud{% endblocktranslate %}</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <form method="POST">
@@ -36,7 +38,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="action" value="remove">
                             <input type="hidden" name="variant_id" value="{{ item.variant_id }}">
-                            <button type="submit" class="text-gray-300 hover:text-red-400 transition-colors ml-1" title="Eliminar">
+                            <button type="submit" class="text-gray-300 hover:text-red-400 transition-colors ml-1" title="{% translate 'Eliminar' %}">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
@@ -51,16 +53,16 @@
         <!-- Resumen -->
         <div class="lg:w-64 shrink-0">
             <div class="border border-gray-200 rounded-xl p-5 sticky top-20">
-                <h3 class="font-semibold text-primary mb-4">Resumen</h3>
+                <h3 class="font-semibold text-primary mb-4">{% translate "Resumen" %}</h3>
                 <div class="space-y-2 text-sm mb-4">
                     <div class="flex justify-between">
-                        <span class="text-gray-500">Subtotal</span>
+                        <span class="text-gray-500">{% translate "Subtotal" %}</span>
                         <span class="font-medium">{{ total }}€</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-500">Envío</span>
+                        <span class="text-gray-500">{% translate "Envío" %}</span>
                         <span class="font-medium {% if not missing_for_free_shipping %}text-accent-mid{% endif %}">
-                            {% if not missing_for_free_shipping %}Gratis{% else %}Desde {{ shipping_cost_es|euros }}{% endif %}
+                            {% if not missing_for_free_shipping %}{% translate "Gratis" %}{% else %}{% blocktranslate with amount=shipping_cost_es|euros %}Desde {{ amount }}{% endblocktranslate %}{% endif %}
                         </span>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
                 {% if missing_for_free_shipping %}
                 <div class="bg-accent-light border border-accent-border rounded-lg p-3 mb-4">
                     <p class="text-xs text-accent mb-2">
-                        Te faltan <strong class="font-semibold">{{ missing_for_free_shipping|euros }}</strong> para el envío gratis
+                        {% blocktranslate with amount=missing_for_free_shipping|euros %}Te faltan <strong class="font-semibold">{{ amount }}</strong> para el envío gratis{% endblocktranslate %}
                     </p>
                     <div class="h-1.5 bg-white rounded-full overflow-hidden" role="progressbar"
                          aria-valuenow="{{ free_shipping_progress }}" aria-valuemin="0" aria-valuemax="100">
@@ -78,19 +80,19 @@
                 </div>
                 {% else %}
                 <div class="bg-accent-light border border-accent-border rounded-lg p-3 mb-4 text-xs text-accent">
-                    ✓ <strong class="font-semibold">Envío gratis</strong> aplicado a este pedido
+                    {% blocktranslate %}✓ <strong class="font-semibold">Envío gratis</strong> aplicado a este pedido{% endblocktranslate %}
                 </div>
                 {% endif %}
 
                 <div class="border-t border-gray-100 pt-4 flex justify-between font-bold text-primary mb-5">
-                    <span>Total</span>
+                    <span>{% translate "Total" %}</span>
                     <span>{{ total }}€{% if missing_for_free_shipping %}+{% endif %}</span>
                 </div>
                 <a href="{% url 'checkout' %}" class="block text-center bg-primary text-white py-3 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
-                    Finalizar pedido →
+                    {% translate "Finalizar pedido →" %}
                 </a>
                 <a href="{% url 'catalog' %}" class="block text-center text-gray-400 text-xs mt-3 hover:text-primary transition-colors">
-                    Seguir comprando
+                    {% translate "Seguir comprando" %}
                 </a>
             </div>
         </div>
@@ -103,9 +105,9 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.4 7h12.8M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>
             </svg>
         </div>
-        <p class="font-semibold text-gray-600 mb-1">El carrito está vacío</p>
-        <p class="text-sm mb-6">Añade productos desde el catálogo.</p>
-        <a href="{% url 'catalog' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors">Ver catálogo</a>
+        <p class="font-semibold text-gray-600 mb-1">{% translate "El carrito está vacío" %}</p>
+        <p class="text-sm mb-6">{% translate "Añade productos desde el catálogo." %}</p>
+        <a href="{% url 'catalog' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors">{% translate "Ver catálogo" %}</a>
     </div>
     {% endif %}
 </div>

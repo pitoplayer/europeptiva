@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load shipping_extras %}
 {% block content %}
 
 <!-- Hero -->
 <section class="bg-primary text-white py-16 px-4">
     <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl font-bold mb-4">Sobre EuroPeptiva</h1>
-        <p class="text-gray-400 text-lg">Proveedor especializado en péptidos de investigación científica.<br>Pureza certificada. Envío a España y Europa.</p>
+        <h1 class="text-4xl font-bold mb-4">{% translate "Sobre EuroPeptiva" %}</h1>
+        <p class="text-gray-400 text-lg">{% blocktranslate %}Proveedor especializado en péptidos de investigación científica.<br>Pureza certificada. Envío a España y Europa.{% endblocktranslate %}</p>
     </div>
 </section>
 
@@ -14,7 +15,7 @@
 
     <!-- Intro -->
     <p class="text-lg text-gray-600 mb-12 text-center max-w-2xl mx-auto">
-        EuroPeptiva nace con el objetivo de facilitar el acceso a reactivos de investigación de alta calidad a investigadores, laboratorios y centros de I+D en España y la Unión Europea.
+        {% translate "EuroPeptiva nace con el objetivo de facilitar el acceso a reactivos de investigación de alta calidad a investigadores, laboratorios y centros de I+D en España y la Unión Europea." %}
     </p>
 
     <!-- Valores -->
@@ -23,77 +24,77 @@
             <div class="w-14 h-14 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-2xl">🔬</span>
             </div>
-            <h3 class="font-bold text-primary mb-2">Calidad verificada</h3>
-            <p class="text-gray-600 text-sm">Pureza &gt;99% confirmada por HPLC. Certificado de análisis (CoA) disponible para cada lote.</p>
+            <h3 class="font-bold text-primary mb-2">{% translate "Calidad verificada" %}</h3>
+            <p class="text-gray-600 text-sm">{% translate "Pureza &gt;99% confirmada por HPLC. Certificado de análisis (CoA) disponible para cada lote." %}</p>
         </div>
         <div class="text-center p-6">
             <div class="w-14 h-14 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-2xl">🇪🇺</span>
             </div>
-            <h3 class="font-bold text-primary mb-2">Origen europeo</h3>
-            <p class="text-gray-600 text-sm">Todos los productos provienen de fabricantes europeos con estrictos controles de calidad y trazabilidad.</p>
+            <h3 class="font-bold text-primary mb-2">{% translate "Origen europeo" %}</h3>
+            <p class="text-gray-600 text-sm">{% translate "Todos los productos provienen de fabricantes europeos con estrictos controles de calidad y trazabilidad." %}</p>
         </div>
         <div class="text-center p-6">
             <div class="w-14 h-14 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-2xl">⚡</span>
             </div>
-            <h3 class="font-bold text-primary mb-2">Envío rápido</h3>
-            <p class="text-gray-600 text-sm">Pedidos antes de las {{ shipping_cutoff_hour }}:00 h ({{ shipping_cutoff_days }}) salen el mismo día. Envío refrigerado a España en 24-72h, Europa en 3-5 días, con embalaje térmico. <strong class="text-accent">Gratis desde {{ shipping_free_from|euros }}.</strong></p>
+            <h3 class="font-bold text-primary mb-2">{% translate "Envío rápido" %}</h3>
+            <p class="text-gray-600 text-sm">{% blocktranslate with hour=shipping_cutoff_hour days=shipping_cutoff_days amount=shipping_free_from|euros %}Pedidos antes de las {{ hour }}:00 h ({{ days }}) salen el mismo día. Envío refrigerado a España en 24-72h, Europa en 3-5 días, con embalaje térmico. <strong class="text-accent">Gratis desde {{ amount }}.</strong>{% endblocktranslate %}</p>
         </div>
     </div>
 
     <!-- Productos -->
     <div class="bg-gray-50 rounded-2xl p-8 mb-12">
-        <h2 class="text-2xl font-bold text-primary mb-6">Nuestro catálogo</h2>
+        <h2 class="text-2xl font-bold text-primary mb-6">{% translate "Nuestro catálogo" %}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="flex items-center gap-3 bg-white rounded-xl p-4 border border-gray-200">
                 <span class="text-green-500 font-bold">✓</span>
                 <div>
                     <p class="font-semibold text-gray-800 text-sm">Retatrutide</p>
-                    <p class="text-gray-500 text-xs">Agonista triple GIP/GLP-1/glucagón</p>
+                    <p class="text-gray-500 text-xs">{% translate "Agonista triple GIP/GLP-1/glucagón" %}</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 bg-white rounded-xl p-4 border border-gray-200">
                 <span class="text-green-500 font-bold">✓</span>
                 <div>
                     <p class="font-semibold text-gray-800 text-sm">Semaglutide</p>
-                    <p class="text-gray-500 text-xs">Agonista GLP-1 de acción prolongada</p>
+                    <p class="text-gray-500 text-xs">{% translate "Agonista GLP-1 de acción prolongada" %}</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 bg-white rounded-xl p-4 border border-gray-200">
                 <span class="text-green-500 font-bold">✓</span>
                 <div>
                     <p class="font-semibold text-gray-800 text-sm">BPC-157</p>
-                    <p class="text-gray-500 text-xs">Pentadecapéptido de protección gástrica</p>
+                    <p class="text-gray-500 text-xs">{% translate "Pentadecapéptido de protección gástrica" %}</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 bg-white rounded-xl p-4 border border-gray-200">
                 <span class="text-green-500 font-bold">✓</span>
                 <div>
                     <p class="font-semibold text-gray-800 text-sm">TB-500</p>
-                    <p class="text-gray-500 text-xs">Fragmento sintético de Timosina Beta-4</p>
+                    <p class="text-gray-500 text-xs">{% translate "Fragmento sintético de Timosina Beta-4" %}</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 bg-white rounded-xl p-4 border border-gray-200">
                 <span class="text-green-500 font-bold">✓</span>
                 <div>
                     <p class="font-semibold text-gray-800 text-sm">BAC Water</p>
-                    <p class="text-gray-500 text-xs">Agua bacteriostática estéril 0.9%</p>
+                    <p class="text-gray-500 text-xs">{% translate "Agua bacteriostática estéril 0.9%" %}</p>
                 </div>
             </div>
         </div>
         <div class="text-center mt-6">
             <a href="{% url 'catalog' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
-                Ver catálogo completo →
+                {% translate "Ver catálogo completo →" %}
             </a>
         </div>
     </div>
 
     <!-- Aviso legal -->
     <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
-        <h3 class="font-bold text-amber-800 mb-2">Aviso importante</h3>
+        <h3 class="font-bold text-amber-800 mb-2">{% translate "Aviso importante" %}</h3>
         <p class="text-amber-700 text-sm leading-relaxed">
-            Todos los productos de EuroPeptiva están destinados <strong>exclusivamente para uso en investigación científica</strong>. No están aprobados para consumo humano, uso veterinario ni diagnóstico médico. Al realizar una compra, el cliente confirma que usará los productos con fines de investigación y que cumplirá con la normativa vigente en su jurisdicción.
+            {% blocktranslate %}Todos los productos de EuroPeptiva están destinados <strong>exclusivamente para uso en investigación científica</strong>. No están aprobados para consumo humano, uso veterinario ni diagnóstico médico. Al realizar una compra, el cliente confirma que usará los productos con fines de investigación y que cumplirá con la normativa vigente en su jurisdicción.{% endblocktranslate %}
         </p>
     </div>
 

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load i18n %}
 {% load shipping_extras %}
 
 {% block content %}
 <div class="max-w-6xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-primary mb-8">Finalizar pedido</h1>
+    <h1 class="text-3xl font-bold text-primary mb-8">{% translate "Finalizar pedido" %}</h1>
 
     <form method="POST" class="flex flex-col lg:flex-row gap-8">
         {% csrf_token %}
@@ -13,7 +15,7 @@
 
             <!-- Datos personales -->
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-                <h2 class="text-xl font-bold text-primary mb-5">Datos de envío</h2>
+                <h2 class="text-xl font-bold text-primary mb-5">{% translate "Datos de envío" %}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {% for field in form %}
                     {% if field.name in 'first_name,last_name,email,phone,address,city,postal_code,country,notes' %}
@@ -51,7 +53,7 @@
 
             <!-- Método de pago -->
             <div class="bg-white border border-gray-200 rounded-xl p-6">
-                <h2 class="text-xl font-bold text-primary mb-5">Método de pago</h2>
+                <h2 class="text-xl font-bold text-primary mb-5">{% translate "Método de pago" %}</h2>
                 <div class="space-y-3">
                     {% for choice in form.payment_method %}
                     <label class="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-accent transition-colors has-[:checked]:border-accent has-[:checked]:bg-green-50">
@@ -69,7 +71,7 @@
 
             <!-- Consentimientos legales -->
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 space-y-4">
-                <h2 class="text-xl font-bold text-primary mb-2">Confirmaciones obligatorias</h2>
+                <h2 class="text-xl font-bold text-primary mb-2">{% translate "Confirmaciones obligatorias" %}</h2>
                 {% for field in form %}
                 {% if field.name in 'research_disclaimer,terms,rgpd' %}
                 <label class="flex items-start gap-3 cursor-pointer">
@@ -88,43 +90,43 @@
         <!-- Resumen del pedido -->
         <div class="lg:w-80 shrink-0">
             <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 sticky top-4">
-                <h3 class="font-bold text-primary text-lg mb-4">Tu pedido</h3>
+                <h3 class="font-bold text-primary text-lg mb-4">{% translate "Tu pedido" %}</h3>
                 {% for item in cart_items %}
                 <div class="flex justify-between text-sm py-2 border-b border-gray-200">
                     <div>
                         <span class="font-medium">{{ item.name }}</span>
-                        <span class="text-gray-500 block">{{ item.size_mg }}mg × {{ item.quantity }}</span>
+                        <span class="text-gray-500 block">{% blocktranslate with mg=item.size_mg qty=item.quantity %}{{ mg }}mg × {{ qty }}{% endblocktranslate %}</span>
                     </div>
                     <span class="font-medium">{{ item.line_total }}€</span>
                 </div>
                 {% endfor %}
                 <div class="mt-4 space-y-2 text-sm">
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Subtotal</span>
+                        <span class="text-gray-600">{% translate "Subtotal" %}</span>
                         <span>{{ subtotal }}€</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">Envío (España)</span>
-                        <span>{% if shipping_preview == 0 %}<span class="text-accent font-semibold">Gratis</span>{% else %}{{ shipping_preview }}€{% endif %}</span>
+                        <span class="text-gray-600">{% translate "Envío (España)" %}</span>
+                        <span>{% if shipping_preview == 0 %}<span class="text-accent font-semibold">{% translate "Gratis" %}</span>{% else %}{{ shipping_preview }}€{% endif %}</span>
                     </div>
                     {% if shipping_preview != 0 %}
                     <p class="text-xs text-gray-500 leading-relaxed">
-                        Envío gratis a partir de {{ shipping_free_from|euros }}. Fuera de España: {{ shipping_cost_eu|euros }}, se recalcula al elegir el país.
+                        {% blocktranslate with amount=shipping_free_from|euros eu=shipping_cost_eu|euros %}Envío gratis a partir de {{ amount }}. Fuera de España: {{ eu }}, se recalcula al elegir el país.{% endblocktranslate %}
                     </p>
                     {% endif %}
                     <p class="text-xs text-accent flex items-start gap-1.5">
                         <svg class="w-3.5 h-3.5 shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                         </svg>
-                        Confirma antes de las {{ shipping_cutoff_hour }}:00 h y tu pedido sale hoy mismo ({{ shipping_cutoff_days }})
+                        {% blocktranslate with hour=shipping_cutoff_hour days=shipping_cutoff_days %}Confirma antes de las {{ hour }}:00 h y tu pedido sale hoy mismo ({{ days }}){% endblocktranslate %}
                     </p>
                 </div>
                 <div class="border-t border-gray-300 mt-4 pt-4 flex justify-between font-bold text-primary text-lg mb-6">
-                    <span>Total</span>
+                    <span>{% translate "Total" %}</span>
                     <span>{{ subtotal|add:shipping_preview }}€</span>
                 </div>
                 <button type="submit" class="w-full bg-accent text-white py-4 rounded-xl font-bold text-lg hover:bg-green-500 transition-colors">
-                    Confirmar pedido →
+                    {% translate "Confirmar pedido →" %}
                 </button>
             </div>
         </div>

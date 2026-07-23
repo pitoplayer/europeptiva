@@ -1,6 +1,8 @@
 import logging
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.translation import gettext as _
+from django.urls import reverse
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import render_to_string
 from django.conf import settings as django_settings
@@ -28,9 +30,9 @@ def cart_view(request):
         if action == 'add' and variant_id:
             try:
                 cart.add(variant_id)
-                messages.success(request, 'Producto añadido al carrito.')
+                messages.success(request, _('Producto añadido al carrito.'))
             except PeptideVariant.DoesNotExist:
-                messages.error(request, 'Ese producto ya no está disponible.')
+                messages.error(request, _('Ese producto ya no está disponible.'))
         elif action == 'remove' and variant_id:
             cart.remove(variant_id)
         elif action == 'update' and variant_id:
@@ -49,7 +51,7 @@ def cart_view(request):
         'missing_for_free_shipping': missing,
         # % del umbral ya alcanzado, para la barra de progreso
         'free_shipping_progress': min(int(total / FREE_SHIPPING_THRESHOLD * 100), 100),
-        'page_title': 'Tu carrito',
+        'page_title': _('Tu carrito'),
     })
 
 
@@ -72,7 +74,7 @@ def checkout(request):
                 [item['variant_id'] for item in cart_items]
             )
             if len(variants) != len(cart_items):
-                messages.error(request, 'Algún producto de tu carrito ya no está disponible. Revísalo antes de continuar.')
+                messages.error(request, _('Algún producto de tu carrito ya no está disponible. Revísalo antes de continuar.'))
                 return redirect('cart')
 
             with transaction.atomic():
@@ -123,7 +125,7 @@ def checkout(request):
         'subtotal': subtotal,
         'shipping_preview': shipping_preview,
         'form': form,
-        'page_title': 'Finalizar pedido',
+        'page_title': _('Finalizar pedido'),
     })
 
 
@@ -133,7 +135,7 @@ def order_confirmation(request, order_number):
         'order': order,
         'bank_iban': getattr(django_settings, 'BANK_IBAN', ''),
         'bank_holder': getattr(django_settings, 'BANK_HOLDER', ''),
-        'page_title': f'Pedido {order_number} confirmado',
+        'page_title': _('Pedido %(num)s confirmado') % {'num': order_number},
     })
 
 
@@ -147,15 +149,24 @@ def _send_order_confirmation(order):
         'bank_iban': bank_iban,
         'bank_holder': bank_holder,
     }
-    subject = f'Pedido {order.order_number} recibido — EuroPeptiva'
+    subject = _('Pedido %(num)s recibido — EuroPeptiva') % {'num': order.order_number}
     html_body = render_to_string('emails/order_confirmation.html', context)
     text_body = (
-        f"Hola {order.shipping_first_name},\n\n"
-        f"Hemos recibido tu pedido {order.order_number} por {order.total}€.\n\n"
-        f"Método de pago: {order.get_payment_method_display()}\n"
+        _("Hola %(nombre)s,\n\n"
+          "Hemos recibido tu pedido %(num)s por %(total)s€.\n\n"
+          "Método de pago: %(pago)s\n") % {
+              'nombre': order.shipping_first_name,
+              'num': order.order_number,
+              'total': order.total,
+              'pago': order.get_payment_method_display(),
+          }
     )
     if order.payment_method == 'bank_transfer':
-        text_body += f"\nTRANSFERENCIA BANCARIA:\nTitular: {bank_holder}\nIBAN: {bank_iban}\nConcepto: {order.order_number}\nImporte: {order.total}€\n"
+        text_body += _("\nTRANSFERENCIA BANCARIA:\nTitular: %(titular)s\nIBAN: %(iban)s\n"
+                       "Concepto: %(num)s\nImporte: %(total)s€\n") % {
+                           'titular': bank_holder, 'iban': bank_iban,
+                           'num': order.order_number, 'total': order.total,
+                       }
 
     try:
         msg = EmailMultiAlternatives(subject, text_body, from_email, [order.shipping_email])
@@ -178,14 +189,14 @@ def order_tracking(request):
                     shipping_email__iexact=email
                 )
             except Order.DoesNotExist:
-                error = 'No encontramos ningún pedido con esos datos. Comprueba el número de pedido y el email.'
+                error = _('No encontramos ningún pedido con esos datos. Comprueba el número de pedido y el email.')
         else:
-            error = 'Por favor, introduce el número de pedido y el email.'
+            error = _('Por favor, introduce el número de pedido y el email.')
 
     return render(request, 'orders/tracking.html', {
         'order': order,
         'error': error,
-        'page_title': 'Seguimiento de pedido',
+        'page_title': _('Seguimiento de pedido'),
     })
 
 
@@ -198,7 +209,7 @@ def mollie_payment(request, order_number):
     site_url = getattr(django_settings, 'SITE_URL', 'http://localhost:8000')
 
     if not api_key:
-        messages.error(request, 'Pago con tarjeta no disponible en este momento. Por favor elige transferencia bancaria.')
+        messages.error(request, _('Pago con tarjeta no disponible en este momento. Por favor elige transferencia bancaria.'))
         return redirect('checkout')
 
     try:
@@ -209,8 +220,10 @@ def mollie_payment(request, order_number):
         payment = mollie.payments.create({
             'amount': {'currency': 'EUR', 'value': f'{order.total:.2f}'},
             'description': f'EuroPeptiva — Pedido {order.order_number}',
-            'redirectUrl': f'{site_url}/pedidos/confirmacion/{order.order_number}/',
-            'webhookUrl': f'{site_url}/pedidos/mollie-webhook/',
+            # Con reverse: la vuelta respeta el idioma en el que compró el
+            # cliente y el webhook apunta a la URL fija sin prefijo.
+            'redirectUrl': site_url + reverse('order_confirmation', args=[order.order_number]),
+            'webhookUrl': site_url + reverse('mollie_webhook'),
             'metadata': {'order_number': order.order_number},
         })
         order.mollie_payment_id = payment['id']
@@ -218,7 +231,7 @@ def mollie_payment(request, order_number):
         return redirect(payment['_links']['checkout']['href'])
     except Exception:
         logger.exception("Fallo al crear el pago Mollie para el pedido %s", order.order_number)
-        messages.error(request, 'Error al procesar el pago. Inténtalo de nuevo.')
+        messages.error(request, _('Error al procesar el pago. Inténtalo de nuevo.'))
         return redirect('order_confirmation', order_number=order_number)
 
 

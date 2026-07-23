@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block content %}
@@ -7,75 +8,75 @@
     {% if order.status == 'paid' %}
     <div class="text-center">
         <div class="text-6xl mb-6">✅</div>
-        <h1 class="text-3xl font-bold text-primary mb-4">¡Pago confirmado!</h1>
-        <p class="text-gray-600 mb-2">Tu número de pedido es:</p>
+        <h1 class="text-3xl font-bold text-primary mb-4">{% translate "¡Pago confirmado!" %}</h1>
+        <p class="text-gray-600 mb-2">{% translate "Tu número de pedido es:" %}</p>
         <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
-        <p class="text-gray-600 mb-8">Hemos enviado los detalles del pedido a <strong>{{ order.shipping_email }}</strong>.</p>
+        <p class="text-gray-600 mb-8">{% blocktranslate with email=order.shipping_email %}Hemos enviado los detalles del pedido a <strong>{{ email }}</strong>.{% endblocktranslate %}</p>
         <div class="bg-accent-light border border-accent-border rounded-xl p-5 mb-8 text-sm text-accent">
-            Tu pago ha sido procesado correctamente. Tu pedido entrará en preparación en breve.
+            {% translate "Tu pago ha sido procesado correctamente. Tu pedido entrará en preparación en breve." %}
         </div>
     </div>
 
     {% elif order.payment_method == 'bank_transfer' %}
     <div class="text-center">
         <div class="text-6xl mb-6">🏦</div>
-        <h1 class="text-3xl font-bold text-primary mb-4">Pedido recibido</h1>
-        <p class="text-gray-600 mb-2">Tu número de pedido es:</p>
+        <h1 class="text-3xl font-bold text-primary mb-4">{% translate "Pedido recibido" %}</h1>
+        <p class="text-gray-600 mb-2">{% translate "Tu número de pedido es:" %}</p>
         <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
-        <p class="text-gray-600 mb-8">Hemos enviado las instrucciones de pago a <strong>{{ order.shipping_email }}</strong>.</p>
+        <p class="text-gray-600 mb-8">{% blocktranslate with email=order.shipping_email %}Hemos enviado las instrucciones de pago a <strong>{{ email }}</strong>.{% endblocktranslate %}</p>
     </div>
 
     <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
-        <h3 class="font-bold text-primary mb-4 text-lg">Instrucciones de transferencia bancaria</h3>
+        <h3 class="font-bold text-primary mb-4 text-lg">{% translate "Instrucciones de transferencia bancaria" %}</h3>
         <div class="space-y-2 text-sm">
             <div class="flex justify-between py-2 border-b border-gray-200">
-                <span class="text-gray-600">Titular</span>
+                <span class="text-gray-600">{% translate "Titular" %}</span>
                 <span class="font-semibold">{{ bank_holder }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-200">
-                <span class="text-gray-600">IBAN</span>
+                <span class="text-gray-600">{% translate "IBAN" %}</span>
                 <span class="font-mono font-semibold">{{ bank_iban }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-200">
-                <span class="text-gray-600">Concepto (obligatorio)</span>
+                <span class="text-gray-600">{% translate "Concepto (obligatorio)" %}</span>
                 <span class="font-bold text-primary">{{ order.order_number }}</span>
             </div>
             <div class="flex justify-between py-2">
-                <span class="text-gray-600">Importe</span>
+                <span class="text-gray-600">{% translate "Importe" %}</span>
                 <span class="font-bold text-lg">{{ order.total }}€</span>
             </div>
         </div>
-        <p class="mt-4 text-xs text-gray-500">Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1-2 días hábiles). Incluye el número de pedido en el concepto.</p>
+        <p class="mt-4 text-xs text-gray-500">{% translate "Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1-2 días hábiles). Incluye el número de pedido en el concepto." %}</p>
     </div>
 
     {% elif order.payment_method == 'mollie' and order.status == 'pending' %}
     <div class="text-center">
         <div class="text-6xl mb-6">⏳</div>
-        <h1 class="text-3xl font-bold text-primary mb-4">Pago pendiente</h1>
-        <p class="text-gray-600 mb-2">Pedido:</p>
+        <h1 class="text-3xl font-bold text-primary mb-4">{% translate "Pago pendiente" %}</h1>
+        <p class="text-gray-600 mb-2">{% translate "Pedido:" %}</p>
         <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
-        <p class="text-gray-600 mb-8">Tu pago está siendo procesado. Si el pago fue completado, recibirás la confirmación por email en unos minutos.</p>
+        <p class="text-gray-600 mb-8">{% translate "Tu pago está siendo procesado. Si el pago fue completado, recibirás la confirmación por email en unos minutos." %}</p>
         <a href="{% url 'mollie_payment' order.order_number %}" class="inline-block bg-accent text-white px-8 py-3 rounded-xl font-semibold hover:bg-green-500 transition-colors">
-            Volver a intentar el pago
+            {% translate "Volver a intentar el pago" %}
         </a>
     </div>
 
     {% else %}
     <div class="text-center">
         <div class="text-6xl mb-6">✅</div>
-        <h1 class="text-3xl font-bold text-primary mb-4">Pedido confirmado</h1>
-        <p class="text-gray-600 mb-2">Tu número de pedido es:</p>
+        <h1 class="text-3xl font-bold text-primary mb-4">{% translate "Pedido confirmado" %}</h1>
+        <p class="text-gray-600 mb-2">{% translate "Tu número de pedido es:" %}</p>
         <p class="text-2xl font-bold text-accent mb-4">{{ order.order_number }}</p>
-        <p class="text-gray-600 mb-8">Hemos enviado los detalles a <strong>{{ order.shipping_email }}</strong>.</p>
+        <p class="text-gray-600 mb-8">{% blocktranslate with email=order.shipping_email %}Hemos enviado los detalles a <strong>{{ email }}</strong>.{% endblocktranslate %}</p>
     </div>
     {% endif %}
 
     <div class="flex gap-4 justify-center mt-4">
         <a href="{% url 'catalog' %}" class="bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
-            Seguir comprando
+            {% translate "Seguir comprando" %}
         </a>
         <a href="{% url 'index' %}" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
-            Ir al inicio
+            {% translate "Ir al inicio" %}
         </a>
     </div>
 </div>

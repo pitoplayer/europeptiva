@@ -1,3 +1,4 @@
+{% load i18n i18n_extras %}
 <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
@@ -17,18 +18,30 @@
 
         <!-- Nav -->
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <a href="{% url 'index' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'index' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Inicio</a>
-            <a href="{% url 'catalog' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'catalog' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Catálogo</a>
-            <a href="{% url 'certificates' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'certificates' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Certificados</a>
+            <a href="{% url 'index' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'index' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Inicio" %}</a>
+            <a href="{% url 'catalog' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'catalog' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Catálogo" %}</a>
+            <a href="{% url 'certificates' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'certificates' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Certificados" %}</a>
             <a href="{% url 'faq' %}" class="hover:text-primary transition-colors">FAQ</a>
-            <a href="{% url 'bulk' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'bulk' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">Al por mayor</a>
-            <a href="{% url 'about' %}" class="hover:text-primary transition-colors">Sobre nosotros</a>
-            <a href="{% url 'contact' %}" class="hover:text-primary transition-colors">Contacto</a>
+            <a href="{% url 'bulk' %}" class="hover:text-primary transition-colors {% if request.resolver_match.url_name == 'bulk' %}text-primary border-b-2 border-accent pb-0.5{% endif %}">{% translate "Al por mayor" %}</a>
+            <a href="{% url 'about' %}" class="hover:text-primary transition-colors">{% translate "Sobre nosotros" %}</a>
+            <a href="{% url 'contact' %}" class="hover:text-primary transition-colors">{% translate "Contacto" %}</a>
         </nav>
 
         <!-- Derecha -->
         <div class="flex items-center gap-3">
-            <span class="hidden md:block text-xs text-gray-400 font-medium">ES / EUR</span>
+            <!-- Selector de idioma -->
+            {% get_current_language as CURRENT_LANG %}
+            {% get_available_languages as LANGUAGES %}
+            <nav class="hidden md:flex items-center gap-1 text-xs font-medium" aria-label="{% translate 'Idioma' %}">
+                {% for lang_code, lang_name in LANGUAGES %}
+                <a href="{% translate_url request.path lang_code %}"
+                   hreflang="{{ lang_code }}"
+                   class="px-1.5 py-0.5 rounded {% if lang_code == CURRENT_LANG %}text-primary font-bold{% else %}text-gray-400 hover:text-primary transition-colors{% endif %}"
+                   {% if lang_code == CURRENT_LANG %}aria-current="true"{% endif %}>{{ lang_code|upper }}</a>
+                {% if not forloop.last %}<span class="text-gray-300" aria-hidden="true">/</span>{% endif %}
+                {% endfor %}
+                <span class="text-gray-400 ml-2">EUR</span>
+            </nav>
             <a href="{% url 'cart' %}" class="relative flex items-center gap-2 border border-gray-300 text-primary px-3 py-2 rounded-lg text-sm font-medium hover:border-primary transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.4 7h12.8M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"/>

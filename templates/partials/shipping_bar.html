@@ -1,20 +1,20 @@
-{% load shipping_extras %}
+{% load i18n shipping_extras %}
 <div class="bg-primary text-white text-xs">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center">
         <span class="inline-flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-accent-mid shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
             </svg>
-            Pedidos antes de las <strong class="font-semibold">{{ shipping_cutoff_hour }}:00 h</strong> salen el mismo día ({{ shipping_cutoff_days }})
+            {% blocktranslate with hour=shipping_cutoff_hour days=shipping_cutoff_days %}Pedidos antes de las <strong class="font-semibold">{{ hour }}:00 h</strong> salen el mismo día ({{ days }}){% endblocktranslate %}
         </span>
         <span class="inline-flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-accent-mid shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
             </svg>
-            <strong class="font-semibold">Envío gratis</strong> a partir de {{ shipping_free_from|euros }}
+            {% blocktranslate with amount=shipping_free_from|euros %}<strong class="font-semibold">Envío gratis</strong> a partir de {{ amount }}{% endblocktranslate %}
         </span>
         <span class="hidden sm:inline text-gray-400">
-            España {{ shipping_cost_es|euros }} · resto de la UE {{ shipping_cost_eu|euros }}
+            {% blocktranslate with es=shipping_cost_es|euros eu=shipping_cost_eu|euros %}España {{ es }} · resto de la UE {{ eu }}{% endblocktranslate %}
         </span>
     </div>
 </div>

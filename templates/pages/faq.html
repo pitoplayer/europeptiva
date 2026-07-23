@@ -1,26 +1,24 @@
 {% extends 'base.html' %}
-{% load shipping_extras %}
+{% load i18n shipping_extras %}
 {% block content %}
 <div class="max-w-3xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold text-primary mb-3">Preguntas frecuentes</h1>
-    <p class="text-gray-600 mb-10">Todo lo que necesitas saber antes de hacer tu pedido.</p>
+    <h1 class="text-3xl font-bold text-primary mb-3">{% translate "Preguntas frecuentes" %}</h1>
+    <p class="text-gray-600 mb-10">{% translate "Todo lo que necesitas saber antes de hacer tu pedido." %}</p>
 
     <div class="space-y-4">
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Para qué sirven estos productos?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Para qué sirven estos productos?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
-                Todos los productos de EuroPeptiva son péptidos sintéticos destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. No están aprobados para uso en humanos, veterinario ni diagnóstico médico. Son utilizados por investigadores, laboratorios universitarios y centros de I+D.
+                Todos los productos de EuroPeptiva son péptidos sintéticos destinados <strong>{% translate "exclusivamente a investigación científica en laboratorio" %}</strong>. No están aprobados para uso en humanos, veterinario ni diagnóstico médico. Son utilizados por investigadores, laboratorios universitarios y centros de I+D.
             </div>
         </details>
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Cuál es la pureza de los péptidos?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Cuál es la pureza de los péptidos?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
                 Todos nuestros péptidos tienen una pureza <strong>&gt;99%</strong>, verificada por cromatografía líquida de alta eficiencia (HPLC). El certificado de análisis (CoA) está disponible bajo petición para cada lote. Para solicitarlo, escríbenos a info@europeptiva.com indicando el producto y el número de pedido.
@@ -29,8 +27,7 @@
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Cómo se almacenan y cómo llegan?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Cómo se almacenan y cómo llegan?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
                 Los péptidos se almacenan liofilizados a -20°C y se envían con embalaje isotérmico para garantizar la cadena de frío durante el transporte. Al recibirlos, deben almacenarse a -20°C (o a 4°C si se van a usar en los próximos 30 días). Una vez reconstituidos con BAC Water, se conservan refrigerados (2-8°C) hasta 4 semanas.
@@ -39,50 +36,46 @@
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Cuánto tarda el envío?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Cuánto tarda el envío?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
-                <p class="mb-2">Los pedidos confirmados <strong>antes de las {{ shipping_cutoff_hour }}:00 h {{ shipping_cutoff_days_long }} salen el mismo día</strong>. A partir de esa hora, y los domingos y festivos, salen el siguiente día hábil.</p>
-                <p class="mb-2">Plazos de entrega una vez enviado:</p>
+                <p class="mb-2">{% blocktranslate %}Los pedidos confirmados <strong>antes de las {{ shipping_cutoff_hour }}:00 h {{ shipping_cutoff_days_long }} salen el mismo día</strong>. A partir de esa hora, y los domingos y festivos, salen el siguiente día hábil.{% endblocktranslate %}</p>
+                <p class="mb-2">{% translate "Plazos de entrega una vez enviado:" %}</p>
                 <ul class="space-y-1">
-                    <li><strong>España:</strong> 24-72 horas laborables desde la confirmación del pago</li>
-                    <li><strong>Portugal, Francia, Alemania, Italia, Países Bajos, Bélgica:</strong> 3-5 días laborables</li>
-                    <li><strong>Resto de la UE:</strong> 4-7 días laborables</li>
+                    <li>{% blocktranslate %}<strong>España:</strong> 24-72 horas laborables desde la confirmación del pago{% endblocktranslate %}</li>
+                    <li>{% blocktranslate %}<strong>Portugal, Francia, Alemania, Italia, Países Bajos, Bélgica:</strong> 3-5 días laborables{% endblocktranslate %}</li>
+                    <li>{% blocktranslate %}<strong>Resto de la UE:</strong> 4-7 días laborables{% endblocktranslate %}</li>
                 </ul>
             </div>
         </details>
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Cuánto cuesta el envío?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Cuánto cuesta el envío?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
-                <p><strong class="text-accent">Envío gratis en todos los pedidos de {{ shipping_free_from|euros }} o más</strong>, tanto a España como al resto de la Unión Europea.</p>
-                <p class="mt-2">Por debajo de ese importe:</p>
+                <p>{% blocktranslate with v1=shipping_free_from|euros %}<strong class="text-accent">Envío gratis en todos los pedidos de {{ v1 }} o más</strong>, tanto a España como al resto de la Unión Europea.{% endblocktranslate %}</p>
+                <p class="mt-2">{% translate "Por debajo de ese importe:" %}</p>
                 <ul class="space-y-1 mt-1">
-                    <li><strong>España:</strong> {{ shipping_cost_es|euros }}</li>
-                    <li><strong>Resto de la UE:</strong> {{ shipping_cost_eu|euros }}</li>
+                    <li>{% blocktranslate with v1=shipping_cost_es|euros %}<strong>España:</strong> {{ v1 }}{% endblocktranslate %}</li>
+                    <li>{% blocktranslate with v1=shipping_cost_eu|euros %}<strong>Resto de la UE:</strong> {{ v1 }}{% endblocktranslate %}</li>
                 </ul>
-                <p class="mt-2">El coste exacto se calcula en el carrito según el país de destino, antes de confirmar el pedido.</p>
+                <p class="mt-2">{% translate "El coste exacto se calcula en el carrito según el país de destino, antes de confirmar el pedido." %}</p>
             </div>
         </details>
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Qué métodos de pago aceptáis?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Qué métodos de pago aceptáis?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
-                Aceptamos <strong>transferencia bancaria</strong> (SEPA) y <strong>tarjeta de crédito/débito</strong> (procesado de forma segura por Mollie). Para pedidos mediante transferencia, el pedido se procesa una vez confirmado el ingreso (1-2 días hábiles). Los pagos con tarjeta son inmediatos.
+                Aceptamos <strong>{% translate "transferencia bancaria" %}</strong> (SEPA) y <strong>{% translate "tarjeta de crédito/débito" %}</strong> (procesado de forma segura por Mollie). Para pedidos mediante transferencia, el pedido se procesa una vez confirmado el ingreso (1-2 días hábiles). Los pagos con tarjeta son inmediatos.
             </div>
         </details>
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Necesito ser investigador para comprar?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Necesito ser investigador para comprar?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
                 Al realizar el pedido, el comprador debe aceptar que los productos se destinarán exclusivamente a investigación científica. Aunque no verificamos credenciales académicas, la venta está orientada a investigadores, bioquímicos, laboratorios universitarios y empresas del sector. EuroPeptiva se reserva el derecho de rechazar pedidos que presenten indicios de uso inadecuado.
@@ -91,8 +84,7 @@
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Hacéis envíos fuera de España?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Hacéis envíos fuera de España?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
                 Sí, enviamos a todos los países de la Unión Europea. El comprador es responsable de verificar la legalidad de la importación y uso de péptidos de investigación en su país. No realizamos envíos fuera de la UE.
@@ -101,19 +93,18 @@
 
         <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group">
             <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-                ¿Cómo se reconstituye un péptido liofilizado?
-                <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                {% translate "¿Cómo se reconstituye un péptido liofilizado?" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">
-                Se recomienda usar <strong>BAC Water estéril</strong> (agua bacteriostática al 0.9%). Añade el volumen de agua deseado al vial de péptido liofilizado usando una jeringa estéril, sin agitar — deja que se disuelva suavemente inclinando el vial. La concentración final dependerá del volumen añadido y la dosis mg del vial. Guarda el péptido reconstituido a 2-8°C y úsalo en un máximo de 4 semanas.
+                Se recomienda usar <strong>{% translate "BAC Water estéril" %}</strong> (agua bacteriostática al 0.9%). Añade el volumen de agua deseado al vial de péptido liofilizado usando una jeringa estéril, sin agitar — deja que se disuelva suavemente inclinando el vial. La concentración final dependerá del volumen añadido y la dosis mg del vial. Guarda el péptido reconstituido a 2-8°C y úsalo en un máximo de 4 semanas.
             </div>
         </details>
 
     </div>
 
     <div class="mt-12 bg-accent-light border border-accent-border rounded-xl p-6 text-center">
-        <p class="text-primary font-semibold mb-2">¿Tienes más preguntas?</p>
-        <p class="text-gray-600 text-sm mb-4">Escríbenos y te respondemos en menos de 24 horas.</p>
+        <p class="text-primary font-semibold mb-2">{% translate "¿Tienes más preguntas?" %}</p>
+        <p class="text-gray-600 text-sm mb-4">{% translate "Escríbenos y te respondemos en menos de 24 horas." %}</p>
         <a href="{% url 'contact' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
             Contactar
         </a>

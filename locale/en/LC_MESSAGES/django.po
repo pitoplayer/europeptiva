@@ -1,0 +1,1609 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EuroPeptiva\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/pages/bulk.html:55
+msgid "-{{ v1 }}%"
+msgstr ""
+
+#: templates/pages/cookies.html:27
+msgid "1 año"
+msgstr ""
+
+#: templates/pages/privacy.html:17
+msgid "1. Datos que recopilamos"
+msgstr ""
+
+#: templates/pages/legal.html:17
+msgid "1. Objeto y condiciones de uso"
+msgstr ""
+
+#: templates/pages/legal.html:30
+msgid "2. Condiciones de venta"
+msgstr ""
+
+#: templates/pages/privacy.html:30
+msgid "2. Finalidad del tratamiento"
+msgstr ""
+
+#: templates/pages/privacy.html:41
+msgid "3. Base jurídica"
+msgstr ""
+
+#: templates/pages/legal.html:36
+msgid "3. Devoluciones"
+msgstr ""
+
+#: templates/pages/privacy.html:50
+msgid "4. Destinatarios de los datos"
+msgstr ""
+
+#: templates/pages/legal.html:41
+msgid "4. Responsabilidad"
+msgstr ""
+
+#: templates/pages/legal.html:46
+msgid "5. Propiedad intelectual"
+msgstr ""
+
+#: templates/pages/privacy.html:61
+msgid "5. Transferencias internacionales"
+msgstr ""
+
+#: templates/pages/legal.html:51
+msgid "6. Legislación aplicable y jurisdicción"
+msgstr ""
+
+#: templates/pages/privacy.html:66
+msgid "6. Plazo de conservación"
+msgstr ""
+
+#: templates/pages/legal.html:59
+msgid "7. Titular del sitio web (identificación legal)"
+msgstr ""
+
+#: templates/pages/privacy.html:74
+msgid "7. Tus derechos"
+msgstr ""
+
+#: templates/pages/privacy.html:89
+msgid "8. Cookies"
+msgstr ""
+
+#: templates/pages/privacy.html:97
+msgid "9. Responsable del tratamiento (identificación legal)"
+msgstr ""
+
+#: templates/store/product_detail.html:142
+msgid "<strong class=\"font-semibold text-primary\">Envío gratis</strong> a partir de {{ amount }}"
+msgstr ""
+
+#: templates/partials/shipping_bar.html:14
+msgid "<strong class=\"font-semibold\">Envío gratis</strong> a partir de {{ amount }}"
+msgstr ""
+
+#: templates/pages/faq.html:57
+msgid "<strong class=\"text-accent\">Envío gratis en todos los pedidos de {{ v1 }} o más</strong>, tanto a España como al resto de la Unión Europea."
+msgstr ""
+
+#: templates/store/product_detail.html:160
+msgid "<strong class=\"text-gray-700\">Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente con fines de investigación en laboratorio."
+msgstr ""
+
+#: templates/pages/privacy.html:77
+msgid "<strong>Acceso:</strong> conocer qué datos tenemos sobre ti"
+msgstr ""
+
+#: templates/pages/legal.html:69
+msgid "<strong>Actividad:</strong> Comercio al por menor de reactivos y suministros de laboratorio"
+msgstr ""
+
+#: templates/pages/privacy.html:55
+msgid "<strong>Administraciones públicas</strong>: cuando sea requerido por ley (AEAT, etc.)"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:90
+msgid "<strong>Dirección de envío:</strong><br> {{ v4 }} {{ v5 }}<br> {{ v2 }}<br> {{ v6 }} {{ v3 }}<br> {{ v1 }}"
+msgstr ""
+
+#: templates/pages/legal.html:66
+msgid "<strong>Domicilio:</strong> {{ legal_address }}, {{ legal_postcode }} {{ legal_city }}, España"
+msgstr ""
+
+#: templates/pages/privacy.html:43
+msgid "<strong>Ejecución del contrato</strong> (Art. 6.1.b RGPD): gestión y envío de pedidos"
+msgstr ""
+
+#: templates/pages/legal.html:67
+msgid "<strong>Email:</strong> {{ legal_email }}"
+msgstr ""
+
+#: templates/pages/faq.html:45
+msgid "<strong>España:</strong> 24-72 horas laborables desde la confirmación del pago"
+msgstr ""
+
+#: templates/pages/faq.html:60
+msgid "<strong>España:</strong> {{ v1 }}"
+msgstr ""
+
+#: templates/pages/privacy.html:45
+msgid "<strong>Interés legítimo</strong> (Art. 6.1.f RGPD): prevención del fraude"
+msgstr ""
+
+#: templates/pages/privacy.html:81
+msgid "<strong>Limitación:</strong> restringir el tratamiento en determinadas circunstancias"
+msgstr ""
+
+#: templates/pages/privacy.html:54
+msgid "<strong>Mollie B.V.</strong>: procesador de pagos con tarjeta (datos de transacción)"
+msgstr ""
+
+#: templates/pages/legal.html:65
+msgid "<strong>NIF/CIF:</strong> {{ legal_nif }}"
+msgstr ""
+
+#: templates/pages/legal.html:64
+msgid "<strong>Nombre / Razón social:</strong> {{ legal_name }}"
+msgstr ""
+
+#: templates/pages/privacy.html:100
+msgid "<strong>Nombre / Razón social:</strong> {{ legal_name }}<br> <strong>CIF/NIF:</strong> {{ legal_nif }}<br> <strong>Domicilio:</strong> {{ legal_address }}, {{ legal_postcode }} {{ legal_city }}, España<br> <strong>Email:</strong> {{ legal_email }}<br> <strong>Web:</strong> europeptiva.com"
+msgstr ""
+
+#: templates/pages/privacy.html:44
+msgid "<strong>Obligación legal</strong> (Art. 6.1.c RGPD): conservación de facturas y datos fiscales"
+msgstr ""
+
+#: templates/pages/privacy.html:82
+msgid "<strong>Oposición:</strong> oponerte al tratamiento basado en interés legítimo"
+msgstr ""
+
+#: templates/pages/privacy.html:80
+msgid "<strong>Portabilidad:</strong> recibir tus datos en formato estructurado"
+msgstr ""
+
+#: templates/pages/faq.html:46
+msgid "<strong>Portugal, Francia, Alemania, Italia, Países Bajos, Bélgica:</strong> 3-5 días laborables"
+msgstr ""
+
+#: templates/pages/privacy.html:78
+msgid "<strong>Rectificación:</strong> corregir datos inexactos"
+msgstr ""
+
+#: templates/pages/faq.html:47
+msgid "<strong>Resto de la UE:</strong> 4-7 días laborables"
+msgstr ""
+
+#: templates/pages/faq.html:61
+msgid "<strong>Resto de la UE:</strong> {{ v1 }}"
+msgstr ""
+
+#: templates/pages/privacy.html:79
+msgid "<strong>Supresión:</strong> solicitar la eliminación de tus datos"
+msgstr ""
+
+#: templates/pages/privacy.html:53
+msgid "<strong>Transportistas</strong> (Correos, MRW, DHL u otros): nombre, dirección y teléfono para la entrega"
+msgstr ""
+
+#: templates/pages/legal.html:68
+msgid "<strong>Web:</strong> europeptiva.com y europeptiva.es"
+msgstr ""
+
+#: templates/pages/legal.html:6 templates/pages/privacy.html:6
+msgid "<strong>Última actualización:</strong> Julio 2026"
+msgstr ""
+
+#: templates/partials/cookie_banner.html:7
+msgid "Aceptar"
+msgstr ""
+
+#: orders/forms.py:47
+msgid "Acepto la política de privacidad y el tratamiento de mis datos personales (RGPD)."
+msgstr ""
+
+#: orders/forms.py:43
+msgid "Acepto los términos y condiciones de venta."
+msgstr ""
+
+#: templates/pages/legal.html:22
+msgid "Actuar en calidad de investigador, científico o profesional cualificado"
+msgstr ""
+
+#: templates/pages/about.html:61
+msgid "Agonista GLP-1 de acción prolongada"
+msgstr ""
+
+#: templates/pages/about.html:54
+msgid "Agonista triple GIP/GLP-1/glucagón"
+msgstr ""
+
+#: templates/store/product_detail.html:154
+msgid "Agotado temporalmente — nuevo lote en camino, disponible en unos días."
+msgstr ""
+
+#: templates/pages/about.html:82
+msgid "Agua bacteriostática estéril 0.9%"
+msgstr ""
+
+#: templates/pages/legal.html:19
+msgid "Al acceder a este sitio web y realizar una compra, el usuario declara:"
+msgstr ""
+
+#: templates/partials/footer.html:23 templates/partials/header.html:25
+msgid "Al por mayor"
+msgstr ""
+
+#: templates/pages/privacy.html:18
+msgid "Al realizar un pedido, recopilamos los siguientes datos personales:"
+msgstr ""
+
+#: orders/views.py:77
+msgid "Algún producto de tu carrito ya no está disponible. Revísalo antes de continuar."
+msgstr ""
+
+#: orders/forms.py:19 orders/models.py:34
+msgid "Apellidos"
+msgstr ""
+
+#: templates/pages/contact.html:62
+msgid "Asunto"
+msgstr ""
+
+#: templates/pages/privacy.html:36
+msgid "Atender tus consultas a través del formulario de contacto"
+msgstr ""
+
+#: templates/partials/disclaimer_banner.html:3
+msgid "Aviso"
+msgstr ""
+
+#: templates/pages/legal.html:5
+msgid "Aviso Legal"
+msgstr ""
+
+#: templates/pages/about.html:95
+msgid "Aviso importante"
+msgstr ""
+
+#: config/urls.py:41 templates/partials/footer.html:28
+msgid "Aviso legal"
+msgstr ""
+
+#: config/urls.py:42
+msgid "Aviso legal e información sobre el responsable del sitio web europeptiva.com."
+msgstr ""
+
+#: templates/emails/order_confirmation.html:94
+msgid "Aviso legal:"
+msgstr ""
+
+#: templates/orders/cart.html:109
+msgid "Añade productos desde el catálogo."
+msgstr ""
+
+#: templates/store/product_detail.html:121
+msgid "Añadir al carrito"
+msgstr ""
+
+#: templates/pages/faq.html:99
+msgid "BAC Water estéril"
+msgstr ""
+
+#: templates/pages/bulk.html:36
+msgid "Bajo petición y previa verificación. Condiciones de reposición a medida."
+msgstr ""
+
+#: templates/store/catalog.html:45
+msgid "Buscar"
+msgstr ""
+
+#: templates/store/catalog.html:42
+msgid "Buscar compuesto o número CAS..."
+msgstr ""
+
+#: templates/store/certificates.html:37
+msgid "Cada certificado corresponde a un número de lote concreto, con fecha de análisis y firma del laboratorio."
+msgstr ""
+
+#: templates/store/index.html:309
+msgid "Cada lote se acompaña de un CoA verificado por laboratorio independiente."
+msgstr ""
+
+#: templates/store/certificates.html:10
+msgid "Cada lote se analiza en laboratorios independientes por HPLC/LC-MS para confirmar identidad y pureza antes de venderse."
+msgstr ""
+
+#: templates/store/index.html:322
+msgid "Cadena de frío"
+msgstr ""
+
+#: templates/pages/about.html:27
+msgid "Calidad verificada"
+msgstr ""
+
+#: orders/models.py:15
+msgid "Cancelado"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:55
+msgid "Cant."
+msgstr ""
+
+#: templates/store/catalog.html:18
+msgid "Categorías"
+msgstr ""
+
+#: templates/partials/footer.html:21 templates/partials/header.html:22 templates/store/catalog.html:9 templates/store/index.html:111 templates/store/product_detail.html:15
+msgid "Catálogo"
+msgstr ""
+
+#: templates/store/index.html:308
+msgid "Certificado de análisis"
+msgstr ""
+
+#: templates/pages/bulk.html:77
+msgid "Certificado de análisis de cada lote"
+msgstr ""
+
+#: templates/store/product_detail.html:52
+msgid "Certificado de análisis disponible"
+msgstr ""
+
+#: templates/store/index.html:22
+msgid "Certificado de análisis por lote · HPLC ≥99%"
+msgstr ""
+
+#: templates/partials/footer.html:22 templates/partials/header.html:23
+msgid "Certificados"
+msgstr ""
+
+#: templates/store/certificates.html:9
+msgid "Certificados de Análisis (CoA)"
+msgstr ""
+
+#: templates/store/index.html:38
+msgid "Certificados de análisis"
+msgstr ""
+
+#: templates/store/certificates.html:69
+msgid "Certificados en proceso de publicación"
+msgstr ""
+
+#: orders/forms.py:23 orders/models.py:38
+msgid "Ciudad"
+msgstr ""
+
+#: templates/pages/bulk.html:9
+msgid "Compra al por mayor"
+msgstr ""
+
+#: templates/store/index.html:160
+msgid "Compra por categoría"
+msgstr ""
+
+#: templates/store/index.html:112
+msgid "Compuestos destacados"
+msgstr ""
+
+#: templates/store/index.html:30
+msgid "Compuestos sintetizados en la UE, verificados en laboratorio independiente y enviados con cadena de frío. Sin atajos, sin marketing de suplementos."
+msgstr ""
+
+#: templates/pages/bulk.html:29
+msgid "Con consumo recurrente y necesidad de trazabilidad entre experimentos."
+msgstr ""
+
+#: templates/orders/confirmation.html:41
+msgid "Concepto (obligatorio)"
+msgstr ""
+
+#: templates/orders/checkout.html:121
+msgid "Confirma antes de las {{ hour }}:00 h y tu pedido sale hoy mismo ({{ days }})"
+msgstr ""
+
+#: templates/orders/checkout.html:74
+msgid "Confirmaciones obligatorias"
+msgstr ""
+
+#: templates/orders/checkout.html:129
+msgid "Confirmar pedido →"
+msgstr ""
+
+#: orders/forms.py:39
+msgid "Confirmo que los productos son exclusivamente para investigación científica y no para consumo humano."
+msgstr ""
+
+#: templates/orders/tracking.html:23
+msgid "Consultar pedido"
+msgstr ""
+
+#: templates/pages/contact.html:5 templates/partials/footer.html:26 templates/partials/header.html:27
+msgid "Contacto"
+msgstr ""
+
+#: templates/pages/cookies.html:13
+msgid "Cookie"
+msgstr ""
+
+#: templates/partials/footer.html:29
+msgid "Cookies"
+msgstr ""
+
+#: templates/pages/cookies.html:9
+msgid "Cookies propias que utilizamos"
+msgstr ""
+
+#: templates/pages/privacy.html:34
+msgid "Coordinar el envío con el transportista"
+msgstr ""
+
+#: orders/models.py:22
+msgid "Criptomoneda"
+msgstr ""
+
+#: templates/pages/privacy.html:35
+msgid "Cumplir con obligaciones fiscales y contables"
+msgstr ""
+
+#: orders/forms.py:24 orders/models.py:39
+msgid "Código Postal"
+msgstr ""
+
+#: templates/pages/bulk.html:98
+msgid "Cómo funciona"
+msgstr ""
+
+#: templates/pages/legal.html:37
+msgid "Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, solo se aceptarán devoluciones en caso de error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Para cualquier incidencia, contacta en un plazo máximo de 48 horas desde la recepción del pedido a <strong>info@europeptiva.com</strong>."
+msgstr ""
+
+#: templates/pages/privacy.html:69
+msgid "Datos de contacto: 1 año desde la última comunicación"
+msgstr ""
+
+#: templates/orders/checkout.html:18
+msgid "Datos de envío"
+msgstr ""
+
+#: templates/pages/privacy.html:68
+msgid "Datos de pedidos: 5 años (plazo de prescripción fiscal en España)"
+msgstr ""
+
+#: templates/store/product_detail.html:168
+msgid "Descripción técnica"
+msgstr ""
+
+#: templates/pages/bulk.html:61
+msgid "Descuentos orientativos sobre el precio unitario de catálogo. ¿Necesitas combinar varios productos para llegar al tramo? Se estudia caso por caso — escríbenos y te lo cerramos en el presupuesto."
+msgstr ""
+
+#: templates/orders/cart.html:65
+msgid "Desde {{ amount }}"
+msgstr ""
+
+#: templates/store/index.html:200
+msgid "Desde {{ p }} €"
+msgstr ""
+
+#: templates/pages/bulk.html:54
+msgid "Desde {{ v1 }} unidades"
+msgstr ""
+
+#: orders/models.py:37
+msgid "Dirección"
+msgstr ""
+
+#: orders/forms.py:22
+msgid "Dirección completa"
+msgstr ""
+
+#: templates/pages/privacy.html:21
+msgid "Dirección de correo electrónico"
+msgstr ""
+
+#: templates/orders/tracking.html:107
+msgid "Dirección de envío"
+msgstr ""
+
+#: templates/pages/privacy.html:23
+msgid "Dirección postal de envío"
+msgstr ""
+
+#: templates/pages/bulk.html:35
+msgid "Distribuidores"
+msgstr ""
+
+#: templates/pages/bulk.html:92
+msgid "Documentación válida para deducir el gasto en tu centro o empresa."
+msgstr ""
+
+#: templates/pages/cookies.html:15
+msgid "Duración"
+msgstr ""
+
+#: templates/orders/cart.html:108
+msgid "El carrito está vacío"
+msgstr ""
+
+#: templates/pages/faq.html:63
+msgid "El coste exacto se calcula en el carrito según el país de destino, antes de confirmar el pedido."
+msgstr ""
+
+#: templates/orders/cart.html:41
+msgid "Eliminar"
+msgstr ""
+
+#: orders/forms.py:20 orders/models.py:35 templates/pages/contact.html:16 templates/pages/contact.html:57
+msgid "Email"
+msgstr ""
+
+#: templates/orders/tracking.html:18
+msgid "Email del pedido"
+msgstr ""
+
+#: templates/pages/bulk.html:91
+msgid "Embalaje discreto y factura con IVA"
+msgstr ""
+
+#: templates/pages/legal.html:62
+msgid "En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se facilitan los siguientes datos de identificación:"
+msgstr ""
+
+#: orders/models.py:12
+msgid "En preparación"
+msgstr ""
+
+#: templates/store/product_detail.html:127
+msgid "En stock — envío en 24-72h."
+msgstr ""
+
+#: orders/models.py:14
+msgid "Entregado"
+msgstr ""
+
+#: orders/models.py:13
+msgid "Enviado"
+msgstr ""
+
+#: templates/pages/contact.html:76
+msgid "Enviar mensaje"
+msgstr ""
+
+#: templates/pages/privacy.html:33
+msgid "Enviarte confirmaciones y actualizaciones del estado del pedido"
+msgstr ""
+
+#: templates/orders/cart.html:63 templates/orders/tracking.html:96
+msgid "Envío"
+msgstr ""
+
+#: templates/orders/checkout.html:109
+msgid "Envío (España)"
+msgstr ""
+
+#: templates/orders/checkout.html:114
+msgid "Envío gratis a partir de {{ amount }}. Fuera de España: {{ eu }}, se recalcula al elegir el país."
+msgstr ""
+
+#: templates/pages/bulk.html:84
+msgid "Envío incluido"
+msgstr ""
+
+#: templates/store/index.html:323
+msgid "Envío refrigerado y embalaje aislado para preservar la estabilidad."
+msgstr ""
+
+#: templates/pages/about.html:41
+msgid "Envío rápido"
+msgstr ""
+
+#: orders/views.py:234
+msgid "Error al procesar el pago. Inténtalo de nuevo."
+msgstr ""
+
+#: templates/pages/faq.html:107
+msgid "Escríbenos y te respondemos en menos de 24 horas."
+msgstr ""
+
+#: orders/views.py:35
+msgid "Ese producto ya no está disponible."
+msgstr ""
+
+#: templates/partials/shipping_bar.html:17
+msgid "España {{ es }} · resto de la UE {{ eu }}"
+msgstr ""
+
+#: templates/pages/contact.html:65
+msgid "Estado de mi pedido"
+msgstr ""
+
+#: templates/pages/contact.html:30
+msgid "Estado de pedido"
+msgstr ""
+
+#: templates/orders/tracking.html:52
+msgid "Estado del pedido"
+msgstr ""
+
+#: templates/pages/bulk.html:43
+msgid "Estudios largos que necesitan asegurar suministro y precio durante meses."
+msgstr ""
+
+#: templates/pages/legal.html:18
+msgid "EuroPeptiva comercializa péptidos sintéticos y compuestos relacionados destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. Los productos no están aprobados por la AEMPS ni por ninguna agencia reguladora para uso en humanos, uso veterinario ni diagnóstico médico."
+msgstr ""
+
+#: templates/pages/about.html:18
+msgid "EuroPeptiva nace con el objetivo de facilitar el acceso a reactivos de investigación de alta calidad a investigadores, laboratorios y centros de I+D en España y la Unión Europea."
+msgstr ""
+
+#: templates/pages/legal.html:26
+msgid "EuroPeptiva no se hace responsable del uso inadecuado de los productos por parte del comprador."
+msgstr ""
+
+#: templates/pages/legal.html:42
+msgid "EuroPeptiva no se responsabiliza de los daños o perjuicios que pueda causar el uso inadecuado de los productos, ni del incumplimiento de la normativa aplicable por parte del comprador en su país o jurisdicción. Los productos se venden \"tal cual\" para investigación en laboratorio, sin garantía de resultados específicos en ningún tipo de aplicación."
+msgstr ""
+
+#: templates/pages/legal.html:32
+msgid "EuroPeptiva se reserva el derecho de rechazar pedidos si existen indicios de uso inadecuado o en caso de incumplimiento de las presentes condiciones."
+msgstr ""
+
+#: templates/pages/cookies.html:7
+msgid "EuroPeptiva utiliza únicamente cookies técnicas necesarias para el funcionamiento de la tienda. No usamos cookies de analítica, publicidad ni redes sociales."
+msgstr ""
+
+#: templates/emails/order_confirmation.html:98
+msgid "EuroPeptiva — <a href=\"https://europeptiva.com\">europeptiva.com</a>"
+msgstr ""
+
+#: config/urls.py:30
+msgid "EuroPeptiva: proveedor especializado en péptidos de investigación científica de origen europeo, con pureza certificada y envío refrigerado a España y la UE."
+msgstr ""
+
+#: templates/store/index.html:159
+msgid "Explora"
+msgstr ""
+
+#: templates/store/certificates.html:30
+msgid "FTIR/LC-MS confirma que el vial contiene el péptido indicado; HPLC mide la pureza y la potencia respecto a la etiqueta."
+msgstr ""
+
+#: templates/store/index.html:316
+msgid "Fabricación y control de calidad dentro de la Unión Europea."
+msgstr ""
+
+#: templates/store/certificates.html:54
+msgid "Fecha de análisis"
+msgstr ""
+
+#: templates/pages/cookies.html:14
+msgid "Finalidad"
+msgstr ""
+
+#: orders/views.py:128 templates/orders/checkout.html:8
+msgid "Finalizar pedido"
+msgstr ""
+
+#: templates/orders/cart.html:92
+msgid "Finalizar pedido →"
+msgstr ""
+
+#: templates/pages/about.html:75
+msgid "Fragmento sintético de Timosina Beta-4"
+msgstr ""
+
+#: templates/store/product_detail.html:75
+msgid "Fórmula molecular"
+msgstr ""
+
+#: templates/pages/privacy.html:32
+msgid "Gestionar y procesar tu pedido (contrato de compraventa)"
+msgstr ""
+
+#: templates/orders/cart.html:65 templates/orders/checkout.html:110
+msgid "Gratis"
+msgstr ""
+
+#: templates/pages/cookies.html:31
+msgid "Guardar tu preferencia sobre el banner de cookies"
+msgstr ""
+
+#: templates/pages/bulk.html:78
+msgid "HPLC de laboratorio independiente, disponible en <a href=\"{{ certificates_url }}\" class=\"text-accent-mid underline\">certificados</a>."
+msgstr ""
+
+#: templates/orders/confirmation.html:26
+msgid "Hemos enviado las instrucciones de pago a <strong>{{ email }}</strong>."
+msgstr ""
+
+#: templates/orders/confirmation.html:70
+msgid "Hemos enviado los detalles a <strong>{{ email }}</strong>."
+msgstr ""
+
+#: templates/orders/confirmation.html:14
+msgid "Hemos enviado los detalles del pedido a <strong>{{ email }}</strong>."
+msgstr ""
+
+#: templates/emails/order_confirmation.html:45
+msgid "Hemos recibido tu pedido correctamente. A continuación encontrarás los detalles:"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:44
+msgid "Hola {{ v1 }},"
+msgstr ""
+
+#: templates/pages/contact.html:23
+msgid "Horario"
+msgstr ""
+
+#: templates/store/index.html:59
+msgid "Hoy"
+msgstr ""
+
+#: templates/orders/confirmation.html:37
+msgid "IBAN"
+msgstr ""
+
+#: templates/store/certificates.html:29
+msgid "Identidad y pureza"
+msgstr ""
+
+#: templates/partials/header.html:35
+msgid "Idioma"
+msgstr ""
+
+#: templates/orders/confirmation.html:45
+msgid "Importe"
+msgstr ""
+
+#: templates/pages/cookies.html:32
+msgid "Indefinido (localStorage)"
+msgstr ""
+
+#: templates/pages/contact.html:31
+msgid "Indica tu número de pedido (PEP-XXXXXXXX) en el mensaje."
+msgstr ""
+
+#: templates/pages/privacy.html:24
+msgid "Información de la transacción (importe, método de pago)"
+msgstr ""
+
+#: config/urls.py:46
+msgid "Información sobre las cookies técnicas necesarias que utiliza EuroPeptiva para el funcionamiento de la tienda."
+msgstr ""
+
+#: templates/partials/header.html:21 templates/store/product_detail.html:13
+msgid "Inicio"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:78 templates/orders/confirmation.html:30
+msgid "Instrucciones de transferencia bancaria"
+msgstr ""
+
+#: templates/orders/tracking.html:7
+msgid "Introduce tu número de pedido y el email con el que realizaste la compra."
+msgstr ""
+
+#: templates/orders/confirmation.html:79
+msgid "Ir al inicio"
+msgstr ""
+
+#: templates/store/index.html:95
+msgid "LOTE {{ lot }}"
+msgstr ""
+
+#: templates/store/certificates.html:52
+msgid "Laboratorio"
+msgstr ""
+
+#: templates/store/certificates.html:22
+msgid "Laboratorio independiente"
+msgstr ""
+
+#: templates/pages/bulk.html:28
+msgid "Laboratorios y centros de I+D"
+msgstr ""
+
+#: templates/pages/legal.html:52
+msgid "Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada de la compraventa, las partes se someten, con renuncia a cualquier otro fuero que pudiera corresponderles, a los Juzgados y Tribunales del domicilio del consumidor, de conformidad con la normativa española de protección de consumidores y usuarios."
+msgstr ""
+
+#: templates/pages/bulk.html:49
+msgid "Las unidades cuentan <strong>por producto</strong>, no sobre el total del pedido."
+msgstr ""
+
+#: templates/store/certificates.html:23
+msgid "Los análisis los realizan laboratorios externos especializados, ajenos al fabricante del péptido."
+msgstr ""
+
+#: templates/store/certificates.html:78
+msgid "Los certificados de análisis corresponden a lotes concretos recibidos de nuestros proveedores y se sustituyen conforme se reponen nuevos lotes. Si necesitas el CoA vigente de un lote específico, contacta con nosotros indicando el producto. Todos los productos son <strong>exclusivamente para uso en investigación científica</strong>, no aptos para consumo humano ni uso veterinario."
+msgstr ""
+
+#: templates/pages/bulk.html:157
+msgid "Los pedidos al por mayor están sujetos a las mismas condiciones que el resto del catálogo: productos destinados <strong>exclusivamente a investigación científica in vitro</strong>, no aptos para consumo humano ni veterinario. El comprador es responsable de verificar la legalidad de la importación y el uso en su jurisdicción."
+msgstr ""
+
+#: templates/pages/faq.html:42
+msgid "Los pedidos confirmados <strong>antes de las {{ shipping_cutoff_hour }}:00 h {{ shipping_cutoff_days_long }} salen el mismo día</strong>. A partir de esa hora, y los domingos y festivos, salen el siguiente día hábil."
+msgstr ""
+
+#: templates/pages/legal.html:31
+msgid "Los precios indicados en el sitio incluyen el IVA aplicable. Los gastos de envío se calculan en el proceso de compra según el destino y el importe del pedido."
+msgstr ""
+
+#: templates/store/certificates.html:53
+msgid "Lote"
+msgstr ""
+
+#: templates/pages/contact.html:24
+msgid "Lunes–Viernes, 9:00–18:00 (CET)"
+msgstr ""
+
+#: templates/pages/contact.html:71
+msgid "Mensaje"
+msgstr ""
+
+#: templates/pages/contact.html:45
+msgid "Mensaje enviado"
+msgstr ""
+
+#: templates/pages/bulk.html:70
+msgid "Mismo lote para toda la serie"
+msgstr ""
+
+#: templates/store/certificates.html:70
+msgid "Muy pronto disponibles aquí. Puedes solicitar el CoA de cualquier producto escribiendo a <a href=\"{{ contact_url }}\" class=\"text-accent-mid underline\">contacto</a>."
+msgstr ""
+
+#: templates/partials/cookie_banner.html:4
+msgid "Más información"
+msgstr ""
+
+#: orders/forms.py:29 templates/orders/checkout.html:56
+msgid "Método de pago"
+msgstr ""
+
+#: templates/pages/bulk.html:121
+msgid "Mínimo {{ bulk_min_units }} unidades por producto. Sin compromiso."
+msgstr ""
+
+#: templates/pages/privacy.html:26
+msgid "No almacenamos datos de tarjetas de crédito. Los pagos con tarjeta son procesados directamente por Mollie B.V. en sus servidores seguros."
+msgstr ""
+
+#: orders/views.py:192
+msgid "No encontramos ningún pedido con esos datos. Comprueba el número de pedido y el email."
+msgstr ""
+
+#: templates/partials/footer.html:34
+msgid "No es un producto farmacéutico."
+msgstr ""
+
+#: templates/pages/privacy.html:62
+msgid "No realizamos transferencias de datos personales fuera del Espacio Económico Europeo (EEE)."
+msgstr ""
+
+#: templates/pages/privacy.html:57
+msgid "No vendemos ni cedemos tus datos a terceros con fines comerciales. Los proveedores de servicios que acceden a tus datos están obligados contractualmente a tratarlos conforme al RGPD."
+msgstr ""
+
+#: orders/forms.py:18 orders/models.py:33 templates/pages/contact.html:52
+msgid "Nombre"
+msgstr ""
+
+#: templates/pages/privacy.html:20
+msgid "Nombre y apellidos"
+msgstr ""
+
+#: orders/forms.py:26
+msgid "Notas del pedido (opcional)"
+msgstr ""
+
+#: templates/pages/about.html:48
+msgid "Nuestro catálogo"
+msgstr ""
+
+#: templates/store/product_detail.html:87
+msgid "Número CAS"
+msgstr ""
+
+#: templates/orders/tracking.html:13 templates/orders/tracking.html:39
+msgid "Número de pedido"
+msgstr ""
+
+#: templates/pages/about.html:34
+msgid "Origen europeo"
+msgstr ""
+
+#: templates/pages/contact.html:67
+msgid "Otro"
+msgstr ""
+
+#: orders/views.py:212
+msgid "Pago con tarjeta no disponible en este momento. Por favor elige transferencia bancaria."
+msgstr ""
+
+#: templates/orders/confirmation.html:55
+msgid "Pago pendiente"
+msgstr ""
+
+#: orders/models.py:11
+msgid "Pago recibido"
+msgstr ""
+
+#: templates/pages/privacy.html:90
+msgid "Para más información sobre las cookies que usamos, consulta nuestra <a href=\"{{ cookies_url }}\" class=\"text-accent hover:underline\">Política de cookies</a>."
+msgstr ""
+
+#: orders/forms.py:25 orders/models.py:40
+msgid "País"
+msgstr ""
+
+#: orders/views.py:138
+msgid "Pedido %(num)s confirmado"
+msgstr ""
+
+#: orders/views.py:152
+msgid "Pedido %(num)s recibido — EuroPeptiva"
+msgstr ""
+
+#: templates/orders/confirmation.html:67
+msgid "Pedido confirmado"
+msgstr ""
+
+#: templates/orders/tracking.html:115
+msgid "Pedido realizado el {{ fecha }}"
+msgstr ""
+
+#: templates/orders/confirmation.html:23
+msgid "Pedido recibido"
+msgstr ""
+
+#: templates/orders/confirmation.html:56
+msgid "Pedido:"
+msgstr ""
+
+#: templates/partials/shipping_bar.html:8
+msgid "Pedidos antes de las <strong class=\"font-semibold\">{{ hour }}:00 h</strong> salen el mismo día ({{ days }})"
+msgstr ""
+
+#: templates/pages/about.html:42
+msgid "Pedidos antes de las {{ hour }}:00 h ({{ days }}) salen el mismo día. Envío refrigerado a España en 24-72h, Europa en 3-5 días, con embalaje térmico. <strong class=\"text-accent\">Gratis desde {{ amount }}.</strong>"
+msgstr ""
+
+#: templates/pages/bulk.html:120
+msgid "Pedir presupuesto"
+msgstr ""
+
+#: templates/pages/legal.html:10 templates/pages/privacy.html:10
+msgid "Pendiente antes del lanzamiento:"
+msgstr ""
+
+#: orders/models.py:10
+msgid "Pendiente de pago"
+msgstr ""
+
+#: templates/pages/about.html:68
+msgid "Pentadecapéptido de protección gástrica"
+msgstr ""
+
+#: templates/store/product_detail.html:81
+msgid "Peso molecular"
+msgstr ""
+
+#: templates/pages/faq.html:43
+msgid "Plazos de entrega una vez enviado:"
+msgstr ""
+
+#: templates/pages/privacy.html:51
+msgid "Podemos compartir tus datos con:"
+msgstr ""
+
+#: templates/pages/cookies.html:5
+msgid "Política de Cookies"
+msgstr ""
+
+#: templates/pages/privacy.html:5
+msgid "Política de Privacidad"
+msgstr ""
+
+#: config/urls.py:45
+msgid "Política de cookies"
+msgstr ""
+
+#: config/urls.py:37
+msgid "Política de privacidad"
+msgstr ""
+
+#: config/urls.py:38
+msgid "Política de privacidad de EuroPeptiva: cómo tratamos tus datos personales conforme al RGPD."
+msgstr ""
+
+#: templates/pages/faq.html:58
+msgid "Por debajo de ese importe:"
+msgstr ""
+
+#: templates/store/product_detail.html:148
+msgid "Por debajo: {{ es }} a España · {{ eu }} al resto de la UE"
+msgstr ""
+
+#: orders/views.py:194
+msgid "Por favor, introduce el número de pedido y el email."
+msgstr ""
+
+#: templates/store/certificates.html:36
+msgid "Por lote, no genérico"
+msgstr ""
+
+#: templates/store/index.html:299
+msgid "Por qué EuroPeptiva"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:56
+msgid "Precio"
+msgstr ""
+
+#: templates/pages/contact.html:64
+msgid "Pregunta sobre producto"
+msgstr ""
+
+#: config/urls.py:33 templates/pages/faq.html:5
+msgid "Preguntas frecuentes"
+msgstr ""
+
+#: templates/partials/footer.html:27
+msgid "Privacidad"
+msgstr ""
+
+#: templates/pages/contact.html:66
+msgid "Problema con el pedido"
+msgstr ""
+
+#: templates/store/certificates.html:61
+msgid "Producto"
+msgstr ""
+
+#: orders/views.py:33
+msgid "Producto añadido al carrito."
+msgstr ""
+
+#: templates/orders/tracking.html:86
+msgid "Productos"
+msgstr ""
+
+#: templates/partials/disclaimer_banner.html:4
+msgid "Productos destinados exclusivamente a investigación científica in vitro. No aptos para consumo humano o veterinario."
+msgstr ""
+
+#: templates/store/index.html:330
+msgid "Productos etiquetados y comercializados solo para investigación científica."
+msgstr ""
+
+#: templates/pages/about.html:10
+msgid "Proveedor especializado en péptidos de investigación científica.<br>Pureza certificada. Envío a España y Europa."
+msgstr ""
+
+#: templates/pages/bulk.html:42
+msgid "Proyectos de investigación"
+msgstr ""
+
+#: templates/store/catalog.html:106
+msgid "Prueba con otro término o <a href=\"{{ catalog_url }}\" class=\"text-accent-mid underline\">ver todos</a>."
+msgstr ""
+
+#: templates/pages/cookies.html:39
+msgid "Puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que si desactivas las cookies técnicas, el carrito y el proceso de compra dejarán de funcionar correctamente."
+msgstr ""
+
+#: templates/pages/privacy.html:75
+msgid "Puedes ejercer en cualquier momento los siguientes derechos:"
+msgstr ""
+
+#: templates/pages/privacy.html:84
+msgid "Puedes ejercer estos derechos enviando un email a <strong>info@europeptiva.com</strong> con asunto \"Derechos RGPD\" e indicando tu nombre y número de pedido (si aplica)."
+msgstr ""
+
+#: templates/store/product_detail.html:70
+msgid "Pureza"
+msgstr ""
+
+#: templates/pages/about.html:28
+msgid "Pureza &gt;99% confirmada por HPLC. Certificado de análisis (CoA) disponible para cada lote."
+msgstr ""
+
+#: templates/store/index.html:96
+msgid "Pureza verificada · {{ purity }}"
+msgstr ""
+
+#: templates/store/catalog.html:10
+msgid "Péptidos de investigación"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:41
+msgid "Péptidos de investigación científica"
+msgstr ""
+
+#: templates/store/index.html:26
+msgid "Péptidos de investigación de alta pureza, para ciencia seria."
+msgstr ""
+
+#: templates/store/product_detail.html:136
+msgid "Pídelo antes de las <strong class=\"font-semibold text-primary\">{{ hour }}:00 h</strong> y sale hoy mismo ({{ days }})"
+msgstr ""
+
+#: templates/pages/legal.html:24
+msgid "Que cumplirá con toda la normativa aplicable en su jurisdicción"
+msgstr ""
+
+#: templates/pages/legal.html:23
+msgid "Que los productos se destinarán únicamente a investigación científica"
+msgstr ""
+
+#: templates/pages/bulk.html:65
+msgid "Qué incluye"
+msgstr ""
+
+#: orders/models.py:16
+msgid "Reembolsado"
+msgstr ""
+
+#: config/urls.py:34
+msgid "Resolvemos tus dudas sobre pureza, envío, almacenamiento y reconstitución de péptidos de investigación EuroPeptiva."
+msgstr ""
+
+#: templates/orders/cart.html:56
+msgid "Resumen"
+msgstr ""
+
+#: templates/store/index.html:300
+msgid "Rigor de laboratorio en cada envío."
+msgstr ""
+
+#: orders/views.py:199 templates/orders/tracking.html:6
+msgid "Seguimiento de pedido"
+msgstr ""
+
+#: templates/orders/cart.html:95 templates/orders/confirmation.html:76
+msgid "Seguir comprando"
+msgstr ""
+
+#: templates/pages/cookies.html:26
+msgid "Seguridad contra ataques CSRF"
+msgstr ""
+
+#: templates/store/product_detail.html:101
+msgid "Selecciona cantidad:"
+msgstr ""
+
+#: templates/pages/legal.html:21
+msgid "Ser mayor de 18 años"
+msgstr ""
+
+#: templates/pages/cookies.html:22
+msgid "Sesión / 2 semanas"
+msgstr ""
+
+#: templates/pages/cookies.html:21
+msgid "Sesión de usuario y carrito de compra"
+msgstr ""
+
+#: templates/pages/privacy.html:85
+msgid "Si consideras que no hemos atendido correctamente tu solicitud, puedes presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (aepd.es)."
+msgstr ""
+
+#: templates/pages/bulk.html:71
+msgid "Siempre que el stock lo permita, para que tus resultados sean comparables entre sí."
+msgstr ""
+
+#: templates/store/catalog.html:98
+msgid "Siguiente →"
+msgstr ""
+
+#: templates/store/catalog.html:105
+msgid "Sin resultados"
+msgstr ""
+
+#: templates/store/catalog.html:81
+msgid "Sin stock"
+msgstr ""
+
+#: templates/pages/about.html:9
+msgid "Sobre EuroPeptiva"
+msgstr ""
+
+#: templates/store/certificates.html:76
+msgid "Sobre estos certificados"
+msgstr ""
+
+#: config/urls.py:29 templates/partials/footer.html:24 templates/partials/header.html:26
+msgid "Sobre nosotros"
+msgstr ""
+
+#: templates/pages/contact.html:36
+msgid "Solo atendemos consultas sobre pedidos e investigación científica. No respondemos preguntas sobre uso en humanos."
+msgstr ""
+
+#: templates/partials/footer.html:34
+msgid "Solo para uso en investigación científica."
+msgstr ""
+
+#: templates/store/product_detail.html:125
+msgid "Stock limitado, reposición por lotes — envío en 24-72h mientras haya unidades disponibles."
+msgstr ""
+
+#: templates/orders/cart.html:59 templates/orders/checkout.html:105
+msgid "Subtotal"
+msgstr ""
+
+#: templates/pages/bulk.html:11
+msgid "Suministramos volúmenes grandes a laboratorios, centros de I+D y distribuidores. Precio por tramos, mismo lote para toda la serie y presupuesto cerrado en 24-48 h."
+msgstr ""
+
+#: templates/store/index.html:315
+msgid "Síntesis en la UE"
+msgstr ""
+
+#: orders/models.py:21
+msgid "Tarjeta (Mollie)"
+msgstr ""
+
+#: templates/orders/cart.html:74
+msgid "Te faltan <strong class=\"font-semibold\">{{ amount }}</strong> para el envío gratis"
+msgstr ""
+
+#: templates/pages/bulk.html:126
+msgid "Te respondemos con el presupuesto en 24-48 h laborables al email que nos has dejado. Revisa también la carpeta de spam."
+msgstr ""
+
+#: templates/pages/contact.html:46
+msgid "Te responderemos en menos de 24h."
+msgstr ""
+
+#: orders/forms.py:21 orders/models.py:36
+msgid "Teléfono"
+msgstr ""
+
+#: templates/pages/privacy.html:22
+msgid "Teléfono (opcional)"
+msgstr ""
+
+#: templates/orders/confirmation.html:33
+msgid "Titular"
+msgstr ""
+
+#: templates/pages/faq.html:6
+msgid "Todo lo que necesitas saber antes de hacer tu pedido."
+msgstr ""
+
+#: templates/pages/bulk.html:85
+msgid "Todo pedido al por mayor supera los {{ v1 }}, así que el transporte refrigerado va sin coste."
+msgstr ""
+
+#: templates/store/catalog.html:22
+msgid "Todos"
+msgstr ""
+
+#: templates/pages/legal.html:47
+msgid "Todos los contenidos de este sitio (textos, imágenes, diseño gráfico, logotipos, código fuente) son propiedad de EuroPeptiva o de sus licenciantes y están protegidos por la legislación de propiedad intelectual española y comunitaria. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa."
+msgstr ""
+
+#: templates/pages/about.html:97
+msgid "Todos los productos de EuroPeptiva están destinados <strong>exclusivamente para uso en investigación científica</strong>. No están aprobados para consumo humano, uso veterinario ni diagnóstico médico. Al realizar una compra, el cliente confirma que usará los productos con fines de investigación y que cumplirá con la normativa vigente en su jurisdicción."
+msgstr ""
+
+#: templates/pages/about.html:35
+msgid "Todos los productos provienen de fabricantes europeos con estrictos controles de calidad y trazabilidad."
+msgstr ""
+
+#: templates/orders/cart.html:88 templates/orders/checkout.html:125 templates/orders/tracking.html:100 templates/orders/tracking.html:43
+msgid "Total"
+msgstr ""
+
+#: templates/pages/bulk.html:48
+msgid "Tramos de precio"
+msgstr ""
+
+#: orders/models.py:20
+msgid "Transferencia bancaria"
+msgstr ""
+
+#: templates/store/certificates.html:8
+msgid "Transparencia"
+msgstr ""
+
+#: templates/pages/bulk.html:148
+msgid "Tratamos tus datos solo para responder a esta solicitud. Más información en la <a href=\"{{ privacy_url }}\" class=\"underline\">política de privacidad</a>."
+msgstr ""
+
+#: orders/views.py:54 templates/orders/cart.html:8
+msgid "Tu carrito"
+msgstr ""
+
+#: templates/orders/confirmation.html:12 templates/orders/confirmation.html:24 templates/orders/confirmation.html:68
+msgid "Tu número de pedido es:"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:86
+msgid "Tu pago con tarjeta ha sido registrado y será procesado en breve. Recibirás una confirmación adicional cuando el pago sea verificado."
+msgstr ""
+
+#: templates/orders/confirmation.html:58
+msgid "Tu pago está siendo procesado. Si el pago fue completado, recibirás la confirmación por email en unos minutos."
+msgstr ""
+
+#: templates/orders/confirmation.html:16
+msgid "Tu pago ha sido procesado correctamente. Tu pedido entrará en preparación en breve."
+msgstr ""
+
+#: templates/orders/checkout.html:93
+msgid "Tu pedido"
+msgstr ""
+
+#: templates/orders/confirmation.html:49
+msgid "Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1-2 días hábiles). Incluye el número de pedido en el concepto."
+msgstr ""
+
+#: templates/emails/order_confirmation.html:84
+msgid "Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1–2 días hábiles). <strong>No olvides incluir el número de pedido en el concepto.</strong>"
+msgstr ""
+
+#: templates/partials/cookie_banner.html:3
+msgid "Usamos cookies técnicas necesarias para el funcionamiento de la tienda (sesión y carrito)."
+msgstr ""
+
+#: templates/store/index.html:329
+msgid "Uso exclusivo I+D"
+msgstr ""
+
+#: templates/store/certificates.html:58
+msgid "Ver PDF ↗"
+msgstr ""
+
+#: templates/orders/cart.html:110 templates/store/index.html:206 templates/store/index.html:35
+msgid "Ver catálogo"
+msgstr ""
+
+#: templates/pages/about.html:88
+msgid "Ver catálogo completo →"
+msgstr ""
+
+#: templates/store/product_detail.html:49
+msgid "Ver certificado de análisis (CoA) ↗"
+msgstr ""
+
+#: templates/store/catalog.html:78 templates/store/index.html:141
+msgid "Ver producto"
+msgstr ""
+
+#: templates/store/index.html:114
+msgid "Ver todo el catálogo →"
+msgstr ""
+
+#: templates/store/product_detail.html:53
+msgid "Ver todos los certificados"
+msgstr ""
+
+#: templates/pages/bulk.html:8
+msgid "Volumen"
+msgstr ""
+
+#: templates/orders/confirmation.html:60
+msgid "Volver a intentar el pago"
+msgstr ""
+
+#: store/urls.py:11
+msgid "al-por-mayor/"
+msgstr ""
+
+#: config/urls.py:40
+msgid "aviso-legal/"
+msgstr ""
+
+#: orders/urls.py:6
+msgid "carrito/"
+msgstr ""
+
+#: store/urls.py:7
+msgid "catalogo/"
+msgstr ""
+
+#: store/urls.py:9
+msgid "certificados/"
+msgstr ""
+
+#: orders/urls.py:8
+msgid "confirmacion/<str:order_number>/"
+msgstr ""
+
+#: store/urls.py:10
+msgid "contacto/"
+msgstr ""
+
+#: templates/pages/faq.html:15
+msgid "exclusivamente a investigación científica en laboratorio"
+msgstr ""
+
+#: config/urls.py:32
+msgid "faq/"
+msgstr ""
+
+#: templates/store/product_detail.html:32
+msgid "foto de vial"
+msgstr ""
+
+#: templates/store/index.html:69
+msgid "lotes con CoA"
+msgstr ""
+
+#: orders/urls.py:10
+msgid "pago/<str:order_number>/"
+msgstr ""
+
+#: config/urls.py:27
+msgid "pedidos/"
+msgstr ""
+
+#: config/urls.py:36
+msgid "privacidad/"
+msgstr ""
+
+#: store/urls.py:8
+msgid "producto/<slug:slug>/"
+msgstr ""
+
+#: templates/store/index.html:51
+msgid "pureza HPLC"
+msgstr ""
+
+#: orders/urls.py:9
+msgid "seguimiento/"
+msgstr ""
+
+#: templates/store/index.html:60
+msgid "si pides antes de las {{ hour }}:00 ({{ days }})"
+msgstr ""
+
+#: templates/pages/bulk.html:56
+msgid "sobre el precio de catálogo"
+msgstr ""
+
+#: config/urls.py:28
+msgid "sobre-nosotros/"
+msgstr ""
+
+#: templates/pages/faq.html:72
+msgid "tarjeta de crédito/débito"
+msgstr ""
+
+#: templates/pages/faq.html:72
+msgid "transferencia bancaria"
+msgstr ""
+
+#: templates/store/index.html:196
+msgid "{{ counter }} producto"
+msgstr ""
+
+#: templates/store/index.html:196
+msgid "{{ counter }} productos"
+msgstr ""
+
+#: templates/pages/bulk.html:139
+msgid "{{ error }}"
+msgstr ""
+
+#: templates/store/catalog.html:75 templates/store/index.html:138
+msgid "{{ mg }}mg · liofilizado"
+msgstr ""
+
+#: templates/orders/cart.html:25
+msgid "{{ mg }}mg · liofilizado · {{ price }}€/ud"
+msgstr ""
+
+#: templates/orders/checkout.html:98
+msgid "{{ mg }}mg × {{ qty }}"
+msgstr ""
+
+#: templates/orders/tracking.html:90
+msgid "{{ nombre }} {{ mg }}mg × {{ qty }}"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:63
+msgid "{{ v1 }}"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:62
+msgid "{{ v1 }} {{ v2 }}mg"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:64
+msgid "{{ v1 }}€"
+msgstr ""
+
+#: templates/orders/confirmation.html:11
+msgid "¡Pago confirmado!"
+msgstr ""
+
+#: templates/pages/faq.html:21
+msgid "¿Cuál es la pureza de los péptidos?"
+msgstr ""
+
+#: templates/pages/faq.html:54
+msgid "¿Cuánto cuesta el envío?"
+msgstr ""
+
+#: templates/pages/faq.html:39
+msgid "¿Cuánto tarda el envío?"
+msgstr ""
+
+#: templates/pages/cookies.html:38
+msgid "¿Cómo gestionar las cookies?"
+msgstr ""
+
+#: templates/pages/faq.html:30
+msgid "¿Cómo se almacenan y cómo llegan?"
+msgstr ""
+
+#: templates/pages/faq.html:96
+msgid "¿Cómo se reconstituye un péptido liofilizado?"
+msgstr ""
+
+#: templates/pages/faq.html:87
+msgid "¿Hacéis envíos fuera de España?"
+msgstr ""
+
+#: templates/pages/faq.html:78
+msgid "¿Necesito ser investigador para comprar?"
+msgstr ""
+
+#: templates/pages/bulk.html:22
+msgid "¿Para quién es?"
+msgstr ""
+
+#: templates/pages/faq.html:12
+msgid "¿Para qué sirven estos productos?"
+msgstr ""
+
+#: templates/pages/faq.html:69
+msgid "¿Qué métodos de pago aceptáis?"
+msgstr ""
+
+#: templates/pages/contact.html:6
+msgid "¿Tienes alguna pregunta sobre nuestros productos o tu pedido? Escríbenos y te respondemos en menos de 24 horas."
+msgstr ""
+
+#: templates/orders/tracking.html:122
+msgid "¿Tienes algún problema? <a href=\"{{ contact_url }}\" class=\"text-accent hover:underline\">Contacta con nosotros</a>"
+msgstr ""
+
+#: templates/pages/faq.html:106
+msgid "¿Tienes más preguntas?"
+msgstr ""
+
+#: templates/emails/order_confirmation.html:99
+msgid "¿Tienes preguntas? Escríbenos a <a href=\"mailto:info@europeptiva.com\">info@europeptiva.com</a>"
+msgstr ""
+
+#: templates/store/catalog.html:93
+msgid "← Anterior"
+msgstr ""
+
+#: templates/store/product_detail.html:35
+msgid "≥99% pureza HPLC"
+msgstr ""
+
+#: templates/orders/cart.html:83
+msgid "✓ <strong class=\"font-semibold\">Envío gratis</strong> aplicado a este pedido"
+msgstr ""
+
+#: templates/pages/bulk.html:125
+msgid "✓ Solicitud recibida"
+msgstr ""

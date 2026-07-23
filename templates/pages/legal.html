@@ -1,72 +1,72 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
 <div class="max-w-3xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold text-primary mb-3">Aviso Legal</h1>
-    <p class="text-sm text-gray-500 mb-8"><strong>Última actualización:</strong> Julio 2026</p>
+    <h1 class="text-3xl font-bold text-primary mb-3">{% translate "Aviso Legal" %}</h1>
+    <p class="text-sm text-gray-500 mb-8">{% blocktranslate %}<strong>Última actualización:</strong> Julio 2026{% endblocktranslate %}</p>
 
     {% if not legal_data_configured %}
     <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-10 text-sm text-amber-800">
-        ⚠️ <strong>Pendiente antes del lanzamiento:</strong> definir LEGAL_NAME, LEGAL_NIF y LEGAL_ADDRESS en el <code>.env</code> y revisar los textos con asesor legal.
+        ⚠️ <strong>{% translate "Pendiente antes del lanzamiento:" %}</strong> definir LEGAL_NAME, LEGAL_NIF y LEGAL_ADDRESS en el <code>.env</code> y revisar los textos con asesor legal.
     </div>
     {% endif %}
 
     <div class="space-y-8 text-gray-700 text-sm leading-relaxed">
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">1. Objeto y condiciones de uso</h2>
-            <p>EuroPeptiva comercializa péptidos sintéticos y compuestos relacionados destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. Los productos no están aprobados por la AEMPS ni por ninguna agencia reguladora para uso en humanos, uso veterinario ni diagnóstico médico.</p>
-            <p class="mt-3">Al acceder a este sitio web y realizar una compra, el usuario declara:</p>
+            <h2 class="text-lg font-bold text-primary mb-3">{% translate "1. Objeto y condiciones de uso" %}</h2>
+            <p>{% blocktranslate %}EuroPeptiva comercializa péptidos sintéticos y compuestos relacionados destinados <strong>exclusivamente a investigación científica en laboratorio</strong>. Los productos no están aprobados por la AEMPS ni por ninguna agencia reguladora para uso en humanos, uso veterinario ni diagnóstico médico.{% endblocktranslate %}</p>
+            <p class="mt-3">{% translate "Al acceder a este sitio web y realizar una compra, el usuario declara:" %}</p>
             <ul class="list-disc pl-5 mt-2 space-y-1">
-                <li>Ser mayor de 18 años</li>
-                <li>Actuar en calidad de investigador, científico o profesional cualificado</li>
-                <li>Que los productos se destinarán únicamente a investigación científica</li>
-                <li>Que cumplirá con toda la normativa aplicable en su jurisdicción</li>
+                <li>{% translate "Ser mayor de 18 años" %}</li>
+                <li>{% translate "Actuar en calidad de investigador, científico o profesional cualificado" %}</li>
+                <li>{% translate "Que los productos se destinarán únicamente a investigación científica" %}</li>
+                <li>{% translate "Que cumplirá con toda la normativa aplicable en su jurisdicción" %}</li>
             </ul>
-            <p class="mt-3">EuroPeptiva no se hace responsable del uso inadecuado de los productos por parte del comprador.</p>
+            <p class="mt-3">{% translate "EuroPeptiva no se hace responsable del uso inadecuado de los productos por parte del comprador." %}</p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">2. Condiciones de venta</h2>
-            <p>Los precios indicados en el sitio incluyen el IVA aplicable. Los gastos de envío se calculan en el proceso de compra según el destino y el importe del pedido.</p>
-            <p class="mt-2">EuroPeptiva se reserva el derecho de rechazar pedidos si existen indicios de uso inadecuado o en caso de incumplimiento de las presentes condiciones.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">{% translate "2. Condiciones de venta" %}</h2>
+            <p>{% translate "Los precios indicados en el sitio incluyen el IVA aplicable. Los gastos de envío se calculan en el proceso de compra según el destino y el importe del pedido." %}</p>
+            <p class="mt-2">{% translate "EuroPeptiva se reserva el derecho de rechazar pedidos si existen indicios de uso inadecuado o en caso de incumplimiento de las presentes condiciones." %}</p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">3. Devoluciones</h2>
-            <p>Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, solo se aceptarán devoluciones en caso de error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Para cualquier incidencia, contacta en un plazo máximo de 48 horas desde la recepción del pedido a <strong>info@europeptiva.com</strong>.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">{% translate "3. Devoluciones" %}</h2>
+            <p>{% blocktranslate %}Dado que los productos son compuestos biológicamente activos que requieren condiciones de almacenamiento controladas, solo se aceptarán devoluciones en caso de error en el pedido por parte de EuroPeptiva o defecto verificable del producto. Para cualquier incidencia, contacta en un plazo máximo de 48 horas desde la recepción del pedido a <strong>info@europeptiva.com</strong>.{% endblocktranslate %}</p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">4. Responsabilidad</h2>
-            <p>EuroPeptiva no se responsabiliza de los daños o perjuicios que pueda causar el uso inadecuado de los productos, ni del incumplimiento de la normativa aplicable por parte del comprador en su país o jurisdicción. Los productos se venden "tal cual" para investigación en laboratorio, sin garantía de resultados específicos en ningún tipo de aplicación.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">{% translate "4. Responsabilidad" %}</h2>
+            <p>{% translate "EuroPeptiva no se responsabiliza de los daños o perjuicios que pueda causar el uso inadecuado de los productos, ni del incumplimiento de la normativa aplicable por parte del comprador en su país o jurisdicción. Los productos se venden \"tal cual\" para investigación en laboratorio, sin garantía de resultados específicos en ningún tipo de aplicación." %}</p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">5. Propiedad intelectual</h2>
-            <p>Todos los contenidos de este sitio (textos, imágenes, diseño gráfico, logotipos, código fuente) son propiedad de EuroPeptiva o de sus licenciantes y están protegidos por la legislación de propiedad intelectual española y comunitaria. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">{% translate "5. Propiedad intelectual" %}</h2>
+            <p>{% translate "Todos los contenidos de este sitio (textos, imágenes, diseño gráfico, logotipos, código fuente) son propiedad de EuroPeptiva o de sus licenciantes y están protegidos por la legislación de propiedad intelectual española y comunitaria. Queda prohibida su reproducción, distribución o comunicación pública sin autorización expresa." %}</p>
         </section>
 
         <section>
-            <h2 class="text-lg font-bold text-primary mb-3">6. Legislación aplicable y jurisdicción</h2>
-            <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada de la compraventa, las partes se someten, con renuncia a cualquier otro fuero que pudiera corresponderles, a los Juzgados y Tribunales del domicilio del consumidor, de conformidad con la normativa española de protección de consumidores y usuarios.</p>
+            <h2 class="text-lg font-bold text-primary mb-3">{% translate "6. Legislación aplicable y jurisdicción" %}</h2>
+            <p>{% translate "Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada de la compraventa, las partes se someten, con renuncia a cualquier otro fuero que pudiera corresponderles, a los Juzgados y Tribunales del domicilio del consumidor, de conformidad con la normativa española de protección de consumidores y usuarios." %}</p>
         </section>
 
     </div>
 
     <details class="mt-10 bg-white border border-gray-200 rounded-xl overflow-hidden group">
         <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-primary hover:bg-gray-50">
-            7. Titular del sitio web (identificación legal)
-            <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+            {% translate "7. Titular del sitio web (identificación legal)" %} <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
         </summary>
         <div class="px-5 pb-5 text-gray-700 text-sm leading-relaxed">
-            <p>En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se facilitan los siguientes datos de identificación:</p>
+            <p>{% translate "En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se facilitan los siguientes datos de identificación:" %}</p>
             <ul class="mt-3 space-y-1">
-                <li><strong>Nombre / Razón social:</strong> {{ legal_name }}</li>
-                <li><strong>NIF/CIF:</strong> {{ legal_nif }}</li>
-                <li><strong>Domicilio:</strong> {{ legal_address }}, {{ legal_postcode }} {{ legal_city }}, España</li>
-                <li><strong>Email:</strong> {{ legal_email }}</li>
-                <li><strong>Web:</strong> europeptiva.com y europeptiva.es</li>
-                <li><strong>Actividad:</strong> Comercio al por menor de reactivos y suministros de laboratorio</li>
+                <li>{% blocktranslate %}<strong>Nombre / Razón social:</strong> {{ legal_name }}{% endblocktranslate %}</li>
+                <li>{% blocktranslate %}<strong>NIF/CIF:</strong> {{ legal_nif }}{% endblocktranslate %}</li>
+                <li>{% blocktranslate %}<strong>Domicilio:</strong> {{ legal_address }}, {{ legal_postcode }} {{ legal_city }}, España{% endblocktranslate %}</li>
+                <li>{% blocktranslate %}<strong>Email:</strong> {{ legal_email }}{% endblocktranslate %}</li>
+                <li>{% blocktranslate %}<strong>Web:</strong> europeptiva.com y europeptiva.es{% endblocktranslate %}</li>
+                <li>{% blocktranslate %}<strong>Actividad:</strong> Comercio al por menor de reactivos y suministros de laboratorio{% endblocktranslate %}</li>
             </ul>
         </div>
     </details>

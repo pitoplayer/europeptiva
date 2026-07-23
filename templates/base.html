@@ -1,19 +1,31 @@
+{% load i18n i18n_extras %}{% get_current_language as CURRENT_LANG %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ CURRENT_LANG }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ page_title }} | EuroPeptiva{% endblock %}</title>
-    <meta name="description" content="{{ page_description|default:'EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.' }}">
+    {% translate "EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente." as default_description %}
+    <meta name="description" content="{{ page_description|default:default_description }}">
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    {% comment %}
+    hreflang: le dice a Google que /catalogo/ y /en/catalog/ son la misma
+    página en dos idiomas, en vez de contenido duplicado.
+    {% endcomment %}
+    {% get_available_languages as LANGUAGES %}
+    {% for lang_code, lang_name in LANGUAGES %}
+    <link rel="alternate" hreflang="{{ lang_code }}" href="{{ request.scheme }}://{{ request.get_host }}{% translate_url request.path lang_code %}">
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ request.scheme }}://{{ request.get_host }}{% translate_url request.path 'es' %}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="EuroPeptiva">
+    <meta property="og:locale" content="{{ CURRENT_LANG }}">
     <meta property="og:title" content="{{ page_title }} | EuroPeptiva">
-    <meta property="og:description" content="{{ page_description|default:'EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.' }}">
+    <meta property="og:description" content="{{ page_description|default:default_description }}">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ page_title }} | EuroPeptiva">
-    <meta name="twitter:description" content="{{ page_description|default:'EuroPeptiva — Péptidos de investigación científica de alta pureza. Sintetizados en la UE, verificados por laboratorio independiente.' }}">
+    <meta name="twitter:description" content="{{ page_description|default:default_description }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>

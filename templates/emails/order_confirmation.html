@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -37,11 +38,11 @@
 <div class="wrapper">
   <div class="header">
     <h1>EuroPeptiva</h1>
-    <p>Péptidos de investigación científica</p>
+    <p>{% translate "Péptidos de investigación científica" %}</p>
   </div>
   <div class="body">
-    <p class="greeting">Hola {{ order.shipping_first_name }},</p>
-    <p class="text">Hemos recibido tu pedido correctamente. A continuación encontrarás los detalles:</p>
+    <p class="greeting">{% blocktranslate with v1=order.shipping_first_name %}Hola {{ v1 }},{% endblocktranslate %}</p>
+    <p class="text">{% translate "Hemos recibido tu pedido correctamente. A continuación encontrarás los detalles:" %}</p>
 
     <div class="order-number">
       <span>{{ order.order_number }}</span>
@@ -51,16 +52,16 @@
       <thead>
         <tr>
           <th>Producto</th>
-          <th>Cant.</th>
-          <th style="text-align:right">Precio</th>
+          <th>{% translate "Cant." %}</th>
+          <th style="text-align:right">{% translate "Precio" %}</th>
         </tr>
       </thead>
       <tbody>
         {% for item in order.items.all %}
         <tr>
-          <td>{{ item.product_name }} {{ item.variant_size_mg }}mg</td>
-          <td>{{ item.quantity }}</td>
-          <td style="text-align:right">{{ item.line_total }}€</td>
+          <td>{% blocktranslate with v1=item.product_name v2=item.variant_size_mg %}{{ v1 }} {{ v2 }}mg{% endblocktranslate %}</td>
+          <td>{% blocktranslate with v1=item.quantity %}{{ v1 }}{% endblocktranslate %}</td>
+          <td style="text-align:right">{% blocktranslate with v1=item.line_total %}{{ v1 }}€{% endblocktranslate %}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -74,32 +75,28 @@
 
     {% if order.payment_method == 'bank_transfer' %}
     <div class="bank-box">
-      <h3>Instrucciones de transferencia bancaria</h3>
+      <h3>{% translate "Instrucciones de transferencia bancaria" %}</h3>
       <div class="bank-row"><span class="label">Titular</span><span class="value">{{ bank_holder }}</span></div>
       <div class="bank-row"><span class="label">IBAN</span><span class="value">{{ bank_iban }}</span></div>
       <div class="bank-row"><span class="label">Concepto (obligatorio)</span><span class="value">{{ order.order_number }}</span></div>
       <div class="bank-row"><span class="label">Importe</span><span class="value">{{ order.total }}€</span></div>
     </div>
-    <p class="text">Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1–2 días hábiles). <strong>No olvides incluir el número de pedido en el concepto.</strong></p>
+    <p class="text">{% blocktranslate %}Tu pedido se procesará en cuanto recibamos la confirmación de la transferencia (1–2 días hábiles). <strong>No olvides incluir el número de pedido en el concepto.</strong>{% endblocktranslate %}</p>
     {% elif order.payment_method == 'mollie' %}
-    <p class="text">Tu pago con tarjeta ha sido registrado y será procesado en breve. Recibirás una confirmación adicional cuando el pago sea verificado.</p>
+    <p class="text">{% translate "Tu pago con tarjeta ha sido registrado y será procesado en breve. Recibirás una confirmación adicional cuando el pago sea verificado." %}</p>
     {% endif %}
 
     <p class="text">
-      <strong>Dirección de envío:</strong><br>
-      {{ order.shipping_first_name }} {{ order.shipping_last_name }}<br>
-      {{ order.shipping_address }}<br>
-      {{ order.shipping_postal_code }} {{ order.shipping_city }}<br>
-      {{ order.get_shipping_country_display }}
+      {% blocktranslate with v1=order.get_shipping_country_display v2=order.shipping_address v3=order.shipping_city v4=order.shipping_first_name v5=order.shipping_last_name v6=order.shipping_postal_code %}<strong>Dirección de envío:</strong><br> {{ v4 }} {{ v5 }}<br> {{ v2 }}<br> {{ v6 }} {{ v3 }}<br> {{ v1 }}{% endblocktranslate %}
     </p>
 
     <div class="disclaimer">
-      <strong>Aviso legal:</strong> Este pedido contiene productos de investigación científica de uso exclusivo en laboratorio. No son aptos para consumo humano, veterinario ni diagnóstico clínico.
+      <strong>{% translate "Aviso legal:" %}</strong> Este pedido contiene productos de investigación científica de uso exclusivo en laboratorio. No son aptos para consumo humano, veterinario ni diagnóstico clínico.
     </div>
   </div>
   <div class="footer">
-    <p>EuroPeptiva — <a href="https://europeptiva.com">europeptiva.com</a></p>
-    <p>¿Tienes preguntas? Escríbenos a <a href="mailto:info@europeptiva.com">info@europeptiva.com</a></p>
+    <p>{% blocktranslate %}EuroPeptiva — <a href="https://europeptiva.com">europeptiva.com</a>{% endblocktranslate %}</p>
+    <p>{% blocktranslate %}¿Tienes preguntas? Escríbenos a <a href="mailto:info@europeptiva.com">info@europeptiva.com</a>{% endblocktranslate %}</p>
   </div>
 </div>
 </body>

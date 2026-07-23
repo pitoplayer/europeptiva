@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load shipping_extras %}
 
 {% block content %}
@@ -9,9 +10,9 @@
 
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-gray-400 mb-10">
-        <a href="{% url 'index' %}" class="hover:text-primary transition-colors">Inicio</a>
+        <a href="{% url 'index' %}" class="hover:text-primary transition-colors">{% translate "Inicio" %}</a>
         <span>/</span>
-        <a href="{% url 'catalog' %}" class="hover:text-primary transition-colors">Catálogo</a>
+        <a href="{% url 'catalog' %}" class="hover:text-primary transition-colors">{% translate "Catálogo" %}</a>
         <span>/</span>
         <span class="text-primary font-medium">{{ peptide.name }}</span>
     </nav>
@@ -28,10 +29,10 @@
                     <svg class="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
-                    <span class="text-sm">foto de vial</span>
+                    <span class="text-sm">{% translate "foto de vial" %}</span>
                 </div>
                 {% endif %}
-                <span class="absolute top-4 left-4 bg-accent-light text-accent-mid text-xs font-semibold px-2.5 py-1 rounded-full border border-accent-border">≥99% pureza HPLC</span>
+                <span class="absolute top-4 left-4 bg-accent-light text-accent-mid text-xs font-semibold px-2.5 py-1 rounded-full border border-accent-border">{% translate "≥99% pureza HPLC" %}</span>
             </div>
 
             <!-- Floating badge CoA -->
@@ -45,11 +46,11 @@
                 </div>
                 <div>
                     {% if certificate %}
-                    <p class="text-xs font-semibold text-primary">Ver certificado de análisis (CoA) ↗</p>
+                    <p class="text-xs font-semibold text-primary">{% translate "Ver certificado de análisis (CoA) ↗" %}</p>
                     <p class="text-xs text-gray-400">Lote {{ certificate.lot_number }} · {{ certificate.lab_name }}</p>
                     {% else %}
-                    <p class="text-xs font-semibold text-primary">Certificado de análisis disponible</p>
-                    <p class="text-xs text-gray-400">Ver todos los certificados</p>
+                    <p class="text-xs font-semibold text-primary">{% translate "Certificado de análisis disponible" %}</p>
+                    <p class="text-xs text-gray-400">{% translate "Ver todos los certificados" %}</p>
                     {% endif %}
                 </div>
             </a>
@@ -66,24 +67,24 @@
                 <table class="w-full text-sm">
                     <tbody class="divide-y divide-gray-100">
                         <tr>
-                            <td class="px-4 py-3 text-gray-400 font-medium w-40">Pureza</td>
+                            <td class="px-4 py-3 text-gray-400 font-medium w-40">{% translate "Pureza" %}</td>
                             <td class="px-4 py-3 font-semibold text-accent-mid">{{ peptide.purity }}</td>
                         </tr>
                         {% if peptide.molecular_formula %}
                         <tr>
-                            <td class="px-4 py-3 text-gray-400 font-medium">Fórmula molecular</td>
+                            <td class="px-4 py-3 text-gray-400 font-medium">{% translate "Fórmula molecular" %}</td>
                             <td class="px-4 py-3 font-mono text-primary">{{ peptide.molecular_formula|safe }}</td>
                         </tr>
                         {% endif %}
                         {% if peptide.molecular_weight %}
                         <tr>
-                            <td class="px-4 py-3 text-gray-400 font-medium">Peso molecular</td>
+                            <td class="px-4 py-3 text-gray-400 font-medium">{% translate "Peso molecular" %}</td>
                             <td class="px-4 py-3 text-primary">{{ peptide.molecular_weight }} Da</td>
                         </tr>
                         {% endif %}
                         {% if peptide.cas_number %}
                         <tr>
-                            <td class="px-4 py-3 text-gray-400 font-medium">Número CAS</td>
+                            <td class="px-4 py-3 text-gray-400 font-medium">{% translate "Número CAS" %}</td>
                             <td class="px-4 py-3 font-mono text-primary">{{ peptide.cas_number }}</td>
                         </tr>
                         {% endif %}
@@ -97,7 +98,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="action" value="add">
 
-                <p class="text-sm font-semibold text-primary mb-3">Selecciona cantidad:</p>
+                <p class="text-sm font-semibold text-primary mb-3">{% translate "Selecciona cantidad:" %}</p>
                 <div class="flex flex-wrap gap-2 mb-6">
                     {% for variant in variants %}
                     <label class="cursor-pointer">
@@ -117,13 +118,13 @@
                 </div>
 
                 <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
-                    Añadir al carrito
+                    {% translate "Añadir al carrito" %}
                 </button>
 
                 {% if peptide.variants.first.fulfillment_level == 'stock_minimo' %}
-                <p class="mt-3 text-xs text-gray-400 text-center">Stock limitado, reposición por lotes — envío en 24-72h mientras haya unidades disponibles.</p>
+                <p class="mt-3 text-xs text-gray-400 text-center">{% translate "Stock limitado, reposición por lotes — envío en 24-72h mientras haya unidades disponibles." %}</p>
                 {% else %}
-                <p class="mt-3 text-xs text-gray-400 text-center">En stock — envío en 24-72h.</p>
+                <p class="mt-3 text-xs text-gray-400 text-center">{% translate "En stock — envío en 24-72h." %}</p>
                 {% endif %}
 
                 <!-- Condiciones de envío -->
@@ -132,31 +133,31 @@
                         <svg class="w-4 h-4 text-accent-mid shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                         </svg>
-                        <span>Pídelo antes de las <strong class="font-semibold text-primary">{{ shipping_cutoff_hour }}:00 h</strong> y sale hoy mismo ({{ shipping_cutoff_days }})</span>
+                        <span>{% blocktranslate with hour=shipping_cutoff_hour days=shipping_cutoff_days %}Pídelo antes de las <strong class="font-semibold text-primary">{{ hour }}:00 h</strong> y sale hoy mismo ({{ days }}){% endblocktranslate %}</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <svg class="w-4 h-4 text-accent-mid shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                         </svg>
-                        <span><strong class="font-semibold text-primary">Envío gratis</strong> a partir de {{ shipping_free_from|euros }}</span>
+                        <span>{% blocktranslate with amount=shipping_free_from|euros %}<strong class="font-semibold text-primary">Envío gratis</strong> a partir de {{ amount }}{% endblocktranslate %}</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <svg class="w-4 h-4 text-gray-300 shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
                         </svg>
-                        <span>Por debajo: {{ shipping_cost_es|euros }} a España · {{ shipping_cost_eu|euros }} al resto de la UE</span>
+                        <span>{% blocktranslate with es=shipping_cost_es|euros eu=shipping_cost_eu|euros %}Por debajo: {{ es }} a España · {{ eu }} al resto de la UE{% endblocktranslate %}</span>
                     </li>
                 </ul>
             </form>
             {% else %}
             <div class="border border-gray-200 rounded-xl p-6 text-center text-gray-400 text-sm">
-                Agotado temporalmente — nuevo lote en camino, disponible en unos días.
+                {% translate "Agotado temporalmente — nuevo lote en camino, disponible en unos días." %}
             </div>
             {% endif %}
 
             <!-- Disclaimer -->
             <div class="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-xs text-gray-500 leading-relaxed">
-                <strong class="text-gray-700">Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente con fines de investigación en laboratorio.
+                {% blocktranslate %}<strong class="text-gray-700">Solo para investigación científica.</strong> Este producto no está aprobado para uso humano, veterinario ni diagnóstico. Al comprarlo confirmas que lo usarás exclusivamente con fines de investigación en laboratorio.{% endblocktranslate %}
             </div>
         </div>
     </div>
@@ -164,7 +165,7 @@
     <!-- Descripción -->
     {% if peptide.description %}
     <div class="mt-16 border-t border-gray-100 pt-12">
-        <h2 class="text-xl font-bold text-primary mb-6">Descripción técnica</h2>
+        <h2 class="text-xl font-bold text-primary mb-6">{% translate "Descripción técnica" %}</h2>
         <div class="text-gray-600 text-sm leading-relaxed max-w-3xl">{{ peptide.description|linebreaks }}</div>
     </div>
     {% endif %}

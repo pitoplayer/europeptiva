@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 
@@ -18,23 +19,23 @@
                 <!-- Badge -->
                 <div class="inline-flex items-center gap-2 bg-accent-light border border-accent-border text-accent font-medium text-xs px-3 py-1.5 rounded-full mb-6">
                     <span class="w-1.5 h-1.5 rounded-full bg-accent-mid"></span>
-                    Certificado de análisis por lote · HPLC ≥99%
+                    {% translate "Certificado de análisis por lote · HPLC ≥99%" %}
                 </div>
 
                 <h1 class="text-4xl md:text-5xl font-bold text-primary leading-tight mb-5">
-                    Péptidos de investigación de alta pureza, para ciencia seria.
+                    {% translate "Péptidos de investigación de alta pureza, para ciencia seria." %}
                 </h1>
 
                 <p class="text-gray-500 text-lg leading-relaxed mb-8">
-                    Compuestos sintetizados en la UE, verificados en laboratorio independiente y enviados con cadena de frío. Sin atajos, sin marketing de suplementos.
+                    {% translate "Compuestos sintetizados en la UE, verificados en laboratorio independiente y enviados con cadena de frío. Sin atajos, sin marketing de suplementos." %}
                 </p>
 
                 <div class="flex flex-wrap gap-3 mb-10">
                     <a href="{% url 'catalog' %}" class="bg-primary text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-gray-800 transition-colors">
-                        Ver catálogo
+                        {% translate "Ver catálogo" %}
                     </a>
                     <a href="{% url 'contact' %}" class="border border-gray-300 text-primary px-6 py-3 rounded-lg font-semibold text-sm hover:border-primary transition-colors">
-                        Certificados de análisis
+                        {% translate "Certificados de análisis" %}
                     </a>
                 </div>
 
@@ -47,7 +48,7 @@
                             </svg>
                         </span>
                         <p class="text-2xl sm:text-3xl font-bold text-primary leading-none">≥99%</p>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1.5">pureza HPLC</p>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1.5">{% translate "pureza HPLC" %}</p>
                     </div>
                     <div class="rounded-xl border border-gray-200 bg-gray-50 p-3 sm:p-4">
                         <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-light border border-accent-border text-accent-mid mb-3">
@@ -55,8 +56,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                             </svg>
                         </span>
-                        <p class="text-2xl sm:text-3xl font-bold text-primary leading-none">Hoy</p>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1.5">si pides antes de las {{ shipping_cutoff_hour }}:00 ({{ shipping_cutoff_days }})</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-primary leading-none">{% translate "Hoy" %}</p>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1.5">{% blocktranslate with hour=shipping_cutoff_hour days=shipping_cutoff_days %}si pides antes de las {{ hour }}:00 ({{ days }}){% endblocktranslate %}</p>
                     </div>
                     <div class="rounded-xl border border-gray-200 bg-gray-50 p-3 sm:p-4">
                         <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-light border border-accent-border text-accent-mid mb-3">
@@ -65,7 +66,7 @@
                             </svg>
                         </span>
                         <p class="text-2xl sm:text-3xl font-bold text-primary leading-none">100%</p>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-1.5">lotes con CoA</p>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-1.5">{% translate "lotes con CoA" %}</p>
                     </div>
                 </div>
             </div>
@@ -91,8 +92,8 @@
                 <!-- Floating badge: último lote con CoA publicado -->
                 {% if latest_certificate %}
                 <a href="{% url 'certificates' %}" class="absolute -bottom-4 left-4 bg-white border border-gray-200 rounded-xl shadow-lg px-4 py-3 hover:border-accent-border transition-colors">
-                    <p class="text-xs text-gray-400 mb-0.5">LOTE {{ latest_certificate.lot_number|upper }}</p>
-                    <p class="text-sm font-semibold text-primary">Pureza verificada · {{ latest_certificate.purity }}</p>
+                    <p class="text-xs text-gray-400 mb-0.5">{% blocktranslate with lot=latest_certificate.lot_number|upper %}LOTE {{ lot }}{% endblocktranslate %}</p>
+                    <p class="text-sm font-semibold text-primary">{% blocktranslate with purity=latest_certificate.purity %}Pureza verificada · {{ purity }}{% endblocktranslate %}</p>
                 </a>
                 {% endif %}
             </div>
@@ -107,10 +108,10 @@
 
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-8">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Catálogo</p>
-            <h2 class="text-2xl font-bold text-primary">Compuestos destacados</h2>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">{% translate "Catálogo" %}</p>
+            <h2 class="text-2xl font-bold text-primary">{% translate "Compuestos destacados" %}</h2>
         </div>
-        <a href="{% url 'catalog' %}" class="text-sm text-gray-500 hover:text-primary transition-colors">Ver todo el catálogo →</a>
+        <a href="{% url 'catalog' %}" class="text-sm text-gray-500 hover:text-primary transition-colors">{% translate "Ver todo el catálogo →" %}</a>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -134,10 +135,10 @@
                 </h3>
                 {% with cheapest=peptide.get_cheapest_variant %}
                 {% if cheapest %}
-                <p class="text-xs text-gray-400 mb-3">{{ cheapest.size_mg }}mg · liofilizado</p>
+                <p class="text-xs text-gray-400 mb-3">{% blocktranslate with mg=cheapest.size_mg %}{{ mg }}mg · liofilizado{% endblocktranslate %}</p>
                 <div class="flex items-center justify-between">
                     <span class="font-bold text-primary">{{ cheapest.price }} €</span>
-                    <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">Ver producto</a>
+                    <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">{% translate "Ver producto" %}</a>
                 </div>
                 {% endif %}
                 {% endwith %}
@@ -155,8 +156,8 @@
     <div class="max-w-7xl mx-auto px-6">
 
         <div class="mb-10">
-            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">Explora</p>
-            <h2 class="text-2xl font-bold text-primary">Compra por categoría</h2>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-1">{% translate "Explora" %}</p>
+            <h2 class="text-2xl font-bold text-primary">{% translate "Compra por categoría" %}</h2>
         </div>
 
         <div class="grid md:grid-cols-[240px_1fr] gap-8">
@@ -192,17 +193,17 @@
 
                         <div class="relative flex flex-wrap items-center gap-3 mb-7">
                             <span class="text-xs font-semibold text-accent-mid bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-                                {{ cat.active_product_count }} producto{{ cat.active_product_count|pluralize }}
+                                {% blocktranslate count counter=cat.active_product_count %}{{ counter }} producto{% plural %}{{ counter }} productos{% endblocktranslate %}
                             </span>
                             {% with price=cat.cheapest_price %}
                             {% if price %}
-                            <span class="text-xs font-semibold text-white/60">Desde {{ price }} €</span>
+                            <span class="text-xs font-semibold text-white/60">{% blocktranslate with p=price %}Desde {{ p }} €{% endblocktranslate %}</span>
                             {% endif %}
                             {% endwith %}
                         </div>
 
                         <span class="relative inline-flex items-center gap-2 text-sm font-semibold text-white bg-accent px-5 py-2.5 rounded-lg w-fit group-hover:bg-accent-mid transition-colors">
-                            Ver catálogo
+                            {% translate "Ver catálogo" %}
                             <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
@@ -295,8 +296,8 @@
     <div class="max-w-7xl mx-auto px-6">
 
         <div class="mb-10">
-            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">Por qué EuroPeptiva</p>
-            <h2 class="text-2xl font-bold text-white">Rigor de laboratorio en cada envío.</h2>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent-mid mb-2">{% translate "Por qué EuroPeptiva" %}</p>
+            <h2 class="text-2xl font-bold text-white">{% translate "Rigor de laboratorio en cada envío." %}</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-700">
@@ -304,29 +305,29 @@
                 <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
                     <div class="w-2 h-2 rounded-full bg-accent"></div>
                 </div>
-                <h3 class="text-white font-semibold mb-2">Certificado de análisis</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Cada lote se acompaña de un CoA verificado por laboratorio independiente.</p>
+                <h3 class="text-white font-semibold mb-2">{% translate "Certificado de análisis" %}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">{% translate "Cada lote se acompaña de un CoA verificado por laboratorio independiente." %}</p>
             </div>
             <div class="py-8 md:py-0 md:px-8">
                 <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
                     <div class="w-2 h-2 rounded-full bg-accent"></div>
                 </div>
-                <h3 class="text-white font-semibold mb-2">Síntesis en la UE</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Fabricación y control de calidad dentro de la Unión Europea.</p>
+                <h3 class="text-white font-semibold mb-2">{% translate "Síntesis en la UE" %}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">{% translate "Fabricación y control de calidad dentro de la Unión Europea." %}</p>
             </div>
             <div class="py-8 md:py-0 md:px-8">
                 <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
                     <div class="w-2 h-2 rounded-full bg-accent"></div>
                 </div>
-                <h3 class="text-white font-semibold mb-2">Cadena de frío</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Envío refrigerado y embalaje aislado para preservar la estabilidad.</p>
+                <h3 class="text-white font-semibold mb-2">{% translate "Cadena de frío" %}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">{% translate "Envío refrigerado y embalaje aislado para preservar la estabilidad." %}</p>
             </div>
             <div class="py-8 md:py-0 md:pl-8">
                 <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center mb-4">
                     <div class="w-2 h-2 rounded-full bg-accent"></div>
                 </div>
-                <h3 class="text-white font-semibold mb-2">Uso exclusivo I+D</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Productos etiquetados y comercializados solo para investigación científica.</p>
+                <h3 class="text-white font-semibold mb-2">{% translate "Uso exclusivo I+D" %}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">{% translate "Productos etiquetados y comercializados solo para investigación científica." %}</p>
             </div>
         </div>
 

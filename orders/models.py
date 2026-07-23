@@ -1,24 +1,25 @@
 import uuid
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from store.models import PeptideVariant
 
 
 class Order(models.Model):
     STATUS_CHOICES = [
-        ('pending', 'Pendiente de pago'),
-        ('paid', 'Pago recibido'),
-        ('processing', 'En preparación'),
-        ('shipped', 'Enviado'),
-        ('delivered', 'Entregado'),
-        ('cancelled', 'Cancelado'),
-        ('refunded', 'Reembolsado'),
+        ('pending', _('Pendiente de pago')),
+        ('paid', _('Pago recibido')),
+        ('processing', _('En preparación')),
+        ('shipped', _('Enviado')),
+        ('delivered', _('Entregado')),
+        ('cancelled', _('Cancelado')),
+        ('refunded', _('Reembolsado')),
     ]
 
     PAYMENT_METHOD_CHOICES = [
-        ('bank_transfer', 'Transferencia bancaria'),
-        ('mollie', 'Tarjeta (Mollie)'),
-        ('crypto', 'Criptomoneda'),
+        ('bank_transfer', _('Transferencia bancaria')),
+        ('mollie', _('Tarjeta (Mollie)')),
+        ('crypto', _('Criptomoneda')),
     ]
 
     order_number = models.CharField(max_length=20, unique=True, blank=True)
@@ -29,14 +30,14 @@ class Order(models.Model):
     payment_reference = models.CharField(max_length=100, blank=True, verbose_name="Referencia de pago")
     mollie_payment_id = models.CharField(max_length=100, blank=True, verbose_name="ID pago Mollie")
 
-    shipping_first_name = models.CharField(max_length=100, verbose_name="Nombre")
-    shipping_last_name = models.CharField(max_length=100, verbose_name="Apellidos")
-    shipping_email = models.EmailField(verbose_name="Email")
-    shipping_phone = models.CharField(max_length=20, blank=True, verbose_name="Teléfono")
-    shipping_address = models.CharField(max_length=250, verbose_name="Dirección")
-    shipping_city = models.CharField(max_length=100, verbose_name="Ciudad")
-    shipping_postal_code = models.CharField(max_length=10, verbose_name="Código Postal")
-    shipping_country = models.CharField(max_length=3, default='ESP', verbose_name="País")
+    shipping_first_name = models.CharField(max_length=100, verbose_name=_('Nombre'))
+    shipping_last_name = models.CharField(max_length=100, verbose_name=_('Apellidos'))
+    shipping_email = models.EmailField(verbose_name=_('Email'))
+    shipping_phone = models.CharField(max_length=20, blank=True, verbose_name=_('Teléfono'))
+    shipping_address = models.CharField(max_length=250, verbose_name=_('Dirección'))
+    shipping_city = models.CharField(max_length=100, verbose_name=_('Ciudad'))
+    shipping_postal_code = models.CharField(max_length=10, verbose_name=_('Código Postal'))
+    shipping_country = models.CharField(max_length=3, default='ESP', verbose_name=_('País'))
 
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     shipping_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
