@@ -51,6 +51,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processors.cart_count',
+                'store.context_processors.legal_data',
             ],
         },
     },
@@ -106,6 +107,14 @@ ADMIN_EMAIL = env('ADMIN_EMAIL', default='')
 # Datos bancarios
 BANK_IBAN = env('BANK_IBAN', default='[IBAN pendiente de configurar]')
 BANK_HOLDER = env('BANK_HOLDER', default='[Titular pendiente de configurar]')
+
+# Datos fiscales del titular (aviso legal, privacidad y condiciones)
+LEGAL_NAME = env('LEGAL_NAME', default='[NOMBRE COMPLETO O EMPRESA]')
+LEGAL_NIF = env('LEGAL_NIF', default='[NIF O CIF]')
+LEGAL_ADDRESS = env('LEGAL_ADDRESS', default='[DIRECCIÓN COMPLETA]')
+LEGAL_POSTCODE = env('LEGAL_POSTCODE', default='[CP]')
+LEGAL_CITY = env('LEGAL_CITY', default='[CIUDAD]')
+LEGAL_EMAIL = env('LEGAL_EMAIL', default='info@europeptiva.com')
 
 # Mollie
 MOLLIE_API_KEY = env('MOLLIE_API_KEY', default='')

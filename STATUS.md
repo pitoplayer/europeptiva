@@ -105,7 +105,7 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 - [x] Generar imágenes para los 6 productos nuevos (GHK-Cu, Melanotan I, Melanotan II, Tesamorelin, Semax, Selank) — confirmado en producción
 
 ### Legal (antes del lanzamiento)
-- [ ] Rellenar datos fiscales reales en pages/privacy.html y legal.html
+- [ ] Rellenar datos fiscales reales — ya NO se editan las plantillas: se definen `LEGAL_NAME`, `LEGAL_NIF`, `LEGAL_ADDRESS`, `LEGAL_POSTCODE`, `LEGAL_CITY` en el `.env` (local y VPS). El aviso amarillo de "pendiente" en /aviso-legal/ y /privacidad/ desaparece solo cuando están puestos. Modelo 036 presentado el 23/07/2026; falta el alta en RETA
 - [ ] Revisar textos legales con abogado/gestor
 - [ ] Configurar Google Search Console
 
@@ -123,4 +123,4 @@ Abre http://localhost:8000 y http://localhost:8000/admin (admin/admin123)
 | Semana 3 | Checkout + pagos | ✅ Completo |
 | Semana 4 | Legal, SEO, infra | ✅ Completo |
 | Extras | Automatizaciones + Mollie + deploy | ✅ Completo |
-| **28 jul** | **Lanzamiento** | 🎯 26 días |
+| **28 jul** | **Lanzamiento** | 🎯 5 días (a 23/07/2026) |

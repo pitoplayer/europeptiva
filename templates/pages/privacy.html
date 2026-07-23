@@ -4,9 +4,11 @@
     <h1 class="text-3xl font-bold text-primary mb-3">Política de Privacidad</h1>
     <p class="text-sm text-gray-500 mb-8"><strong>Última actualización:</strong> Julio 2026</p>
 
+    {% if not legal_data_configured %}
     <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-10 text-sm text-amber-800">
-        ⚠️ <strong>Pendiente antes del lanzamiento:</strong> Sustituir los campos entre corchetes [ ] con los datos reales del autónomo/empresa y revisar con asesor legal.
+        ⚠️ <strong>Pendiente antes del lanzamiento:</strong> definir LEGAL_NAME, LEGAL_NIF y LEGAL_ADDRESS en el <code>.env</code> y revisar los textos con asesor legal.
     </div>
+    {% endif %}
 
     <div class="space-y-8 text-gray-700 text-sm leading-relaxed">
 
@@ -95,10 +97,10 @@
             <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
         </summary>
         <div class="px-5 pb-5 text-gray-700 text-sm leading-relaxed">
-            <p><strong>Nombre / Razón social:</strong> [NOMBRE COMPLETO O EMPRESA]<br>
-            <strong>CIF/NIF:</strong> [CIF O NIF]<br>
-            <strong>Domicilio:</strong> [DIRECCIÓN COMPLETA], [CP] [CIUDAD], España<br>
-            <strong>Email:</strong> info@europeptiva.com<br>
+            <p><strong>Nombre / Razón social:</strong> {{ legal_name }}<br>
+            <strong>CIF/NIF:</strong> {{ legal_nif }}<br>
+            <strong>Domicilio:</strong> {{ legal_address }}, {{ legal_postcode }} {{ legal_city }}, España<br>
+            <strong>Email:</strong> {{ legal_email }}<br>
             <strong>Web:</strong> europeptiva.com</p>
         </div>
     </details>
