@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load shipping_extras %}
 
 {% block content %}
 {% if product_schema_json %}
@@ -124,6 +125,28 @@
                 {% else %}
                 <p class="mt-3 text-xs text-gray-400 text-center">En stock — envío en 24-72h.</p>
                 {% endif %}
+
+                <!-- Condiciones de envío -->
+                <ul class="mt-4 border-t border-gray-100 pt-4 space-y-2.5 text-xs text-gray-600">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 text-accent-mid shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        <span>Pídelo antes de las <strong class="font-semibold text-primary">{{ shipping_cutoff_hour }}:00 h</strong> y sale hoy mismo (L–V)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 text-accent-mid shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                        </svg>
+                        <span><strong class="font-semibold text-primary">Envío gratis</strong> a partir de {{ shipping_free_from|euros }}</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 text-gray-300 shrink-0 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+                        </svg>
+                        <span>Por debajo: {{ shipping_cost_es|euros }} a España · {{ shipping_cost_eu|euros }} al resto de la UE</span>
+                    </li>
+                </ul>
             </form>
             {% else %}
             <div class="border border-gray-200 rounded-xl p-6 text-center text-gray-400 text-sm">

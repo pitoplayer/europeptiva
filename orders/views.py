@@ -10,7 +10,11 @@ from django.views.decorators.csrf import csrf_exempt
 from .cart import Cart
 from .forms import CheckoutForm
 from .models import Order, OrderItem
-from .shipping import calculate_shipping
+from .shipping import (
+    FREE_SHIPPING_THRESHOLD,
+    amount_missing_for_free_shipping,
+    calculate_shipping,
+)
 from store.models import PeptideVariant
 
 logger = logging.getLogger(__name__)
@@ -37,9 +41,14 @@ def cart_view(request):
                 pass
         return redirect('cart')
 
+    total = cart.get_total()
+    missing = amount_missing_for_free_shipping(total)
     return render(request, 'orders/cart.html', {
         'items': cart.get_items(),
-        'total': cart.get_total(),
+        'total': total,
+        'missing_for_free_shipping': missing,
+        # % del umbral ya alcanzado, para la barra de progreso
+        'free_shipping_progress': min(int(total / FREE_SHIPPING_THRESHOLD * 100), 100),
         'page_title': 'Tu carrito',
     })
 

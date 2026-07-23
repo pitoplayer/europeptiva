@@ -8,7 +8,7 @@ from django.urls import reverse
 from store.models import Category, Peptide, PeptideVariant
 
 from .models import Order
-from .shipping import calculate_shipping
+from .shipping import amount_missing_for_free_shipping, calculate_shipping
 
 
 def crear_variante(name='BPC-157', size_mg=10, price='49.90', stock=10):
@@ -43,19 +43,28 @@ DATOS_CHECKOUT = {
 
 class EnvioTest(TestCase):
     def test_espana_estandar(self):
-        self.assertEqual(calculate_shipping('ESP', Decimal('50.00')), Decimal('5.90'))
+        self.assertEqual(calculate_shipping('ESP', Decimal('50.00')), Decimal('7.99'))
 
-    def test_espana_gratis_desde_80(self):
-        self.assertEqual(calculate_shipping('ESP', Decimal('80.00')), Decimal('0.00'))
+    def test_espana_no_gratis_por_debajo_del_umbral(self):
+        self.assertEqual(calculate_shipping('ESP', Decimal('149.99')), Decimal('7.99'))
+
+    def test_espana_gratis_desde_150(self):
+        self.assertEqual(calculate_shipping('ESP', Decimal('150.00')), Decimal('0.00'))
 
     def test_eu_estandar(self):
-        self.assertEqual(calculate_shipping('DEU', Decimal('100.00')), Decimal('14.90'))
+        self.assertEqual(calculate_shipping('DEU', Decimal('100.00')), Decimal('12.99'))
 
     def test_eu_gratis_desde_150(self):
         self.assertEqual(calculate_shipping('FRA', Decimal('150.00')), Decimal('0.00'))
 
     def test_pais_desconocido_usa_tarifa_eu(self):
-        self.assertEqual(calculate_shipping('OTHER', Decimal('50.00')), Decimal('14.90'))
+        self.assertEqual(calculate_shipping('OTHER', Decimal('50.00')), Decimal('12.99'))
+
+    def test_falta_para_envio_gratis(self):
+        self.assertEqual(amount_missing_for_free_shipping(Decimal('120.00')), Decimal('30.00'))
+
+    def test_no_falta_nada_si_se_alcanza_el_umbral(self):
+        self.assertIsNone(amount_missing_for_free_shipping(Decimal('150.00')))
 
 
 class CarritoTest(TestCase):
@@ -131,8 +140,8 @@ class CheckoutTest(TestCase):
         self.assertEqual(order.status, 'pending')
         self.assertEqual(order.payment_method, 'bank_transfer')
         self.assertEqual(order.subtotal, Decimal('99.80'))
-        self.assertEqual(order.shipping_cost, Decimal('0.00'))  # >80€ España
-        self.assertEqual(order.total, Decimal('99.80'))
+        self.assertEqual(order.shipping_cost, Decimal('7.99'))  # <150€, España
+        self.assertEqual(order.total, Decimal('107.79'))
         self.assertEqual(order.items.count(), 1)
 
         self.variant.refresh_from_db()
@@ -162,8 +171,16 @@ class CheckoutTest(TestCase):
         datos = dict(DATOS_CHECKOUT, country='DEU')
         self.client.post(reverse('checkout'), datos)
         order = Order.objects.get()
-        self.assertEqual(order.shipping_cost, Decimal('14.90'))
-        self.assertEqual(order.total, Decimal('64.80'))
+        self.assertEqual(order.shipping_cost, Decimal('12.99'))
+        self.assertEqual(order.total, Decimal('62.89'))
+
+    def test_pedido_desde_150_lleva_envio_gratis(self):
+        self._llenar_carrito(quantity=4)  # 4 × 49,90 = 199,60
+        self.client.post(reverse('checkout'), DATOS_CHECKOUT)
+        order = Order.objects.get()
+        self.assertEqual(order.subtotal, Decimal('199.60'))
+        self.assertEqual(order.shipping_cost, Decimal('0.00'))
+        self.assertEqual(order.total, Decimal('199.60'))
 
     def test_stock_no_baja_de_cero(self):
         self.variant.stock = 1

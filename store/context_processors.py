@@ -1,5 +1,25 @@
 from django.conf import settings
 
+from orders.shipping import (
+    FREE_SHIPPING_THRESHOLD,
+    SAME_DAY_CUTOFF_HOUR,
+    SHIPPING_RATES,
+)
+
+
+def shipping_info(request):
+    """Condiciones de envío para las plantillas.
+
+    Salen de orders/shipping.py, que es lo que cobra el checkout: así lo que
+    anunciamos y lo que cobramos no pueden desincronizarse.
+    """
+    return {
+        'shipping_free_from': FREE_SHIPPING_THRESHOLD,
+        'shipping_cost_es': SHIPPING_RATES['ESP']['standard'],
+        'shipping_cost_eu': SHIPPING_RATES['EU']['standard'],
+        'shipping_cutoff_hour': SAME_DAY_CUTOFF_HOUR,
+    }
+
 
 def cart_count(request):
     cart = request.session.get('cart', {})
