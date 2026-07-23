@@ -245,3 +245,67 @@ class ContenidoTraducidoTest(TestCase):
         resp = self.client.get('/en/catalog/', {'q': 'tissue regeneration'})
         self.assertContains(resp, f'/en/product/{self.bpc.slug}/')
         self.assertNotContains(resp, f'/en/product/{self.sin_traducir.slug}/')
+
+
+class FichaEstructuradaTest(TestCase):
+    """Bloques nuevos de la ficha: secciones, upsell y relacionados."""
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.recuperacion = Category.objects.create(name='Recuperación')
+        cls.disolventes = Category.objects.create(name='Disolventes')
+        cls.bpc = crear_peptido(name='BPC-157', category=cls.recuperacion)
+        cls.tb = crear_peptido(name='TB-500', category=cls.recuperacion)
+        cls.semax = crear_peptido(name='Semax', category=cls.recuperacion,
+                                  product_format=Peptide.FORMAT_SPRAY)
+        cls.agua = crear_peptido(name='BAC Water', category=cls.disolventes,
+                                 product_format=Peptide.FORMAT_SOLVENT)
+        cls.agua.slug = 'bac-water'
+        cls.agua.save()
+        for peptido in (cls.bpc, cls.tb, cls.semax):
+            PeptideVariant.objects.create(peptide=peptido, size_mg=10, price=Decimal('49.90'), stock=10)
+        cls.agua_3ml = PeptideVariant.objects.create(
+            peptide=cls.agua, size_mg=3, price=Decimal('6.90'), stock=10)
+
+    def test_liofilizado_ofrece_agua_bacteriostatica(self):
+        resp = self.client.get(reverse('product_detail', args=[self.bpc.slug]))
+        self.assertContains(resp, 'Completa tu pedido')
+        self.assertContains(resp, f'value="{self.agua_3ml.id}"')
+
+    def test_el_spray_no_ofrece_agua_ni_habla_de_reconstituir(self):
+        resp = self.client.get(reverse('product_detail', args=[self.semax.slug]))
+        self.assertNotContains(resp, 'Completa tu pedido')
+        self.assertContains(resp, 'Manipulación')
+        self.assertNotContains(resp, 'Reconstitución y manipulación')
+
+    def test_el_agua_no_se_ofrece_a_si_misma(self):
+        resp = self.client.get(reverse('product_detail', args=[self.agua.slug]))
+        self.assertNotContains(resp, 'Completa tu pedido')
+
+    def test_agua_agotada_no_se_ofrece(self):
+        self.agua_3ml.stock = 0
+        self.agua_3ml.save()
+        resp = self.client.get(reverse('product_detail', args=[self.bpc.slug]))
+        self.assertNotContains(resp, 'Completa tu pedido')
+
+    def test_relacionados_priorizan_la_misma_categoria(self):
+        resp = self.client.get(reverse('product_detail', args=[self.bpc.slug]))
+        self.assertContains(resp, 'Se investigan a menudo junto a este')
+        self.assertContains(resp, f'/producto/{self.tb.slug}/')
+        # Contra el contexto y no contra el HTML: el propio producto aparece
+        # enlazado en el selector de idioma de la cabecera.
+        self.assertIn(self.tb, resp.context['related'])
+        self.assertNotIn(self.bpc, resp.context['related'])
+
+    def test_contexto_cae_a_la_descripcion_mientras_este_vacio(self):
+        resp = self.client.get(reverse('product_detail', args=[self.bpc.slug]))
+        self.assertContains(resp, 'Descripción completa de BPC-157.')
+        self.bpc.research_background = 'Lo que se ha estudiado de BPC-157.'
+        self.bpc.save()
+        resp = self.client.get(reverse('product_detail', args=[self.bpc.slug]))
+        self.assertContains(resp, 'Lo que se ha estudiado de BPC-157.')
+        self.assertNotContains(resp, 'Descripción completa de BPC-157.')
+
+    def test_el_disolvente_se_mide_en_ml(self):
+        self.assertEqual(self.agua_3ml.size_display, '3 ml')
+        self.assertEqual(self.bpc.variants.first().size_display, '10 mg')

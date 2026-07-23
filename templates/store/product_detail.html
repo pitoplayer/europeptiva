@@ -110,12 +110,29 @@
                             peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white
                             peer-disabled:opacity-40 peer-disabled:cursor-not-allowed
                             border-gray-200 text-primary hover:border-gray-400">
-                            {{ variant.size_mg }}mg
+                            {{ variant.size_display }}
                             <span class="block text-xs font-normal mt-0.5 peer-checked:text-white opacity-70">{{ variant.price }}€</span>
                         </div>
                     </label>
                     {% endfor %}
                 </div>
+
+                {% if bac_water_variants %}
+                <!-- Upsell: este producto llega liofilizado y no se disuelve solo -->
+                <div class="border border-gray-200 rounded-xl p-4 mb-6">
+                    <p class="text-sm font-semibold text-primary mb-1">{% translate "Completa tu pedido" %}</p>
+                    <p class="text-xs text-gray-400 mb-3">{% translate "Llega liofilizado: necesitas agua bacteriostática para reconstituirlo." %}</p>
+                    <div class="space-y-2">
+                        {% for bac in bac_water_variants %}
+                        <label class="flex items-center gap-3 border border-gray-200 rounded-lg px-3 py-2.5 cursor-pointer hover:border-gray-400 transition-colors has-[:checked]:border-primary has-[:checked]:bg-gray-50">
+                            <input type="checkbox" name="variant_id" value="{{ bac.id }}" class="w-4 h-4 accent-primary shrink-0">
+                            <span class="text-sm text-primary flex-1">{% blocktranslate with tamano=bac.size_display %}Agua bacteriostática · {{ tamano }}{% endblocktranslate %}</span>
+                            <span class="text-sm font-semibold text-primary">{{ bac.price }} €</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
 
                 <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors">
                     {% translate "Añadir al carrito" %}
@@ -162,11 +179,57 @@
         </div>
     </div>
 
-    <!-- Descripción -->
-    {% if peptide.description %}
+    <!-- Contenido largo: contexto, manipulación y conservación -->
+    <div class="mt-16 border-t border-gray-100 pt-12 max-w-3xl space-y-10">
+
+        {# research_background es el texto propio del producto. Mientras esté
+           vacío se enseña la descripción completa, que es lo que había antes. #}
+        {% firstof peptide.research_background peptide.description as intro %}
+        {% if intro %}
+        <section>
+            <h2 class="text-xl font-bold text-primary mb-4">{% translate "Contexto de investigación" %}</h2>
+            <div class="text-gray-600 text-sm leading-relaxed">{{ intro|linebreaks }}</div>
+        </section>
+        {% endif %}
+
+        <section>
+            <h2 class="text-xl font-bold text-primary mb-4">{{ handling.title }}</h2>
+            <ul class="space-y-2.5">
+                {% for item in handling.items %}
+                <li class="flex items-start gap-2.5 text-gray-600 text-sm leading-relaxed">
+                    <svg class="w-4 h-4 text-accent-mid shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                    </svg>
+                    <span>{{ item }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-primary mb-4">{{ storage.title }}</h2>
+            <ul class="space-y-2.5">
+                {% for item in storage.items %}
+                <li class="flex items-start gap-2.5 text-gray-600 text-sm leading-relaxed">
+                    <svg class="w-4 h-4 text-accent-mid shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                    </svg>
+                    <span>{{ item }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+
+    <!-- Relacionados -->
+    {% if related %}
     <div class="mt-16 border-t border-gray-100 pt-12">
-        <h2 class="text-xl font-bold text-primary mb-6">{% translate "Descripción técnica" %}</h2>
-        <div class="text-gray-600 text-sm leading-relaxed max-w-3xl">{{ peptide.description|linebreaks }}</div>
+        <h2 class="text-xl font-bold text-primary mb-6">{% translate "Se investigan a menudo junto a este" %}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {% for related_peptide in related %}
+            {% include 'partials/product_card.html' with peptide=related_peptide %}
+            {% endfor %}
+        </div>
     </div>
     {% endif %}
 

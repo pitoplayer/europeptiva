@@ -1,0 +1,31 @@
+{% load i18n %}
+{# Tarjeta de producto. La usan el catálogo y los productos relacionados de la ficha. #}
+<div class="group border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow bg-white">
+    <a href="{% url 'product_detail' peptide.slug %}" class="relative block bg-gray-50 aspect-[4/3] overflow-hidden">
+        {% if peptide.main_image %}
+        <img src="{{ peptide.main_image.url }}" alt="{{ peptide.name }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+        {% else %}
+        <svg class="absolute inset-0 m-auto w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        {% endif %}
+        <span class="absolute top-2 left-2 bg-accent-light text-accent-mid text-xs font-semibold px-2 py-0.5 rounded-full border border-accent-border">≥99%</span>
+    </a>
+    <div class="p-4">
+        <h3 class="font-semibold text-primary mb-0.5">
+            <a href="{% url 'product_detail' peptide.slug %}" class="hover:text-accent-mid transition-colors">{{ peptide.name }}</a>
+        </h3>
+        {% if peptide.cas_number %}<p class="text-xs text-gray-400 mb-1">CAS {{ peptide.cas_number }}</p>{% endif %}
+        {% with cheapest=peptide.get_cheapest_variant %}
+        {% if cheapest %}
+        <p class="text-xs text-gray-400 mb-3">{% blocktranslate with tamano=cheapest.size_display formato=peptide.format_label %}{{ tamano }} · {{ formato }}{% endblocktranslate %}</p>
+        <div class="flex items-center justify-between">
+            <span class="font-bold text-primary">{{ cheapest.price }} €</span>
+            <a href="{% url 'product_detail' peptide.slug %}" class="text-xs font-semibold text-white bg-primary px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors">{% translate "Ver producto" %}</a>
+        </div>
+        {% else %}
+        <p class="text-sm text-gray-400">{% translate "Sin stock" %}</p>
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>

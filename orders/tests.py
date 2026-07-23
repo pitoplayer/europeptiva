@@ -111,6 +111,24 @@ class CarritoTest(TestCase):
         self.assertRedirects(resp, reverse('cart'))
         self.assertEqual(self.client.session.get('cart', {}), {})
 
+    def test_se_pueden_anadir_dos_variantes_de_golpe(self):
+        """El upsell de la ficha manda el péptido y el agua en el mismo POST."""
+        agua = crear_variante(name='BAC Water', size_mg=3, price='6.90')
+        resp = self.client.post(reverse('cart'), {
+            'action': 'add', 'variant_id': [self.variant.id, agua.id],
+        })
+        self.assertRedirects(resp, reverse('cart'))
+        cart = self.client.session['cart']
+        self.assertEqual(len(cart), 2)
+        self.assertEqual(cart[str(agua.id)]['quantity'], 1)
+
+    def test_una_variante_mala_no_tumba_a_la_buena(self):
+        resp = self.client.post(reverse('cart'), {
+            'action': 'add', 'variant_id': [self.variant.id, 99999],
+        })
+        self.assertRedirects(resp, reverse('cart'))
+        self.assertEqual(list(self.client.session['cart']), [str(self.variant.id)])
+
 
 class CheckoutTest(TestCase):
     def setUp(self):

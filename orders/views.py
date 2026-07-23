@@ -27,11 +27,21 @@ def cart_view(request):
     if request.method == 'POST':
         variant_id = request.POST.get('variant_id')
         action = request.POST.get('action')
-        if action == 'add' and variant_id:
-            try:
-                cart.add(variant_id)
+        if action == 'add':
+            # La ficha de producto puede mandar dos variantes de golpe: el
+            # péptido y el agua bacteriostática del bloque "completa tu pedido".
+            añadidas = 0
+            for vid in request.POST.getlist('variant_id'):
+                try:
+                    cart.add(vid)
+                    añadidas += 1
+                except (PeptideVariant.DoesNotExist, ValueError):
+                    continue
+            if añadidas > 1:
+                messages.success(request, _('Productos añadidos al carrito.'))
+            elif añadidas:
                 messages.success(request, _('Producto añadido al carrito.'))
-            except PeptideVariant.DoesNotExist:
+            else:
                 messages.error(request, _('Ese producto ya no está disponible.'))
         elif action == 'remove' and variant_id:
             cart.remove(variant_id)

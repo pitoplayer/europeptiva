@@ -7,9 +7,10 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.translation import gettext as _
 from django.utils.safestring import mark_safe
-from .models import Category, Peptide, Certificate
+from .models import Category, Peptide, PeptideVariant, Certificate
 from .bulk import BULK_MIN_UNITS, BULK_TIERS
 from .forms import BulkEnquiryForm, ContactForm
+from .product_content import handling_block, storage_block
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +80,42 @@ def catalog(request):
     })
 
 
+BAC_WATER_SLUG = 'bac-water'
+RELATED_COUNT = 4
+
+
+def related_products(peptide):
+    """Primero la misma categoría; si no llega a cuatro, se completa con el resto."""
+    related = list(
+        Peptide.objects.filter(is_active=True, category=peptide.category)
+        .exclude(pk=peptide.pk)
+        .order_by('-is_featured', 'name')[:RELATED_COUNT]
+    )
+    if len(related) < RELATED_COUNT:
+        related += list(
+            Peptide.objects.filter(is_active=True)
+            .exclude(pk__in=[peptide.pk] + [p.pk for p in related])
+            .order_by('-is_featured', 'name')[:RELATED_COUNT - len(related)]
+        )
+    return related
+
+
+def bac_water_offer(peptide):
+    """Variantes de agua bacteriostática que ofrecer junto a un liofilizado.
+
+    Vacío si el producto no hay que reconstituirlo, si es el agua misma, o si
+    está agotada: el bloque no se pinta.
+    """
+    if not peptide.needs_bac_water() or peptide.slug == BAC_WATER_SLUG:
+        return []
+    return list(
+        PeptideVariant.objects.filter(
+            peptide__slug=BAC_WATER_SLUG, peptide__is_active=True,
+            is_active=True, stock__gt=0,
+        ).select_related('peptide').order_by('size_mg')
+    )
+
+
 def product_detail(request, slug):
     peptide = get_object_or_404(Peptide, slug=slug, is_active=True)
     variants = list(peptide.variants.filter(is_active=True).order_by('size_mg'))
@@ -110,6 +147,10 @@ def product_detail(request, slug):
         'peptide': peptide,
         'variants': variants,
         'certificate': certificate,
+        'handling': handling_block(peptide.product_format),
+        'storage': storage_block(peptide.product_format),
+        'bac_water_variants': bac_water_offer(peptide),
+        'related': related_products(peptide),
         'page_title': peptide.name,
         'page_description': peptide.short_description or _('%(name)s — péptido de investigación de pureza ≥99%%, verificado por HPLC. Certificado de análisis disponible.') % {'name': peptide.name},
         'product_schema_json': mark_safe(json.dumps(product_schema).replace('</', '<\\/')),

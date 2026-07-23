@@ -102,7 +102,18 @@ def main(lang):
     existing = {}
     if po_path.exists():
         for entry in polib.pofile(str(po_path)):
-            if entry.msgstr:
+            # En las entradas con plural, polib deja msgstr vacío y guarda las
+            # formas en msgstr_plural. Leer solo msgstr las perdía en cada
+            # extracción. Se indexan por su msgid para que el volcado de abajo
+            # las encuentre igual que a las demás.
+            if entry.msgstr_plural:
+                for msgid, msgstr in (
+                    (entry.msgid, entry.msgstr_plural.get(0, '')),
+                    (entry.msgid_plural, entry.msgstr_plural.get(1, '')),
+                ):
+                    if msgstr:
+                        existing[msgid] = msgstr
+            elif entry.msgstr:
                 existing[entry.msgid] = entry.msgstr
 
     po = polib.POFile(wrapwidth=0)
@@ -132,7 +143,7 @@ def main(lang):
                 msgid=msgid, msgstr=existing.get(msgid, ''), occurrences=occ))
     po.save(str(po_path))
     total = len(po)
-    done = sum(1 for e in po if e.msgstr)
+    done = sum(1 for e in po if e.msgstr or e.msgstr_plural.get(0))
     print(f'{po_path.relative_to(ROOT)}: {total} literales, {done} traducidos, {total - done} pendientes')
 
 

@@ -28,8 +28,8 @@ class CategoryAdmin(TranslationAdmin):
 
 @admin.register(Peptide)
 class PeptideAdmin(TranslationAdmin):
-    list_display = ['name', 'category', 'purity', 'is_active', 'is_featured', 'stock_status']
-    list_filter = ['category', 'is_active', 'is_featured']
+    list_display = ['name', 'category', 'product_format', 'purity', 'is_active', 'is_featured', 'stock_status']
+    list_filter = ['category', 'product_format', 'is_active', 'is_featured']
     search_fields = ['name', 'cas_number']
     prepopulated_fields = {'slug': ('name',)}
     inlines = [PeptideVariantInline, CertificateInline]

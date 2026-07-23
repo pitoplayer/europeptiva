@@ -37,6 +37,18 @@ class Category(models.Model):
 
 
 class Peptide(models.Model):
+    # El formato decide qué bloques de reconstitución y conservación se pintan
+    # en la ficha. Son idénticos para todos los productos del mismo formato, así
+    # que viven en store/product_content.py y no duplicados en cada fila.
+    FORMAT_VIAL = 'vial'
+    FORMAT_SPRAY = 'spray'
+    FORMAT_SOLVENT = 'solvent'
+    FORMAT_CHOICES = [
+        (FORMAT_VIAL, "Vial liofilizado (hay que reconstituir)"),
+        (FORMAT_SPRAY, "Spray nasal líquido (listo para usar)"),
+        (FORMAT_SOLVENT, "Disolvente o auxiliar"),
+    ]
+
     name = models.CharField(max_length=200, verbose_name="Nombre")
     slug = models.SlugField(unique=True, blank=True)
     cas_number = models.CharField(max_length=50, blank=True, verbose_name="Número CAS")
@@ -44,6 +56,16 @@ class Peptide(models.Model):
 
     short_description = models.CharField(max_length=300, verbose_name="Descripción corta")
     description = models.TextField(verbose_name="Descripción completa")
+    research_background = models.TextField(
+        blank=True, verbose_name="Contexto de investigación",
+        help_text="Qué se ha estudiado de esta molécula. Si se deja vacío, la ficha "
+                  "enseña la descripción completa en su lugar. Sin afirmaciones de "
+                  "eficacia, dosis ni uso humano.",
+    )
+    product_format = models.CharField(
+        max_length=10, choices=FORMAT_CHOICES, default=FORMAT_VIAL,
+        verbose_name="Formato",
+    )
     molecular_formula = models.CharField(max_length=100, blank=True, verbose_name="Fórmula molecular")
     molecular_weight = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, verbose_name="Peso molecular (Da)")
     purity = models.CharField(max_length=20, default=">98%", verbose_name="Pureza")
@@ -71,6 +93,14 @@ class Peptide(models.Model):
 
     def get_cheapest_variant(self):
         return self.variants.filter(is_active=True, stock__gt=0).order_by('price').first()
+
+    def format_label(self):
+        """Etiqueta corta del formato, para las tarjetas del catálogo."""
+        from .product_content import FORMAT_LABEL
+        return FORMAT_LABEL.get(self.product_format, FORMAT_LABEL[self.FORMAT_VIAL])
+
+    def needs_bac_water(self):
+        return self.product_format == self.FORMAT_VIAL
 
 
 class PeptideVariant(models.Model):
@@ -108,6 +138,15 @@ class PeptideVariant(models.Model):
 
     def __str__(self):
         return f"{self.peptide.name} - {self.size_mg}mg - {self.price}€"
+
+    @property
+    def size_display(self):
+        """El campo se llama size_mg, pero los disolventes se venden por volumen.
+
+        El SKU se sigue generando con "mg" para no romper los que ya existen.
+        """
+        unit = 'ml' if self.peptide.product_format == Peptide.FORMAT_SOLVENT else 'mg'
+        return f"{self.size_mg} {unit}"
 
     @property
     def in_stock(self):

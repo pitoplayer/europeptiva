@@ -22,4 +22,4 @@ class CategoryTranslationOptions(TranslationOptions):
 
 @register(Peptide)
 class PeptideTranslationOptions(TranslationOptions):
-    fields = ('short_description', 'description')
+    fields = ('short_description', 'description', 'research_background')
